@@ -1,21 +1,25 @@
-<h2>Log in</h2>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<body class="bg-[#FFFFFF]" >
+  <div class="flex flex-col items-center justify-center min-h-screen ">
+    <img src="<%= asset_path('school.jpg') %>" alt="Image Description" class="w-[105px] h-[100px]">
+    <div class="w-full  lg:w-[810px] p-4 mx-auto bg-[#F5F5F5]   rounded">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <h2 class="pb-3 text-2xl text-center text-[#317EAC]">School Management System Panel</h2>
+        <div class="conatiner text-center text-[#5E89AD] text-[14px] rounded bg-[#D9EDF7] p-3 mb-3">Please login with your Username and Password.</div>
+        <% if alert %>
+          <p class="alert text-red-700 conatiner text-center text-[14px] rounded bg-[#F2DEDE] p-3 mb-3"><%= alert %></p>
+        <% end %>
+        <div class="flex py-2">
+          <span class="flex items-center text-[#B94846] rounded-tl rounded-bl justify-center px-3 py-2 bg-[#EEEEE] border border-r-0 border-gray-400"><i class="fas fa-user"></i></span>
+          <%= f.text_field :username, autofocus: true, class: "w-full rounded-tr rounded-br border border-gray-400 p-2 focus:outline-none", placeholder: "Username" %>    </div>
+        <div class="flex py-2">
+          <span class="flex items-center rounded-tl rounded-bl text-[#B94846] justify-center px-3 py-2 text-gray-700 border border-r-0 border-gray-400"><i class="fa-solid fa-lock"></i></span>
+          <%= f.password_field :password, autocomplete: "current-password", class: "w-full rounded-tr rounded-br border border-gray-400 p-2 focus:outline-none", placeholder: "Password" %>    </div>
+        <div class="relative w-full">
+        </div>
+        <div class="text-center">
+          <%= f.submit "Log in", class:"w-[90%] lg:w-[40%]  p-1 m-5 font-medium text-white  rounded bg-[#2AA2E7] focus:outline-none focus:shadow-outline" %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-<%= render "devise/shared/links" %>
+</body>

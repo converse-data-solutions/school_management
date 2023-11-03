@@ -5,23 +5,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js' %>
   </head>
   <body>
-    <div class="navbar">
-      <div class="container">
-        <%= link_to 'Home', root_path, class: 'navlink' %>
-        <% unless user_signed_in? %>
-          <%= link_to 'Login', new_user_session_path, class: 'navlink' %>
-        <% end %>
-        <% if user_signed_in? %>
-          <% if current_user.present? && current_user.role == 'admin' %>          <% end %>
-          <%= link_to 'user sign_out', destroy_user_session_path, data: { turbo_method: :delete } %><br>
-        <% end %>
-      </div>
-    </div>
+    <% if user_signed_in? %>
+      <%= link_to 'user sign_out', destroy_user_session_path, data: { turbo_method: :delete } %><br>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
