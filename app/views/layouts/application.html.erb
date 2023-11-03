@@ -109,7 +109,7 @@
             </div>
             <!-- Dropdown menu for user -->
             <div class="flex items-center ml-3">
-              <div><button onclick="openNav()" class="self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative"><i class="fas fa-user"></i><span class="p-[4px] hidden sm:block">admin</span><span ><i class="fa-solid fa-caret-down"></i></span>
+              <div><button onclick="openNav()" class="self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative"><i class="fas fa-user"></i><span class="p-[4px] hidden lg:block">admin</span><span ><i class="fa-solid fa-caret-down"></i></span>
                 </button>
                 <div id="adminContent" class="z-10  hidden font-normal bg-white  absolute right-0 top-20 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
                   <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
@@ -152,14 +152,18 @@
       </div>
     </div>
   </nav>
-  <!-- Sidebar -->
-  <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-[300px] h-screen pt-28  transition-transform -translate-x-full bg-white pl-3  sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
+  <!-- Sidebar <div class="flex sm:flex-wrap sm:justify-center items-center p-2 text-[#39A9E8] rounded-lg hover:text-white hover:bg-[#39A9E8] group">
+            <div class="sm:order-1"><i class="fa-solid fa-house"></i> </div>
+            <div class="ml-3 sm:order-2">Dashboard</div>
+          </div> -->
+  <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 sm:w-[120px] lg:w-[300px] h-screen pt-28  transition-transform -translate-x-full bg-white pl-3  sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
     <div class="h-full rounded pt-4  pb-4 overflow-y-auto bg-white dark:bg-gray-800" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
       <ul class="space-y-2 font-medium text-[16px]">
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-white hover:bg-[#39A9E8] group">
-            <span><i class="fa-solid fa-house"></i> </span><span class="ml-3">Dashboard</span>
-          </a>
+          <div class="flex sm:flex-wrap p-2 text-[#39A9E8] rounded-lg hover:text-white hover:bg-[#39A9E8] group">
+            <div class="sm:order-1"><i class="fa-solid fa-house"></i> </div>
+            <div class="ml-3 sm:order-2">Dashboard</div>
+          </div>
         </li>
         <li>
           <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
@@ -224,7 +228,7 @@
       </ul>
     </div>
   </aside>
-  <div class="p-4 sm:ml-72">
+  <div class="p-4 sm:ml-28">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
       <div class="grid grid-cols-3 gap-4 mb-4">
         <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
