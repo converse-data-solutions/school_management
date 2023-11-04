@@ -18,26 +18,30 @@
       }
     </style>
     <script>
-      function openNav() {
-       menu = document.getElementById("adminContent");
-       console.log(menu.classList)
-       if (menu.classList.contains("hidden")) {
-         menu.classList.remove("hidden");
+      function openNavForTheme() {
+       theme = document.getElementById("themeContent");
+       console.log(theme.classList)
+       if (theme.classList.contains("hidden")) {
+
+         theme.classList.remove("hidden");
+          admin.classList.add("hidden");
        }
        else {
-         menu.classList.add("hidden");
+         theme.classList.add("hidden");
+
        }
            }
-    </script>
-    <script>
-      function openNavForTheme() {
-       menu = document.getElementById("themeContent");
-       console.log(menu.classList)
-       if (menu.classList.contains("hidden")) {
-         menu.classList.remove("hidden");
+
+           function openNav() {
+       admin = document.getElementById("adminContent");
+       console.log(admin.classList)
+       if (admin.classList.contains("hidden")) {
+
+         admin.classList.remove("hidden");
+          theme.classList.add("hidden");
        }
        else {
-         menu.classList.add("hidden");
+         admin.classList.add("hidden");
        }
            }
     </script>
@@ -160,68 +164,68 @@
     <div class="h-full rounded pt-4  pb-4 overflow-y-auto bg-white dark:bg-gray-800" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
       <ul class="space-y-2 font-medium text-[16px]">
         <li>
-          <div class="flex sm:flex-wrap p-2 text-[#39A9E8] rounded-lg hover:text-white hover:bg-[#39A9E8] group">
+          <div class="flex  md:flex-col items-center lg:flex-row  p-2 text-[#39A9E8] rounded-lg hover:text-white hover:ml-4 hover:bg-[#39A9E8] group">
             <div class="sm:order-1"><i class="fa-solid fa-house"></i> </div>
             <div class="ml-3 sm:order-2">Dashboard</div>
           </div>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
+          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2  items-centr p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group">
             <span><i class="fas fa-user"></i> </span><span class="ml-3">Profile</span>
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
+          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group">
             <span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Fee</span>
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
+          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
             <span><i class="fa-solid fa-calendar-days"></i> </span><span class="ml-3">Noticebord</span>
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
+          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
             <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3">Send SMS</span>
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
+          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
             <span><i class="fa-regular fa-clock"></i> </span><span class="ml-3">Student Attendance</span>
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
+          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
             <span><i class="fa-regular fa-clock"></i></span><span class="ml-3">Teacher Attendance</span>
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
+          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
             <span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Student</span>
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
+          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
             <span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Staff</span>
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
+          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
             <span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Parent</span>
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
+          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
             <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3">Send SMS To Staff</span>
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
+          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
             <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3">SMS Reports</span>
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 dark:hover:bg-gray-700 group">
+          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
             <span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Promote Student</span>
           </a>
         </li>
