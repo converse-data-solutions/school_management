@@ -8,8 +8,6 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
     <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css' %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js' %>
     <style>
@@ -53,7 +51,7 @@
   </head>
   <body>
     <% if user_signed_in? %>
-      <nav class="fixed top-0 z-50 w-full bg-[#39A9E8] border-b border-gray-200 dark:bg-[#39A9E8] dark:border-gray-700">
+      <nav class="top-0  absolute z-50 w-full bg-[#39A9E8] border-b border-gray-200 dark:bg-[#39A9E8] dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center justify-start">
@@ -67,276 +65,193 @@
                 <img src="<%= asset_path('homescreenlogo.png') %>" alt="Image Description" class="w-[133px] h-[50px]" >
               </a>
               <div class="flex space-x-4">
-                <div class="hidden sm:block self-center  sm:text-[14px] text-[#fff] " ><i class="fa-regular fa-clock"></i>  </i>Academic Year: 2023-2024</div>
-              <div class="hidden sm:block self-center  sm:text-[14px] whitespace-nowrap dark:text-white text-[#fff]"><i class="fa-solid fa-envelope"></i><span class="p-[4px] text-[#fff]">SMS Available: 0</span></div>
-              <div><button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="hidden sm:block self-center  sm:text-[14px]  text-[#fff]"><i class="fa-solid fa-star"></i><span class="p-[4px]">More</span><span ><i class="fa-solid fa-caret-down"></i></span>
-                </button>
-                <!-- Dropdown menu -->
-                <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                  <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">User Log</a>
-                    </li>
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Manage Class</a>
-                    </li>
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">About School</a>
-                    </li>
-                  </ul>
+                <div class="hidden sm:block self-center  sm:text-[14px] text-[#fff] " ><i class="fa-regular fa-clock"></i> Academic Year: 2023-2024</div>
+                <div class="hidden sm:block self-center  sm:text-[14px] whitespace-nowrap dark:text-white text-[#fff]"><i class="fa-solid fa-envelope"></i><span class="p-[4px] text-[#fff]">SMS Available: 0</span></div>
+                <div><button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="hidden sm:block self-center  sm:text-[14px]  text-[#fff]"><i class="fa-solid fa-star"></i><span class="p-[4px]">More</span><span ><i class="fa-solid fa-caret-down"></i></span>
+                  </button>
+                  <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                      <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">User Log</a>
+                      </li>
+                      <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Manage Class</a>
+                      </li>
+                      <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">About School</a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </li>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div>
+                <!-- Dropdown for theme  cerulea cyborg Simplex Darkly-->
+                <div class="flex items-center ml-3">
+                  <div><button onclick="openNavForTheme()" class="self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative"><i class="fa-solid fa-droplet"></i><span class="p-[4px] hidden lg:block">Change Skin</span><span ><i class="fa-solid fa-caret-down"></i></span>
+                    </button>
+                    <div id="themeContent" class="z-10 hidden font-normal bg-white  absolute right-20 top-20 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
+                      <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
+                        <li>
+                          <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">cerulea</a>
+                        </li>
+                        <li>
+                          <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">cyborg</a>
+                        </li>
+                        <li>
+                          <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Simplex</a>
+                        </li>
+                        <li>
+                          <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Darkly</a>
+                        </li>
+                        <li>
+                          <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">cyborg</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </div>
+                <!-- Dropdown menu for user -->
+                <div class="flex items-center ml-3">
+                  <div><button onclick="openNav()" class="self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative"><i class="fas fa-user"></i><span class="p-[4px] hidden lg:block">admin</span><span ><i class="fa-solid fa-caret-down"></i></span>
+                    </button>
+                    <div id="adminContent" class="z-10  hidden font-normal bg-white  absolute right-0 top-20 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
+                      <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
+                        <li>
+                          <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Profie</a>
+                        </li>
+                        <li>
+                          <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Log Out</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="flex items-center">
-          <div>
-            <!-- Dropdown for theme  cerulea cyborg Simplex Darkly-->
-            <div class="flex items-center ml-3">
-              <div><button onclick="openNavForTheme()" class="self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative"><i class="fa-solid fa-droplet"></i><span class="p-[4px] hidden lg:block">Change Skin</span><span ><i class="fa-solid fa-caret-down"></i></span>
-                </button>
-                <div id="themeContent" class="z-10 hidden font-normal bg-white  absolute right-20 top-20 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
-                  <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">cerulea</a>
-                    </li>
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">cyborg</a>
-                    </li>
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Simplex</a>
-                    </li>
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Darkly</a>
-                    </li>
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">cyborg</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
+      </nav>
+      <%# side nav bar %>
+      <div class="flex justify-end">
+        <aside id="logo-sidebar" class="absolute md:relative top-0 pt-24 left-0 z-40 bg-black opacity-[0.8] w-[70%] sm:w-[120px] sm:opacity-[100%] lg:w-[300px] h-screen overflow-y-auto  transition-transform -translate-x-full sm:bg-white pl-0 md:pl-3  sm:translate-x-0" aria-label="Sidebar">
+          <div class="rounded  pb-4 overflow-y-auto md:bg-white dark" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+            <ul class="space-y-2 font-medium text-[16px]">
+              <li class="sm:hidden">
+                <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2  items-centr p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group">
+                  <i class="fa-regular fa-clock"></i>  </i>Academic Year: 2023-2024</span>
+            </a>
+          </li>
+          <li class="sm:hidden">
+            <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2  items-centr p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group">
+              <i class="fa-solid fa-envelope"></i><span class="p-[4px] text-[#fff]">SMS Available: 0</span>
+            </a>
+          </li>
+          <li class="sm:hidden">
+            <div><button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class=" self-center  sm:text-[14px] pl-[6px] pb-2 text-[#fff]"><i class="fa-solid fa-star"></i><span class="p-[4px]">More</span><span ><i class="fa-solid fa-caret-down"></i></span>
+              </button>
+              <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                  <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">User Log</a>
+                  </li>
+                  <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Manage Class</a>
+                  </li>
+                  <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">About School</a>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <!-- Dropdown menu for user -->
-            <div class="flex items-center ml-3">
-              <div><button onclick="openNav()" class="self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative"><i class="fas fa-user"></i><span class="p-[4px] hidden lg:block">admin</span><span ><i class="fa-solid fa-caret-down"></i></span>
-                </button>
-                <div id="adminContent" class="z-10  hidden font-normal bg-white  absolute right-0 top-20 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
-                  <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Profie</a>
-                    </li>
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Log Out</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </div>
-          </div>
-        </div>
+          </li>
+          <li>
+            <span class="hidden md:block pl-3 text-left text-[14px] text-[#999b9c]">Main</span>
+            <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2  items-centr pl-2 pb-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group">
+              <span><i class="fa-solid fa-house"></i> </span><span class="ml-3">Dashbord</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2  items-centr p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group">
+              <span><i class="fas fa-user"></i> </span><span class="ml-3">Profile</span>
+            </a>
+          </li>
+          <%# drop down button %>
+          <li>
+            <div class=" main flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Fee</span></div>
+            <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm sub hidden">
+              <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Fees Payment </a></li>
+              <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Fee Due</a></li>
+              <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Fee collection </a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
+              <span><i class="fa-solid fa-calendar-days"></i> </span><span class="ml-3">Noticebord</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
+              <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3">Send SMS</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
+              <span><i class="fa-regular fa-clock"></i> </span><span class="ml-3">Student Attendance</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
+              <span><i class="fa-regular fa-clock"></i></span><span class="ml-3">Teacher Attendance</span>
+            </a>
+          </li>
+          <li>
+            <div class=" mainb flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Fee</span></div>
+            <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm subb hidden">
+              <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Student</a></li>
+              <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Student</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class=" mainc flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Fee</span></div>
+            <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm subc hidden">
+              <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Parent</a></li>
+              <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Parent</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class=" maind flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Fee</span></div>
+            <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm subd hidden">
+              <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Staff</a></li>
+              <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Staff</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
+              <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3">Send SMS To Staff</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
+              <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3">SMS Reports</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
+              <span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Promote Student</span>
+            </a>
+          </li>
+        </ul>
       </div>
-    </div>
-  </nav>
-  <!-- Sidebar <div class="flex sm:flex-wrap sm:justify-center items-center p-2 text-[#39A9E8] rounded-lg hover:text-white hover:bg-[#39A9E8] group">
-            <div class="sm:order-1"><i class="fa-solid fa-house"></i> </div>
-            <div class="ml-3 sm:order-2">Dashboard</div>
-          </div> -->
-  <!-- Sidebar 
-        <li><button class="block py-2 hasSubMenu">Company <span class="inline-block"><svg data-baseweb="icon" viewBox="0 0 24 24" class="ml-1 w-4 h-4 fill-current chevron"><title>Chevron Down</title><path transform="rotate(270, 12, 12)" fill-rule="evenodd" clip-rule="evenodd" d="M9 12C9 12.2652 9.10536 12.5196 9.29289 12.7071L13.2929 16.7071C13.6834 17.0976 14.3166 17.0976 14.7071 16.7071C15.0976 16.3166 15.0976 15.6834 14.7071 15.2929L11.4142 12L14.7071 8.70711C15.0976 8.31658 15.0976 7.68342 14.7071 7.29289C14.3166 6.90237 13.6834 6.90237 13.2929 7.29289L9.29289 11.2929C9.10536 11.4804 9 11.7348 9 12Z"></path></svg> </span> </button>
-          <ul class="bg-black text-sm subMenu hidden">
-            <li><a href="#" class="block py-2 ml-3">About Us</a></li>
-            <li><a href="#" class="block py-2 ml-3">Investor Relations </a></li>
-            <li><a href="#" class="block py-2 ml-3">Careers </a></li>
-          </ul>
-        </li> 
-        -->
-  <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 sm:w-[120px] lg:w-[300px] h-screen pt-28  transition-transform -translate-x-full bg-white pl-3  sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
-    <div class="h-full rounded pt-4  pb-4 overflow-y-auto md:bg-white dark" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
-      <ul class="space-y-2 font-medium text-[16px]">
-        <li>
-          <div class="flex  md:flex-col items-center lg:flex-row  p-2 text-[#39A9E8] rounded-lg hover:text-white hover:ml-4 hover:bg-[#39A9E8] group">
-            <div class="sm:order-1"><i class="fa-solid fa-house"></i> </div>
-            <div class="ml-3 sm:order-2">Dashboard</div>
-          </div>
-        </li>
-        <li>
-          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2  items-centr p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group">
-            <span><i class="fas fa-user"></i> </span><span class="ml-3">Profile</span>
-          </a>
-        </li>
-        <%# drop down button %>
-        <li>
-          <div class=" main flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Fee</span></div>
-          <ul class="bg-white text-sm sub hidden">
-            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Fees Payment </a></li>
-            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Fee Due</a></li>
-            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Fee collection </a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
-            <span><i class="fa-solid fa-calendar-days"></i> </span><span class="ml-3">Noticebord</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
-            <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3">Send SMS</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
-            <span><i class="fa-regular fa-clock"></i> </span><span class="ml-3">Student Attendance</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
-            <span><i class="fa-regular fa-clock"></i></span><span class="ml-3">Teacher Attendance</span>
-          </a>
-        </li>
-        <li>
-          <div class=" mainb flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Student</span></div>
-          <ul class="bg-white text-sm subb hidden">
-            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Student</a></li>
-            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Student</a></li>
-          </ul>
-        </li>
-        <li>
-          <div class=" mainc flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Parent</span></div>
-          <ul class="bg-white text-sm subc hidden">
-            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Parent</a></li>
-            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Parent</a></li>
-          </ul>
-        </li>
-        <li>
-          <div class=" maind flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Staff</span></div>
-          <ul class="bg-white text-sm subd hidden">
-            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Staff</a></li>
-            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Staff</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
-            <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3">Send SMS To Staff</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
-            <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3">SMS Reports</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
-            <span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Promote Student</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </aside>
-  <div class="p-4 sm:ml-28">
-    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-      <div class="grid grid-cols-3 gap-4 mb-4">
-        <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-          </p>
-        </div>
-        <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-          </p>
-        </div>
-        <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-          </p>
-        </div>
-      </div>
-      <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-          </svg>
-        </p>
-      </div>
-      <div class="grid grid-cols-2 gap-4 mb-4">
-        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-          </p>
-        </div>
-        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-          </p>
-        </div>
-        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-          </p>
-        </div>
-        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-          </p>
-        </div>
-      </div>
-      <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-          </svg>
-        </p>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-          </p>
-        </div>
-        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-          </p>
-        </div>
-        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-          </p>
-        </div>
-        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-          </p>
-        </div>
-      </div>
+    </aside>
+    <div class="p-2 mt-20 w-full md:w-[85%]">
+      <%= yield %>
     </div>
   </div>
 <% end %>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
-<%= yield %>
 <script>
   function toggleMenu(btn) {
   const el = btn.parentElement.querySelector('.sub')
