@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css' %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js' %>
     <style>
@@ -207,21 +208,21 @@
             </a>
           </li>
           <li>
-            <div class=" mainb flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Fee</span></div>
+            <div class=" mainb flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Student</span></div>
             <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm subb hidden">
               <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Student</a></li>
               <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Student</a></li>
             </ul>
           </li>
           <li>
-            <div class=" mainc flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Fee</span></div>
+            <div class=" mainc flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Parent</span></div>
             <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm subc hidden">
               <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Parent</a></li>
               <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Parent</a></li>
             </ul>
           </li>
           <li>
-            <div class=" maind flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Fee</span></div>
+            <div class=" maind flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Staff</span></div>
             <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm subd hidden">
               <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Staff</a></li>
               <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Staff</a></li>
@@ -253,41 +254,32 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 <script>
-  function toggleMenu(btn) {
-  const el = btn.parentElement.querySelector('.sub')
-  el.classList.toggle('hidden')
-    }
-    const btn = document.querySelector('.main')
-    btn.addEventListener('click', function(){
-  toggleMenu(btn)
-    })
+  $(document).ready(function() {
+    $('.main').click(function() {
+      const el = $(this).parent().find('.sub');
+      el.slideToggle('slow'); // Add slideToggle with a 'slow' animation speed
+    });
+  });
 
+    $(document).ready(function() {
+    $('.mainb').click(function() {
+      const elb = $(this).parent().find('.subb');
+      elb.slideToggle('slow'); // Add slideToggle with a 'slow' animation speed
+    });
+  });
 
-   function toggleMenub(btnb) {
-  const elb = btnb.parentElement.querySelector('.subb')
-  elb.classList.toggle('hidden')
-    }
-    const btnb = document.querySelector('.mainb')
-    btnb.addEventListener('click', function(){
-  toggleMenub(btnb)
-    })
-
-    function toggleMenuc(btnc) {
-  const elc = btnc.parentElement.querySelector('.subc')
-  elc.classList.toggle('hidden')
-    }
-    const btnc = document.querySelector('.mainc')
-    btnc.addEventListener('click', function(){
-  toggleMenuc(btnc)
-    })
-    function toggleMenud(btnd) {
-  const eld = btnd.parentElement.querySelector('.subd')
-  eld.classList.toggle('hidden')
-    }
-    const btnd = document.querySelector('.maind')
-    btnd.addEventListener('click', function(){
-  toggleMenud(btnd)
-    })
+    $(document).ready(function() {
+    $('.mainc').click(function() {
+      const elc = $(this).parent().find('.subc');
+      elc.slideToggle('slow'); // Add slideToggle with a 'slow' animation speed
+    });
+  });
+  $(document).ready(function() {
+    $('.maind').click(function() {
+      const eld = $(this).parent().find('.subd');
+      eld.slideToggle('slow'); // Add slideToggle with a 'slow' animation speed
+    });
+  });
 </script>
 </body>
 </html>
