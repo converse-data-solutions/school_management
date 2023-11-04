@@ -16,6 +16,11 @@
       div#dropdownNavbar {
       top: 15px !important;
       }
+
+           html, body {
+        min-height:100vh;
+        font-family: 'Manrope', sans-serif;
+      }
     </style>
     <script>
       function openNavForTheme() {
@@ -127,30 +132,6 @@
                 </div>
               </li>
             </div>
-            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
-              <div class="px-4 py-3" role="none">
-                <p class="text-sm text-gray-900 dark:text-white" role="none">
-                  Neil Sims
-                </p>
-                <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                  neil.sims@flowbite.com
-                </p>
-              </div>
-              <ul class="py-1" role="none">
-                <li>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
-                </li>
-                <li>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Settings</a>
-                </li>
-                <li>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
-                </li>
-                <li>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>
@@ -160,8 +141,17 @@
             <div class="sm:order-1"><i class="fa-solid fa-house"></i> </div>
             <div class="ml-3 sm:order-2">Dashboard</div>
           </div> -->
+  <!-- Sidebar 
+        <li><button class="block py-2 hasSubMenu">Company <span class="inline-block"><svg data-baseweb="icon" viewBox="0 0 24 24" class="ml-1 w-4 h-4 fill-current chevron"><title>Chevron Down</title><path transform="rotate(270, 12, 12)" fill-rule="evenodd" clip-rule="evenodd" d="M9 12C9 12.2652 9.10536 12.5196 9.29289 12.7071L13.2929 16.7071C13.6834 17.0976 14.3166 17.0976 14.7071 16.7071C15.0976 16.3166 15.0976 15.6834 14.7071 15.2929L11.4142 12L14.7071 8.70711C15.0976 8.31658 15.0976 7.68342 14.7071 7.29289C14.3166 6.90237 13.6834 6.90237 13.2929 7.29289L9.29289 11.2929C9.10536 11.4804 9 11.7348 9 12Z"></path></svg> </span> </button>
+          <ul class="bg-black text-sm subMenu hidden">
+            <li><a href="#" class="block py-2 ml-3">About Us</a></li>
+            <li><a href="#" class="block py-2 ml-3">Investor Relations </a></li>
+            <li><a href="#" class="block py-2 ml-3">Careers </a></li>
+          </ul>
+        </li> 
+        -->
   <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 sm:w-[120px] lg:w-[300px] h-screen pt-28  transition-transform -translate-x-full bg-white pl-3  sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
-    <div class="h-full rounded pt-4  pb-4 overflow-y-auto bg-white dark:bg-gray-800" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+    <div class="h-full rounded pt-4  pb-4 overflow-y-auto md:bg-white dark" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
       <ul class="space-y-2 font-medium text-[16px]">
         <li>
           <div class="flex  md:flex-col items-center lg:flex-row  p-2 text-[#39A9E8] rounded-lg hover:text-white hover:ml-4 hover:bg-[#39A9E8] group">
@@ -174,10 +164,14 @@
             <span><i class="fas fa-user"></i> </span><span class="ml-3">Profile</span>
           </a>
         </li>
+        <%# drop down button %>
         <li>
-          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group">
-            <span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Fee</span>
-          </a>
+          <div class=" main flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Fee</span></div>
+          <ul class="bg-white text-sm sub hidden">
+            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Fees Payment </a></li>
+            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Fee Due</a></li>
+            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Fee collection </a></li>
+          </ul>
         </li>
         <li>
           <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
@@ -200,19 +194,25 @@
           </a>
         </li>
         <li>
-          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
-            <span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Student</span>
-          </a>
+          <div class=" mainb flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Student</span></div>
+          <ul class="bg-white text-sm subb hidden">
+            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Student</a></li>
+            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Student</a></li>
+          </ul>
         </li>
         <li>
-          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
-            <span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Staff</span>
-          </a>
+          <div class=" mainc flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Parent</span></div>
+          <ul class="bg-white text-sm subc hidden">
+            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Parent</a></li>
+            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Parent</a></li>
+          </ul>
         </li>
         <li>
-          <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
-            <span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Parent</span>
-          </a>
+          <div class=" maind flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Staff</span></div>
+          <ul class="bg-white text-sm subd hidden">
+            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Staff</a></li>
+            <li><a href="#" class="block py-2 ml-3 p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Staff</a></li>
+          </ul>
         </li>
         <li>
           <a href="#" class="flex md:flex-col items-center lg:flex-row  border-b-2 items-cente p-2 text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
@@ -337,5 +337,42 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 <%= yield %>
+<script>
+  function toggleMenu(btn) {
+  const el = btn.parentElement.querySelector('.sub')
+  el.classList.toggle('hidden')
+    }
+    const btn = document.querySelector('.main')
+    btn.addEventListener('click', function(){
+  toggleMenu(btn)
+    })
+
+
+   function toggleMenub(btnb) {
+  const elb = btnb.parentElement.querySelector('.subb')
+  elb.classList.toggle('hidden')
+    }
+    const btnb = document.querySelector('.mainb')
+    btnb.addEventListener('click', function(){
+  toggleMenub(btnb)
+    })
+
+    function toggleMenuc(btnc) {
+  const elc = btnc.parentElement.querySelector('.subc')
+  elc.classList.toggle('hidden')
+    }
+    const btnc = document.querySelector('.mainc')
+    btnc.addEventListener('click', function(){
+  toggleMenuc(btnc)
+    })
+    function toggleMenud(btnd) {
+  const eld = btnd.parentElement.querySelector('.subd')
+  eld.classList.toggle('hidden')
+    }
+    const btnd = document.querySelector('.maind')
+    btnd.addEventListener('click', function(){
+  toggleMenud(btnd)
+    })
+</script>
 </body>
 </html>
