@@ -1,4 +1,27 @@
 :root {
     --primary-background-color: #dfd5d5;
     --primary-text-color: #333333;
+
+    --primary-background-color: #FCFCFC;
+    --primary-text-color: #72ABE7;
+    --secondary-text-color: #FFFFFF;
+    --hover-text-color: #157AB5;
+    --hover-background-color: rgb(241 245 249);
+    --grid-section-backgroundcolor: linear-gradient(to bottom, #dae4ee, #dfe8f0, #e5ecf3, #eaf0f5, #f0f4f8);
+    --top-nav-hover: #157AB5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
