@@ -302,32 +302,28 @@
     });
     });
 
-    // $(document).ready(function () {
-    //   $('a').on('click', function (e) {
-    // e.preventDefault(); // Prevent the default behavior of the anchor tag
+    $(document).ready(function () {
+      $('a').on('click', function (e) {
+    e.preventDefault();
 
-    // // Remove the 'active' class from all navigation items
-    // $('a').removeClass('active');
+    $('a').removeClass('active');
 
-    // // Add the 'active' class to the clicked navigation item
-    // $(this).addClass('active');
+    $(this).addClass('active');
 
-    // // Add margin-left and background color styles to the active item
-    // $('.active').css({
-    //   'margin-left': '6px',
-    //   'background-color': '#2FA4E7',
-    //   'color': 'white'
+    $('.active').css({
+      'margin-left': '6px',
+      'background-color': '#2FA4E7',
+      'color': 'white'
 
-    // });
+    });
 
-    // // Remove margin-left and background color styles from non-active items
-    // $('li a:not(.active)').css({
-    //   'margin-left': '0',
-    //   'background-color': '',
-    //   'color': ''
-    // });
-    //   });
-    // });
+    $('li a:not(.active)').css({
+      'margin-left': '0',
+      'background-color': '',
+      'color': ''
+    });
+      });
+    });
   </script>
 </body>
 </html>
