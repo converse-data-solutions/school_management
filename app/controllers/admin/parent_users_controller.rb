@@ -1,6 +1,6 @@
 class Admin::ParentUsersController < ApplicationController
   def index
-    @users = User.all
+    @parents = User.where(role: 'parent')
   end
 
   def new
