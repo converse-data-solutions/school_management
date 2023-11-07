@@ -321,6 +321,19 @@
     });
       });
     });
+
+      //<!----accordian-->
+    $(document).ready(function() {
+    $('.accordian-header').click(function() {
+      $(this).toggleClass('active');
+      const accordianBody = $(this).next();
+      if ($(this).hasClass('active')) {
+        accordianBody.css('maxHeight', accordianBody.prop('scrollHeight') + 'px');
+      } else {
+        accordianBody.css('maxHeight', 0);
+      }
+    });
+      });
   </script>
 </body>
 </html>
