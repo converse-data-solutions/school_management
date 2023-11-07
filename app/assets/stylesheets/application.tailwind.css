@@ -13,7 +13,7 @@
     transform: rotateX(180deg);
   }
   .accordian-body {
-    @apply max-h-0 overflow-hidden transition-all duration-200 ease-out
+    /* @apply max-h-0 overflow-hidden transition-all duration-200 ease-out */
   }
 }
 

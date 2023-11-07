@@ -6,7 +6,7 @@
     <div class="cursor-pointer text-3xl"> <i class="bx bx-chevron-down"></i></div>
   </div>
   <div class="accordian-body">
-    <form>
+    <%= form_for User.new, url: admin_parent_users_path, method: :post, html: { id: 'user-form' } do |f| %>
       <div class="p-4 border-t bg-white flex flex-wrap">
         <div class="container text-red-700 mx-auto my-2 conatiner text-center text-[14px]  rounded bg-[#F2DEDE] p-2">
           <p>ndfjdfjagjfgoafog fgjhfghfdg</p>
@@ -15,46 +15,46 @@
         <div class="w-full md:w-[80%] md:pl-4">
           <div class="flex md:gap-x-6 md:gap-y-3 flex-wrap">
             <div class="w-full  md:w-[47%]">
-              <label for="first_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Name</label>
-              <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name" required>
+              <label for="name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Name</label>
+              <%= f.text_field :name, id:"name" ,class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ,placeholder:"Name"%>
             </div>
             <div class="w-full  md:w-[32%]">
-              <label for="first_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">UserName</label>
-              <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Username" required>
+              <label for="user_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">UserName</label>
+              <%= f.text_field :username, id:"user_name", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ", placeholder:"Username" %>
             </div>
             <div class="flex w-full md:w-[47%] gap-6 flex-wrap">
               <div class="w-full  md:w-[47%]">
-                <label for="first_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Email</label>
-                <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required>
+                <label for="email" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Email</label>
+                <%= f.email_field :email, id: "email", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "email" %>
               </div>
               <div class="w-full  md:w-[48%]">
-                <label for="first_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Mobile</label>
-                <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Mobilenumber" required>
+                <label for="mobile-number" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Mobile</label>
+                <%= f.number_field :mobile_number, id: "mobile-number", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Mobie" %>
               </div>
             </div>
             <div class="w-full  md:w-[47%]">
-              <label for="first_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Address</label>
-              <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Address" required>
+              <label for="address" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Address</label>
+              <%= f.text_field :address, id: "address", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Address" %>
             </div>
             <div class="flex w-full md:w-[47%] gap-6 flex-wrap">
               <div class="w-full  md:w-[47%]">
-                <label for="first_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Profession</label>
-                <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Profession" required>
+                <label for="profession" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Profession</label>
+                <%= f.text_field :profession, id: "profession", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Profession"  %>
               </div>
               <div class="w-full  md:w-[48%]">
-                <label for="first_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Password</label>
-                <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password" required>
+                <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Password</label>
+                <%= f.password_field :password, id: "password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
               </div>
             </div>
             <div class="w-full  md:w-[47%]">
-              <label for="first_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Gender</label>
+              <label for="geder" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Gender</label>
               <div class="flex">
                 <div class="flex items-center mr-4">
-                  <input id="inline-radio" type="radio" value="" name="inline-radio-group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  <%= f.radio_button :gender, 'male', class:"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" %>
                   <label for="inline-radio" class="ml-2 text-sm font-semibold text-gray-900 dark:text-gray-300">Male</label>
                 </div>
                 <div class="flex items-center mr-4">
-                  <input id="inline-2-radio" type="radio" value="" name="inline-radio-group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  <%= f.radio_button :gender, 'female', class:"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" %>
                   <label for="inline-2-radio" class="ml-2 text-sm font-semibold text-gray-900 dark:text-gray-300">Female</label>
                 </div>
               </div>
@@ -68,7 +68,71 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="text-white bg-[#39A9E8] ml-4 lg:ml-8 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm  w-auto sm:w-auto px-10 py-2.5 text-center   dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-    </form>
+      <%= f.submit "Create Admin User",class:"text-white bg-[#39A9E8] ml-4 lg:ml-8 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm  w-auto sm:w-auto px-10 py-2.5 text-center" %>
+    <% end %>
   </div>
 </div>
+<script>
+  $(document).ready(function () {
+    $('#user-form').validate({
+
+      rules: {
+        name: {
+          required: true,
+        },
+        username: {
+          required: true,
+        },
+        email: {
+          required: true,
+          email: true,
+        },
+        mobile_number: {
+          required: true,
+          digits: true,
+        },
+        address: {
+          required: true,
+        },
+        profession: {
+          required: true,
+        },
+        password: {
+          required: true,
+          minlength: 6, // Change the minimum password length if needed
+        },
+      },
+       console.log('hello');
+      messages: {
+        name: {
+          required: 'Please enter your name.',
+        },
+        username: {
+          required: 'Please enter your username.',
+        },
+        email: {
+          required: 'Please enter your email address.',
+          email: 'Please enter a valid email address.',
+        },
+        mobile_number: {
+          required: 'Please enter your mobile number.',
+          digits: 'Please enter a valid mobile number.',
+        },
+        address: {
+          required: 'Please enter your address.',
+        },
+        profession: {
+          required: 'Please enter your profession.',
+        },
+        password: {
+          required: 'Please enter a password.',
+          minlength: 'Password must be at least 6 characters long.', // Change this message if needed
+        },
+      },
+
+      submitHandler: function (form) {
+        form.submit();
+      },
+    });
+  });
+</script>
