@@ -1,20 +1,32 @@
 <h2>Existing Admin Users</h2>
-<table>
+<table id="myTable" class="display" data-source="<%= admin_parent_users_path(format: :json) %>">
   <thead>
     <tr>
       <th>Email</th>
       <th>mobile_number</th>
       <th>name</th>
+      <th>profession</th>
     </tr>
   </thead>
   <tbody>
-    <% @parents.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= user.mobile_number %></td>
-        <td><%= link_to 'EDIT', edit_admin_parent_user_path(user) %></td>
-        <td><%= link_to 'DELETE', admin_parent_user_path(user), data: {turbo_method: :delete} %></td>
-      </td>
-    </tr>
-  <% end %>
-</tbody>
+  </tbody>
+</table>
+<hr>
+<script>
+  $(document).ready(function() {
+    jQuery('#myTable').dataTable({
+      "processing": true,
+      "serverSide": true,
+      "ajax": {
+        "url": $('#myTable').data('source')
+      },
+      "pagingType": "full_numbers",
+      "columns": [
+        { "data": "email" },
+        { "data": "mobile_number" },
+        { "data": "name" },
+        { "data": "profession" }
+      ]
+    });
+  });
+</script>

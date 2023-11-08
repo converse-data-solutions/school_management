@@ -8,13 +8,13 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css' %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js' %>
-    <link rel="stylesheet" href="<%= asset_path('dark.css') %>" as="style" onload="this.rel='stylesheet'">
-    <link rel="stylesheet" id="themeStylesheet" href="<%= asset_path('default.css') %>">
-    <link rel="stylesheet" href="<%= asset_path('common.css') %>">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <script src="../path/to/datatables.min.js"></script>
     <style>
       div#dropdownNavbar {
             top: 15px !important;
@@ -50,6 +50,7 @@
     </script>
   </head>
   <body>
+    <%= Gon::Base.render_data %>
     <% if user_signed_in? %>
       <nav class="top-0  absolute z-50 w-full bg-[#39A9E8] border-b border-gray-200 dark:bg-[#39A9E8] dark:border-gray-700">
         <div class="px-3 py-2 lg:px-5 lg:pl-3">
@@ -238,6 +239,8 @@
       <div class="p-2 mt-20 w-full md:w-[85%]">
       <% end %>
       <%= yield %>
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
     </div>
   </div>
   <p class="notice"><%= notice %></p>
@@ -270,34 +273,38 @@
       });
     });
 
-    $(document).ready(function() {
-    const themeSelect = $(".themeSelect");
-    const themeStylesheet = $("#themeStylesheet");
-    const themePaths = {
-      default: "<%= asset_path('default.css') %>",
-      dark: "<%= asset_path('dark.css') %>"
-    };
+
+       //for parent table
+
+
+    // $(document).ready(function() {
+    // const themeSelect = $(".themeSelect");
+    // const themeStylesheet = $("#themeStylesheet");
+    // const themePaths = {
+    //   default: "<%= asset_path('default.css') %>",
+    //   dark: "<%= asset_path('dark.css') %>"
+    // };
     // for theme selected by user work based on theme name and diffferent on css file
-    function activateTheme(themeName) {
-      const selectedTheme = themePaths[themeName] || themePaths.default;
-      themeStylesheet.attr("href", selectedTheme);
+    // function activateTheme(themeName) {
+    //   const selectedTheme = themePaths[themeName] || themePaths.default;
+    //   themeStylesheet.attr("href", selectedTheme);
 
-      localStorage.setItem("selectedTheme", themeName);
-    }
+    //   localStorage.setItem("selectedTheme", themeName);
+    // }
 
-    const storedTheme = localStorage.getItem("selectedTheme");
-    const initialTheme = storedTheme || "default";
+    // const storedTheme = localStorage.getItem("selectedTheme");
+    // const initialTheme = storedTheme || "default";
 
-    activateTheme(initialTheme);
-    themeSelect.val(initialTheme);
+    // activateTheme(initialTheme);
+    // themeSelect.val(initialTheme);
 
-    $('#themeContent li').click( function() {
-     const selectedValue = $(this).attr('value');
-      activateTheme(selectedValue);
-      openNavForTheme();
-    console.log('Selected value:', selectedValue);
-    });
-    });
+    // $('#themeContent li').click( function() {
+    //  const selectedValue = $(this).attr('value');
+    //   activateTheme(selectedValue);
+    //   openNavForTheme();
+    // console.log('Selected value:', selectedValue);
+    // });
+    // });
 
     $(document).ready(function () {
       $('a').on('click', function (e) {
@@ -328,9 +335,10 @@
       $(this).toggleClass('active');
       const accordianBody = $(this).next();
       if ($(this).hasClass('active')) {
-        accordianBody.css('maxHeight', accordianBody.prop('scrollHeight') + 'px');
+        accordianBody.css('maxHeight', 800 + 'px');
       } else {
         accordianBody.css('maxHeight', 0);
+
       }
     });
       });
