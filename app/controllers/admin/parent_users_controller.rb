@@ -4,13 +4,13 @@ class Admin::ParentUsersController < ApplicationController
     gon.parent = @parents
     respond_to do |format|
       format.html
-      format.json { render json: ParentUserDatatable.new(params, view_context: view_context) }
+      format.json { render json: ParentUserDatatable.new(params, view_context:) }
     end
   end
 
   def new
     @user = User.new
-  end 
+  end
 
   def create
     @user = build_new_user
@@ -31,9 +31,10 @@ class Admin::ParentUsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    if @user.add_role(user_params[:role])
-      redirect_to root_path
+    if @user.update(user_params)
       flash[:notice] = 'User information updated successfully.'
+      redirect_to admin_parent_users_path
+
     else
       flash[:alert] = 'Failed to update user information.'
       render :edit
@@ -54,11 +55,12 @@ class Admin::ParentUsersController < ApplicationController
   private
 
   def build_new_user
-    User.new(params.require(:user).permit(:email, :password, :password_confirmation, :username, :role, :mobile_number,
+    User.new(params.require(:user).permit(:email, :password, :username, :role, :mobile_number,
                                           :address, :profession, :gender, :name, :avatar))
   end
 
   def user_params
-    params.require(:user)
+    params.require(:user).permit(:email, :username, :password, :role, :mobile_number,
+      :address, :profession, :gender, :name, :avatar)
   end
 end
