@@ -1,16 +1,16 @@
 class Admin::ParentUsersController < ApplicationController
   def index
-    @parents = User.all
+    @parents = User.where(role: 'parent')
     gon.parent = @parents
     respond_to do |format|
       format.html
-      format.json { render json: ParentUserDatatable.new(params) }
+      format.json { render json: ParentUserDatatable.new(params, view_context: view_context) }
     end
   end
 
   def new
     @user = User.new
-  end
+  end 
 
   def create
     @user = build_new_user
