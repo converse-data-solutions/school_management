@@ -53,6 +53,7 @@
               <div class="w-full  md:w-[48%]">
                 <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Password</label>
                 <%= f.password_field :password, id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+                <%= f.hidden_field :password_confirmation %>
               </div>
             </div>
             <div class="w-full  md:w-[47%]">

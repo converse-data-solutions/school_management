@@ -1,8 +1,10 @@
 class UserDecorator < ApplicationDecorator
+  delegate :username, :email, :mobile_number, :address, :profession, :gender
   def link_to
     h.link_to object.username, h.edit_admin_parent_user_path(object)
   end
 
+  
   def dt_actions
     links = []
     links << h.link_to('Status', h.active_user_admin_parent_user_path(object), data: { turbo_method: :patch },

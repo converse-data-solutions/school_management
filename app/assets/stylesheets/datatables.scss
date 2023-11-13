@@ -14,3 +14,99 @@
 //@import 'datatables/extensions/Scroller/scroller.dataTables';
 //@import 'datatables/extensions/Select/select.dataTables';
 
+#myTable {
+  margin-top: 20px;
+  border-collapse: collapse;
+  color: #555555;
+  padding: 10px;
+}
+
+table#myTable {
+  width: 1510px !important;
+}
+
+#myTable th, #myTable td {
+ 
+  border: 1px solid #ddd;
+
+}
+
+#myTable th {
+  background-color: #f2f2f2;
+  color: #555555;
+  font-size: 14px;
+  background-color: #ffffff;
+  text-align: start;
+}
+
+
+
+.dataTables_paginate {
+  margin-top: 10px;
+}
+
+.dataTables_wrapper .dataTables_length select {
+border: 1px solid #aaa;
+border-radius: 3px;
+padding: 5px;
+background-color: transparent;
+/* color: inherit; */
+padding: 4px;
+height: 29px;
+width: 65px;
+margin-left: 10px;
+margin-top: 10px;
+margin-bottom: 10px;
+/* font-size: 14px; */
+}
+
+/* Style the dropdown menu */
+.dataTables_length select {
+  color: black; /* Change the color to black */
+}
+.parent_username a{
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  padding-inline: 6px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 3px;
+  background-color: #DD5600;
+ 
+}
+#active{
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  padding-inline: 6px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 3px;
+  background-color: #DD5600;
+ 
+}
+
+div#myTable_filter {
+  display: flex !important;
+  justify-content: space-evenly !important;
+  width: 84% !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  margin-left: 0.5em;
+  height: 21px;
+  margin-top: 17px;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+
+  text-align: justify;
+  margin-top: 1em;
+  width: 64% !important;
+  // border: 1px solid #994141;
+}
+div#myTable_info {
+  margin-left: 32px;
+  
+}

@@ -7,13 +7,13 @@
   </div>
   <div class="accordian-body">
     <div class="bg-[#FFFFFF]">
-      <table id="myTable" class="my_style" data-source="<%= admin_parent_users_path(format: :json) %>">
+      <table id="myTable" class="stripe style="width:98%;" data-source="<%= admin_parent_users_path(format: :json) %>">
         <thead class="bg-[#FFFFFF]">
           <tr>
             <th>Name</th>
             <th>Username</th>
             <th>Email</th>
-            <th>Mobile_number</th>
+            <th>Mobile</th>
             <th>Address</th>
             <th>profession</th>
             <th>Gender</th>
@@ -36,19 +36,20 @@
         "url": $('#myTable').data('source')
       },
       "pagingType": "full_numbers",
+      "language": {
+                "sLengthMenu": "_MENU_ records per page", // Customize the "Show entries" text
+            },
       "columns": [
         { title: "Name", "data": "name", class: "name" },
-        { "data": "username" },
+        { "data": "username", class: "parent_username" },
         { "data": "email" },
         { "data": "mobile_number" },
         { "data": "address" },
         { "data": "profession" },
         { "data": "gender" },
-        { "data": "deleted" },
+        { "data": "deleted", class: "parent_status" },
         { "data": "dt_actions"},
       ]
     });
   });
-
- 
 </script>

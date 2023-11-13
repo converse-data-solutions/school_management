@@ -4,7 +4,7 @@ class Admin::ParentUsersController < ApplicationController
     gon.parent = @parents
     respond_to do |format|
       format.html
-      format.json { render json: ParentUserDatatable.new(params, view_context:) }
+      format.json { render json: ParentUserDatatable.new(params) }
     end
   end
 
@@ -69,11 +69,12 @@ class Admin::ParentUsersController < ApplicationController
 
   def build_new_user
     User.new(params.require(:user).permit(:email, :password, :username, :role, :mobile_number,
-                                          :address, :profession, :gender, :name, :image))
+                                          :address, :profession, :gender, :name, :image, :deleted))
   end
 
   def user_params
     params.require(:user).permit(:email, :username, :password, :role, :mobile_number,
-                                 :address, :profession, :gender, :name, :image)
+                                 :address, :profession, :gender, :name, :image, :deleted)
   end
+  
 end
