@@ -7,7 +7,7 @@
   </div>
   <div class="accordian-body">
     <div class="bg-[#FFFFFF]">
-      <table id="myTable" class="border-collapse cell-border stripe " data-source="<%= admin_parent_users_path(format: :json) %>">
+      <table id="myTable" class="my_style" data-source="<%= admin_parent_users_path(format: :json) %>">
         <thead class="bg-[#FFFFFF]">
           <tr>
             <th>Name</th>
@@ -37,7 +37,7 @@
       },
       "pagingType": "full_numbers",
       "columns": [
-        { "data": "name" },
+        { title: "Name", "data": "name", class: "name" },
         { "data": "username" },
         { "data": "email" },
         { "data": "mobile_number" },
@@ -49,4 +49,6 @@
       ]
     });
   });
+
+ 
 </script>

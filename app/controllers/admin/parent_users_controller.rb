@@ -41,6 +41,19 @@ class Admin::ParentUsersController < ApplicationController
     end
   end
 
+  def active_user
+    @user = User.find_by(id: params[:id])
+    if @user.deleted == 'Active'
+      @user.update(deleted: 'Inactive')
+      flash[:notice] = 'User deactivated successfully.'
+      redirect_to admin_parent_users_path
+    else
+      @user.update(deleted: 'Active')
+      flash[:alert] = 'Failed to deactivate user.'
+      redirect_to admin_parent_users_path
+    end
+  end
+
   def destroy
     user = User.find_by(id: params[:id])
     if user == current_user
@@ -56,11 +69,11 @@ class Admin::ParentUsersController < ApplicationController
 
   def build_new_user
     User.new(params.require(:user).permit(:email, :password, :username, :role, :mobile_number,
-                                          :address, :profession, :gender, :name, :avatar))
+                                          :address, :profession, :gender, :name, :image))
   end
 
   def user_params
     params.require(:user).permit(:email, :username, :password, :role, :mobile_number,
-      :address, :profession, :gender, :name, :avatar)
+                                 :address, :profession, :gender, :name, :image)
   end
 end

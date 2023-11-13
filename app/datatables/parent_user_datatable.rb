@@ -21,7 +21,7 @@ class ParentUserDatatable < AjaxDatatablesRails::ActiveRecord
       address: { source: 'User.address', searchable: false },
       profession: { source: 'User.profession', searchable: false },
       gender: { source: 'User.gender', searchable: false },
-      deleted: { source: 'User.active' },
+      deleted: { source: 'User.deleted' },
       dt_actions: { source: 'UserDecorator.dt_actions' }
     }
   end

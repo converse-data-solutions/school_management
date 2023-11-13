@@ -6,6 +6,13 @@ Rails.application.routes.draw do
     resources :parent_users, only: %i[index edit update create destroy new]
   end
 
+  namespace :admin do
+    resources :parent_users do
+      member do
+        patch :active_user
+      end
+    end
+  end
   # namespace :admin do
   #   resources :parent_users, only: [:index], defaults: { format: 'json' }
   # end
