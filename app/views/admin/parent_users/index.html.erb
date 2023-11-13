@@ -6,19 +6,19 @@
     <div class="cursor-pointer text-3xl"> <i class="bx bx-chevron-down"></i></div>
   </div>
   <div class="accordian-body">
-    <div class="bg-[#FFFFFF]">
-      <table id="myTable" class="stripe style="width:98%;" data-source="<%= admin_parent_users_path(format: :json) %>">
+    <div class="bg-[#FFFFFF] overflow-scroll mx-5">
+      <table id="myTable" class="stripe" style="width:98%;" data-source="<%= admin_parent_users_path(format: :json) %>">
         <thead class="bg-[#FFFFFF]">
           <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Mobile</th>
-            <th>Address</th>
-            <th>profession</th>
-            <th>Gender</th>
-            <th>Status</th>
-            <th>Action</th>
+            <th class="parent_name">Name</th>
+            <th class="parent_username">Username</th>
+            <th class="parent_email">Email</th>
+            <th class="parent_mobile">Mobile</th>
+            <th class="parent_address">Address</th>
+            <th class="parent_profession">profession</th>
+            <th class="parent_gender">Gender</th>
+            <th class="parent_status">Status</th>
+            <th class="parent_action">Action</th>
           </tr>
         </thead>
         <tbody class="bg-[#F9F9F9] ">
@@ -40,15 +40,15 @@
                 "sLengthMenu": "_MENU_ records per page", // Customize the "Show entries" text
             },
       "columns": [
-        { title: "Name", "data": "name", class: "name" },
+        { title: "Name", "data": "name", class: "parent_name" },
         { "data": "username", class: "parent_username" },
-        { "data": "email" },
-        { "data": "mobile_number" },
-        { "data": "address" },
-        { "data": "profession" },
-        { "data": "gender" },
+        { "data": "email", class: "parent_email" },
+        { "data": "mobile_number", class: "parent_mobile" },
+        { "data": "address", class: "parent_address" },
+        { "data": "profession", class: "parent_profession" },
+        { "data": "gender", class: "parent_gender" },
         { "data": "deleted", class: "parent_status" },
-        { "data": "dt_actions"},
+        { "data": "dt_actions", class: "parent_action" },
       ]
     });
   });

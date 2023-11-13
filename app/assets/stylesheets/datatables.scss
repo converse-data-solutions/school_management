@@ -19,6 +19,8 @@
   border-collapse: collapse;
   color: #555555;
   padding: 10px;
+
+
 }
 
 table#myTable {
@@ -109,4 +111,53 @@ div#myTable_filter {
 div#myTable_info {
   margin-left: 32px;
   
+}
+
+.parent_name {
+  text-wrap: wrap;
+  max-width: 132px;
+}
+.parent_username {
+  text-wrap: wrap;
+  max-width: 100px;
+}
+.parent_email {
+  text-wrap: wrap;
+  max-width: 260px;
+}
+.parent_mobile{
+  text-wrap: wrap;
+  max-width: 100px;
+}
+.parent_address {
+  text-wrap: wrap;
+  max-width: 350px;
+}
+.parent_profession {
+  text-wrap: wrap;
+  max-width: 180px;
+ 
+}
+.parent_gender {
+  text-wrap: wrap;
+  max-width: 68px;
+}
+.parent_status {
+  text-wrap: wrap;
+  max-width: 170px;
+}
+.parent_action {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 140px;
+  // padding-inline: 2px;
+}
+.parent_action .parent_user_action{
+  margin: 4px;
+}
+.parent_action .parent_user_edit{
+  margin: 4px;
+}
+.parent_action .parent_user_delete{
+  margin: 4px;
 }
