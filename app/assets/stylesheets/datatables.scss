@@ -19,6 +19,7 @@
   border-collapse: collapse;
   color: #555555;
   padding: 10px;
+ min-height:fit-content;
 
 
 }
@@ -44,23 +45,45 @@ table#myTable {
 
 
 .dataTables_paginate {
-  margin-top: 10px;
+  margin: 50px;
+}
+@media screen and (min-width: 426px){
+  .dataTables_wrapper .dataTables_length select {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 2px;
+    background-color: transparent; 
+    font-size: small;
+    height: 25px;
+    width: 55px;
+ 
+    margin-top: 10px;
+  
+  /* font-size: 14px; */
+  }
+  }
+@media screen and (max-width: 425px){
+div#myTable_length {
+    float: left;
+}
 }
 
-.dataTables_wrapper .dataTables_length select {
-border: 1px solid #aaa;
-border-radius: 3px;
-padding: 5px;
-background-color: transparent;
-/* color: inherit; */
-padding: 4px;
-height: 29px;
-width: 65px;
-margin-left: 10px;
-margin-top: 10px;
-margin-bottom: 10px;
-/* font-size: 14px; */
-}
+@media screen and (max-width: 425px){
+  .dataTables_wrapper .dataTables_length select {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 2px;
+    background-color: transparent;
+ 
+    font-size: small;
+    height: 25px;
+    width: 55px;
+ 
+    margin-top: 10px;
+  
+  /* font-size: 14px; */
+  }
+  }
 
 /* Style the dropdown menu */
 .dataTables_length select {
@@ -88,6 +111,7 @@ margin-bottom: 10px;
   background-color: #DD5600;
  
 }
+@media screen and (min-width: 625px){
 
 div#myTable_filter {
   display: flex !important;
@@ -98,9 +122,11 @@ div#myTable_filter {
 .dataTables_wrapper .dataTables_filter input {
   margin-left: 0.5em;
   height: 21px;
-  margin-top: 17px;
+  margin-top: 14px;
+  margin-bottom:8px ;
+  width: 145px;
 }
-
+}
 .dataTables_wrapper .dataTables_paginate {
 
   text-align: justify;
@@ -149,15 +175,49 @@ div#myTable_info {
 .parent_action {
   display: flex;
   flex-wrap: wrap;
-  max-width: 140px;
+  max-width: 110px;
   // padding-inline: 2px;
 }
 .parent_action .parent_user_action{
-  margin: 4px;
+  margin: 2px;
 }
 .parent_action .parent_user_edit{
-  margin: 4px;
+  margin: 2px;
 }
 .parent_action .parent_user_delete{
-  margin: 4px;
+  margin: 2px;
+}
+.parent_user_deactive{
+  background-color: #F66305;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+  margin:2px;
+}
+  .parent_user_active{
+  background-color: #7BB13F;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+  margin:2px;
+}
+ .parent_user_edit{
+  background-color: #03417C;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+}
+ .parent_user_delete{
+  background-color: #BD1A20;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
 }
