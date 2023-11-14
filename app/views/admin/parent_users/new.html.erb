@@ -151,6 +151,17 @@
       return true;
     });
   });
+     //<!----accordian-->
+    $(document).ready(function() {
+      $('.accordian-header').click(function() {
+    $(this).toggleClass('active');
+    const accordianBody = $(this).next();
+    if ($(this).hasClass('active')) {
+      accordianBody.css('maxHeight', 800 + 'px');
+    } else {
+      accordianBody.css('maxHeight', 0);
 
-   //<!----accordian-->
+    }
+      });
+    });
 </script>

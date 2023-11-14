@@ -6,8 +6,8 @@
     <div class="cursor-pointer text-3xl"> <i class="bx bx-chevron-down"></i></div>
   </div>
   <div class="accordian-body">
-    <div class="bg-[#FFFFFF] overflow-scroll mx-5">
-      <table id="myTable" class="stripe" style="width:98%;" data-source="<%= admin_parent_users_path(format: :json) %>">
+    <div class="bg-[#FFFFFF] overflow-scroll mx-2 ">
+      <table id="myTable" class="stripe"  data-source="<%= admin_parent_users_path(format: :json) %>">
         <thead class="bg-[#FFFFFF]">
           <tr>
             <th class="parent_name">Name</th>
@@ -17,7 +17,7 @@
             <th class="parent_address">Address</th>
             <th class="parent_profession">profession</th>
             <th class="parent_gender">Gender</th>
-            <th class="parent_status">Status</th>
+            <th >Status</th>
             <th class="parent_action">Action</th>
           </tr>
         </thead>
@@ -48,7 +48,7 @@
         { "data": "address", class: "parent_address" },
         { "data": "profession", class: "parent_profession" },
         { "data": "gender", class: "parent_gender" },
-        { "data": "deleted", class: "parent_status" },
+        { "data": "user_status" },
         { "data": "dt_actions", class: "parent_action" },
       ],
         "oLanguage": {

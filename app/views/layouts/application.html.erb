@@ -22,7 +22,8 @@
             min-height:100vh;
             font-family: 'Manrope', sans-serif;
             }
-            
+
+      
     </style>
     <script>
       function openNavForTheme() {
@@ -158,8 +159,8 @@
               </div>
             </li>
             <li>
-              <span class="hidden md:block pl-3 text-left text-[14px] text-[#999b9c]">Main</span>
-              <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2  items-centr pl-2 pb-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group">
+              <span class="hidden md:block p-[3px] ml-2 text-left text-[14px] text-[#999b9c]">Main</span>
+              <a href="<%= url_for :root %>" class="flex md:flex-col items-center lg:flex-row  md:border-b-2 md:border-t-2  p-2  text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group">
                 <span><i class="fa-solid fa-house"></i> </span><span class="ml-3">Dashbord</span>
               </a>
             </li>
@@ -207,7 +208,7 @@
             <li>
               <a class=" mainc flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3">Manage Parent</span></a>
               <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm subc hidden" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
-                <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100"><%= link_to 'Add new Parent', new_admin_parent_user_path %></a></li>
+                <li><a  class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100"><%= link_to 'Add new Parent', new_admin_parent_user_path %></a></li>
                 <li><a href="#" class="block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Parent</a></li>
               </ul>
             </li>
@@ -328,20 +329,6 @@
     });
       });
     });
-
-      //<!----accordian-->
-    $(document).ready(function() {
-    $('.accordian-header').click(function() {
-      $(this).toggleClass('active');
-      const accordianBody = $(this).next();
-      if ($(this).hasClass('active')) {
-        accordianBody.css('maxHeight', 800 + 'px');
-      } else {
-        accordianBody.css('maxHeight', 0);
-
-      }
-    });
-      });
   </script>
 </body>
 </html>

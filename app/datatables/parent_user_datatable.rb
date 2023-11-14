@@ -21,7 +21,7 @@ class ParentUserDatatable < AjaxDatatablesRails::ActiveRecord
       address: { source: 'User.address', searchable: false },
       profession: { source: 'User.profession', searchable: false },
       gender: { source: 'User.gender', searchable: false },
-      deleted: { source: 'User.deleted', searchable: false},
+      user_status: { source: 'UserDecorator.user_status', searchable: false },
       dt_actions: { source: 'UserDecorator.dt_actions', searchable: false }
     }
   end
@@ -36,9 +36,10 @@ class ParentUserDatatable < AjaxDatatablesRails::ActiveRecord
         address: record.address,
         profession: record.profession,
         gender: record.gender,
-        deleted: record.deleted,
+        user_status: record.decorate.user_status,
         DT_RowId: record.id,
-        dt_actions: record.decorate.dt_actions
+        dt_actions: record.decorate.dt_actions,
+
       }
     end
   end
