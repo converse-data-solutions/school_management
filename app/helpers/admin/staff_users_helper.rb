@@ -1,0 +1,2 @@
+module Admin::StaffUsersHelper
+end

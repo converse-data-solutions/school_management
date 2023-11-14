@@ -1,28 +1,18 @@
-class ParentUserDatatable < AjaxDatatablesRails::ActiveRecord
-  # extend Forwardable
-  # def_delegator :@view, :check_box_tag
-  # def_delegator :@view, :link_to
-
-  # def_delegator :@view, :edit_admin_parent_user_path
-
-  # def initialize(params, opts = {})
-  #   @view = opts[:view_context]
-  #   super
-  # end
+class StaffUserDatatable < AjaxDatatablesRails::ActiveRecord
 
   def view_columns
     # Declare strings in this format: ModelName.column_name
     # or in aliased_join_table.column_name format
     @view_columns ||= {
       name: { source: 'User.name'},
-      username: { source: 'User.username', searchable: true, cond: :like },
-      email: { source: 'User.email', searchable: false },
+      username: { source: 'User.username', searchable: false },
+      email: { source: 'User.email' },
       mobile_number: { source: 'User.mobile_number', searchable: false },
       address: { source: 'User.address', searchable: false },
       profession: { source: 'User.profession', searchable: false },
       gender: { source: 'User.gender', searchable: false },
-      deleted: { source: 'User.deleted', searchable: false},
-      dt_actions: { source: 'UserDecorator.dt_actions', searchable: false }
+      deleted: { source: 'User.deleted' },
+      staff_actions: { source: 'UserDecorator.staff_actions', searchable: false }
     }
   end
 
@@ -38,12 +28,14 @@ class ParentUserDatatable < AjaxDatatablesRails::ActiveRecord
         gender: record.gender,
         deleted: record.deleted,
         DT_RowId: record.id,
-        dt_actions: record.decorate.dt_actions
+        staff_actions: record.decorate.staff_actions
       }
     end
   end
 
   def get_raw_records
-    User.where(role: 'parent')
+    User.where(role: 'staff')
+
   end
+
 end

@@ -20,11 +20,14 @@ gem 'importmap-rails'
 
 gem 'devise'
 
+gem 'byebug', '~> 11.1', '>= 11.1.3'
+
 gem 'sass-rails', '~> 6.0'
 
 gem 'json'
 
 gem 'draper'
+
 
 gem 'gon', '~> 6.4'
 
