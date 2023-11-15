@@ -1,14 +1,5 @@
 class ParentUserDatatable < AjaxDatatablesRails::ActiveRecord
-  # extend Forwardable
-  # def_delegator :@view, :check_box_tag
-  # def_delegator :@view, :link_to
-
-  # def_delegator :@view, :edit_admin_parent_user_path
-
-  # def initialize(params, opts = {})
-  #   @view = opts[:view_context]
-  #   super
-  # end
+ 
 
   def view_columns
     # Declare strings in this format: ModelName.column_name

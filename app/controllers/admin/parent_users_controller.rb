@@ -62,7 +62,7 @@ class Admin::ParentUsersController < ApplicationController
       user.destroy
       flash[:notice] = 'User deleted successfully.'
     end
-    redirect_to root_path
+    redirect_to admin_parent_users_path
   end
 
   private

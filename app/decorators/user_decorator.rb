@@ -5,6 +5,20 @@ class UserDecorator < ApplicationDecorator
     h.link_to object.username, h.admin_staff_user_path(object)
   end
 
+  def staff_status
+    links = []
+    if object.deleted == 'Active'
+
+      
+      links << h.link_to('Active'.html_safe,
+                       h.admin_staff_users_path, class: 'status-active')
+    else
+      links << h.link_to('Inactive'.html_safe,
+        h.admin_staff_users_path, class: 'status-inactive')
+
+    end
+    h.safe_join(links, '')
+  end
   def user_status
     links = []
     if object.deleted == 'Active'

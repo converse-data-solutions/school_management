@@ -11,7 +11,7 @@ class StaffUserDatatable < AjaxDatatablesRails::ActiveRecord
       address: { source: 'User.address', searchable: false },
       profession: { source: 'User.profession', searchable: false },
       gender: { source: 'User.gender', searchable: false },
-      deleted: { source: 'User.deleted', searchable: false},
+      staff_status: { source: 'UserDecorator.staff_status', searchable: false},
       staff_actions: { source: 'UserDecorator.staff_actions', searchable: false }
     }
   end
@@ -26,9 +26,9 @@ class StaffUserDatatable < AjaxDatatablesRails::ActiveRecord
         address: record.address,
         profession: record.profession,
         gender: record.gender,
-        deleted: record.deleted,
+        staff_status: record.decorate.staff_status,
         DT_RowId: record.id,
-        staff_actions: record.decorate.staff_actions
+        staff_actions: record.decorate.staff_actions,
       }
     end
   end

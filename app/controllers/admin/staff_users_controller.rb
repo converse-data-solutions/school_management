@@ -38,13 +38,14 @@ class Admin::StaffUsersController < ApplicationController
   end
 
   def edit
+    @user = User.find_by(id: params[:id])
   end
 
   def update
     @user = User.find_by(id: params[:id])
     if @user.update(user_params)
       flash[:notice] = 'User information updated successfully.'
-      redirect_to admin_parent_users_path
+      redirect_to admin_staff_users_path
 
     else
       flash[:alert] = 'Failed to update user information.'
@@ -53,6 +54,14 @@ class Admin::StaffUsersController < ApplicationController
   end
 
   def destroy
+    user = User.find_by(id: params[:id])
+    if user == current_user
+      flash[:alert] = 'admin cannot delete self.'
+    else
+      user.destroy
+      flash[:notice] = 'User deleted successfully.'
+    end
+    redirect_to admin_staff_users_path
   end
 
   def show
@@ -62,5 +71,9 @@ class Admin::StaffUsersController < ApplicationController
   def build_new_user
     User.new(params.require(:user).permit(:email, :password, :username, :role, :mobile_number,
                                           :address, :profession, :gender, :name, :image, :deleted))
+  end
+  def user_params
+    params.require(:user).permit(:email, :username, :password, :role, :mobile_number,
+                                 :address, :profession, :gender, :name, :image, :deleted)
   end
 end
