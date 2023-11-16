@@ -1,0 +1,447 @@
+#myTable,
+#staffTable {
+  /* margin-top: 20px; */
+  border-collapse: collapse;
+  color: #555555;
+  padding: 10px;
+  min-height: fit-content;
+
+}
+
+
+
+#myTable th,
+#myTable td,
+#staffTable th,
+#staffTable td {
+  padding: 10px;
+
+  border: 1px solid #ddd;
+
+}
+
+#myTable th,
+#staffTable th {
+  background-color: #f2f2f2;
+  color: #555555;
+  font-size: 14px;
+  background-color: #ffffff;
+
+}
+
+#myTable td,
+#staffTable td {
+  color: #555555;
+  font-size: 14px;
+  background-color: #ffffff;
+  text-align: left;
+  vertical-align: top;
+}
+
+
+
+.dataTables_paginate {
+  margin: 50px;
+}
+
+@media screen and (min-width: 426px) {
+  .dataTables_wrapper .dataTables_length select {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 2px;
+    background-color: transparent;
+    font-size: small;
+    height: 25px;
+    width: 55px;
+
+    margin-top: 10px;
+
+    /* font-size: 14px; */
+  }
+}
+
+@media screen and (max-width: 425px) {
+
+  div#myTable_length,
+  div#myTable_length {
+    float: left;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .dataTables_wrapper .dataTables_length select {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 2px;
+    background-color: transparent;
+
+    font-size: small;
+    height: 25px;
+    width: 55px;
+
+    margin-top: 10px;
+
+    /* font-size: 14px; */
+  }
+}
+
+/* Style the dropdown menu */
+.dataTables_length select {
+  color: black;
+  /* Change the color to black */
+}
+
+.parent_username a {
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  padding-inline: 6px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 3px;
+  background-color: #DD5600;
+
+}
+
+#active {
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  padding-inline: 6px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 3px;
+  background-color: #DD5600;
+
+}
+
+@media screen and (min-width: 625px) {
+
+  /* // div#myTable_filter {
+//   display: flex !important;
+//   justify-content: space-evenly !important;
+//   width: 84% !important;
+// } */
+
+  .dataTables_wrapper .dataTables_filter input {
+    margin-left: 0.5em;
+    height: 21px;
+    margin-top: 14px;
+    margin-bottom: 8px;
+    width: 145px;
+  }
+
+}
+
+.dataTables_wrapper .dataTables_paginate {
+
+  text-align: justify;
+  margin-top: 1em;
+  width: 64% !important;
+  /* // border: 1px solid #994141; */
+}
+
+div#myTable_info,
+div#myTable_info {
+  margin-left: 32px;
+
+}
+
+.parent_name {
+  text-wrap: wrap;
+  /* max-width: 132px; */
+}
+
+.parent_username {
+  text-wrap: wrap;
+  /* max-width: 100px; */
+}
+
+.parent_email {
+  text-wrap: wrap;
+  /* max-width: 260px; */
+}
+
+.parent_mobile {
+  text-wrap: wrap;
+  /* max-width: 100px; */
+}
+
+.parent_address {
+  text-wrap: wrap;
+  /* max-width: 350px; */
+}
+
+.parent_profession {
+  text-wrap: wrap;
+  /* max-width: 180px; */
+
+}
+
+.parent_gender {
+  text-wrap: wrap;
+  /* max-width: 68px; */
+}
+
+.parent_status {
+  text-wrap: wrap;
+  /* max-width: 170px; */
+}
+
+.parent_action {
+  text-wrap: wrap;
+  /* max-width: 170px; */
+}
+
+/* for mobile */
+@media screen and (max-width: 625px) {
+  th.parent_action.sorting {
+    width: auto !important;
+  }
+
+  .parent_action {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+
+  }
+
+  .dataTables_wrapper .dataTables_length select {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 2px;
+    background-color: transparent;
+    font-size: small;
+    height: 25px;
+    width: 55px;
+    margin-top: 10px;
+    margin-left: 2px;
+    /* font-size: 14px; */
+  }
+
+  table#myTable,
+  table#staffTable {
+    width: max-content !important;
+  }
+
+  /* .parent_user_deactive {
+    background-color: #F66305;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 5px;
+    width: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+
+  table#myTable,
+  table#staffTable {
+    width: max-content;
+  }
+
+  .dataTables_wrapper .dataTables_length,
+  .dataTables_wrapper .dataTables_filter {
+    float: left;
+    text-align: center;
+  }
+
+  .dataTables_wrapper .dataTables_filter input {
+    margin-left: 0.5em;
+    height: 15px;
+    width: 163px;
+  }
+
+  div#myTable_info,
+  div#myTable_info {
+    margin-left: 7px;
+  }
+
+  .dataTables_wrapper .dataTables_info,
+  .dataTables_wrapper .dataTables_paginate {
+    float: left;
+    text-align: center;
+  }
+}
+
+/* for Tablet */
+@media screen and (max-width: 1020px) {
+
+  .dataTables_wrapper .dataTables_length,
+  .dataTables_wrapper .dataTables_filter {
+    float: none !important;
+    text-align: initial !important;
+  }
+
+  .parent_action {
+    display: grid;
+    gap: 2px;
+
+  }
+
+  table#myTable,
+  table#staffTable {
+    width: max-content !important;
+  }
+
+  /* .parent_user_deactive {
+    background-color: #F66305;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 5px;
+    width: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+
+}
+@media screen and (min-width: 1475px){
+  .parent_action {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+
+  }
+}
+
+@media screen and (min-width: 1024px) {
+
+  th.parent_action.sorting {
+    width: auto !important;
+  }
+
+  .parent_action {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+
+  }
+
+  .dataTables_wrapper .dataTables_length select {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 2px;
+    background-color: transparent;
+    font-size: small;
+    height: 25px;
+    width: 55px;
+    margin-top: 10px;
+    margin-left: 16px;
+    /* font-size: 14px; */
+  }
+
+  .dataTables_wrapper .dataTables_length,
+  .dataTables_wrapper .dataTables_filter {
+
+    display: flex;
+    width: 42%;
+  }
+
+  table#myTable,
+  table#staffTable {
+    width: 98% !important;
+  }
+
+  .dataTables_wrapper .dataTables_paginate {
+    text-align: center;
+    margin-top: 4em;
+    /* width: 50% !important; */
+    float: inherit;
+    padding-left: 410px;
+  }
+
+  .dataTables_wrapper .dataTables_paginate {
+    text-align: center;
+    margin-top: 4em;
+    /* width: 50% !important; */
+    float: inherit;
+    padding-left: 227px;
+  }
+}
+
+/* .parent_user_deactive {
+  background-color: #F66305;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 6px;
+  border-radius: 5px;
+  width: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 39px;
+} */
+
+.parent_user_deactive {
+  background-color: #F66305;
+  width: 90px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+
+}
+
+.parent_user_active {
+  background-color: #7BB13F;
+  color: white;
+  width: 90px;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+
+}
+
+.parent_user_edit {
+  background-color: #03417C;
+  color: white;
+  width: 80px;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.parent_user_delete {
+  background-color: #BD1A20;
+  color: white;
+  width: 80px;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+th.sorting.sorting_asc {
+  background-image: none !important;
+}
+
+th.sorting {
+  background-image: none !important;
+}
+
+.status-active {
+  background-color: #73A839 !important;
+  font-size: 13px;
+  color: white;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.status-inactive {
+  background-color: #999999 !important;
+  font-size: 13px;
+  color: white;
+  border-radius: 5px;
+  padding: 2px;
+}

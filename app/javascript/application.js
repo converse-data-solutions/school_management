@@ -7,3 +7,8 @@ import DataTable from 'datatables.net-dt';
 
 
 
+$(document).ready(function() {
+  setTimeout(function() {
+    $("#notice").fadeOut();
+  }, 5000);
+});

@@ -1,4 +1,4 @@
-<div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[#39A9E8] pl-4"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Parent</span></div>
+<div class="container bg-[#F5F5F5] mx-auto md:mt-[35px] lg:mt-0 mb-8 p-1 text-[#39A9E8] pl-4"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Parent</span></div>
 <div class=" container mx-auto rounded-lg border-2">
   <div class="accordian-header px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
     <div><i class="fa-solid fa-pen-to-square"></i>
@@ -31,7 +31,7 @@
               <label for="user_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">UserName</label>
               <%= f.text_field :username, id:"user_name", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ", placeholder:"Username" %>
             </div>
-            <div class="flex w-full md:w-[47%] gap-6 flex-wrap">
+            <div class="flex w-full md:w-[47%] gap-6">
               <div class="w-full  md:w-[47%]">
                 <label for="email" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Email</label>
                 <%= f.email_field :email, id: "user_email", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "email" %>
@@ -73,7 +73,8 @@
         <div>
           <div class="w-full md:w-[15%]">
             <div class="w-[130px] h-[130px]"><img src="<%= asset_path('user.png') %>" alt="Image Description"  ></div>
-            <div> <%= f.file_field :image, class:"w-[250px]"%></div>
+            <div class="file-input-wrapper">
+            </div>
           </div>
         </div>
       </div>

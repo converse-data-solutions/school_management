@@ -7,18 +7,21 @@
   </div>
   <div class="accordian-body">
     <div class="bg-[#FFFFFF] overflow-scroll mx-5">
+      <% if notice %>
+        <p class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
+      <% end %>
       <table id="staffTable" class="stripe" style="width:98%;" data-source="<%= admin_staff_users_path(format: :json) %>">
         <thead class="bg-[#FFFFFF]">
           <tr>
-            <th class="staff_name">Name</th>
-            <th class="staff_username">Username</th>
-            <th class="staff_email">Email</th>
-            <th class="staff_mobile">Mobile</th>
-            <th class="staff_address">Address</th>
-            <th class="staff_profession">profession</th>
-            <th class="staff_gender">Gender</th>
-            <th class="staff_status">Status</th>
-            <th class="staff_action">Action</th>
+            <th class="parent_name">Name</th>
+            <th class="parent_username">Username</th>
+            <th class="parent_email">Email</th>
+            <th class="parent_mobile">Mobile</th>
+            <th class="parent_address">Address</th>
+            <th class="parent_profession">profession</th>
+            <th class="parent_gender">Gender</th>
+            <th class="parent_status">Status</th>
+            <th class="parent_action">Action</th>
           </tr>
         </thead>
         <tbody class="bg-[#F9F9F9] ">
@@ -41,15 +44,15 @@
             },
 
       "columns": [
-        {  "data": "name", class: "staff_name" },
-        { "data": "username", class: "staff_username" },
-        { "data": "email", class: "staff_email" },
-        { "data": "mobile_number", class: "staff_mobile" },
-        { "data": "address", class: "staff_address" },
-        { "data": "profession", class: "staff_profession" },
-        { "data": "gender", class: "staff_gender" },
-        { "data": "staff_status" },
-        { "data": "staff_actions", class: "staff_action" },
+        {  "data": "name", class: "parent_name" },
+        { "data": "username", class: "parent_username" },
+        { "data": "email", class: "parent_email" },
+        { "data": "mobile_number", class: "parent_mobile" },
+        { "data": "address", class: "parent_address" },
+        { "data": "profession", class: "parent_profession" },
+        { "data": "gender", class: "parent_gender" },
+        { "data": "staff_status", class: "parent_status" },
+        { "data": "staff_actions", class: "parent_action" },
 
       ],
         "oLanguage": {

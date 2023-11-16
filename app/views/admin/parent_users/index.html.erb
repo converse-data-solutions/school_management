@@ -7,6 +7,9 @@
   </div>
   <div class="accordian-body">
     <div class="bg-[#FFFFFF] overflow-scroll mx-2 ">
+      <% if notice %>
+        <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
+      <% end %>
       <table id="myTable" class="stripe"  data-source="<%= admin_parent_users_path(format: :json) %>">
         <thead class="bg-[#FFFFFF]">
           <tr>
@@ -17,7 +20,7 @@
             <th class="parent_address">Address</th>
             <th class="parent_profession">profession</th>
             <th class="parent_gender">Gender</th>
-            <th >Status</th>
+            <th class="parent_status">Status</th>
             <th class="parent_action">Action</th>
           </tr>
         </thead>
@@ -48,7 +51,7 @@
         { "data": "address", class: "parent_address" },
         { "data": "profession", class: "parent_profession" },
         { "data": "gender", class: "parent_gender" },
-        { "data": "user_status" },
+        { "data": "user_status", class: "parent_status" },
         { "data": "dt_actions", class: "parent_action" },
       ],
         "oLanguage": {
@@ -59,4 +62,9 @@
       }
     });
   });
+  $(document).ready(function() {
+      setTimeout(function() {
+        $("#notice").fadeOut();
+      }, 3000);
+    });
 </script>

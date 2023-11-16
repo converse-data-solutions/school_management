@@ -20,7 +20,7 @@ class Admin::StaffUsersController < ApplicationController
       render :new
     else @user.save
       flash[:notice] = 'user created successfully.'
-      redirect_to root_path
+      redirect_to admin_staff_users_path
     end
   end
 
@@ -28,11 +28,11 @@ class Admin::StaffUsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     if @user.deleted == 'Active'
       @user.update(deleted: 'Inactive')
-      flash[:notice] = 'User deactivated successfully.'
+      flash[:notice] = 'Status Changed successfully.'
       redirect_to admin_staff_users_path
     else
       @user.update(deleted: 'Active')
-      flash[:alert] = 'Failed to deactivate user.'
+      flash[:notice] = 'Status Changed successfully.'
       redirect_to admin_staff_users_path
     end
   end
