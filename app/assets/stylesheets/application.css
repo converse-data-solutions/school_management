@@ -14,28 +14,27 @@
 *= require datatables
  *= require_self
  */
- body {
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-}
 
 div#dropdownNavbar {
   top: 15px !important;
-  }
-  html, body {
-  font-size: 14px;
-  min-height:100vh;
+}
+
+html,
+body {
+  min-height: 100vh;
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  }
+}
 
-.activenav{
+.activenav {
 
-margin-left: 6px;
-background-color: rgb(47, 164, 231);
-color: white;
+  margin-left: 6px;
+  background-color: rgb(47, 164, 231);
+  color: white;
 
 }
-.activenav:hover{
-margin-left: 6px;
-background-color: rgb(47, 164, 231);
-color: white;
+
+.activenav:hover {
+  margin-left: 6px;
+  background-color: rgb(47, 164, 231);
+  color: white;
 }

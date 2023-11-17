@@ -30,7 +30,7 @@ class Admin::ParentUsersController < ApplicationController
   def edit; end
 
   def update
-    if @user.update(user_params)
+    if @user.update(user_update)
       flash[:notice] = 'User information updated successfully.'
       redirect_to admin_parent_users_path
     else
@@ -62,6 +62,11 @@ class Admin::ParentUsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :username, :password, :mobile_number,
+                                 :address, :profession, :gender, :name, :image, :deleted)
+  end
+
+  def user_update
+    params.require(:user).permit(:email, :username, :encrypted_password, :mobile_number,
                                  :address, :profession, :gender, :name, :image, :deleted)
   end
 

@@ -23,7 +23,6 @@ class UserDecorator < ApplicationDecorator
     links = []
     links << if object.deleted == 'Active'
 
-               # links << h.link_to('Active'.html_safe, class: 'status-active')
                h.link_to('Active'.html_safe,
                          h.admin_parent_users_path, class: 'status-active')
              else

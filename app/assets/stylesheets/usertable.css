@@ -302,10 +302,11 @@ div#myTable_info {
   } */
 
 }
-@media screen and (min-width: 1475px){
+
+@media screen and (min-width: 1475px) {
   .parent_action {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
   }
 }

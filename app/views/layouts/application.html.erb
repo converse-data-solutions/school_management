@@ -31,7 +31,7 @@
               <a href="" class="flex ml-2 md:ml-0 ">
                 <img src="<%= asset_path('homescreenlogo.png') %>" alt="Image Description" class="w-[130px] h-[50px]   m-1 lg:w-[150px] lg:h-[58px]" >
               </a>
-              <div class="flex lg:gap-4 md:pl-7 lg:pl-10">
+              <div class="flex lg:gap-4 md:pl-7 lg:pl-10 ">
                 <div class="flex self-center hover:bg-[#157AB5] md:p-3  sm:text-[14px] text-[#fff]" >
                   <div class="hidden lg:block px-1"><i class="fa-regular fa-clock"></i></div>
                   <div class="hidden md:block"> Academic Year: 2023-2024</div>
@@ -40,20 +40,20 @@
                   <div class="hidden lg:block px-1"><i class="fa-solid fa-envelope"></i></div>
                   <div class="hidden md:block"> SMS Available: 0</div>
                 </div>
-                <div class="flex self-center hover:bg-[#157AB5] md:p-3  sm:text-[14px] text-[#fff] " id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" >
+                <div class="flex self-center more-opener hover:bg-[#157AB5] md:p-3  sm:text-[14px] text-[#fff] relative ">
                   <div class="hidden lg:block text-[12px] px-1"><i class="fa-solid fa-star"></i></div>
                   <div class="hidden md:block px-1">More</div>
                   <div class="hidden md:block px-1"><i class="fa-solid fa-caret-down"></i></div>
-                  <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">User Log</a>
+                  <div class="more-content z-10 hidden font-normal bg-white  absolute right-[2]; top-[63px] divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
+                      <li value="default"  class="block  border-b px-4 py-2 text-[14px] hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white ">
+                        User Log
+                      </li >
+                      <li value="dark" class="block px-4 py-2 border-b hover:bg-[#39A9E8] text-[14px] dark:hover:bg-gray-600 dark:hover:text-white ">
+                        Manage Class
                       </li>
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Manage Class</a>
-                      </li>
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">About School</a>
+                      <li value="dark" class="block px-4 py-2  hover:bg-[#39A9E8] text-[14px] dark:hover:bg-gray-600 dark:hover:text-white ">
+                        About School
                       </li>
                     </ul>
                   </div>
@@ -64,14 +64,14 @@
               <div>
                 <!-- Dropdown for theme  cerulea cyborg Simplex Darkly-->
                 <div class="flex items-center ml-3">
-                  <div><button onclick="openNavForTheme()"  class="self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative"><i class="fa-solid fa-droplet"></i><span class="p-[4px] hidden lg:block">Change Skin</span><span ><i class="fa-solid fa-caret-down"></i></span>
+                  <div><button class="theme-opener self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative"><i class="fa-solid fa-droplet"></i><span class="p-[4px] hidden lg:block">Change Skin</span><span ><i class="fa-solid fa-caret-down"></i></span>
                     </button>
-                    <div id="themeContent" class="z-10 hidden font-normal bg-white  absolute right-20 top-20 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
+                    <div id="themeContent" class="theme-content z-10 hidden font-normal bg-white  absolute right-[155px] top-20 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
                       <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
-                        <li value="default"  class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white ">
+                        <li value="default"  class="block border border-b px-4 py-2 text-[14px] hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white ">
                           Default
                         </li >
-                        <li value="dark" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white ">
+                        <li value="dark" class="block px-4 py-2 hover:bg-[#39A9E8] text-[14px] dark:hover:bg-gray-600 dark:hover:text-white ">
                           dark
                         </li>
                       </ul>
@@ -79,15 +79,15 @@
                   </div>
                   <!-- Dropdown menu for user -->
                   <div class="flex items-center ml-3">
-                    <div><button onclick="openNav()" class="self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative"><i class="fas fa-user"></i><span class="p-[4px] hidden lg:block">admin</span><span ><i class="fa-solid fa-caret-down"></i></span>
+                    <div><button class="admin-opener self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative"><i class="fas fa-user"></i><span class="p-[4px] hidden lg:block">admin</span><span ><i class="fa-solid fa-caret-down"></i></span>
                       </button>
-                      <div id="adminContent" class="z-10  hidden font-normal bg-white  absolute right-0 top-20 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
+                      <div id="adminContent" class="admin-content z-10  hidden font-normal bg-white  absolute right-[20px] top-20 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white">Profie</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 border border-b text-[14px] dark:hover:text-white">Profie</a>
                           </li>
                           <li>
-                            <%= link_to 'user sign_out', destroy_user_session_path, class:"block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white"  , data: { turbo_method: :delete } %>
+                            <%= link_to 'user sign_out', destroy_user_session_path, class:"block px-4 py-2 text-[14px] hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white"  , data: { turbo_method: :delete } %>
                           </li>
                         </ul>
                       </div>
@@ -211,7 +211,7 @@
             </li>
             <li>
               <a href="#" class="activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 hover:ml-3 dark:hover:bg-gray-700 group">
-                <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3 text-center text-center">Send SMS To Staff</span>
+                <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3  text-center">Send SMS To Staff</span>
               </a>
             </li>
             <li>
@@ -234,27 +234,5 @@
   </div>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-  <script>
-    function openNavForTheme() {
-    var theme = $("#themeContent");
-    if (theme.hasClass("hidden")) {
-      theme.removeClass("hidden");
-      $("#adminContent").addClass("hidden");
-    } else {
-      theme.addClass("hidden");
-    }
-    }
-
-
-       function openNav() {
-    var admin = $("#adminContent");
-    if (admin.hasClass("hidden")) {
-      admin.removeClass("hidden");
-      $("#themeContent").addClass("hidden");
-    } else {
-      admin.addClass("hidden");
-    }
-    }
-  </script>
 </body>
 </html>

@@ -1,11 +1,11 @@
 <%= content_for :head do %>
-    <%= javascript_import_module_tag "controllers/validate" %>
-  <% end %>
+  <%= javascript_import_module_tag "controllers/validate" %>
+<% end %>
 <div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[#39A9E8] pl-4"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Staff</span></div>
 <div class=" container mx-auto rounded-[5px] border-2">
   <div class="accordian-header px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
     <div><i class="fa-solid fa-pen-to-square"></i>
-      <span class="font-semibold">Add Staff</span></div>
+      <span class="font-semibold">Edit Staff</span></div>
     <div class="cursor-pointer text-3xl"> <i class="bx bx-chevron-down"></i></div>
   </div>
   <div class="accordian-body">
@@ -50,9 +50,13 @@
               <label for="user_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">UserName</label>
               <%= f.text_field :username, id:"user_name", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ", placeholder:"Username" %>
             </div>
-            <div class="w-full md:ml-0 lg:ml-14 xl:ml-24 2xl:ml-32 md:w-[45%] lg:w-[22%]">
+            <div class="w-full md:ml-0 lg:ml-[60px] xl:ml-[100px] 2xl:ml-[130px] md:w-[45%] lg:w-[22%] hidden">
               <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Password</label>
-              <%= f.password_field :password, id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+              <%= f.text_field :encrypted_password, disabled: true, id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+            </div>
+            <div class="w-full md:ml-0 lg:ml-[60px] xl:ml-[100px] 2xl:ml-[130px] md:w-[45%] lg:w-[22%]">
+              <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Password</label>
+              <%= f.text_field :password, disabled: true, id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password", value: "*******" %>
             </div>
             <div class="w-full  md:w-[45%] lg:w-[22%]">
               <label for="gender" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Gender</label>

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   
 
   namespace :admin do
+    get 'admin_users/edit'
+    get 'admin_users/update'
     resources :parent_users do
       member do
         patch :active_user
