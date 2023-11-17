@@ -1,5 +1,5 @@
 <div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[#39A9E8] pl-4"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Staff</span></div>
-<div class=" container mx-auto rounded-lg border-2">
+<div class=" container mx-auto rounded-[5px] border-2">
   <div class="accordian-header px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
     <div><i class="fa-solid fa-pen-to-square"></i>
       <span class="font-semibold">Add Staff</span></div>
@@ -7,8 +7,8 @@
   </div>
   <div class="accordian-body">
     <%= form_for [:admin_staff, @user], html: { id: 'user-form' } do |f| %>
-      <div class="p-4 border-t bg-white flex flex-wrap">
-        <div class="container hidden text-red-700 mx-auto conatiner  text-[14px] p-4 rounded bg-[#F2DEDE] " id="error-div">
+      <div class="p-5 border-t bg-white flex flex-wrap">
+        <div class="w-full container hidden text-red-700 mx-auto conatiner mb-3  text-[14px] p-4 rounded bg-[#F2DEDE] " id="error-div">
           <ul>
             <li class="error" id="email-error", style="color: red;"></li>
             <li class="error" id="name-error", style="color: red;"></li>
@@ -20,43 +20,39 @@
           </ul>
         </div>
         <!-- form starts -->
-        <div class="w-full md:w-[80%] md:pl-4">
-          <div class="flex md:gap-x-6 md:gap-y-3 flex-wrap">
+        <div class="w-full md:w-[75%]">
+          <div class="flex   flex-wrap gap-4">
             <%= f.hidden_field :role, value: "staff"%>
-            <div class="w-full  md:w-[47%]">
+            <div class="w-full  md:w-[45.5%]">
               <label for="name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Name</label>
-              <%= f.text_field :name, id:"name" ,class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ,placeholder:"Name"%>
+              <%= f.text_field :name, id:"name" ,class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ,placeholder:"Name"%>
             </div>
-            <div class="flex w-full md:w-[47%] gap-6 flex-wrap">
-              <div class="w-full  md:w-[47%]">
-                <label for="email" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Email</label>
-                <%= f.email_field :email, id: "user_email", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "email" %>
-              </div>
-              <div class="w-full  md:w-[48%]">
-                <label for="mobile-number" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Mobile</label>
-                <%= f.number_field :mobile_number, id: "mobile-number", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Mobie" %>
-              </div>
+            <div class="w-full  md:w-[45%] lg:w-[22%]">
+              <label for="email" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Email</label>
+              <%= f.email_field :email, id: "user_email", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "email" %>
             </div>
-            <div class="w-full  md:w-[47%]">
+            <div class="w-full  md:w-[45%] lg:w-[22%]">
+              <label for="mobile-number" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Mobile</label>
+              <%= f.number_field :mobile_number, id: "mobile-number", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Mobie" %>
+            </div>
+            <div class="w-full  md:w-[45%]  xl:w-[45.5%]">
               <label for="address" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Address</label>
-              <%= f.text_field :address, id: "address", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Address" %>
+              <%= f.text_field :address, id: "address", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Address" %>
             </div>
-            <div class="flex w-full md:w-[47%] gap-6 flex-wrap">
-              <div class="w-full  md:w-[47%]">
-                <label for="profession" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Profession</label>
-                <%= f.text_field :profession, id: "profession", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Profession"  %>
-              </div>
-              <div class="w-full  md:w-[48%]">
-                <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Password</label>
-                <%= f.password_field :password, id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-              </div>
+            <div class="w-full  md:w-[45%] lg:w-[22%]">
+              <label for="profession" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Profession</label>
+              <%= f.text_field :profession, id: "profession", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Profession"  %>
             </div>
-            <div class="w-full  md:w-[32%]">
+            <div class="w-full  md:w-[34%]">
               <label for="user_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">UserName</label>
-              <%= f.text_field :username, id:"user_name", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ", placeholder:"Username" %>
+              <%= f.text_field :username, id:"user_name", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ", placeholder:"Username" %>
             </div>
-            <div class="w-full  md:w-[47%]">
-              <label for="geder" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Gender</label>
+            <div class="w-full md:ml-0 lg:ml-14 xl:ml-24 2xl:ml-32 md:w-[45%] lg:w-[22%]">
+              <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Password</label>
+              <%= f.password_field :password, id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+            </div>
+            <div class="w-full  md:w-[45%] lg:w-[22%]">
+              <label for="gender" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Gender</label>
               <div class="flex" id="gender-radio-group">
                 <div class="flex items-center mr-4">
                   <%= f.radio_button :gender, 'male', class:"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" %>
@@ -71,13 +67,19 @@
           </div>
         </div>
         <div>
-          <div class="w-full md:w-[15%]">
-            <div class="w-[130px] h-[130px]"><img src="<%= asset_path('user.png') %>" alt="Image Description"  ></div>
-            <div> <%= f.file_field :image, class:"w-[250px]"%></div>
+          <div class="w-full md:w-[25%] mt-4  md:pl-4">
+            <% if @user.image.present? %>
+              <div class="w-[130px] h-[130px]"> <%= image_tag @user.image, style: "width: 100px; height: 100px" %></div>
+            <% else %>
+              <div class="w-[130px] h-[130px]"><img src="<%= asset_path('user.png') %>" alt="Image Description"  ></div>
+            <% end %>
+            <div class="file-input-wrapper">
+              <div> <%= f.file_field :image, class:"w-[250px] md:w-[100px] lg:w-[100px] xl:w-[250px]"%></div>
+            </div>
           </div>
         </div>
       </div>
-      <%= f.submit "Add Teacher",class:"text-white bg-[#39A9E8] ml-4  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm  w-auto sm:w-auto px-10 lg:m-6 py-2.5 text-center" %>
+      <%= f.submit "Update Teacher",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
     <% end %>
   </div>
 </div>
@@ -103,15 +105,27 @@
         $('#email-error').text('Please enter a valid email address.');
         errors = true;
       }
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      $('#email-error').text('Please enter a valid email address.');
+      errors = true;
+  }
 
       if (!password || !password.trim()) {
         $('#password-error').text('Please enter a password.');
+        errors = true;
+      }
+      else if (password.length < 6) {
+        $('#password-error').text('Please enter a password with at least 6 characters.');
         errors = true;
       }
 
       if (!name || !name.trim()) {
         $('#name-error').text('Please enter a name.');
         errors = true;
+      }
+      else if (!/^[a-zA-Z]+$/.test(name)) {
+       $('#name-error').text('Name must contain only alphabets.');
+       errors = true;
       }
 
       if (!username || !username.trim()) {
@@ -123,11 +137,21 @@
         $('#mobile-number-error').text('Please enter a mobile number.');
         errors = true;
       }
+      else if (mobile_number < 1000000000 || mobile_number > 9999999999) {
+        $('#mobile-number-error').text('Please check your mobile number ,it should be positive and 10 digits.');
+        errors = true;
+      }
+
 
       if (!address || !address.trim()) {
         $('#address-error').text('Please enter an address.');
         errors = true;
       }
+      else if (!/[a-zA-Z]/.test(address)) {
+       $('#address-error').text('Address must contain  alphabet.');
+       errors = true;
+      }
+
 
       if (!profession || !profession.trim()) {
         $('#profession-error').text('Please enter a profession.');
@@ -151,6 +175,17 @@
       return true;
     });
   });
+     //<!----accordian-->
+    $(document).ready(function() {
+      $('.accordian-header').click(function() {
+    $(this).toggleClass('active');
+    const accordianBody = $(this).next();
+    if ($(this).hasClass('active')) {
+      accordianBody.css('maxHeight', 800 + 'px');
+    } else {
+      accordianBody.css('maxHeight', 0);
 
-   //<!----accordian-->
+    }
+      });
+    });
 </script>
