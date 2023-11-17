@@ -1,3 +1,6 @@
+<%= content_for :head do %>
+  <%= javascript_import_module_tag "controllers/parent_datatable" %>
+<% end %>
 <div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[#39A9E8] pl-4"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Parent</span></div>
 <div class=" container mx-auto rounded-lg border-2">
   <div class="accordian-header px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
@@ -6,7 +9,7 @@
     <div class="cursor-pointer text-3xl"> <i class="bx bx-chevron-down"></i></div>
   </div>
   <div class="accordian-body">
-    <div class="bg-[#FFFFFF] overflow-scroll mx-2 ">
+    <div class="bg-[#FFFFFF] overflow-scroll mx-[8px] md:mx-2 lg:mx-0 ">
       <% if notice %>
         <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
       <% end %>
@@ -31,37 +34,6 @@
   </div>
 </div>
 <script>
-  $(document).ready(function() {
-    $('#myTable').dataTable({
-      "processing": true,
-      "serverSide": true,
-      "ajax": {
-        "url": $('#myTable').data('source')
-      },
-      "pagingType": "simple_numbers",
-      "language": {
-                "sLengthMenu": "_MENU_ records per page",
-            },
-
-      "columns": [
-        { title: "Name", "data": "name", class: "parent_name" },
-        { "data": "username", class: "parent_username" },
-        { "data": "email", class: "parent_email" },
-        { "data": "mobile_number", class: "parent_mobile" },
-        { "data": "address", class: "parent_address" },
-        { "data": "profession", class: "parent_profession" },
-        { "data": "gender", class: "parent_gender" },
-        { "data": "user_status", class: "parent_status" },
-        { "data": "dt_actions", class: "parent_action" },
-      ],
-        "oLanguage": {
-        "oPaginate": {
-          "sPrevious": '<span class="pagination-btn"><i class="fas fa-arrow-left"></i> Previous</span>',
-          "sNext": '<span class="pagination-btn">Next <i class="fas fa-arrow-right"></i></span>'
-        }
-      }
-    });
-  });
   $(document).ready(function() {
       setTimeout(function() {
         $("#notice").fadeOut();

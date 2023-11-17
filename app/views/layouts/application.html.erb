@@ -9,12 +9,12 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "usertable", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= yield :head %>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css' %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js' %>
-    <%# <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" /> %>
     <style>
       div#dropdownNavbar {
             top: 15px !important;
@@ -37,30 +37,6 @@
           color: white;
          }
     </style>
-    <script>
-      function openNavForTheme() {
-        var theme = $("#themeContent");
-        console.log(theme.attr("class"));
-        if (theme.hasClass("hidden")) {
-          theme.removeClass("hidden");
-          $("#admin").addClass("hidden");
-        } else {
-          theme.addClass("hidden");
-        }
-      }
-
-
-           function openNav() {
-        var admin = $("#adminContent");
-        console.log(admin.attr("class"));
-        if (admin.hasClass("hidden")) {
-          admin.removeClass("hidden");
-          $("#themeContent").addClass("hidden");
-        } else {
-          admin.addClass("hidden");
-        }
-      }
-    </script>
   </head>
   <body>
     <% if user_signed_in? %>
@@ -218,15 +194,15 @@
               </a>
             </li>
             <li>
-              <a class="activebar mainb flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Student</span></a>
-              <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm subb hidden" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+              <a class="activebar main flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Student</span></a>
+              <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm sub hidden" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
                 <li><a href="#" class="activebar block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">Add New Student</a></li>
                 <li><a href="#" class="activebar block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100">All Student</a></li>
               </ul>
             </li>
             <li>
-              <a class="activebar mainc flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Parent</span></a>
-              <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm subc hidden" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+              <a class="activebar main flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Parent</span></a>
+              <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm sub hidden" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
                 <li>
                   <div  class="flex <%= params[:controller] == "admin/parent_users" && params[:action] == "new" ? 'activenav' : '' %> activebar block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100 group">
                     <span class="ml-3 "><%= link_to "Add New Parent", new_admin_parent_user_path %></span>
@@ -240,8 +216,8 @@
               </ul>
             </li>
             <li>
-              <a class="activebar maind flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Staff</span></a>
-              <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm subd hidden"style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+              <a class="activebar main flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-2 text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] hover:ml-3 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Staff</span></a>
+              <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm sub hidden"style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
                 <li>
                   <div class="flex <%= params[:controller] == "admin/staff_users" && params[:action] == "new" ? 'activenav' : '' %> activebar block py-2 ml-3 p-2 text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:ml-5 hover:bg-slate-100 group">
                     <span class="ml-3 "><%= link_to "Add New Parent", new_admin_staff_user_path %></span>
@@ -275,95 +251,31 @@
       <div class="p-2 mt-20 w-full md:w-[85%]">
       <% end %>
       <%= yield %>
-      <%# <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-      <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script> %>
     </div>
   </div>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <script>
-    $(document).ready(function() {
-      $('.main').click(function() {
-        const el = $(this).parent().find('.sub');
-        el.slideToggle('slow');
-      });
-    });
-
-      $(document).ready(function() {
-      $('.mainb').click(function() {
-        const elb = $(this).parent().find('.subb');
-        elb.slideToggle('slow');
-      });
-    });
-
-      $(document).ready(function() {
-      $('.mainc').click(function() {
-        const elc = $(this).parent().find('.subc');
-        elc.slideToggle('slow');
-      });
-    });
-    $(document).ready(function() {
-      $('.maind').click(function() {
-        const eld = $(this).parent().find('.subd');
-        eld.slideToggle('slow');
-      });
-    });
+    function openNavForTheme() {
+    var theme = $("#themeContent");
+    if (theme.hasClass("hidden")) {
+      theme.removeClass("hidden");
+      $("#adminContent").addClass("hidden");
+    } else {
+      theme.addClass("hidden");
+    }
+    }
 
 
-       //for parent table
-
-
-    // $(document).ready(function() {
-    // const themeSelect = $(".themeSelect");
-    // const themeStylesheet = $("#themeStylesheet");
-    // const themePaths = {
-    //   default: "<%= asset_path('default.css') %>",
-    //   dark: "<%= asset_path('dark.css') %>"
-    // };
-    // for theme selected by user work based on theme name and diffferent on css file
-    // function activateTheme(themeName) {
-    //   const selectedTheme = themePaths[themeName] || themePaths.default;
-    //   themeStylesheet.attr("href", selectedTheme);
-
-    //   localStorage.setItem("selectedTheme", themeName);
-    // }
-
-    // const storedTheme = localStorage.getItem("selectedTheme");
-    // const initialTheme = storedTheme || "default";
-
-    // activateTheme(initialTheme);
-    // themeSelect.val(initialTheme);
-
-    // $('#themeContent li').click( function() {
-    //  const selectedValue = $(this).attr('value');
-    //   activateTheme(selectedValue);
-    //   openNavForTheme();
-    // console.log('Selected value:', selectedValue);
-    // });
-    // });
-
-    $(document).ready(function () {
-      $('.activebar').on('click', function (e) {
-
-
-    $('.activebar').removeClass('activenav');
-
-    $(this).addClass('activenav');
-
-    // $('.active').css({
-    //   'margin-left': '6px',
-    //   'background-color': '#2FA4E7',
-    //   'color': 'white'
-
-    // });
-
-    // $('li a:not(.active)').css({
-    //   'margin-left': '0',
-    //   'background-color': '',
-    //   'color': ''
-    // });
-      });
-    });
+       function openNav() {
+    var admin = $("#adminContent");
+    if (admin.hasClass("hidden")) {
+      admin.removeClass("hidden");
+      $("#themeContent").addClass("hidden");
+    } else {
+      admin.addClass("hidden");
+    }
+    }
   </script>
 </body>
 </html>
