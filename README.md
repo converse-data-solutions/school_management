@@ -5,15 +5,20 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version - 3.2.2  
 
-* System dependencies
+  Rails version - 7.0.8
 
-* Configuration
+* System dependencies 
 
-* Database creation
+* Configuration 
 
-* Database initialization
+* Database creation - mysql2
+
+* Database initialization 
+
+  username:admin
+  admin password: admin@123
 
 * How to run the test suite
 

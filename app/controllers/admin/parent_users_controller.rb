@@ -1,8 +1,10 @@
+# Controller responsible for handling parent user actions in the admin section.
+# This controller includes CRUD operations for managing parent user accounts.
 class Admin::ParentUsersController < ApplicationController
+  before_action :set_user, only: %i[edit update destroy active_user]
+
   def index
-    puts params
     @parents = User.where(role: 'parent')
-    # byebug
     respond_to do |format|
       format.html
       format.json { render json: ParentUserDatatable.new(params) }
@@ -11,32 +13,26 @@ class Admin::ParentUsersController < ApplicationController
 
   def new
     @user = User.new
-    puts params
   end
 
   def create
     @user = build_new_user
-
+    @user.role = 'parent'
     if User.exists?(username: @user.username)
       flash[:alert] = 'User already exists.'
       render :new
     elsif @user.save
-
-      flash[:notice] = 'user created successfully.'
+      flash[:notice] = 'User created successfully.'
       redirect_to admin_parent_users_path
     end
   end
 
-  def edit
-    @user = User.find_by(id: params[:id])
-  end
+  def edit; end
 
   def update
-    @user = User.find_by(id: params[:id])
     if @user.update(user_params)
       flash[:notice] = 'User information updated successfully.'
       redirect_to admin_parent_users_path
-
     else
       flash[:alert] = 'Failed to update user information.'
       render :edit
@@ -44,24 +40,15 @@ class Admin::ParentUsersController < ApplicationController
   end
 
   def active_user
-    @user = User.find_by(id: params[:id])
-    if @user.deleted == 'Active'
-      @user.update(deleted: 'Inactive')
-      flash[:notice] = 'Status Changed successfully.'
-      redirect_to admin_parent_users_path
-    else
-      @user.update(deleted: 'Active')
-      flash[:notice] = 'Status Changed successfully.'
-      redirect_to admin_parent_users_path
-    end
+    toggle_user_status
+    redirect_to admin_parent_users_path
   end
 
   def destroy
-    user = User.find_by(id: params[:id])
-    if user == current_user
-      flash[:alert] = 'admin cannot delete self.'
+    if @user == current_user
+      flash[:alert] = 'Admin cannot delete self.'
     else
-      user.destroy
+      @user.destroy
       flash[:notice] = 'User deleted successfully.'
     end
     redirect_to admin_parent_users_path
@@ -70,12 +57,21 @@ class Admin::ParentUsersController < ApplicationController
   private
 
   def build_new_user
-    User.new(params.require(:user).permit(:email, :password, :username, :role, :mobile_number,
-                                          :address, :profession, :gender, :name, :image, :deleted))
+    User.new(user_params)
   end
 
   def user_params
-    params.require(:user).permit(:email, :username, :password, :role, :mobile_number,
+    params.require(:user).permit(:email, :username, :password, :mobile_number,
                                  :address, :profession, :gender, :name, :image, :deleted)
+  end
+
+  def set_user
+    @user = User.find_by(id: params[:id])
+  end
+
+  def toggle_user_status
+    new_status = @user.deleted == 'Active' ? 'Inactive' : 'Active'
+    @user.update(deleted: new_status)
+    flash[:notice] = 'Status changed successfully.'
   end
 end

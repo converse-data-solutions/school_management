@@ -75,7 +75,7 @@ group :development do
 
   gem 'brakeman', '~> 6.0', '>= 6.0.1'
   gem 'bullet', '~> 7.1', '>= 7.1.1'
-  gem 'rack-mini-profiler', '~> 3.1', '>= 3.1.1', require: false
+  gem 'rack-mini-profiler', '~> 3.1', '>= 3.1.1'
   gem 'rubocop', '~> 1.56', '>= 1.56.4'
   gem 'rubycritic', '~> 4.8', '>= 4.8.1'
   gem 'traceroute', '~> 0.8.1'
