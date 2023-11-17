@@ -84,7 +84,7 @@
                       <div id="adminContent" class="admin-content z-10  hidden font-normal bg-white  absolute right-[20px] top-20 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 border border-b text-[14px] dark:hover:text-white">Profie</a>
+                            <%= link_to 'Profile', edit_admin_admin_user_path(current_user.id), class:"block px-4 py-2 hover:bg-[#39A9E8] dark:hover:bg-gray-600 border border-b text-[14px] dark:hover:text-white"  %>
                           </li>
                           <li>
                             <%= link_to 'user sign_out', destroy_user_session_path, class:"block px-4 py-2 text-[14px] hover:bg-[#39A9E8] dark:hover:bg-gray-600 dark:hover:text-white"  , data: { turbo_method: :delete } %>

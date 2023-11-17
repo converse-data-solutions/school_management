@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  
 
   namespace :admin do
-    get 'admin_users/edit'
-    get 'admin_users/update'
+    resources :admin_users
+  end
+
+  namespace :admin do
     resources :parent_users do
       member do
         patch :active_user
@@ -20,5 +21,4 @@ Rails.application.routes.draw do
       end
     end
   end
-  
 end

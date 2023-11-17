@@ -33,17 +33,6 @@ function initValidate() {
     const el = $(this).parent().find(".sub");
     el.slideToggle("slow");
   });
-}
-
-$(document).ready(function () {
-  initValidate();
-
-  $(document).on("turbo:render", function () {
-    initValidate();
-  });
-});
-
-$(document).ready(function(){
   $(".theme-opener").click(function(){
     $(".theme-content").toggle();
     $(".admin-content").hide();
@@ -59,4 +48,13 @@ $(document).ready(function(){
     $(".theme-content").hide();
     $(".admin-content").hide();
   })
-})
+}
+
+$(document).ready(function () {
+  initValidate();
+
+  $(document).on("turbo:render", function () {
+    initValidate();
+  });
+});
+
