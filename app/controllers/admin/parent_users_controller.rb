@@ -1,5 +1,6 @@
 class Admin::ParentUsersController < ApplicationController
   def index
+    puts params
     @parents = User.where(role: 'parent')
     # byebug
     respond_to do |format|
@@ -10,6 +11,7 @@ class Admin::ParentUsersController < ApplicationController
 
   def new
     @user = User.new
+    puts params
   end
 
   def create
@@ -76,5 +78,4 @@ class Admin::ParentUsersController < ApplicationController
     params.require(:user).permit(:email, :username, :password, :role, :mobile_number,
                                  :address, :profession, :gender, :name, :image, :deleted)
   end
-  
 end
