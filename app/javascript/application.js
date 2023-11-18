@@ -21,12 +21,10 @@ function initValidate() {
   //accordian for all models
   $(".accordian-header").click(function () {
     $(this).toggleClass("active");
-    const accordianBody = $(this).next();
-    if ($(this).hasClass("active")) {
-      accordianBody.css("maxHeight", 800 + "px");
-    } else {
-      accordianBody.css("maxHeight", 0);
-    }
+
+    const accordianBody = $(this).parent().next();
+    accordianBody.slideToggle();
+
   });
 
   $(".main").click(function () {
