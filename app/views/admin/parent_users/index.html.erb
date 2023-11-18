@@ -1,0 +1,35 @@
+<%= content_for :head do %>
+  <%= javascript_import_module_tag "controllers/parent_datatable" %>
+<% end %>
+<div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[#39A9E8] pl-4"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Parent</span></div>
+<div class=" container mx-auto rounded-lg border-2">
+  <div class="px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+    <div><i class="fa-solid fa-pen-to-square"></i>
+      <span class="font-semibold">Manage Parent</span></div>
+    <button class="accordian-header cursor-pointer leading-0 px-1 text-2xl border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-down "></i></button>
+  </div>
+  <div class="accordian-body">
+    <div class="bg-[#FFFFFF] overflow-scroll mx-[8px] md:mx-2 lg:mx-0 ">
+      <% if notice %>
+        <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
+      <% end %>
+      <table id="myTable" class="stripe"  data-source="<%= admin_parent_users_path(format: :json) %>">
+        <thead class="bg-[#FFFFFF]">
+          <tr>
+            <th class="parent_name">Name</th>
+            <th class="parent_username">Username</th>
+            <th class="parent_email">Email</th>
+            <th class="parent_mobile">Mobile</th>
+            <th class="parent_address">Address</th>
+            <th class="parent_profession">profession</th>
+            <th class="parent_gender">Gender</th>
+            <th class="parent_status">Status</th>
+            <th class="parent_action">Action</th>
+          </tr>
+        </thead>
+        <tbody class="bg-[#F9F9F9] ">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

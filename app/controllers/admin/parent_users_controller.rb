@@ -1,6 +1,14 @@
+# Controller responsible for handling parent user actions in the admin section.
+# This controller includes CRUD operations for managing parent user accounts.
 class Admin::ParentUsersController < ApplicationController
+  before_action :set_user, only: %i[edit update destroy active_user]
+
   def index
-    @users = User.all
+    @parents = User.where(role: 'parent')
+    respond_to do |format|
+      format.html
+      format.json { render json: ParentUserDatatable.new(params) }
+    end
   end
 
   def new
@@ -9,51 +17,66 @@ class Admin::ParentUsersController < ApplicationController
 
   def create
     @user = build_new_user
-
+    @user.role = 'parent'
     if User.exists?(username: @user.username)
       flash[:alert] = 'User already exists.'
       render :new
     elsif @user.save
-
-      flash[:notice] = 'user created successfully.'
-      redirect_to root_path
+      flash[:notice] = 'User created successfully.'
+      redirect_to admin_parent_users_path
     end
   end
 
-  def edit
-    @user = User.find_by(id: params[:id])
-  end
+  def edit; end
 
   def update
-    @user = User.find_by(id: params[:id])
-    if @user.add_role(user_params[:role])
-      redirect_to root_path
+    if @user.update(user_update)
       flash[:notice] = 'User information updated successfully.'
+      redirect_to admin_parent_users_path
     else
       flash[:alert] = 'Failed to update user information.'
       render :edit
     end
   end
 
+  def active_user
+    toggle_user_status
+    redirect_to admin_parent_users_path
+  end
+
   def destroy
-    user = User.find_by(id: params[:id])
-    if user == current_user
-      flash[:alert] = 'admin cannot delete self.'
+    if @user == current_user
+      flash[:alert] = 'Admin cannot delete self.'
     else
-      user.destroy
+      @user.destroy
       flash[:notice] = 'User deleted successfully.'
     end
-    redirect_to root_path
+    redirect_to admin_parent_users_path
   end
 
   private
 
   def build_new_user
-    User.new(params.require(:user).permit(:email, :password, :password_confirmation, :username, :role, :mobile_number,
-                                          :address, :profession, :gender, :name, :avatar))
+    User.new(user_params)
   end
 
   def user_params
-    params.require(:user)
+    params.require(:user).permit(:email, :username, :password, :mobile_number,
+                                 :address, :profession, :gender, :name, :image, :deleted)
+  end
+
+  def user_update
+    params.require(:user).permit(:email, :username, :encrypted_password, :mobile_number,
+                                 :address, :profession, :gender, :name, :image, :deleted)
+  end
+
+  def set_user
+    @user = User.find_by(id: params[:id])
+  end
+
+  def toggle_user_status
+    new_status = @user.deleted == 'Active' ? 'Inactive' : 'Active'
+    @user.update(deleted: new_status)
+    flash[:notice] = 'Status changed successfully.'
   end
 end
