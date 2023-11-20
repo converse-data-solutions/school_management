@@ -2,8 +2,17 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
+  resources :standards, only: %i[]
+
+  resources :standards, only: %i[create] do
+    resources :sections, only: %i[]
+  end
   namespace :admin do
-    resources :admin_users
+    resources :admin_users do
+      member do
+        patch 'update_password'
+      end
+    end
   end
 
   namespace :admin do

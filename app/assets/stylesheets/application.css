@@ -27,14 +27,15 @@ body {
 
 .activenav {
 
-  margin-left: 6px;
+  padding-left: 6px;
   background-color: rgb(47, 164, 231);
   color: white;
 
 }
 
 .activenav:hover {
-  margin-left: 6px;
+  padding-left: 6px;
   background-color: rgb(47, 164, 231);
   color: white;
+  width: 99%;
 }

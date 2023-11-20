@@ -1,0 +1,9 @@
+<%= form_for @standard do |f| %>
+  <!-- Standard fields -->
+  <%= f.text_field :name %>
+  <!-- Section fields -->
+  <%= f.fields_for :sections do |section_form| %>
+    <%= section_form.text_field :name %>
+  <% end %>
+  <%= f.submit 'Create Standard' %>
+<% end %>

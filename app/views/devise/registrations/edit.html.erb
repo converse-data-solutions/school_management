@@ -1,43 +1,78 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class=" bg-[#F5F5F5] p-1 mx-6 mb-8 text-[#39A9E8] "><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Profile</span></div>
+<div class="flex flex-wrap lg:gap-x-6 ml-6 md:mr-6 lg:mr-3 xl:mr-5 2xl:mr-3">
+  <!-- profile section -->
+  <div class="w-full lg:w-[47.8%]  xl:w-[48.8%] ">
+    <div class=" container mx-auto rounded-[5px] border-2">
+      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+        <div><i class="fa-solid fa-pen-to-square"></i>
+          <span class="font-semibold">Update Profile</span></div>
+        <button class="accordian-header cursor-pointer text-2xl leading-0 px-1  border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-down "></i></button>
+      </div>
+      <div class="accordian-body">
+        <%= form_for [:admin_admin, @user], html: { id: 'user-form' } do |f| %>
+          <div class="p-5 border-t bg-white flex-col ">
+            <% if notice %>
+              <div class="w-full mb-4">
+                <p id="notice"  class="alert text-[#508C47]  text-left text-[14px] rounded bg-[#DFF0D8] p-3"><%= notice %></p>
+              </div>
+            <% end %>
+            <div class="w-full mb-4">
+              <label for="user_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">UserName</label>
+              <%= f.text_field :username, id:"user_name", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ", placeholder:"Username" %>
+            </div>
+            <div class="w-full mb-4">
+              <label for="name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Name</label>
+              <%= f.text_field :name, id:"name" ,class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ,placeholder:"Name"%>
+            </div>
+            <div class="w-full mb-4">
+              <label for="mobile-number" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Mobile</label>
+              <%= f.number_field :mobile_number, id: "mobile-number", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Mobie" %>
+            </div>
+            <div class="w-full mb-4">
+              <label for="email" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Email</label>
+              <%= f.email_field :email, id: "user_email", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "email" %>
+            </div>
+            <div class="w-full mb-4">
+              <label for="address" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Address</label>
+              <%= f.text_field :address, id: "address", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Address" %>
+            </div>
+          </div>
+          <%= f.submit "Save",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+  <!-- password form -->
+  <div class="w-full lg:w-[47.8%]  xl:w-[48.8%] ">
+    <div class=" container mx-auto rounded-[5px] border-2">
+      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+        <div><i class="fa-solid fa-pen-to-square"></i>
+          <span class="font-semibold">Update Password</span></div>
+        <button class="accordian-header cursor-pointer leading-0 px-1  text-2xl  border bg-white text-black  rounded-3xl"> <i class="bx bx-chevron-down " ></i></button>
+      </div>
+      <div class="accordian-body">
+        <% resource_name ||= :user %>
+        <% devise_mapping ||= Devise.mappings[resource_name] %>
+        <%= form_for(:user, as: resource_name, url: registration_path(:user), html: { method: :put }) do |f| %>
+          <div class="p-5 border-t bg-white flex-col ">
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="w-full mb-4">
+              <% f.email_field :email, autofocus: true, autocomplete: "email" %>
+              <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Current Password</label>
+              <%= f.password_field :current_password, autocomplete: "current-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+            </div>
+            <div class="w-full mb-4">
+              <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">New Password</label>
+              <%= f.password_field :password, autocomplete: "new-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+            </div>
+            <div class="w-full mb-4">
+              <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Confirm Password</label>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "confirm_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+            </div>
+          </div>
+          <%= f.submit "Change Password",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>
