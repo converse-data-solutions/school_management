@@ -1,4 +1,7 @@
-<div class=" bg-[#F5F5F5] p-1 mx-6 mb-8 text-[#39A9E8]"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Profile</span></div>
+<% if notice %>
+  <div   class="alert text-center text-black px-4 py-2 text-[14px] absolute left-[850px] top-[80px] rounded striped-background w-max"><%= notice %></div>
+<% end %>
+<div class=" bg-[#F5F5F5] p-1 text-[15px] mx-6 mb-8 text-[#39A9E8] "><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Profile</span></div>
 <div class="flex flex-wrap gap-x-3 mx-auto">
   <!-- profile section -->
   <div class="w-full lg:w-[47.5%] mx-6">
@@ -46,19 +49,22 @@
         <button class="accordian-header cursor-pointer leading-0 px-1  text-2xl  border bg-white text-black  rounded-3xl"> <i class="bx bx-chevron-down " ></i></button>
       </div>
       <div class="accordian-body">
-        <%= form_for [:admin_admin, @user], html: { id: 'user-form' } do |f| %>
+        <% resource_name ||= :user %>
+        <% devise_mapping ||= Devise.mappings[resource_name] %>
+        <%= form_for(:user, as: resource_name, url: registration_path(:user), html: { method: :put }) do |f| %>
           <div class="p-5 border-t bg-white flex-col ">
             <div class="w-full mb-4">
+              <% f.email_field :email, autofocus: true, autocomplete: "email" %>
               <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Current Password</label>
-              <%= f.password_field :password, id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+              <%= f.password_field :current_password, autocomplete: "current-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
             </div>
             <div class="w-full mb-4">
               <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">New Password</label>
-              <%= f.password_field :password, id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+              <%= f.password_field :password, autocomplete: "new-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
             </div>
             <div class="w-full mb-4">
               <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Confirm Password</label>
-              <%= f.password_field :password, id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "confirm_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
             </div>
           </div>
           <%= f.submit "Change Password",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>

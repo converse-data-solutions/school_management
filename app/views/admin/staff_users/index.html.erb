@@ -1,7 +1,7 @@
 <%= content_for :head do %>
   <%= javascript_import_module_tag "controllers/staff_datatable" %>
 <% end %>
-<div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[#39A9E8] pl-4"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Manage Staff</span></div>
+<div class="container bg-[#F5F5F5] mx-auto mb-8 text-[15px] p-1 text-[#39A9E8] pl-4"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Manage Staff</span></div>
 <div class=" container mx-auto rounded-lg border-2">
   <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
     <div><i class="fa-solid fa-pen-to-square"></i>
@@ -9,11 +9,13 @@
     <button class="accordian-header cursor-pointer leading-0 px-1 text-2xl border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-down "></i></button>
   </div>
   <div class="accordian-body">
-    <div class="bg-[#FFFFFF] overflow-scroll mx-5">
+    <div class="bg-[#FFFFFF] overflow-scroll mx-[8px] md:mx-2 lg:mx-3 xl:mx-0">
       <% if notice %>
-        <p class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
+        <div class="ml-2">
+          <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
+        </div>
       <% end %>
-      <table id="staffTable" class="stripe" style="width:98%;" data-source="<%= admin_staff_users_path(format: :json) %>">
+      <table id="staffTable" class="stripe"  data-source="<%= admin_staff_users_path(format: :json) %>">
         <thead class="bg-[#FFFFFF]">
           <tr>
             <th class="parent_name">Name</th>

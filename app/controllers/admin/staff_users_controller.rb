@@ -30,15 +30,8 @@ class Admin::StaffUsersController < ApplicationController
   end
 
   def active_staff_user
-    if @user.deleted == 'Active'
-      @user.update(deleted: 'Inactive')
-      flash[:notice] = 'Status Changed successfully.'
-      redirect_to admin_staff_users_path
-    else
-      @user.update(deleted: 'Active')
-      flash[:notice] = 'Status Changed successfully.'
-      redirect_to admin_staff_users_path
-    end
+    toggle_user_status
+    redirect_to admin_staff_users_path
   end
 
   def edit; end
@@ -80,5 +73,11 @@ class Admin::StaffUsersController < ApplicationController
 
   def set_user
     @user = User.find_by(id: params[:id])
+  end
+
+  def toggle_user_status
+    new_status = @user.deleted == 'Active' ? 'Inactive' : 'Active'
+    @user.update(deleted: new_status)
+    flash[:notice] = 'Status changed successfully.'
   end
 end
