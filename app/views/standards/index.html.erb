@@ -68,12 +68,9 @@
       </div>
     </div>
   </div>
-  <!-- Form for creating a new standard and multiple sections -->
   <%= form_for @standard, url: standards_path, method: :post do |f| %>
-    <!-- Standard fields -->
     <%= f.label :name %>
     <%= f.text_field :name %>
-    <!-- Section fields -->
     <div id="sections_fields">
       <%= f.fields_for :sections, f.object.sections.build do |section_form| %>
         <%= render 'section_fields', f: section_form %>
@@ -82,40 +79,5 @@
     <%= link_to 'Add Section', '#', id: 'add_section' %>
     <%= f.submit 'Create Standard' %>
   <% end %>
-  <!-- Partial for section fields -->
-  <!-- app/views/standards/_section_fields.html.erb -->
-  <%# // app/views/standards/index.html.erb %>
-  <script>
-    $(document).ready(function() {
-      // Counter to track the number of section fields
-      var sectionIndex = <%= @standard.sections.size %>;
-      console.log(sectionIndex);
-      // Add Section button click event
-      $('#add_section').click(function(e) {
-        e.preventDefault();
-        addSectionField();
-      });
 
-      // Remove Section button click event
-      $('#sections_fields').on('click', '.remove_section', function(e) {
-        e.preventDefault();
-        $(this).closest('.section_fields').remove();
-      });
-
-      // Function to add a new section field
-      function addSectionField() {
-        var newSectionField = $('#sections_fields .section_fields:first').clone();
-        newSectionField.find('input').val('');
-
-        // Update field names with unique indices
-        newSectionField.find('input').each(function() {
-          var oldName = $(this).attr('name');
-          var newName = oldName.replace(/\[\d\]/, '[' + sectionIndex + ']');
-          $(this).attr('name', newName);
-        });
-
-        $('#sections_fields').append(newSectionField);
-        sectionIndex++;
-      }
-    });
-  </script>
+ 
