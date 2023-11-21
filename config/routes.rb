@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  resources :standards, only: %i[]
+  resources :standards
 
-  resources :standards, only: %i[create] do
+  resources :standards do
     resources :sections, only: %i[]
   end
   namespace :admin do

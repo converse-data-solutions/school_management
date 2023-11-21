@@ -1,13 +1,17 @@
 class StandardDecorator < ApplicationDecorator
-  delegate_all
+  delegate :name
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  def link_to
+    h.link_to object.name
+  end
+  def standard_actions
+    links = []
+   
+    links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-edit') + ' Edit'.html_safe,
+                       h.edit_standard_path(object), class: 'parent_user_edit')
+    links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + ' Delete'.html_safe,
+                       h.standard_path(object), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, remote: true, class: 'parent_user_delete')
 
+    h.safe_join(links, '')
+  end
 end
