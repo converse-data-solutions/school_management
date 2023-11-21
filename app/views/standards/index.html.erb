@@ -12,87 +12,60 @@
         <button class="accordian-header cursor-pointer text-2xl leading-0 px-1  border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-down "></i></button>
       </div>
       <div class="accordian-body">
-<<<<<<< HEAD
-        <table id="standards-datatable" class="display" data-source="<%= standards_path(format: :json) %>">
-          <thead>
-            <tr>
-              <th>Standatd Name</th>
-              <th>Section Name</th>
-            </tr>
-          </thead>
-        </table>
-=======
-        <% resource_name ||= :user %>
-        <% devise_mapping ||= Devise.mappings[resource_name] %>
-        <%= form_for(:user, as: resource_name, url: registration_path(:user), html: { method: :put }) do |f| %>
-          <div class="p-5 border-t bg-white flex-col ">
-            <div class="w-full mb-4">
-              <% f.email_field :email, autofocus: true, autocomplete: "email" %>
-              <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Current Password</label>
-              <%= f.password_field :current_password, autocomplete: "current-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-            </div>
-            <div class="w-full mb-4">
-              <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">New Password</label>
-              <%= f.password_field :password, autocomplete: "new-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-            </div>
-            <div class="w-full mb-4">
-              <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Confirm Password</label>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "confirm_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-            </div>
+      </table>
+      <% resource_name ||= :user %>
+      <% devise_mapping ||= Devise.mappings[resource_name] %>
+      <%= form_for(:user, as: resource_name, url: registration_path(:user), html: { method: :put }) do |f| %>
+        <div class="p-5 border-t bg-white flex-col ">
+          <div class="w-full mb-4">
+            <% f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Current Password</label>
+            <%= f.password_field :current_password, autocomplete: "current-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
           </div>
-          <%= f.submit "Change Password",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
-        <% end %>
->>>>>>> parent of 22abe9a (complete_validation_for_sections_and_standard)
-      </div>
-    </div>
-  </div>
-  <!-- password form -->
-  <div class="w-full lg:w-[40%]  xl:w-[40.8%] ">
-    <div class=" container mx-auto rounded-[5px] border-2">
-      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
-        <div><i class="fa-solid fa-pen-to-square"></i>
-          <span class="font-semibold">Add Standard</span></div>
-        <button class="accordian-header cursor-pointer leading-0 px-1  text-2xl  border bg-white text-black  rounded-3xl"> <i class="bx bx-chevron-down " ></i></button>
-      </div>
-      <div class="accordian-body">
-        <%= form_for @standard, url: standards_path, method: :post do |f| %>
-          <div class="p-5 border-t bg-white flex-col ">
-            <div class="w-full mb-4">
-              <label for="Class Name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard Name</label>
-              <%= f.text_field :name, autocomplete: "current-password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-            </div>
-            <div class="w-full mb-4" id="section_field">
-              <%= f.fields_for :sections, f.object.sections.build do |section_form| %>
-                <%= render 'section_fields', f: section_form %>
-                <% end %>
-                <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">New Password</label>
-                <%= f.password_field :password, autocomplete: "new-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-              </div>
-              <div class="w-full mb-4">
-                <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Confirm Password</label>
-                <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "confirm_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-              </div>
-            </div>
-            <%= f.submit "Change Password",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
-          <% end %>
+          <div class="w-full mb-4">
+            <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">New Password</label>
+            <%= f.password_field :password, autocomplete: "new-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+          </div>
+          <div class="w-full mb-4">
+            <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Confirm Password</label>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "confirm_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-<<<<<<< HEAD
-</div>
-=======
-  <%= form_for @standard, url: standards_path, method: :post do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <div id="sections_fields">
-      <%= f.fields_for :sections, f.object.sections.build do |section_form| %>
-        <%= render 'section_fields', f: section_form %>
+        <%= f.submit "Change Password",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
       <% end %>
     </div>
-    <%= link_to 'Add Section', '#', id: 'add_section' %>
-    <%= f.submit 'Create Standard' %>
-  <% end %>
-
- 
->>>>>>> parent of 22abe9a (complete_validation_for_sections_and_standard)
+  </div>
+</div>
+<!-- password form -->
+<div class="w-full lg:w-[40%]  xl:w-[40.8%] ">
+  <div class=" container mx-auto rounded-[5px] border-2">
+    <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+      <div><i class="fa-solid fa-pen-to-square"></i>
+        <span class="font-semibold">Add Standard</span></div>
+      <button class="accordian-header cursor-pointer leading-0 px-1  text-2xl  border bg-white text-black  rounded-3xl"> <i class="bx bx-chevron-down " ></i></button>
+    </div>
+    <div class="accordian-body">
+      <%= form_for @standard, url: standards_path, method: :post do |f| %>
+        <div class="p-5 border-t bg-white flex-col ">
+          <div class="w-full mb-4">
+            <label for="Class Name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard Name</label>
+            <%= f.text_field :name, autocomplete: "current-password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+          </div>
+          <div class="w-full mb-4" id="section_field">
+            <%= f.fields_for :sections, f.object.sections.build do |section_form| %>
+              <%= render 'section_fields', f: section_form %>
+            <% end %>
+            <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">New Password</label>
+            <%= f.password_field :password, autocomplete: "new-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+          </div>
+          <div class="w-full mb-4">
+            <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Confirm Password</label>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "confirm_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+          </div>
+        </div>
+        <%= f.submit "Change Password",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
