@@ -1,0 +1,48 @@
+<div class="w-full lg:w-[40%]  xl:w-[40.8%] ">
+  <div class=" container mx-auto rounded-[5px] border-2">
+    <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+      <div><i class="fa-solid fa-pen-to-square"></i>
+        <span class="font-semibold">Add Standard</span></div>
+      <button class="accordian-header cursor-pointer leading-0 px-1  text-2xl  border bg-white text-black  rounded-3xl"> <i class="bx bx-chevron-up -up " ></i></button>
+    </div>
+    <div class="accordian-body">
+      <%= form_for @standard, url: standards_path, method: :post, html: { id: 'standard-form' } do |f| %>
+        <div class="p-3 border-t bg-white flex-col ">
+          <% if notice %>
+            <div class="ml-2">
+              <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
+            </div>
+          <% end %>
+          <div class="w-full container error-div hidden text-red-700 conatiner mb-3  mt-2 mr-3 text-[14px] p-3 rounded bg-[#F2DEDE] " id="notice">
+            <ul>
+              <li class="error" id="standard-error", style="color: red;"></li>
+              <li class="error" id="section-error", style="color: red;"></li>
+            </ul>
+          </div>
+          <div class="w-full mb-4">
+            <label for="Class Name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard Name</label>
+            <%= f.text_field :name,id: "standard_name",  class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Standard Name" %>
+          </div>
+          <div id="sections_fields">
+            <label for="Section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section</label>
+            <%= f.fields_for :sections, f.object.sections.build do |section_form| %>
+              <div class="section_fields mb-4 ">
+                <%= section_form.text_field :name, id:"section_name",  class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2", placeholder: "Section" %>
+              </div>
+              <div class="section_drop hidden">
+                <%= link_to '-', '#', class: 'remove-section   remove_section p-3 bg-[#D22228] text-white rounded-[5px] mt-3' %>
+              </div>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to '+', '#', id: 'add_section',class:"p-[11px] bg-[#7FB642] text-white rounded-[5px]" %>
+            <p class="text-[#848080] text-[12px] font-extralight mt-2">Press + add another section</p>
+          </div>
+          <div>
+            <%= f.submit "Created Standard",class:"text-white bg-[#39A9E8]    hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  mt-4 px-5  py-2.5 text-center" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

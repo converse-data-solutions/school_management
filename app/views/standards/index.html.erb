@@ -1,6 +1,4 @@
-<% if notice %>
-  <div   class="alert text-center text-black px-4 py-2 text-[14px] absolute left-[850px] top-[80px] rounded striped-background w-max"><%= notice %></div>
-<% end %>
+<div id="sectionIndex" data-section-index="<%= @standard.sections.size %>"></div>
 <div class=" bg-[#F5F5F5] p-1 text-[15px] pl-4 mx-6 mb-8 text-[#39A9E8] "><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Manage Class</span></div>
 <div class="flex flex-wrap lg:gap-x-6 ml-6 md:mr-6 lg:mr-3 xl:mr-5 2xl:mr-3">
   <!-- profile section -->
@@ -8,64 +6,177 @@
     <div class=" container mx-auto rounded-[5px] border-2">
       <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
         <div><i class="fa-solid fa-pen-to-square"></i>
-          <span class="font-semibold">Update Profile</span></div>
-        <button class="accordian-header cursor-pointer text-2xl leading-0 px-1  border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-down "></i></button>
+          <span class="font-semibold">Manage Standard</span></div>
+        <button class="accordian-header cursor-pointer text-2xl leading-0 px-1  border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up -up "></i></button>
       </div>
       <div class="accordian-body">
-      </table>
-      <% resource_name ||= :user %>
-      <% devise_mapping ||= Devise.mappings[resource_name] %>
-      <%= form_for(:user, as: resource_name, url: registration_path(:user), html: { method: :put }) do |f| %>
-        <div class="p-5 border-t bg-white flex-col ">
-          <div class="w-full mb-4">
-            <% f.email_field :email, autofocus: true, autocomplete: "email" %>
-            <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Current Password</label>
-            <%= f.password_field :current_password, autocomplete: "current-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-          </div>
-          <div class="w-full mb-4">
-            <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">New Password</label>
-            <%= f.password_field :password, autocomplete: "new-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-          </div>
-          <div class="w-full mb-4">
-            <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Confirm Password</label>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "confirm_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-          </div>
-        </div>
-        <%= f.submit "Change Password",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
-      <% end %>
+        <table id="standardTable" class="stripe" data-source="<%= standards_path(format: :json) %>">
+          <thead class="bg-[#FFFFFF]">
+            <tr>
+              <th>Standatd Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
     </div>
   </div>
-</div>
-<!-- password form -->
-<div class="w-full lg:w-[40%]  xl:w-[40.8%] ">
-  <div class=" container mx-auto rounded-[5px] border-2">
-    <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
-      <div><i class="fa-solid fa-pen-to-square"></i>
-        <span class="font-semibold">Add Standard</span></div>
-      <button class="accordian-header cursor-pointer leading-0 px-1  text-2xl  border bg-white text-black  rounded-3xl"> <i class="bx bx-chevron-down " ></i></button>
-    </div>
-    <div class="accordian-body">
-      <%= form_for @standard, url: standards_path, method: :post do |f| %>
-        <div class="p-5 border-t bg-white flex-col ">
-          <div class="w-full mb-4">
-            <label for="Class Name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard Name</label>
-            <%= f.text_field :name, autocomplete: "current-password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-          </div>
-          <div class="w-full mb-4" id="section_field">
-            <%= f.fields_for :sections, f.object.sections.build do |section_form| %>
-              <%= render 'section_fields', f: section_form %>
+  <!-- Standard form -->
+  <div class="w-full lg:w-[40%]  xl:w-[40.8%] ">
+    <div class=" container mx-auto rounded-[5px] border-2">
+      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+        <div><i class="fa-solid fa-pen-to-square"></i>
+          <span class="font-semibold">Add Standard</span></div>
+        <button class="accordian-header cursor-pointer leading-0 px-1  text-2xl  border bg-white text-black  rounded-3xl"> <i class="bx bx-chevron-up -up " ></i></button>
+      </div>
+      <div class="accordian-body">
+        <%= form_for @standard, url: standards_path, method: :post, html: { id: 'standard-form' } do |f| %>
+          <div class="p-3 border-t bg-white flex-col ">
+            <% if notice %>
+              <div class="ml-2">
+                <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
+              </div>
             <% end %>
-            <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">New Password</label>
-            <%= f.password_field :password, autocomplete: "new-password", id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-          </div>
-          <div class="w-full mb-4">
-            <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Confirm Password</label>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "confirm_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
-          </div>
+            <div class="w-full container error-div hidden text-red-700 conatiner mb-3  mt-2 mr-3 text-[14px] p-3 rounded bg-[#F2DEDE] " id="notice">
+              <ul>
+                <li class="error" id="standard-error", style="color: red;"></li>
+                <li class="error" id="section-error", style="color: red;"></li>
+              </ul>
+            </div>
+            <div class="w-full mb-4">
+              <label for="Class Name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard Name</label>
+              <%= f.text_field :name,id: "standard_name",  class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Standard Name" %>
+            </div>
+            <div id="sections_fields">
+              <label for="Section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section</label>
+              <%= f.fields_for :sections, f.object.sections.build do |section_form| %>
+                <div class="section_fields mb-4">
+                  <%= section_form.text_field :name, id:"section_name",  class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2", placeholder: "Section" %>
+                  <%= link_to '-', '#', class: 'remove-section hidden  remove_section p-3 bg-[#D22228] text-white rounded-[5px] mt-3' %>
+                </div>
+              <% end %>
+            </div>
+            <div>
+              <%= link_to '+', '#', id: 'add_section',class:"p-[11px] bg-[#7FB642] text-white rounded-[5px]" %>
+              <p class="text-[#848080] text-[12px] font-extralight mt-2">Press + add another section</p>
+            </div>
+            <div>
+              <%= f.submit "Created Standard",class:"text-white bg-[#39A9E8]    hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  mt-4 px-5  py-2.5 text-center" %>
+            </div>
+          <% end %>
         </div>
-        <%= f.submit "Change Password",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
-</div>
+<script>
+  $(document).ready(function() {
+
+   $("#standardTable").dataTable({
+
+   processing: true,
+   serverSide: true,
+   ajax: {
+     url: $("#standardTable").data("source"),
+   },
+   pagingType: "simple_numbers",
+   language: {
+     sLengthMenu: "_MENU_ records per page",
+   },
+
+   columns: [
+     { data: "name", class: "standard_name" },
+     { data: "standard_actions", class: "standard_action" },
+
+
+   ],
+   oLanguage: {
+     oPaginate: {
+       sPrevious:
+         '<span class="pagination-btn"><i class="fas fa-arrow-left"></i> Previous</span>',
+       sNext:
+         '<span class="pagination-btn">Next <i class="fas fa-arrow-right"></i></span>',
+     },
+   },
+  });
+   });
+
+
+  $(document).ready(function() {
+
+  var sectionIndex = $('#sectionIndex').data('sectionIndex');
+
+
+    $('#add_section').click(function(e) {
+      e.preventDefault();
+      addSectionField();
+    });
+    $('#sections_fields').on('click', '.remove_section', function(e) {
+      e.preventDefault();
+      $(this).closest('.section_fields').remove();
+    });
+    $('#add_section').on('click', '#add_section', function(e) {
+      e.preventDefault();
+      $(this).closest('.section_fields').removeClass("hidden");
+    });
+
+    function addSectionField() {
+      var newSectionField = $('#sections_fields .section_fields:first').clone();
+      newSectionField.find('input').val('');
+      newSectionField.find('input').each(function() {
+        var oldName = $(this).attr('name');
+        var newName = oldName.replace(/\[\d\]/, '[' + sectionIndex + ']');
+        $(this).attr('name', newName);
+
+      });
+      $('#sections_fields').append(newSectionField);
+      sectionIndex++;
+         console.log(sectionIndex);
+
+
+      $('.remove-section').removeClass('hidden');
+
+
+      $('#sectionIndex').data('sectionIndex', sectionIndex);
+
+    }
+  });
+
+
+  $(document).ready(function () {
+  $("form").on("submit", function (e) {
+    console.log("submit");
+  var standard_name = $("#standard_name").val();
+  var section_name = $("#section_name").val();
+      var err = $(".error-div");
+
+  $(".error").text("");
+  $(".error").css("color", "red");
+  var errors = false;
+
+  if (!standard_name || !standard_name.trim()) {
+    $("#standard-error").text("Please enter a Standard Name.");
+    errors = true;
+    console.log("standard error");
+  }
+  if (!section_name || !section_name.trim()) {
+    $("#section-error").text("Please enter a Section Name.");
+    errors = true;
+    console.log("section error");
+  }
+
+  if (errors == true) {
+    err.removeClass("hidden");
+  } else {
+    err.addClass("hidden");
+  }
+
+  if (errors) {
+    e.preventDefault();
+    return false;
+  }
+
+  return true;
+    });
+  });
+</script>
