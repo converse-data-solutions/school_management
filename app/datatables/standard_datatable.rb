@@ -11,13 +11,11 @@ class StandardDatatable < AjaxDatatablesRails::ActiveRecord
       {
         standard_name: record.name,
         section_name: record.sections.last&.name
-
       }
     end
   end
 
   def get_raw_records
     Standard.includes(:sections)
-
   end
 end

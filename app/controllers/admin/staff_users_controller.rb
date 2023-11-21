@@ -40,7 +40,6 @@ class Admin::StaffUsersController < ApplicationController
     if @user.update(user_params)
       flash[:notice] = 'User information updated successfully.'
       redirect_to admin_staff_users_path
-
     else
       flash[:alert] = 'Failed to update user information.'
       render :edit
