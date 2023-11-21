@@ -1,5 +1,5 @@
-$(document).ready(function () {
-  $("form").on("submit", function (e) {
+function initValidate() {
+    $("form").on("submit", function (e) {
     var email = $("#user_email").val();
     var password = $("#user_password").val();
     var name = $("#name").val();
@@ -82,5 +82,12 @@ $(document).ready(function () {
 
     return true;
   });
-});
+};
 
+$(document).ready(function () {
+  initValidate();
+
+  $(document).on("turbo:render", function () {
+    initValidate();
+  });
+});
