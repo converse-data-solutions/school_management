@@ -1,11 +1,11 @@
 class StandardsController < ApplicationController
   def index
-    @standards= Standard.all
+    @standards = Standard.all
     @standard = Standard.new
     @standard.sections.build
     respond_to do |format|
       format.html
-      format.json { render json: StandardDatatable.new(params, view_context: view_context) }
+      format.json { render json: StandardDatatable.new(params, view_context:) }
     end
   end
 
