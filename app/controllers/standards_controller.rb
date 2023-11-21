@@ -3,6 +3,10 @@ class StandardsController < ApplicationController
     @standards= Standard.all
     @standard = Standard.new
     @standard.sections.build
+    respond_to do |format|
+      format.html
+      format.json { render json: StandardDatatable.new(params, view_context: view_context) }
+    end
   end
 
   def create
