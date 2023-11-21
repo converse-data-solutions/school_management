@@ -1,4 +1,5 @@
 require 'sprockets/sass_compressor'
+
 class Sprockets::SassCompressor
   TAILWIND_SEARCH = "--tw-".freeze
   def call(*args)
