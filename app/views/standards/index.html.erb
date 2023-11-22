@@ -13,7 +13,9 @@
         <table id="standardTable" class="stripe" data-source="<%= standards_path(format: :json) %>">
           <thead class="bg-[#FFFFFF]">
             <tr>
+              <th>S.NO</th>
               <th>Standatd Name</th>
+              <th>Section Name</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -51,7 +53,7 @@
               <label for="Section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section</label>
               <%= f.fields_for :sections, f.object.sections.build do |section_form| %>
                 <div class="section_fields mb-4">
-                  <%= section_form.text_field :name, id:"section_name",  class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2", placeholder: "Section" %>
+                  <%= section_form.text_field :section_name, id:"section_name",  class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2", placeholder: "Section" %>
                   <%= link_to '-', '#', class: 'remove-section hidden  remove_section p-3 bg-[#D22228] text-white rounded-[5px] mt-3' %>
                 </div>
               <% end %>
@@ -85,7 +87,9 @@
    },
 
    columns: [
+     { data: "id", class: "standard_id" },
      { data: "name", class: "standard_name" },
+     { data: "section_name", class: "standard_name" },
      { data: "standard_actions", class: "standard_action" },
 
 
@@ -104,43 +108,43 @@
 
   $(document).ready(function() {
 
-  var sectionIndex = $('#sectionIndex').data('sectionIndex');
+     var sectionIndex = $('#sectionIndex').data('sectionIndex');
 
 
-    $('#add_section').click(function(e) {
-      e.preventDefault();
-      addSectionField();
-    });
-    $('#sections_fields').on('click', '.remove_section', function(e) {
-      e.preventDefault();
-      $(this).closest('.section_fields').remove();
-    });
-    $('#add_section').on('click', '#add_section', function(e) {
-      e.preventDefault();
-      $(this).closest('.section_fields').removeClass("hidden");
-    });
+       $('#add_section').click(function(e) {
+         e.preventDefault();
+         addSectionField();
+       });
+       $('#sections_fields').on('click', '.remove_section', function(e) {
+         e.preventDefault();
+         $(this).closest('.section_fields').remove();
+       });
+       $('#add_section').on('click', '#add_section', function(e) {
+         e.preventDefault();
+         $(this).closest('.section_fields').removeClass("hidden");
+       });
 
-    function addSectionField() {
-      var newSectionField = $('#sections_fields .section_fields:first').clone();
-      newSectionField.find('input').val('');
-      newSectionField.find('input').each(function() {
-        var oldName = $(this).attr('name');
-        var newName = oldName.replace(/\[\d\]/, '[' + sectionIndex + ']');
-        $(this).attr('name', newName);
+       function addSectionField() {
+         var newSectionField = $('#sections_fields .section_fields:first').clone();
+         newSectionField.find('input').val('');
+         newSectionField.find('input').each(function() {
+           var oldName = $(this).attr('name');
+           var newName = oldName.replace(/\[\d\]/, '[' + sectionIndex + ']');
+           $(this).attr('name', newName);
 
-      });
-      $('#sections_fields').append(newSectionField);
-      sectionIndex++;
-         console.log(sectionIndex);
-
-
-      $('.remove-section').removeClass('hidden');
+         });
+         $('#sections_fields').append(newSectionField);
+         sectionIndex++;
+            console.log(sectionIndex);
 
 
-      $('#sectionIndex').data('sectionIndex', sectionIndex);
+         $('.remove-section').removeClass('hidden');
 
-    }
-  });
+
+         $('#sectionIndex').data('sectionIndex', sectionIndex);
+
+       }
+     });
 
 
   $(document).ready(function () {
