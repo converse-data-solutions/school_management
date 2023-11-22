@@ -20,9 +20,12 @@ class StandardsController < ApplicationController
 
   def edit
     @standard = Standard.find(params[:id])
+   
+
   end
 
   def update
+    
     @standard = Standard.find(params[:id])
     if @standard.update(standard_params)
       redirect_to standards_path, notice: 'Standard updated successfully.'
@@ -40,6 +43,7 @@ class StandardsController < ApplicationController
   private
 
   def standard_params
-    params.require(:standard).permit(:name, sections_attributes: [:name])
+    params.require(:standard).permit(:name, sections_attributes: [:id, :section_name, :destroy])
+
   end
 end

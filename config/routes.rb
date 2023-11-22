@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   resources :standards
 
   resources :standards do
-    resources :sections, only: %i[]
+    resources :sections
   end
+  
   namespace :admin do
     resources :admin_users do
       member do
