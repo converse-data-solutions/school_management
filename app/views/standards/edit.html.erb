@@ -1,53 +1,143 @@
 <div id="sectionIndex" data-section-index="<%= @standard.sections.size %>"></div>
-<div class="w-full lg:w-[40%]  xl:w-[40.8%] ">
-  <div class=" container mx-auto rounded-[5px] border-2">
-    <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
-      <div><i class="fa-solid fa-pen-to-square"></i>
-        <span class="font-semibold">Edit Standard</span></div>
-      <button class="accordian-header cursor-pointer leading-0 px-1  text-2xl  border bg-white text-black  rounded-3xl"> <i class="bx bx-chevron-up -up " ></i></button>
-    </div>
-    <div class="accordian-body">
-      <%= form_for @standard, url: standard_path(@standard), method: :patch, html: { id: 'standard-form' } do |f| %>
-        <div class="p-3 border-t bg-white flex-col">
+<div class=" bg-[#F5F5F5] p-1 text-[15px] pl-4 mx-6 mb-8 text-[#39A9E8] "><span><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Manage Class</span></div>
+<div class="flex flex-wrap lg:gap-x-6 ml-6 md:mr-6 lg:mr-3 xl:mr-5 2xl:mr-3">
+  <!-- profile section -->
+  <div class="w-full lg:w-[55.5%]  xl:w-[57%] ">
+    <div class=" container mx-auto rounded-[5px] border-2">
+      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+        <div><i class="fa-solid fa-pen-to-square"></i>
+          <span class="font-semibold">Manage Standard</span></div>
+        <button class="accordian-header cursor-pointer text-2xl leading-0 px-1  border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up -up "></i></button>
+      </div>
+      <div class="accordian-body">
+        <div class="bg-[#FFFFFF] overflow-scroll mx-[8px] md:mx-2 lg:mx-3 xl:mx-0 ">
           <% if notice %>
             <div class="ml-2">
-              <p id="notice" class="alert text-[#508C47] container text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
+              <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
             </div>
           <% end %>
-          <div class="w-full container error-div hidden text-red-700 container mb-3 mt-2 mr-3 text-[14px] p-3 rounded bg-[#F2DEDE]" id="notice">
-            <ul>
-              <li class="error" id="standard-error", style="color: red;"></li>
-              <li class="error" id="section-error", style="color: red;"></li>
-            </ul>
-          </div>
-          <div class="w-full mb-4">
-            <label for="Class Name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard Name</label>
-            <%= f.text_field :name, id: "standard_name", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Standard Name" %>
-          </div>
-          <div id="sections_fields">
-            <label for="Section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section</label>
-            <%= f.fields_for :sections do |section_form| %>
-              <div class="section_fields mb-4">
-                <%= section_form.text_field :section_name, id: "section_name", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2", placeholder: "Section" %>
-                <%= link_to '-', '#', class: 'remove-section remove_section p-3 bg-[#D22228] text-white rounded-[5px] mt-3' %>
+          <table id="standardTable" class="stripe" data-source="<%= standards_path(format: :json) %>">
+            <thead class="bg-[#FFFFFF]">
+              <tr>
+                <th>S.NO</th>
+                <th>Standatd Name</th>
+                <th>Section Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Standard form -->
+  <div class="w-full lg:w-[40%]  xl:w-[40.8%] ">
+    <div id="sectionIndex" data-section-index="<%= @standard.sections.size %>"></div>
+    <div class=" container mx-auto rounded-[5px] border-2">
+      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+        <div><i class="fa-solid fa-pen-to-square"></i>
+          <span class="font-semibold">Edit Standard</span></div>
+        <button class="accordian-header cursor-pointer leading-0 px-1  text-2xl  border bg-white text-black  rounded-3xl"> <i class="bx bx-chevron-up -up " ></i></button>
+      </div>
+      <div class="accordian-body">
+        <%= form_for @standard, url: standard_path(@standard), method: :patch, html: { id: 'standard-form' } do |f| %>
+          <div class="p-3 border-t bg-white flex-col">
+            <% if notice %>
+              <div class="ml-2">
+                <p id="notice" class="alert text-[#508C47] container text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
               </div>
             <% end %>
+            <div class="w-full container error-div hidden text-red-700 container mb-3 mt-2 mr-3 text-[14px] p-3 rounded bg-[#F2DEDE]" id="notice">
+              <ul>
+                <li class="error" id="standard-error", style="color: red;"></li>
+                <li class="error" id="section-error", style="color: red;"></li>
+              </ul>
+            </div>
+            <div class="w-full mb-4">
+              <label for="Class Name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard Name</label>
+              <%= f.text_field :name, id: "standard_name", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Standard Name" %>
+            </div>
+            <div id="sections_fields">
+              <label for="Section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section</label>
+              <%= f.fields_for :sections do |section_form| %>
+                <div class="section_fields mb-4">
+                  <%= section_form.text_field :section_name, id: "section_name", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2", placeholder: "Section" %>
+                  <%= link_to '-', '#', class: 'remove_section p-3 bg-[#D22228] text-white rounded-[5px] mt-3' %>
+                 <%= section_form.check_box :_destroy, id: "destroy", class: "checkbox hidden" %> 
+                </div>
+              <% end %>
+            </div>
+            <div>
+              <%= link_to '+', '#',id: "add_section", class: ' p-[11px] bg-[#7FB642] text-white rounded-[5px]' %>
+              <p class="text-[#848080] text-[12px] font-extralight mt-2">Press + add another section</p>
+            </div>
+            <div>
+              <%= f.submit "Update Standard", id: "button", class: "text-white bg-[#39A9E8]   focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  mt-4 px-5  py-2.5 text-center" %>
+            </div>
           </div>
-          <div>
-            <%= link_to '+', '#',id: "add_section", class: ' p-[11px] bg-[#7FB642] text-white rounded-[5px]' %>
-            <p class="text-[#848080] text-[12px] font-extralight mt-2">Press + add another section</p>
-          </div>
-          <div>
-            <%= f.submit "Update Standard", class: "text-white bg-[#39A9E8]    hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  mt-4 px-5  py-2.5 text-center" %>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 </div>
 <script>
   $(document).ready(function() {
+  function toggleRemoveLink() {
+    var visibleSectionCount = $('.section_fields:visible').length;
+    var removeLinkCount = $('.remove_section').length;
+
+console.log(visibleSectionCount);
+    if (visibleSectionCount === 1 ) {
+      $('.remove_section').hide();
+    } 
+    else {
+      $('.remove_section').show();
+    }
+    
+  }
+
+  toggleRemoveLink();
+  $(document).on('click', '#add_section, .remove_section', function() {    setTimeout(toggleRemoveLink, 0);
+  });
+});
+  
+
+  $(document).ready(function() {
+
+   $("#standardTable").dataTable({
+
+   processing: true,
+   serverSide: true,
+   ajax: {
+     url: $("#standardTable").data("source"),
+   },
+   pagingType: "simple_numbers",
+   language: {
+     sLengthMenu: "_MENU_ records per page",
+   },
+
+   columns: [
+     { data: "id", class: "standard_id" },
+     { data: "name", class: "standard_name" },
+     { data: "section_name", class: "standard_name" },
+     { data: "standard_actions", class: "standard_action" },
+
+
+   ],
+   oLanguage: {
+     oPaginate: {
+       sPrevious:
+         '<span class="pagination-btn"><i class="fas fa-arrow-left"></i> Previous</span>',
+       sNext:
+         '<span class="pagination-btn">Next <i class="fas fa-arrow-right"></i></span>',
+     },
+   },
+  });
+   });
+
+
+   $(document).ready(function() {
    var sectionIndex = $('#sectionIndex').data('sectionIndex');
 
    $('#add_section').click(function(e) {
@@ -62,10 +152,16 @@
 
    function removeSectioField(elem) {
     var removeSection = $(elem).closest('.section_fields');
-
-     removeSection.remove();
+    var removeBox = $(elem).closest('.section_fields').find('.checkbox');   
+     removeSection.addClass("hidden");
+     var clicked = false;
+     
+     removeBox.prop("checked", !clicked);
      sectionIndex--;
      $('#sectionIndex').data('sectionIndex', sectionIndex);
+
+     console.log(sectionIndex);
+    
    }
 
    function addSectionField() {
@@ -84,5 +180,43 @@
      $('.remove-section').removeClass('hidden');
      $('#sectionIndex').data('sectionIndex', sectionIndex);
    }
+  });
+
+
+  $(document).ready(function () {
+  $("form").on("submit", function (e) {
+    console.log("submit");
+  var standard_name = $("#standard_name").val();
+  var section_name = $("#section_name").val();
+      var err = $(".error-div");
+
+  $(".error").text("");
+  $(".error").css("color", "red");
+  var errors = false;
+
+  if (!standard_name || !standard_name.trim()) {
+    $("#standard-error").text("Please enter a Standard Name.");
+    errors = true;
+    console.log("standard error");
+  }
+  if (!section_name || !section_name.trim()) {
+    $("#section-error").text("Please enter a Section Name.");
+    errors = true;
+    console.log("section error");
+  }
+
+  if (errors == true) {
+    err.removeClass("hidden");
+  } else {
+    err.addClass("hidden");
+  }
+
+  if (errors) {
+    e.preventDefault();
+    return false;
+  }
+
+  return true;
+    });
   });
 </script>

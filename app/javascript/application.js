@@ -13,6 +13,11 @@ $(document).ready(function () {
 });
 
 function initValidate() {
+
+  $('#button').click(function() {
+    $(this).addClass("border-2 border-[#000]");
+    
+  });
   //accordian for all models
   $(".accordian-header").click(function () {
     $(this).toggleClass("active");
