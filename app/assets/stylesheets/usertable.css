@@ -1,29 +1,34 @@
 #myTable,
-#staffTable {
+#staffTable, #standardTable {
   border-collapse: collapse;
   color: #555555;
   padding: 10px;
   min-height: fit-content;
 }
+td.standard_action {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 #myTable th,
 #myTable td,
 #staffTable th,
-#staffTable td {
+#staffTable td, #standardTable th, #standardTable td {
   padding: 10px;
   border: 1px solid #ddd;
 }
 
 #myTable th,
-#staffTable th {
+#staffTable th, #standardTable th {
   background-color: #f2f2f2;
   color: #555555;
   font-size: 14px;
   background-color: #ffffff;
+  text-align: left;
 }
 
 #myTable td,
-#staffTable td {
+#staffTable td, #standardTable td {
   color: #555555;
   font-size: 14px;
   background-color: #ffffff;
@@ -102,7 +107,7 @@
 }
 
 div#myTable_info,
-div#staffTable_info {
+div#staffTable_info, #standardTable_info {
   margin-left: 20px;
   color: #54577a;
   font-size: 14px;
@@ -156,6 +161,10 @@ div#staffTable_info {
     gap: 2px;
   }
 
+  .standard_action{
+    display: flex;
+  }
+
   .dataTables_wrapper .dataTables_length select {
     border: 1px solid #aaa;
     border-radius: 3px;
@@ -169,12 +178,12 @@ div#staffTable_info {
   }
 
   table#myTable,
-  table#staffTable {
+  table#staffTable, table#standardTable {
     width: max-content !important;
   }
 
   table#myTable,
-  table#staffTable {
+  table#staffTable, table#standardTable {
     width: max-content;
   }
 
@@ -206,7 +215,7 @@ div#staffTable_info {
   }
 
   table#myTable,
-  table#staffTable {
+  table#staffTable, table#standardTable {
     width: max-content !important;
   }
 }
@@ -248,7 +257,7 @@ div#staffTable_info {
   }
 
   table#myTable,
-  table#staffTable {
+  table#staffTable, table#standardTable {
     width: 98% !important;
   }
 }
@@ -322,7 +331,7 @@ a.paginate_button.current {
 }
 
 div#myTable_paginate,
-div#staffTable_paginate {
+div#staffTable_paginate, div#standardTable_paginate {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -332,7 +341,7 @@ div#staffTable_paginate {
 }
 
 a#myTable_previous,
-a#staffTable_previous {
+a#staffTable_previous, a#standardTable_previous {
   cursor: pointer;
   color: #666 !important;
   border-top-left-radius: 5px;
@@ -345,7 +354,7 @@ a#staffTable_previous {
 }
 
 a#myTable_next,
-a#staffTable_next {
+a#staffTable_next, a#standardTable_next {
   color: #39a9e8 !important;
   cursor: pointer;
   border-top-right-radius: 5px;
