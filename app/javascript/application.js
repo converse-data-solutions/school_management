@@ -57,4 +57,5 @@ $(document).ready(function () {
   $(document).on("turbo:render", function () {
     initValidate();
   });
+  
 });
