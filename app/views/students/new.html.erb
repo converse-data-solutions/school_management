@@ -1,0 +1,36 @@
+<div class="container bg-[#F5F5F5] mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-8 p-1 text-[#39A9E8] pl-4"><span><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Student</span></div>
+<div class=" container mx-auto rounded-[5px] border-2">
+  <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+    <div><i class="fa-solid fa-pen-to-square"></i>
+      <span class="font-semibold">Add Student</span></div>
+    <button class="accordian-header cursor-pointer leading-0 px-1 text-2xl  border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up  "></i></button>
+  </div>
+  <div class="accordian-body">
+    <%= render "form", student: @student %>
+  </div>
+</div>
+
+<script>
+$(document).on('turbolinks:load', function () {
+  $('#student_standard_id').change(function () {
+    var standardId = $(this).val();
+
+    $.ajax({
+      url: '/students/sections_by_standard',
+      type: 'GET',
+      dataType: 'json',
+      data: { standard_id: standardId },
+      success: function (data) {
+        var options = '<option value="">Select Section</option>';
+        $.each(data, function (key, value) {
+          options += '<option value="' + value.id + '">' + value.section_name + '</option>';
+        });
+        $('#student_section_id').html(options);
+      },
+      error: function () {
+        console.log('Error fetching sections');
+      }
+    });
+  });
+});
+</script>

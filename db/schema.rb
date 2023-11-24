@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_21_205414) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_23_125627) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -53,6 +53,25 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_205414) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "students", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "admission_no"
+    t.string "roll_no"
+    t.string "name"
+    t.string "father_name"
+    t.string "mother_name"
+    t.bigint "mobile_number"
+    t.string "address"
+    t.date "date_of_birth"
+    t.string "gender"
+    t.date "date_of_admission"
+    t.bigint "section_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_students_on_section_id"
+    t.index ["user_id"], name: "index_students_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -77,4 +96,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_205414) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "sections", "standards"
+  add_foreign_key "students", "sections"
+  add_foreign_key "students", "users"
 end

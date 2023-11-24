@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  admission_no: MyString
+  roll_no: MyString
+  name: MyString
+  father_name: MyString
+  mother_name: MyString
+  mobile_number: 
+  address: MyString
+  date_of_birth: 2023-11-23
+  gender: MyString
+  date_of_admission: 2023-11-23
+  section: one
+  user: one
+
+two:
+  admission_no: MyString
+  roll_no: MyString
+  name: MyString
+  father_name: MyString
+  mother_name: MyString
+  mobile_number: 
+  address: MyString
+  date_of_birth: 2023-11-23
+  gender: MyString
+  date_of_admission: 2023-11-23
+  section: two
+  user: two
