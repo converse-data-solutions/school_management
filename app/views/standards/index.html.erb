@@ -25,7 +25,7 @@
                 <th>S.NO</th>
                 <th>Standatd Name</th>
                 <th>Section Name</th>
-                <th class="text-red"  >Action</th>
+                <th>Action</th>
               </tr>
             </thead>
           </table>
@@ -57,7 +57,7 @@
             </div>
             <div id="sections_fields">
               <label for="Section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section</label>
-              <%= f.fields_for :sections, f.object.sections.build do |section_form| %>
+              <%= f.fields_for :sections do |section_form| %>
                 <div class="section_fields mb-4">
                   <%= section_form.text_field :section_name, id:"section_name",  class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2", placeholder: "Section" %>
                   <%= link_to '-', '#', class: 'remove-section  remove_section p-3 bg-[#D22228] text-white rounded-[5px] mt-3' %>

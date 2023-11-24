@@ -1,6 +1,5 @@
 class StandardsController < ApplicationController
   def index
-    @standards = Standard.all
     @standard = Standard.new
     @standard.sections.build
     respond_to do |format|
@@ -20,8 +19,6 @@ class StandardsController < ApplicationController
 
   def edit
     @standard = Standard.find(params[:id])
-   
-
   end
 
   def update

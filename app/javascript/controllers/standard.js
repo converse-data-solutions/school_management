@@ -1,5 +1,20 @@
 function initValidate() {
-  
+  function toggleRemoveLink() {
+    var visibleSectionCount = $(".section_fields:visible").length;
+
+    console.log(visibleSectionCount);
+    if (visibleSectionCount === 1) {
+      $(".remove_section").hide();
+    } else {
+      $(".remove_section").show();
+    }
+  }
+
+  toggleRemoveLink();
+  $(document).on("click", "#add_section, .remove_section", function () {
+    toggleRemoveLink();
+  });
+
   var sectionIndex = $("#sectionIndex").data("sectionIndex");
   console.log(sectionIndex);
 
@@ -10,20 +25,18 @@ function initValidate() {
 
   $("#sections_fields").on("click", ".remove_section", function (e) {
     e.preventDefault();
-    if (".section_fields".length > 1) {
-      $(this).closest(".section_fields").remove();
-    }
     removeSectioField(this);
   });
   function removeSectioField(elem) {
     var removeSection = $(elem).closest(".section_fields");
+    var removeBox = $(elem).closest('.section_fields').find('.checkbox');   
     removeSection.addClass("hidden");
-    sectionIndex--;
-    console.log(sectionIndex);
+    var clicked = false;
+    
+    removeBox.prop("checked", !clicked);    sectionIndex--;
     $("#sectionIndex").data("sectionIndex", sectionIndex);
   }
   function addSectionField() {
-    sectionIndex++;
     var newSectionField = $("#sections_fields .section_fields:first").clone();
     newSectionField.find("input").val("");
     newSectionField.find("input").each(function () {
@@ -32,7 +45,7 @@ function initValidate() {
       $(this).attr("name", newName);
     });
     $("#sections_fields").append(newSectionField);
-    
+    sectionIndex++;
 
     $("#sectionIndex").data("sectionIndex", sectionIndex);
     console.log(sectionIndex);
@@ -134,8 +147,10 @@ function initValidate() {
     return true;
   });
 }
+$(document).ready(function () {
+  initValidate();
 
-  $(document).on("turbo:load", function () {
+  $(document).on("turbo:render", function () {
     initValidate();
-  })
- 
+  });
+});
