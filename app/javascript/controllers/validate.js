@@ -1,5 +1,5 @@
 function initValidate() {
-    $("form").on("submit", function (e) {
+  $("form").on("submit", function (e) {
     var email = $("#user_email").val();
     var password = $("#user_password").val();
     var name = $("#name").val();
@@ -82,7 +82,7 @@ function initValidate() {
 
     return true;
   });
-};
+}
 
 $(document).ready(function () {
   initValidate();

@@ -29,11 +29,12 @@ function initValidate() {
   });
   function removeSectioField(elem) {
     var removeSection = $(elem).closest(".section_fields");
-    var removeBox = $(elem).closest('.section_fields').find('.checkbox');   
+    var removeBox = $(elem).closest(".section_fields").find(".checkbox");
     removeSection.addClass("hidden");
     var clicked = false;
-    
-    removeBox.prop("checked", !clicked);    sectionIndex--;
+
+    removeBox.prop("checked", !clicked);
+    sectionIndex--;
     $("#sectionIndex").data("sectionIndex", sectionIndex);
   }
   function addSectionField() {
