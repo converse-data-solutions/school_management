@@ -3,8 +3,6 @@ class StudentsController < ApplicationController
 
   def index
     @students = Student.all
-    @standards = Standard.all
-    @sections = Section.all
     respond_to do |format|
       format.html
       format.json { render json: StudentDatatable.new(params) }
@@ -13,7 +11,7 @@ class StudentsController < ApplicationController
 
   def show
   end
-
+  
  
   def get_sections
     @sections = Standard.find(params[:standard_id]).sections
@@ -31,7 +29,7 @@ class StudentsController < ApplicationController
 
   def new
     @standards = Standard.all
-    puts "@standards: #{@standards.inspect}"
+    @sections = @standard&.sections || []
     @student = Student.new
   end
 
@@ -86,4 +84,5 @@ class StudentsController < ApplicationController
       @student.update(deleted: new_status)
       flash[:notice] = 'Status changed successfully.'
     end
+
 end
