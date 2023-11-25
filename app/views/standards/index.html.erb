@@ -2,8 +2,8 @@
   <%= javascript_import_module_tag "controllers/standard" %>
 <% end %>
 <div id="sectionIndex" data-section-index="<%= @standard.sections.size %>"></div>
-<div class=" bg-[#F5F5F5] p-1 text-[15px] pl-4 mx-6 mb-8 text-[#39A9E8] "><span><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Manage Class</span></div>
-<div class="flex flex-wrap lg:gap-x-6  md:mr-6 lg:mr-3 xl:mr-5 2xl:mr-3">
+<div class=" bg-[#F5F5F5] p-1 text-[15px] pl-4 mx-3 mb-8 text-[#39A9E8] "><span><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Manage Class</span></div>
+<div class="flex flex-wrap lg:gap-x-6  mx-3">
   <!-- profile section -->
   <div class="w-full lg:w-[55.5%]  xl:w-[57%] ">
     <div class=" container mx-auto rounded-[5px] border-2">
@@ -24,6 +24,7 @@
               <tr>
                 <th>S.NO</th>
                 <th>Standatd Name</th>
+                <th>Fee Amount</th>
                 <th>Section Name</th>
                 <th>Action</th>
               </tr>
@@ -34,7 +35,7 @@
     </div>
   </div>
   <!-- Standard form -->
-  <div class="w-full lg:w-[40%]  xl:w-[40.8%] mt-4 lg:mt-0">
+  <div class="w-full lg:w-[41.2%] mt-4 lg:mt-0">
     <div class=" container mx-auto rounded-[5px] border-2">
       <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
         <div><i class="fa-solid fa-pen-to-square"></i>
@@ -45,15 +46,20 @@
         <%= form_for @standard, url: standards_path, method: :post, html: { id: 'standard-form' } do |f| %>
           <div class="p-3 border-t bg-white flex-col ">
             
-            <div class="w-full container error-div hidden text-red-700 conatiner mb-3  mt-2 mr-3 text-[14px] p-3 rounded bg-[#F2DEDE] " id="notice">
+            <div class="w-full container error-div hidden text-red-700 conatiner  text-[14px] py-6 px-14 mb-3 rounded bg-[#F2DEDE] " id="notice">
               <ul>
                 <li class="error" id="standard-error", style="color: red;"></li>
+                <li class="error" id="fee-error", style="color: red;"></li>
                 <li class="error" id="section-error", style="color: red;"></li>
               </ul>
             </div>
             <div class="w-full mb-4">
-              <label for="Class Name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard Name</label>
+              <label for="class_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard Name</label>
               <%= f.text_field :name,id: "standard_name",  class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Standard Name" %>
+            </div>
+            <div class="w-full mb-4">
+              <label for="fee_amount" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Fee Amount</label>
+              <%= f.text_field :fee, id: "fee", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Fee Amount" %>
             </div>
             <div id="sections_fields">
               <label for="Section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section</label>

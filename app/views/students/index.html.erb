@@ -15,7 +15,7 @@
           <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
         </div>
       <% end %>
-      <table id="studentTable" class="stripe"  data-source="<%= admin_parent_users_path(format: :json) %>">
+      <table id="studentTable" class="stripe"  data-source="<%= students_path(format: :json) %>">
         <thead class="bg-[#FFFFFF]">
           <tr>
             <th class="admission_no">Adm No</th>

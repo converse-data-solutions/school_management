@@ -66,6 +66,7 @@ function initValidate() {
     columns: [
       { data: "id", class: "standard_id" },
       { data: "name", class: "standard_name" },
+      { data: "fee", class: "standard_fee" },
       { data: "section_name", class: "standard_name" },
       { data: "standard_actions", class: "standard_action" },
     ],
@@ -81,6 +82,7 @@ function initValidate() {
   $("form").on("submit", function (e) {
     console.log("submit");
     var standard_name = $("#standard_name").val();
+    var fee = $("#fee").val();
     var section_name = $("#section_name").val();
     var err = $(".error-div");
 
@@ -91,12 +93,15 @@ function initValidate() {
     if (!standard_name || !standard_name.trim()) {
       $("#standard-error").text("Please enter a Standard Name.");
       errors = true;
-      console.log("standard error");
     }
+    if (!fee || !fee.trim()) {
+      $("#fee-error").text("Please enter a Fee.");
+      errors = true;
+    }
+
     if (!section_name || !section_name.trim()) {
       $("#section-error").text("Please enter a Section Name.");
       errors = true;
-      console.log("section error");
     }
 
     if (errors == true) {
@@ -113,40 +118,7 @@ function initValidate() {
     return true;
   });
 
-  $("form").on("submit", function (e) {
-    console.log("submit");
-    var standard_name = $("#standard_name").val();
-    var section_name = $("#section_name").val();
-    var err = $(".error-div");
-
-    $(".error").text("");
-    $(".error").css("color", "red");
-    var errors = false;
-
-    if (!standard_name || !standard_name.trim()) {
-      $("#standard-error").text("Please enter a Standard Name.");
-      errors = true;
-      console.log("standard error");
-    }
-    if (!section_name || !section_name.trim()) {
-      $("#section-error").text("Please enter a Section Name.");
-      errors = true;
-      console.log("section error");
-    }
-
-    if (errors == true) {
-      err.removeClass("hidden");
-    } else {
-      err.addClass("hidden");
-    }
-
-    if (errors) {
-      e.preventDefault();
-      return false;
-    }
-
-    return true;
-  });
+  
 }
 $(document).ready(function () {
   initValidate();

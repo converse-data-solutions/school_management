@@ -48,7 +48,7 @@ class StandardsController < ApplicationController
   private
 
   def standard_params
-    params.require(:standard).permit(:name, sections_attributes: [:id, :section_name, :_destroy])
+    params.require(:standard).permit(:name, :fee, sections_attributes: [:id, :section_name, :_destroy])
 
   end
 end
