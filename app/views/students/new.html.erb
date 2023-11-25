@@ -1,3 +1,6 @@
+<%= content_for :head do %>
+  <%= javascript_import_module_tag "controllers/student" %>
+<% end %>        
 <div class="container bg-[#F5F5F5] mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-8 p-1 text-[#39A9E8] pl-4"><span><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Student</span></div>
 <div class=" container mx-auto rounded-[5px] border-2">
   <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
@@ -7,6 +10,7 @@
   </div>
   <div class="accordian-body">
    <%= form_with(model: @student, class: "contents") do |f| %>
+    
       <div class="p-5 border-t bg-white flex flex-wrap" >
           <% if @student.errors.any? %>
         <div class="w-full container  text-red-700 mx-auto conatiner mb-3  text-[14px] p-10 rounded bg-[#F2DEDE] " >
@@ -16,8 +20,7 @@
            <% end %>
          </ul>
         </div>
-          <% end %>
-
+         <% end %>
         <div class="w-full md:w-[75%]">
           <div class="flex   flex-wrap md:gap-3 lg:gap-4">
             <div class="w-full  md:w-[48.5%]">
@@ -48,14 +51,15 @@
               <label for="mobile-number" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Mobile</label>
               <%= f.text_field :mobile_number, id: "mobile-number", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Mobie Number" %>
             </div>
-            <div class="w-full  md:w-[48.5%] lg:w-[23.5%]">
-              <label for="section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard</label>
-                  <%= f.collection_select :standard_id, Standard.all, :id, :name, prompt: 'Select Standard', class: "bg-red-500 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Select section", style: "width: 100%;", id: "student_standard_id" %>
+            <div class="w-full md:w-[48.5%] lg:w-[23.5%]">
+            <label for="standard" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard</label>
+            <%= f.collection_select(:standard_id, Standard.all, :id, :name,  prompt: 'Select Standard' ) %>
             </div>
-            <div class="w-full  md:w-[48.5%] lg:w-[23.5%]">
+            <div class="w-full  md:w-[48.5%] lg:w-[23.5%]",  id="section-dropdown">
               <label for="section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section</label>
-               <%= f.collection_select :section_id, Section.all, :id, :section_name, prompt: 'Select Section', id: "student_section_id" %>
+              <%= f.collection_select(:section_id, [], :id, :section_name, prompt: 'Select Section') %>
             </div>
+           
             <div class="w-full  md:w-[48.5%] lg:w-[23.5%]">
               <label for="date_of_admisiion" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Date of admission</label>
               <%= f.date_field :date_of_admission, id: "date_of_admission" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Date of admission" %>
@@ -87,12 +91,10 @@
         <div class="w-full md:w-[25%] pl-4">
           <div id="previewSingle" class="mt-2"></div>
 
-          <div id="defaultUpload"> 
-            <% if @student.image.present? %>
-              <div class="w-[130px] h-[130px]"> <%= image_tag @user.image, style: "width: 100px; height: 100px" %></div>
-            <% else %>
+           <div id="defaultUpload"> 
+           
               <div class="w-[130px] h-[130px]"><img src="<%= asset_path('user.png') %>" alt="Image Description"  ></div>
-            <% end %>
+           
             </div>
             <div class="file-input-wrapper mt-3">
               <label class=" px-9 py-3 bg-white  text-Black border-2 rounded-lg">
@@ -101,7 +103,7 @@
               </label>
               </div>
             
-        </div>
+           </div>
           </div>
              <%= f.submit "Add Student",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
 

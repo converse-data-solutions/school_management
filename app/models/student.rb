@@ -1,6 +1,7 @@
 class Student < ApplicationRecord
   belongs_to :section
   belongs_to :user
+  # belongs_to :standard
   has_one_attached :image, dependent: :destroy
   before_create :set_initial_status
 
