@@ -25,6 +25,11 @@ class StudentsController < ApplicationController
       format.js
     end
   end
+
+  def active_user
+    toggle_user_status
+    redirect_to students_path
+  end
   
 
   # GET /students/new
@@ -85,5 +90,11 @@ class StudentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def student_params
       params.require(:student).permit(:admission_no, :roll_no, :name, :father_name, :mother_name, :mobile_number, :address, :date_of_birth, :gender, :date_of_admission, :section_id, :user_id, :image, :deleted)
+    end
+
+    def toggle_user_status
+      new_status = @user.deleted == 'Active' ? 'Inactive' : 'Active'
+      @student.update(deleted: new_status)
+      flash[:notice] = 'Status changed successfully.'
     end
 end

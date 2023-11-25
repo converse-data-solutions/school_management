@@ -329,6 +329,10 @@ th.sorting {
   background-image: none !important;
 }
 
+table.dataTable.no-footer {
+  border-bottom: 0px solid #575555;
+}
+
 .status-active {
   background-color: #73a839 !important;
   font-size: 13px;
