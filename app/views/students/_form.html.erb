@@ -82,7 +82,7 @@
 
           <div id="defaultUpload"> 
             <% if @student.image.present? %>
-              <div class="w-[130px] h-[130px]"> <%= image_tag @user.image, style: "width: 100px; height: 100px" %></div>
+              <div class="w-[130px] h-[130px]"> <%= image_tag @student.image, style: "width: 100px; height: 100px" %></div>
             <% else %>
               <div class="w-[130px] h-[130px]"><img src="<%= asset_path('user.png') %>" alt="Image Description"  ></div>
             <% end %>
@@ -96,9 +96,9 @@
             
         </div>
           </div>
-       
+             <%= f.submit "Add Student",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
+
       </div>
-      <%= f.submit "Add Student",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
     <% end %>
  <script>
  $(document).ready(function () {

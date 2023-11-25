@@ -1,16 +1,38 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Students</h1>
-    <%= link_to "New student", new_student_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+<%= content_for :head do %>
+  <%= javascript_import_module_tag "controllers/studentDatatable" %>
+<% end %>
+<div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[15px] text-[#39A9E8] pl-4"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Parent</span></div>
+<div class=" container mx-auto rounded-lg border-2">
+  <div class="px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+    <div><i class="fa-solid fa-pen-to-square"></i>
+      <span class="font-semibold">Manage Parent</span></div>
+    <button class="accordian-header cursor-pointer leading-0 px-1 text-2xl border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up  "></i></button>
   </div>
-
-  <div id="students" class="min-w-full">
-    <%= render @students %>
+  <div class="accordian-body">
+    <div class="bg-[#FFFFFF] overflow-scroll mx-[8px] md:mx-2 lg:mx-3 xl:mx-0 ">
+      <% if notice %>
+        <div class="ml-2">
+          <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
+        </div>
+      <% end %>
+      <table id="studentTable" class="stripe"  data-source="<%= admin_parent_users_path(format: :json) %>">
+        <thead class="bg-[#FFFFFF]">
+          <tr>
+            <th class="admission_no">Adm No</th>
+            <th class="student_name">Name</th>
+            <th class="date_of_birth">BOB</th>
+            <th class="mobile_number">Mobile</th>
+            <th class="standard">Standard</th>
+            <th class="section">Section</th>
+            <th class="roll_no">Roll No</th>
+            <th class="student_gender">Gender</th>
+            <th class="parent_status">Status</th>
+            <th class="parent_action">Action</th>
+          </tr>
+        </thead>
+        <tbody class="bg-[#F9F9F9] ">
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
-
-

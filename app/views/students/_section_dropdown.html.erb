@@ -1,0 +1,7 @@
+<!-- app/views/students/_section_dropdown.html.erb -->
+<select id="student_section_id" name="student[section_id]">
+  <option value="">Select Section</option>
+  <% sections.each do |section| %>
+    <option value="<%= section.id %>"><%= section.section_name %></option>
+  <% end %>
+</select>
