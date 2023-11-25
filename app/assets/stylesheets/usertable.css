@@ -1,5 +1,5 @@
 #myTable,
-#staffTable, #standardTable {
+#staffTable, #standardTable, #studentTable {
   border-collapse: collapse;
   color: #555555;
   padding: 10px;
@@ -13,13 +13,13 @@ td.standard_action {
 #myTable th,
 #myTable td,
 #staffTable th,
-#staffTable td, #standardTable th, #standardTable td {
+#staffTable td, #standardTable th, #standardTable td, #studentTable th, #studentTable td {
   padding: 10px;
   border: 1px solid #ddd;
 }
 
 #myTable th,
-#staffTable th, #standardTable th {
+#staffTable th, #standardTable th , #studentTable th {
   background-color: #f2f2f2;
   color: #555555;
   font-size: 14px;
@@ -28,7 +28,7 @@ td.standard_action {
 }
 
 #myTable td,
-#staffTable td, #standardTable td {
+#staffTable td, #standardTable td, #studentTable td {
   color: #555555;
   font-size: 14px;
   background-color: #ffffff;
@@ -107,7 +107,7 @@ td.standard_action {
 }
 
 div#myTable_info,
-div#staffTable_info, #standardTable_info {
+div#staffTable_info, #standardTable_info, #studentTable_info {
   margin-left: 20px;
   color: #54577a;
   font-size: 14px;
@@ -178,12 +178,12 @@ div#staffTable_info, #standardTable_info {
   }
 
   table#myTable,
-  table#staffTable, table#standardTable {
+  table#staffTable, table#standardTable, table#studentTable {
     width: max-content !important;
   }
 
   table#myTable,
-  table#staffTable, table#standardTable {
+  table#staffTable, table#standardTable, table#studentTable {
     width: max-content;
   }
 
@@ -215,7 +215,7 @@ div#staffTable_info, #standardTable_info {
   }
 
   table#myTable,
-  table#staffTable, table#standardTable {
+  table#staffTable, table#standardTable, table#studentTable {
     width: max-content !important;
   }
 }
@@ -257,7 +257,7 @@ div#staffTable_info, #standardTable_info {
   }
 
   table#myTable,
-  table#staffTable, table#standardTable {
+  table#staffTable, table#standardTable, table#studentTable {
     width: 98% !important;
   }
 }
@@ -354,7 +354,7 @@ a.paginate_button.current {
 }
 
 div#myTable_paginate,
-div#staffTable_paginate, div#standardTable_paginate {
+div#staffTable_paginate, div#standardTable_paginate, div#studentTable_paginate {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -364,7 +364,7 @@ div#staffTable_paginate, div#standardTable_paginate {
 }
 
 a#myTable_previous,
-a#staffTable_previous, a#standardTable_previous {
+a#staffTable_previous, a#standardTable_previous, a#studentTable_previous {
   cursor: pointer;
   color: #666 !important;
   border-top-left-radius: 5px;
@@ -377,7 +377,7 @@ a#staffTable_previous, a#standardTable_previous {
 }
 
 a#myTable_next,
-a#staffTable_next, a#standardTable_next {
+a#staffTable_next, a#standardTable_next, a#studentTable_next {
   color: #39a9e8 !important;
   cursor: pointer;
   border-top-right-radius: 5px;

@@ -15,12 +15,11 @@ function initValidate() {
       { data: "name", class: "student_name" },
       { data: "date_of_birth", class: "date_of_birth" },
       { data: "mobile_number", class: "mobile_number" },
-      { data: "standard", class: "standard" },
-      { data: "section", class: "section" },
+      { data: "section_id", class: "section" },
       { data: "roll_no", class: "roll_no" },
       { data: "gender", class: "student_gender" },
       { data: "student_status", class: "parent_status" },
-      { data: "dt_actions", class: "parent_action" },
+      { data: "student_actions", class: "parent_action" },
     ],
     oLanguage: {
       oPaginate: {
