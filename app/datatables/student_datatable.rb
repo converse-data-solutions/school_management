@@ -1,15 +1,12 @@
 class StudentDatatable < AjaxDatatablesRails::ActiveRecord
 
   def view_columns
-    # Declare strings in this format: ModelName.column_name
-    # or in aliased_join_table.column_name format
     @view_columns ||= {
       admission_no: { source: 'Student.admission_no'},
       name: { source: 'Student.name'},
       date_of_birth: { source: 'Student.date_of_birth'},
-      mobile_number: { source: 'Student.mobile_number', searchable: true },
-      standard: { source: 'Standard.name', searchable: true },
-      section: { source: 'Section.name', searchable: false },
+      mobile_number: { source: 'Student.mobile_number', searchable: true },      
+      section_id: { source: 'Student.section_id.', searchable: false },
       roll_no: { source: 'Student.roll_no', searchable: true },
       gender: { source: 'Student.gender', searchable: false },
       student_status: { source: 'StudentDecorator.student_status', searchable: false },
@@ -24,8 +21,7 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
         name: record.name,
         date_of_birth: record.date_of_birth,
         mobile_number: record.mobile_number,
-        standard: record.standard.name,
-        section: record.section.name,
+        section_id: record.section_id,
         roll_no: record.roll_no,
         gender: record.gender,
         student_status: record.decorate.student_status,

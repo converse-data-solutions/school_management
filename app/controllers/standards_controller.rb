@@ -36,15 +36,7 @@ class StandardsController < ApplicationController
     @standard.destroy
     redirect_to standards_path, notice: 'Standard deleted successfully.'
   end
-
-  def destroy_section
-    @standard = Standard.find(params[:standard_id])
-    section = @standard.sections.find(params[:id])
-    section.destroy
-    redirect_to edit_standard_path(@standard), notice: 'Section deleted successfully.'
-  end
-
-
+    
   private
 
   def standard_params

@@ -1,8 +1,6 @@
 class StaffUserDatatable < AjaxDatatablesRails::ActiveRecord
 
   def view_columns
-    # Declare strings in this format: ModelName.column_name
-    # or in aliased_join_table.column_name format
     @view_columns ||= {
       name: { source: 'User.name'},
       username: { source: 'User.username', searchable: false },
