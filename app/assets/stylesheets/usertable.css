@@ -253,7 +253,7 @@ div#staffTable_info, #standardTable_info {
   .dataTables_wrapper .dataTables_length,
   .dataTables_wrapper .dataTables_filter {
     display: flex;
-    width: 42%;
+    width: 50%;
   }
 
   table#myTable,
@@ -291,7 +291,16 @@ div#staffTable_info, #standardTable_info {
   padding: 10px;
   border-radius: 5px;
 }
-
+.standard_edit {
+  background-color: #03417c;
+  color: white;
+  width: 80px;
+  font-weight: bold;
+  font-size: 14px;
+  margin: 2px;
+  padding: 10px;
+  border-radius: 5px;
+}
 .parent_user_delete {
   background-color: #bd1a20;
   color: white;
@@ -299,6 +308,16 @@ div#staffTable_info, #standardTable_info {
   font-weight: bold;
   font-size: 14px;
   padding: 10px;
+  border-radius: 5px;
+}
+.standard_delete {
+  background-color: #bd1a20;
+  color: white;
+  width: 80px;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px;
+  margin: 2px;
   border-radius: 5px;
 }
 

@@ -3,16 +3,15 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  resources :standards do
-    member do
-      delete 'destroy_section/:id', action: :destroy_section, as: :destroy_section
-    end
-  end
+  # resources :standards do
+  #   member do
+  #     delete 'destroy_section/:id', action: :destroy_section, as: :destroy_section
+  #   end
+  # end
   resources :students do
-    collection do
-      get 'sections_by_standard'
-    end
+    get 'get_sections', on: :collection
   end
+
 
   resources :standards do
     resources :sections

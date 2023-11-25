@@ -4,23 +4,34 @@ class StudentsController < ApplicationController
   # GET /students or /students.json
   def index
     @students = Student.all
+    respond_to do |format|
+      format.html
+      format.json { render json: StudentDatatable.new(params) }
+  end
   end
 
   # GET /students/1 or /students/1.json
   def show
   end
 
-  def sections_by_standard
-    standard = Standard.find(params[:standard_id])
-    sections = standard.sections
-
-    render json: sections
+  # def sections_by_standard
+  #   standard_id = params[:standard_id]
+  #   sections = Section.where(standard_id: standard_id)
+  #   render json: sections
+  # end
+  def get_sections
+    @sections = Standard.find(params[:standard_id]).sections
+    respond_to do |format|
+      format.js
+    end
   end
+  
 
   # GET /students/new
   def new
+    @standards = Standard.all
+    puts "@standards: #{@standards.inspect}" # Check the output in your server logs
     @student = Student.new
-    
   end
 
   # GET /students/1/edit
@@ -73,6 +84,6 @@ class StudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def student_params
-      params.require(:student).permit(:id, :admission_no, :roll_no, :name, :father_name, :mother_name, :mobile_number, :address, :date_of_birth, :gender, :date_of_admission, :section_id, :user_id, :image, :deleted)
+      params.require(:student).permit(:admission_no, :roll_no, :name, :father_name, :mother_name, :mobile_number, :address, :date_of_birth, :gender, :date_of_admission, :section_id, :user_id, :image, :deleted)
     end
 end
