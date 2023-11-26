@@ -31,6 +31,8 @@ gem 'draper'
 
 gem 'jquery-datatables', git: 'https://github.com/converse-data-solutions/jquery-datatables'
 
+gem 'htmlbeautifier', '~> 1.4', '>= 1.4.2'
+
 gem 'ajax-datatables-rails', '~> 1.4'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]

@@ -156,6 +156,7 @@ GEM
       sexp_processor (~> 4.8)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    htmlbeautifier (1.4.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -391,6 +392,7 @@ DEPENDENCIES
   debug
   devise
   draper
+  htmlbeautifier (~> 1.4, >= 1.4.2)
   importmap-rails
   jbuilder
   jquery-datatables!
