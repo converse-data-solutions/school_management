@@ -9,7 +9,7 @@
     <button class="accordian-header cursor-pointer leading-0 px-1 text-2xl  border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up  "></i></button>
   </div>
   <div class="accordian-body">
-<%= form_with(model: @student, class: "contents") do |f| %>
+<%= form_with(model: @student, data: { controller: "flatpickr" },class: "contents") do |f| %>
     
       <div class="p-5 border-t bg-white flex flex-wrap" >
           <% if @student.errors.any? %>
