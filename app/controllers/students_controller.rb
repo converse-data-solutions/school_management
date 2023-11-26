@@ -3,6 +3,7 @@ class StudentsController < ApplicationController
 
   def index
     @students = Student.all
+    @standards = Standard.all
     respond_to do |format|
       format.html
       format.json { render json: StudentDatatable.new(params) }
