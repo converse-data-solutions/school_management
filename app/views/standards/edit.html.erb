@@ -2,7 +2,7 @@
   <%= javascript_import_module_tag "controllers/standard" %>
 <% end %>
 <div id="sectionIndex" data-section-index="<%= @standard.sections.size %>"></div>
-<div class=" bg-[#F5F5F5] p-1 text-[15px] pl-4 mx-3 mb-8 text-[#39A9E8] "><span><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Manage Class</span></div>
+<div class=" bg-[#F5F5F5] p-1 text-[15px] pl-4 mx-3 mb-8 text-[#39A9E8] "><span><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Manage Standard</span></div>
 <div class="flex flex-wrap lg:gap-x-6  mx-3">
   <!-- profile section -->
   <div class="w-full lg:w-[55.5%]  xl:w-[57%] ">
@@ -35,7 +35,7 @@
     </div>
   </div>
   <!-- Standard form -->
-  <div class="w-full lg:w-[41.2%] mt-4 lg:mt-0">
+  <div class="w-full lg:w-[40.9%] 2xl:w-[41.4%] mt-4 lg:mt-0">
     <div class=" container mx-auto rounded-[5px] border-2">
       <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
         <div><i class="fa-solid fa-pen-to-square"></i>
@@ -61,7 +61,7 @@
               <label for="Class Name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard Name</label>
               <%= f.text_field :name, id: "standard_name", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Standard Name" %>
             </div>
-             <div class="w-full mb-4">
+            <div class="w-full mb-4">
               <label for="Class Name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Fee Amount</label>
               <%= f.text_field :fee, id: "fee", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Fee Amount" %>
             </div>
@@ -71,7 +71,7 @@
                 <div class="section_fields mb-4">
                   <%= section_form.text_field :section_name, id: "section_name", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2", placeholder: "Section" %>
                   <%= link_to '-', '#', class: 'remove_section p-3 bg-[#D22228] text-white rounded-[5px] mt-3' %>
-                 <%= section_form.check_box :_destroy, id: "destroy", class: "checkbox hidden" %> 
+                  <%= section_form.check_box :_destroy, id: "destroy", class: "checkbox hidden" %>
                 </div>
               <% end %>
             </div>
@@ -89,4 +89,3 @@
   </div>
 </div>
 </div>
-

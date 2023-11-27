@@ -117,8 +117,6 @@ function initValidate() {
 
     return true;
   });
-
-  
 }
 $(document).ready(function () {
   initValidate();

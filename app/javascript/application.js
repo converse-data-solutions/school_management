@@ -5,18 +5,9 @@ import "flowbite";
 import "flowbite-datepicker";
 import DataTable from "datatables.net-dt";
 
-$(document).ready(function () {
-  $(".activebar").on("click", function (e) {
-    $(".activebar").removeClass("activenav");
-    $(this).addClass("activenav");
-  });
-});
-
 function initValidate() {
-
-  $('#button').click(function() {
+  $("#button").click(function () {
     $(this).addClass("border-2 border-[#000]");
-    
   });
   //accordian for all models
   $(".accordian-header").click(function () {
@@ -24,6 +15,11 @@ function initValidate() {
 
     const accordianBody = $(this).parent().next();
     accordianBody.slideToggle();
+  });
+
+  $(".activebar").on("click", function (e) {
+    $(".activebar").removeClass("activenav");
+    $(this).addClass("activenav");
   });
 
   setTimeout(function () {
@@ -57,5 +53,4 @@ $(document).ready(function () {
   $(document).on("turbo:render", function () {
     initValidate();
   });
-  
 });
