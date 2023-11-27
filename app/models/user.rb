@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   before_create :set_initial_status
   has_many :students, dependent: :destroy
+  has_many :attendances, as: :attendable
 
   private
 

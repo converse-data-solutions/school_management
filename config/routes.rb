@@ -1,26 +1,30 @@
 Rails.application.routes.draw do
-  
   devise_for :users
   root 'home#index'
 
 
- 
+    resources :user_attendances
+
+
+  resources :students do
+    resources :student_attendances, controller: 'student_attendances'
+  end
 
   resources :students do
     collection do
       get 'get_sections'
-    end  
+    end
     member do
       patch :active_student
     end
   end
 
-  resources :standards, except: [:show, :new] do
+  resources :standards, except: %i[show new] do
     resources :sections, only: []
   end
-  
+
   namespace :admin do
-    resources :admin_users, only: [:edit, :update] do
+    resources :admin_users, only: %i[edit update] do
     end
   end
 

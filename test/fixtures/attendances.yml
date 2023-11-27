@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2023-11-27
+  status: 1
+  attendable: one
+  attendable_type: Attendable
+
+two:
+  date: 2023-11-27
+  status: 1
+  attendable: two
+  attendable_type: Attendable
