@@ -1,12 +1,12 @@
 class StudentDatatable < AjaxDatatablesRails::ActiveRecord
-
   def view_columns
     @view_columns ||= {
-      admission_no: { source: 'Student.admission_no'},
-      name: { source: 'Student.name'},
-      date_of_birth: { source: 'Student.date_of_birth'},
-      mobile_number: { source: 'Student.mobile_number', searchable: true },      
-      section_id: { source: 'Student.section_id.', searchable: false },
+      admission_no: { source: 'Student.admission_no' },
+      name: { source: 'Student.name' },
+      date_of_birth: { source: 'Student.date_of_birth' },
+      mobile_number: { source: 'Student.mobile_number', searchable: true },
+      standard_name: { source: 'Standard.name', searchable: true }, # Add this line for standard_name
+      section_name: { source: 'Section.section_name', searchable: true }, # Add this line for section_name
       roll_no: { source: 'Student.roll_no', searchable: true },
       gender: { source: 'Student.gender', searchable: false },
       student_status: { source: 'StudentDecorator.student_status', searchable: false },
@@ -19,19 +19,19 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
       {
         admission_no: record.decorate.link_to,
         name: record.name,
-        date_of_birth: record.date_of_birth,
+        date_of_birth: record.date_of_birth.strftime('%d-%m-%Y'),
         mobile_number: record.mobile_number,
-        section_id: record.section_id,
+        standard_name: record.section.standard.name, # Access standard_name through the association
+        section_name: record.section.section_name, # Access section_name through the association
         roll_no: record.roll_no,
         gender: record.gender,
         student_status: record.decorate.student_status,
-        student_actions: record.decorate.student_actions,
+        student_actions: record.decorate.student_actions
       }
     end
   end
 
   def get_raw_records
-    Student.all
+    Student.joins(section: :standard) # Join with Section and Standard tables
   end
-
 end
