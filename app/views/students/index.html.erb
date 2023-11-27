@@ -1,11 +1,11 @@
 <%= content_for :head do %>
   <%= javascript_import_module_tag "controllers/studentDatatable" %>
 <% end %>
-<div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[15px] text-[#39A9E8] pl-4"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Parent</span></div>
+<div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[15px] text-[#39A9E8] pl-4"><span><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Manage Student</span></div>
 <div class=" container mx-auto rounded-lg border-2">
   <div class="px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
     <div><i class="fa-solid fa-pen-to-square"></i>
-      <span class="font-semibold">Manage Parent</span></div>
+      <span class="font-semibold">Manage Student</span></div>
     <button class="accordian-header cursor-pointer leading-0 px-1 text-2xl border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up  "></i></button>
   </div>
   <div class="accordian-body">
@@ -22,6 +22,7 @@
             <th class="student_name">Name</th>
             <th class="date_of_birth">DOB</th>
             <th class="mobile_number">Mobile</th>
+            <th class="standard">Standard</th>
             <th class="section">Section</th>
             <th class="roll_no">Roll No</th>
             <th class="student_gender">Gender</th>
