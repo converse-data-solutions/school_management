@@ -2,6 +2,7 @@ class Student < ApplicationRecord
   belongs_to :section
   belongs_to :user
   has_one_attached :image, dependent: :destroy
+  has_many :attendances, as: :attendable
   before_create :set_initial_status
 
   validates :admission_no,
