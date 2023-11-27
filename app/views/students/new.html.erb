@@ -1,6 +1,6 @@
   <%= content_for :head do %>
   <%= javascript_import_module_tag "controllers/student" %>
-<% end %>        
+<% end %>
 <div class="container bg-[#F5F5F5] mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-8 p-1 text-[#39A9E8] pl-4"><span><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Student</span></div>
 <div class=" container mx-auto rounded-[5px] border-2">
   <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
@@ -9,18 +9,39 @@
     <button class="accordian-header cursor-pointer leading-0 px-1 text-2xl  border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up  "></i></button>
   </div>
   <div class="accordian-body">
-   <%= form_with(model: @student, data: { controller: "flatpickr" }, class: "contents") do |f| %>
-    
+    <%= form_with(model: @student, data: { controller: "flatpickr" }, class: "contents") do |f| %>
       <div class="p-5 border-t bg-white flex flex-wrap" >
-          <% if @student.errors.any? %>
-        <div class="w-full container  text-red-700 mx-auto conatiner mb-3  text-[14px] p-10 rounded bg-[#F2DEDE] " >
-         <ul>
-           <% @student.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-           <% end %>
-         </ul>
-        </div>
-         <% end %>
+        <% if @student.errors.any? %>
+          <div class="w-full container text-red-700 mx-auto container mb-3 text-[14px] px-10 py-5 rounded bg-[#F2DEDE]">
+            <ul>
+              <li>
+                <% if @student.errors.has_key?(:admission_no) %>
+                  <%= @student.errors[:admission_no].first %>
+                <% end %>
+              </li>
+              <li>
+                <% if @student.errors.has_key?(:section_id) %>
+                  <%= @student.errors[:section_id].first %>
+                <% end %>
+              </li>
+              <li>
+                <% if @student.errors.has_key?(:user_id) %>
+                  <%= @student.errors[:user_id].first %>
+                <% end %>
+              </li>
+              <li>
+                <% if @student.errors.has_key?(:date_of_birth) %>
+                  <%= @student.errors[:date_of_birth].first %>
+                <% end %>
+              </li>
+              <li>
+                <% if @student.errors.has_key?(:mobile_number) %>
+                  <%= @student.errors[:mobile_number].first %>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
         <div class="w-full md:w-[75%]">
           <div class="flex   flex-wrap md:gap-3 lg:gap-4">
             <div class="w-full  md:w-[48.5%]">
@@ -52,15 +73,13 @@
               <%= f.text_field :mobile_number, id: "mobile-number", class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5", placeholder: "Mobie Number" %>
             </div>
             <div class="w-full md:w-[48.5%] lg:w-[23.5%]">
-            <label for="standard" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard</label>
-            <%= f.collection_select(:standard_id, Standard.all, :id, :name, { prompt: 'Select Standard' }, { class: 'text-[14px] focus:ring-[#37A7E7]'} ) %>
+              <label for="standard" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard</label>
+              <%= f.collection_select(:standard_id, Standard.all, :id, :name, { prompt: 'Select Standard' }, { class: 'text-[14px] focus:ring-[#37A7E7] standard'} ) %>
             </div>
-            
             <div class="w-full  md:w-[48.5%] lg:w-[23.5%]",  id="section-dropdown">
               <label for="section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section</label>
               <%= f.collection_select(:section_id, [], :id, :section_name, { prompt: 'Select Section' }, { class: 'text-[14px] focus:ring-[#37A7E7]' }) %>
             </div>
-           
             <div class="w-full  md:w-[48.5%] lg:w-[23.5%]">
               <label for="date_of_admisiion" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Date of admission</label>
               <%= f.date_field :date_of_admission, id: "date_of_admission" , class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5", placeholder: "Date of admission" %>
@@ -70,10 +89,9 @@
               <%= f.text_field :roll_no, id: "mobile-number", class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5", placeholder: "Roll No" %>
             </div>
             <div class="w-full md:w-[48.5%] lg:w-[23.5%]">
-           <label for="parent" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Select parent</label>
-            <%= f.collection_select :user_id, User.where(role: "parent"), :id, :name,{ prompt: "Select Parent" }, { class: 'text-[14px] focus:ring-[#37A7E7]'} %>
-           </div>
-
+              <label for="parent" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Select parent</label>
+              <%= f.collection_select :user_id, User.where(role: "parent"), :id, :name,{ prompt: "Select Parent" }, { class: 'text-[14px] focus:ring-[#37A7E7] SelExample'} %>
+            </div>
             <div class="w-full  md:w-[48.5%] lg:w-[23.5%]">
               <label for="gender" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Gender</label>
               <div class="flex" id="gender-radio-group">
@@ -91,61 +109,27 @@
         </div>
         <div class="w-full md:w-[25%] pl-4">
           <div id="previewSingle" class="mt-2"></div>
-
-           <div id="defaultUpload"> 
-           
-              <div class="w-[130px] h-[130px]"><img src="<%= asset_path('user.png') %>" alt="Image Description"  ></div>
-           
-            </div>
-            <div class="file-input-wrapper mt-3">
-              <label class=" px-9 py-3 bg-white  text-Black border-2 rounded-lg">
-                  <span class=" text-base leading-normal">Browse</span>
-              <%= f.file_field :image, class: "hidden", id: "single_file", accept: "image/*" %>
-              </label>
-              </div>
-            
-           </div>
+          <div id="defaultUpload">
+            <div class="w-[130px] h-[130px]"><img src="<%= asset_path('user.png') %>" alt="Image Description"  ></div>
           </div>
-             <%= f.submit "Add Student",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
-
+          <div class="file-input-wrapper mt-3">
+            <label class=" px-9 py-3 bg-white  text-Black border-2 rounded-lg">
+              <span class=" text-base leading-normal">Browse</span>
+              <%= f.file_field :image, class: "hidden", id: "single_file", accept: "image/*" %>
+            </label>
+          </div>
+        </div>
       </div>
-    <% end %>
-  </div>
+      <%= f.submit "Add Student",class:"text-white bg-[#39A9E8] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
+    </div>
+  <% end %>
+</div>
 </div>
 <script>
-  $(".custom-select").each(function() {
-  var classes = $(this).attr("class"),
-      id      = $(this).attr("id"),
-      name    = $(this).attr("name");
-  var template =  '<div class="' + classes + '">';
-      template += '<span class="custom-select-trigger">' + $(this).attr("placeholder") + '</span>';
-      template += '<div class="custom-options">';
-      $(this).find("option").each(function() {
-        template += '<span class="custom-option ' + $(this).attr("class") + '" data-value="' + $(this).attr("value") + '">' + $(this).html() + '</span>';
-      });
-  template += '</div></div>';
- 
-  $(this).wrap('<div class="custom-select-wrapper"></div>');
-  $(this).hide();
-  $(this).after(template);
+  $(document).ready(function(){
+
+
+    
   });
-  $(".custom-option:first-of-type").hover(function() {
-  $(this).parents(".custom-options").addClass("option-hover");
-  }, function() {
-  $(this).parents(".custom-options").removeClass("option-hover");
-  });
-  $(".custom-select-trigger").on("click", function() {
-  $('html').one('click',function() {
-    $(".custom-select").removeClass("opened");
-  });
-  $(this).parents(".custom-select").toggleClass("opened");
-  event.stopPropagation();
-  });
-  $(".custom-option").on("click", function() {
-  $(this).parents(".custom-select-wrapper").find("select").val($(this).data("value"));
-  $(this).parents(".custom-options").find(".custom-option").removeClass("selection");
-  $(this).addClass("selection");
-  $(this).parents(".custom-select").removeClass("opened");
-  $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
-  });
-  </script>
+</script>
+``

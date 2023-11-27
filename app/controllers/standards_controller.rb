@@ -22,7 +22,6 @@ class StandardsController < ApplicationController
   end
 
   def update
-    
     @standard = Standard.find(params[:id])
     if @standard.update(standard_params)
       redirect_to standards_path
@@ -36,11 +35,10 @@ class StandardsController < ApplicationController
     @standard.destroy
     redirect_to standards_path, notice: 'Standard deleted successfully.'
   end
-    
+
   private
 
   def standard_params
-    params.require(:standard).permit(:name, :fee, sections_attributes: [:id, :section_name, :_destroy])
-
+    params.require(:standard).permit(:name, :fee, sections_attributes: %i[id section_name _destroy])
   end
 end

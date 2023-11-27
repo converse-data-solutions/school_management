@@ -1,9 +1,7 @@
 class ParentUserDatatable < AjaxDatatablesRails::ActiveRecord
- 
-
   def view_columns
     @view_columns ||= {
-      name: { source: 'User.name'},
+      name: { source: 'User.name' },
       username: { source: 'User.username', searchable: true, cond: :like },
       email: { source: 'User.email', searchable: false },
       mobile_number: { source: 'User.mobile_number', searchable: false },
@@ -19,7 +17,7 @@ class ParentUserDatatable < AjaxDatatablesRails::ActiveRecord
     records.map do |record|
       {
         name: record.name,
-        username:record.decorate.link_to,
+        username: record.decorate.link_to,
         email: record.email,
         mobile_number: record.mobile_number,
         address: record.address,
@@ -27,7 +25,7 @@ class ParentUserDatatable < AjaxDatatablesRails::ActiveRecord
         gender: record.gender,
         user_status: record.decorate.user_status,
         DT_RowId: record.id,
-        dt_actions: record.decorate.dt_actions,
+        dt_actions: record.decorate.dt_actions
 
       }
     end

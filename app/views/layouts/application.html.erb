@@ -11,26 +11,14 @@
     <%= javascript_importmap_tags %>
     <%= yield :head %>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css' %>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css' %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js' %>
-    <style>
-    select#student_standard_id, select#student_section_id, select#student_user_id {
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-   }
-   @media only screen and (min-width: 1024px) and (max-width: 1400px) { 
-    select#student_standard_id, select#student_section_id, select#student_user_id {
-        width: 95%;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
-   }
-   
-    </style>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js' %>
+    <style></style>
   </head>
   <body>
     <% if user_signed_in? %>
@@ -189,14 +177,16 @@
               </a>
             </li>
             <li>
-              <a class="activebar main flex md:flex-col items-center lg:flex-row text-[14px]  md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] pl-3   hover:ml-2 hover:mr-[2px] duration-200 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Student</span></a>
+              <div class=" main flex md:flex-col items-center lg:flex-row text-[14px]  md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] pl-3   hover:ml-2 hover:mr-[2px] duration-200 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Student</span></div>
               <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm sub hidden" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
-                <li><a href="#" class="activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-slate-100">Add New Student</a></li>
-                <li><a href="#" class="activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-slate-100">All Student</a></li>
+                <li>
+                  <a href="<%= url_for :new_student %>" class="<%= params[:controller] == "students" && params[:action] == "new" ? 'activenav' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-slate-100">Add New Student</a>
+                </li>
+                <li><a href="<%= url_for :students %>" class="<%= params[:controller] == "students" && params[:action] == "index" ? 'activenav' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-slate-100">All Student</a></li>
               </ul>
             </li>
-            <li class="text-[14px]">
-              <a class="activebar main flex md:flex-col items-center lg:flex-row   md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] pl-3   hover:ml-2 hover:mr-[2px] duration-200 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Parent</span></a>
+            <li class="text-[14px] ">
+              <a class=" main flex md:flex-col items-center lg:flex-row   md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] pl-3   hover:ml-2 hover:mr-[2px] duration-200 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Parent</span></a>
               <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm sub hidden" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
                 <li>
                   <a href="<%= url_for :controller => "admin/parent_users", :action => "new" %>"  class="flex <%= params[:controller] == "admin/parent_users" && params[:action] == "new" ? 'activenav' : '' %> activebar block py-2 ml-3 text-[14px] p-[10px] text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-slate-100 group">
@@ -211,7 +201,7 @@
               </ul>
             </li>
             <li class="text-[14px]">
-              <a class="activebar main flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] pl-3   hover:ml-2 hover:mr-[2px] duration-200 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Staff</span></a>
+              <a class=" main flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg sm:hover:text-[#157AB5] pl-3   hover:ml-2 hover:mr-[2px] duration-200 hover:bg-[#39A9E8] sm:hover:bg-slate-100 hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Staff</span></a>
               <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm sub hidden"style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
                 <li>
                   <a href="<%= url_for :controller => "admin/staff_users", :action => "new" %>" class="flex <%= params[:controller] == "admin/staff_users" && params[:action] == "new" ? 'activenav' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-slate-100 group">

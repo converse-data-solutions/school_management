@@ -1,12 +1,11 @@
 class StandardDatatable < AjaxDatatablesRails::ActiveRecord
   def view_columns
-
     @view_columns ||= {
-     id: { source: 'Standard.id' },
-     name: { source: 'Standard.name' },
-     fee: { source: 'Standard.fee' },
-     section_name: { source: 'Section.name', searchable: false },
-     standard_actions: { source: 'StandardDecorator.standard_actions', searchable: false },
+      id: { source: 'Standard.id' },
+      name: { source: 'Standard.name' },
+      fee: { source: 'Standard.fee' },
+      section_name: { source: 'Section.name', searchable: false },
+      standard_actions: { source: 'StandardDecorator.standard_actions', searchable: false }
 
     }
   end
@@ -18,7 +17,7 @@ class StandardDatatable < AjaxDatatablesRails::ActiveRecord
         name: record.decorate.link_to,
         fee: record.fee,
         section_name: record.sections.map(&:section_name).join(', '),
-        standard_actions: record.decorate.standard_actions,
+        standard_actions: record.decorate.standard_actions
       }
     end
   end

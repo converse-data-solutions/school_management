@@ -40,3 +40,67 @@ body {
   background-color: rgb(47, 164, 231);
   color: white;
 }
+
+select#student_standard_id,
+select#student_section_id,
+select#student_user_id {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1400px) {
+
+  select#student_standard_id,
+  select#student_section_id,
+  select#student_user_id {
+    width: 95%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+}
+
+select#student_standard_id,
+select#student_section_id,
+select#student_user_id {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1400px) {
+
+  select#student_standard_id,
+  select#student_section_id,
+  select#student_user_id {
+    width: 95%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+}
+
+#SelExample {
+  width: 200px;
+}
+
+.select2-container .select2-selection--single .select2-selection__placeholder {
+  font-size: 14px;
+  font-weight: bold;
+  color: #100e0e;
+}
+
+.select2-container--default .select2-results__option:hover {
+  background-color: #1322C1;
+  /* Adjust the color as needed */
+  color: #fff;
+}
+
+.select2-results__options {
+  max-height: 200px;
+  /* Adjust the max height as needed */
+  overflow-x: auto;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: #555;
+}
