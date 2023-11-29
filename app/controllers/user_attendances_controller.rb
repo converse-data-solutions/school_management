@@ -1,45 +1,47 @@
+# app/controllers/user_attendances_controller.rb
 class UserAttendancesController < ApplicationController
-
+  # before_action :set_user
 
   def new
-    @attendance = @user.attendances.new
+    @attendance = Attendance.new
   end
 
   def create
-    @attendance = @user.attendances.new(attendance_params)
-
+    @attendance = Attendance.new(attendance_params)
     if @attendance.save
-      redirect_to @user, notice: 'User Attendance was successfully created.'
+      redirect_to user_attendances_path
     else
       render :new
     end
   end
 
-  def index
-    @attendances = User.where(role: 'staff')
-  end
-
   def edit
-    @attendance = @user.attendances.find(params[:id])
+    @attendance = Attendance.find(params[:id])
   end
 
   def update
-    @attendance = @user.attendances.find(params[:id])
-
-    if @attendance.update(attendance_params)
-      redirect_to @user, notice: 'User Attendance was successfully updated.'
+    @attendance = Attendance.find(params[:id])
+    if @attendance
+      @attendance.update(attendance_params)
+      redirect_to user_attendances_path
     else
-      render :edit
+      flash[:error] = 'Attendance record not found.'
+      redirect_to user_attendances_path
     end
+  end
+
+  def index
+    @users = User.where(role: 'staff')
+    @selected_date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
 
   private
 
   def set_user
-    @user = User.find(params[:user_id])
+    @user = User.all
   end
 
   def attendance_params
-    params.require(:attendance).permit(:date, :status)
+    params.require(:attendance).permit(:date, :status, :attendable_id, :attendable_type)
   end
 end

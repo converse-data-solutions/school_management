@@ -1,0 +1,44 @@
+<%= form_tag user_attendances_path, method: :get do %>
+  <%= label_tag :date, "Date" %>
+  <%= date_field_tag :date, params[:date] || Date.today %>
+  <%= submit_tag "Submit" %>
+<% end %>
+<table class="bordered">
+  <thead>
+    <tr>
+      <th>Teacher</th>
+      <th>Username</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.username %></td>
+        <td>
+          <% attendance = Attendance.find_by(attendable_id: user.id, attendable_type: user.class.name, date: @selected_date) %>
+          <% if attendance && attendance.persisted? %>
+            <%= form_for attendance, url: user_attendance_path(attendance), method: :patch do |f| %>
+              <%= f.hidden_field :date, value: @selected_date %>
+              <%= f.radio_button :status, "present", checked: attendance.status == "present" %> present
+              <%= f.radio_button :status, "late", checked: attendance.status == "late" %> Late
+              <%= f.radio_button :status, "absent", checked: attendance.status == "absent" %> Absent
+              <%= f.submit %>
+            <% end %>
+          <% else %>
+            <%= form_for Attendance.new, url: user_attendances_path(user), method: :post do |f| %>
+              <%= f.hidden_field :attendable_id, value: user.id %>
+              <%= f.hidden_field :attendable_type, value: user.class.name %>
+              <%= f.hidden_field :date, value: @selected_date %>
+              <%= f.radio_button :status, "present" %> present
+              <%= f.radio_button :status, "late" %> Late
+              <%= f.radio_button :status, "absent" %> Absent
+              <%= f.submit %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
