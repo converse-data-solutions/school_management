@@ -1,0 +1,7 @@
+<label for="section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section</label>
+<select id="student_section_id" name="student[section_id]" class= 'text-[14px] focus:ring-[#37A7E7]'>
+  <option value="">Select Section</option>
+  <% sections.each do |section| %>
+    <option value="<%= section.id %>"><%= section.section_name %></option>
+  <% end %>
+</select>
