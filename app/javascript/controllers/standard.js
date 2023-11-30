@@ -80,7 +80,6 @@ function initValidate() {
     },
   });
   $("form").on("submit", function (e) {
-    console.log("submit");
     var standard_name = $("#standard_name").val();
     var fee = $("#fee").val();
     var section_name = $("#section_name").val();

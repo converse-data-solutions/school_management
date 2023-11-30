@@ -28,36 +28,36 @@
         <% end %>
       </div>
       <div class="w-full mb-8 text-[14px]" id="table-div">
-        <%= form_tag update_all_user_attendances_path, method: :post do %>
-        <div class="overflow-x-auto w-full">
-          <table class="table table-striped w-full border-collapse border border-slate-400 ">
-            <thead class="text-[15px] text-[#555555] font-semibold text-left border-[#D9D9D9] border-b-2 ">
-              <tr>
-                <th class="border border-slate-300 p-2">Teacher</th>
-                <th class="border border-slate-300 p-2">Username</th>
-                <th class="border border-slate-300 p-2">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @users.each do |user| %>
-                <tr class='striped'>
-                  <td class="border border-slate-300 p-2 text-[#555555] font-light"><%= user.name %></td>
-                  <td class="border border-slate-300 p-2 text-[#3177E7] font-light"><%= user.username %></td>
-                  <td class="border border-slate-300 p-2 text-[#555555] font-semibold">
-                    <%= hidden_field_tag "attendances[#{user.id}][attendable_id]", user.id %>
-                    <%= hidden_field_tag "attendances[#{user.id}][attendable_type]", user.class.name %>
-                    <%= hidden_field_tag "attendances[#{user.id}][date]", @selected_date %>
-                    <% attendance = Attendance.find_by(attendable_id: user.id, attendable_type: user.class.name, date: @selected_date) %>
-                    <div class="flex items-center gap-1 text-[14px]">
-                      <%= radio_button_tag "attendances[#{user.id}][status]", "present", checked: attendance&.status == "present" %> <span class="mr-3">Present</span>
-                      <%= radio_button_tag "attendances[#{user.id}][status]", "late", checked: attendance&.status == "late" %> <span class="mr-3">Late</span>
-                      <%= radio_button_tag "attendances[#{user.id}][status]", "absent", checked: attendance&.status == "absent" %> Absent
-                    </div>
-                  </td>
+        <%= form_tag update_all_path, method: :post do %>
+          <div class="overflow-x-auto w-full">
+            <table class="table table-striped w-full border-collapse border border-slate-400 ">
+              <thead class="text-[15px] text-[#555555] font-semibold text-left border-[#D9D9D9] border-b-2 ">
+                <tr>
+                  <th class="border border-slate-300 p-2">Teacher</th>
+                  <th class="border border-slate-300 p-2">Username</th>
+                  <th class="border border-slate-300 p-2">Status</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% @users.each do |user| %>
+                  <tr class='striped'>
+                    <td class="border border-slate-300 p-2 text-[#555555] font-light"><%= user.name %></td>
+                    <td class="border border-slate-300 p-2 text-[#3177E7] font-light"><%= user.username %></td>
+                    <td class="border border-slate-300 p-2 text-[#555555] font-semibold">
+                      <%= hidden_field_tag "attendances[#{user.id}][attendable_id]", user.id %>
+                      <%= hidden_field_tag "attendances[#{user.id}][attendable_type]", user.class.name %>
+                      <%= hidden_field_tag "attendances[#{user.id}][date]", @selected_date %>
+                      <% attendance = Attendance.find_by(attendable_id: user.id, attendable_type: user.class.name, date: @selected_date) %>
+                      <div class="flex items-center gap-1 text-[14px]">
+                        <%= radio_button_tag "attendances[#{user.id}][status]", "present", checked: attendance&.status == "present" %> <span class="mr-3">Present</span>
+                        <%= radio_button_tag "attendances[#{user.id}][status]", "late", checked: attendance&.status == "late" %> <span class="mr-3">Late</span>
+                        <%= radio_button_tag "attendances[#{user.id}][status]", "absent", checked: attendance&.status == "absent" %> Absent
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
           </div>
           <div class="flex justify-center mt-12 md:absolute md:bottom-[-20px] md:left-[50%] md:right-[50%]">
             <%= submit_tag "Submit Attendance",class:'text-white bg-[#033c73]    focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2 text-center' %>
