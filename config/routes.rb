@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   
 
    resources :user_attendances, only: [:new, :create, :index , :edit, :update, :destroy]
+   post 'update_all', to: 'user_attendances#update_all'
+
   
+   post 'submit_all_attendances', to: 'user_attendances#submit_all', as: 'submit_all_attendances'
 
   resources :students do
     collection do
