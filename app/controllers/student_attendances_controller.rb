@@ -4,7 +4,13 @@ class StudentAttendancesController < ApplicationController
   def new
     @attendance = @student.attendances.new
   end
-
+  
+  def get_sections
+    @sections = Standard.find(params[:standard_id]).sections
+    respond_to do |format|
+      format.js
+    end
+  end
   def create
     @attendance = @student.attendances.new(attendance_params)
 
@@ -45,12 +51,10 @@ class StudentAttendancesController < ApplicationController
   end
 
   def index
-    
     @selected_date = params[:date]
     @selected_standard = params[:standard_id]
     @selected_section = params[:section_id]
     @students = Student.where(section_id: @selected_section)
-   
   end
 
   private

@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     collection do
       post :update_all
     end
+    collection do
+      get :get_sections
+    end
   end
 
   resources :standards, except: %i[show new] do
