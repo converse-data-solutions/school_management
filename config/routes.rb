@@ -2,18 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  
 
-
-
-   resources :user_attendances, only: [:index ] do
-    collection do
-      post :update_all
-    end
-  end
-
-
-  
 
   resources :students do
     collection do
@@ -24,8 +13,16 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :students do
-    resources :student_attendances, controller: 'student_attendances'
+  resources :user_attendances, only: [:index] do
+    collection do
+      post :update_all
+    end
+  end
+
+  resources :student_attendances do
+    collection do
+      post :update_all
+    end
   end
 
   resources :standards, except: %i[show new] do
