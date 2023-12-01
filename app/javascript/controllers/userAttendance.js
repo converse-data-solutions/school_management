@@ -1,12 +1,11 @@
 function initValidate() {
   $("form").on("submit", function (e) {
-    var dateValue = $("#date").val();
-    var err = $("#error-div");
-    var table = $("#table-div");
+    let dateValue = $("#date").val();
+    let err = $("#error-div");
 
     $(".error").text("");
     $(".error").css("color", "red");
-    var errors = false;
+    let errors = false;
 
     if (!dateValue || !dateValue.trim()) {
       $("#date-error").text("Please enter a Date.");

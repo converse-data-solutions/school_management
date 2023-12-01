@@ -19,8 +19,8 @@ function initValidate() {
   });
   $(".SelExample").val("4").trigger("change");
   $("#but_read").click(function () {
-    var username = $(".SelExample option:selected").text();
-    var userid = $(".SelExample").val();
+    let username = $(".SelExample option:selected").text();
+    let userid = $(".SelExample").val();
   });
 }
 
@@ -31,7 +31,7 @@ $(document).ready(function () {
     initValidate();
   });
   $(document).on("change", "#student_standard_id", function () {
-    var standard_id = $(this).val();
+    let standard_id = $(this).val();
     console.log(standard_id);
     $.ajax({
       url: "/students/get_sections",

@@ -1,18 +1,18 @@
 function initValidate() {
   $("form").on("submit", function (e) {
-    var email = $("#user_email").val();
-    var password = $("#user_password").val();
-    var name = $("#name").val();
-    var username = $("#user_name").val();
-    var mobile_number = $("#mobile-number").val();
-    var address = $("#address").val();
-    var profession = $("#profession").val();
-    var err = $("#error-div");
+    let email = $("#user_email").val();
+    let password = $("#user_password").val();
+    let name = $("#name").val();
+    let username = $("#user_name").val();
+    let mobile_number = $("#mobile-number").val();
+    let address = $("#address").val();
+    let profession = $("#profession").val();
+    let err = $("#error-div");
 
     $(".error").text("");
     $(".error").css("color", "red");
 
-    var errors = false;
+    let errors = false;
 
     if (!email || !email.trim()) {
       $("#email-error").text("Please enter a valid email address.");

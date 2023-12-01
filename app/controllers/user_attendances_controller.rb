@@ -1,7 +1,6 @@
 class UserAttendancesController < ApplicationController
-
   def update_all
-    attendances_params = params.require(:attendances).permit(:attendable_id, :attendable_type, :date, :status)
+    attendances_params = params.require(:attendances).permit!
 
     attendances_params.each do |_user_id, attendance_params|
       user = User.find(attendance_params[:attendable_id])

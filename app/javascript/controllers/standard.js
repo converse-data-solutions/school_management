@@ -1,6 +1,6 @@
 function initValidate() {
   function toggleRemoveLink() {
-    var visibleSectionCount = $(".section_fields:visible").length;
+    let visibleSectionCount = $(".section_fields:visible").length;
 
     console.log(visibleSectionCount);
     if (visibleSectionCount === 1) {
@@ -15,7 +15,7 @@ function initValidate() {
     toggleRemoveLink();
   });
 
-  var sectionIndex = $("#sectionIndex").data("sectionIndex");
+  let sectionIndex = $("#sectionIndex").data("sectionIndex");
   console.log(sectionIndex);
 
   $("#add_section").click(function (e) {
@@ -28,21 +28,21 @@ function initValidate() {
     removeSectioField(this);
   });
   function removeSectioField(elem) {
-    var removeSection = $(elem).closest(".section_fields");
-    var removeBox = $(elem).closest(".section_fields").find(".checkbox");
+    let removeSection = $(elem).closest(".section_fields");
+    let removeBox = $(elem).closest(".section_fields").find(".checkbox");
     removeSection.addClass("hidden");
-    var clicked = false;
+    let clicked = false;
 
     removeBox.prop("checked", !clicked);
     sectionIndex--;
     $("#sectionIndex").data("sectionIndex", sectionIndex);
   }
   function addSectionField() {
-    var newSectionField = $("#sections_fields .section_fields:first").clone();
+    let newSectionField = $("#sections_fields .section_fields:first").clone();
     newSectionField.find("input").val("");
     newSectionField.find("input").each(function () {
-      var oldName = $(this).attr("name");
-      var newName = oldName.replace(/\[\d\]/, "[" + sectionIndex + "]");
+      let oldName = $(this).attr("name");
+      let newName = oldName.replace(/\[\d\]/, "[" + sectionIndex + "]");
       $(this).attr("name", newName);
     });
     $("#sections_fields").append(newSectionField);
@@ -79,14 +79,14 @@ function initValidate() {
     },
   });
   $("form").on("submit", function (e) {
-    var standard_name = $("#standard_name").val();
-    var fee = $("#fee").val();
-    var section_name = $("#section_name").val();
-    var err = $(".error-div");
+    let standard_name = $("#standard_name").val();
+    let fee = $("#fee").val();
+    let section_name = $("#section_name").val();
+    let err = $(".error-div");
 
     $(".error").text("");
     $(".error").css("color", "red");
-    var errors = false;
+    let errors = false;
 
     if (!standard_name || !standard_name.trim()) {
       $("#standard-error").text("Please enter a Standard Name.");
