@@ -1,42 +1,12 @@
 class StudentAttendancesController < ApplicationController
-  # before_action :set_student
-
-  def new
-    @attendance = @student.attendances.new
-  end
-  
   def get_sections
     @sections = Standard.find(params[:standard_id]).sections
     respond_to do |format|
       format.js
     end
   end
-  def create
-    @attendance = @student.attendances.new(attendance_params)
-
-    if @attendance.save
-      redirect_to @student, notice: 'Student Attendance was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  def edit
-    @attendance = @student.attendances.find(params[:id])
-  end
-
-  def update
-    @attendance = @student.attendances.find(params[:id])
-
-    if @attendance.update(attendance_params)
-      redirect_to @student, notice: 'Student Attendance was successfully updated.'
-    else
-      render :edit
-    end
-  end
 
   def update_all
-    # Use strong parameters to permit necessary attributes
     attendances_params = params.require(:attendances).permit!
 
     attendances_params.each do |_student_id, attendance_params|
@@ -46,7 +16,6 @@ class StudentAttendancesController < ApplicationController
       attendance.update(attendance_params)
     end
 
-    # Redirect or render as needed
     redirect_to student_attendances_path
   end
 
@@ -58,10 +27,6 @@ class StudentAttendancesController < ApplicationController
   end
 
   private
-
-  def set_student
-    @student = Student.find(params[:student_id])
-  end
 
   def attendance_params
     params.require(:attendance).permit(:date, :status)

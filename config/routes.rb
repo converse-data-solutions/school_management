@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :user_attendances, only: [:index] do
+  resources :user_attendances  do
     collection do
       post :update_all
     end
