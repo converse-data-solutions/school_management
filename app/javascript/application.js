@@ -3,6 +3,7 @@ import "@hotwired/turbo-rails";
 import "controllers";
 import "flowbite";
 import "flowbite-datepicker";
+import flatpickr from "flatpickr";
 import DataTable from "datatables.net-dt";
 
 function initValidate() {

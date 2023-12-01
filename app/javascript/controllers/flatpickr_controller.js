@@ -10,6 +10,8 @@ export default class extends Controller {
     });
     flatpickr("#date", {
       dateFormat: "d-m-Y",
+      defaultDate: "today",
+      maxDate: 'today'
     })
   }
 }
