@@ -21,7 +21,7 @@ class StudentAttendancesController < ApplicationController
     @selected_date = params[:date]
     @selected_standard = params[:standard_id]
     @selected_section = params[:section_id]
-    @students = Student.where(section_id: @selected_section)
+    @students = Student.where(section_id: @selected_section, deleted: 'Active')
   end
 
   private
