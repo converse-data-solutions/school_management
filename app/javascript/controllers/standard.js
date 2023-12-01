@@ -49,7 +49,6 @@ function initValidate() {
     sectionIndex++;
 
     $("#sectionIndex").data("sectionIndex", sectionIndex);
-    console.log(sectionIndex);
   }
 
   $("#standardTable").dataTable({
