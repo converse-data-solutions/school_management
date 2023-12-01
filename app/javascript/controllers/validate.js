@@ -7,7 +7,6 @@ function initValidate() {
     var mobile_number = $("#mobile-number").val();
     var address = $("#address").val();
     var profession = $("#profession").val();
-    var gender = $('input[name="gender"]:checked').val();
     var err = $("#error-div");
 
     $(".error").text("");

@@ -36,7 +36,6 @@ $(document).ready(function () {
   initValidate();
 
   $(document).on("turbo:render", function () {
-    console.log("turbo rendered for parent table");
     initValidate();
   });
 });
