@@ -168,12 +168,12 @@
               </a>
             </li>
             <li>
-              <a href="#" class=" activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
+              <a href="<%= url_for :student_attendances %>" class="<%= params[:controller] == "student_attendances" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
                 <span><i class="fa-regular fa-clock"></i> </span><span class="ml-3 text-center lg:text-start xl:text-center">Student Attendance</span>
               </a>
             </li>
             <li class="text-[14px]">
-              <a href="#" class="activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
+              <a href="<%= url_for :new_user_attendance %>" class="<%= params[:controller] == "user_attendances" && params[:action] == "new" || params[:controller] == "user_attendances" && params[:action] == "index"  ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
                 <span><i class="fa-regular fa-clock"></i></span><span class="ml-3 text-center lg:text-start xl:text-center">Teacher Attendance</span>
               </a>
             </li>
