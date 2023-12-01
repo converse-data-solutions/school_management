@@ -14,7 +14,7 @@ class UserAttendancesController < ApplicationController
   end
 
   def index
-    @users = User.where(role: 'staff')
-    @selected_date = params[:date] || Date.today.strftime('%d-%m-%Y')
+    @users = User.where(role: 'staff', deleted: 'Active')
+    @selected_date = params[:date]
   end
 end
