@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-
-
   resources :students do
     collection do
       get :get_sections
@@ -13,13 +11,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :user_attendances , except: %i[show edit update destroy create]  do
+  resources :user_attendances, except: %i[show edit update destroy create] do
     collection do
       post :update_all
     end
   end
 
-  resources :student_attendances , except: %i[show new edit update destroy create] do
+  resources :student_attendances, except: %i[show new edit update destroy create] do
     collection do
       post :update_all
     end
