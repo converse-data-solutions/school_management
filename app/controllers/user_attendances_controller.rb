@@ -1,9 +1,6 @@
-# app/controllers/user_attendances_controller.rb
 class UserAttendancesController < ApplicationController
-  # before_action :set_user
 
   def update_all
-    # Use strong parameters to permit necessary attributes
     attendances_params = params.require(:attendances).permit!
 
     attendances_params.each do |_user_id, attendance_params|
@@ -13,8 +10,7 @@ class UserAttendancesController < ApplicationController
       attendance.update(attendance_params)
     end
 
-    # Redirect or render as needed
-    redirect_to user_attendances_path
+    redirect_to new_user_attendance_path
   end
 
   def index

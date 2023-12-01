@@ -8,5 +8,8 @@ export default class extends Controller {
     flatpickr("#date_of_admission", {
       dateFormat: "d-m-Y",
     });
+    flatpickr("#date", {
+      dateFormat: "d-m-Y",
+    })
   }
 }
