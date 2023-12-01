@@ -9,7 +9,6 @@ class StudentAttendancesController < ApplicationController
 
     attendances_params.each do |_student_id, attendance_params|
       student = Student.find(attendance_params[:attendable_id])
-      bye
 
       attendance = Attendance.find_or_initialize_by(attendable_id: student.id, attendable_type: student.class.name,
                                                     date: attendance_params[:date])

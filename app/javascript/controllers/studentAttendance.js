@@ -8,12 +8,8 @@ function initValidate() {
       url: "/student_attendances/get_sections",
       type: "GET",
       data: { standard_id: standard_id },
-      success: function (response) {
-        console.log(response);
-      },
-      error: function (xhr, status, error) {
-        console.error(xhr, status, error);
-      },
+      success: function (response) {},
+      error: function (xhr, status, error) {},
     });
   });
 
