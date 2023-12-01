@@ -13,13 +13,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :user_attendances  do
+  resources :user_attendances , except: %i[show edit update destroy create]  do
     collection do
       post :update_all
     end
   end
 
-  resources :student_attendances do
+  resources :student_attendances , except: %i[show new edit update destroy create] do
     collection do
       post :update_all
     end
