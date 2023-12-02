@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_02_083819) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_27_140928) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -64,25 +64,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_02_083819) do
     t.integer "fee"
   end
 
-  create_table "student_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "roll_no"
-    t.string "name"
-    t.string "father_name"
-    t.string "mother_name"
-    t.bigint "mobile_number"
-    t.string "address"
-    t.string "gender"
-    t.date "date_of_birth"
-    t.date "date_of_admission"
-    t.bigint "section_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "admission_no"
-    t.bigint "student_id", null: false
-    t.index ["student_id"], name: "index_student_histories_on_student_id"
-  end
-
   create_table "students", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "admission_no"
     t.string "roll_no"
@@ -127,7 +108,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_02_083819) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "sections", "standards"
-  add_foreign_key "student_histories", "students"
   add_foreign_key "students", "sections"
   add_foreign_key "students", "users"
 end

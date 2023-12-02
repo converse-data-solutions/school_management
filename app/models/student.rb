@@ -3,7 +3,6 @@ class Student < ApplicationRecord
   belongs_to :user
   has_one_attached :image, dependent: :destroy
   has_many :attendances, as: :attendable
-  has_one :student_history
   before_create :set_initial_status
 
   validates :admission_no,
@@ -25,41 +24,10 @@ class Student < ApplicationRecord
                               message: 'Mobile Number  Must Be Exactly 10 Digits'
                             },
                             allow_blank: true
-  after_update :create_or_update_student_history
 
   private
 
   def set_initial_status
     self.deleted = :Active
-  end
-
-  def create_or_update_student_history
-    if student_history
-      student_history.update(
-        name:,
-        father_name:,
-        mother_name:,
-        mobile_number:,
-        address:,
-        gender:,
-        date_of_birth:,
-        date_of_admission:,
-        section_id:,
-        user_id:
-      )
-    else
-      create_student_history(
-        name:,
-        father_name:,
-        mother_name:,
-        mobile_number:,
-        address:,
-        gender:,
-        date_of_birth:,
-        date_of_admission:,
-        section_id:,
-        user_id:
-      )
-    end
   end
 end

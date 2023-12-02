@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'student_history/index'
   devise_for :users
   root 'home#index'
 
