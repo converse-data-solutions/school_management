@@ -22,7 +22,6 @@ function initValidate() {
       { data: "address", class: "address" },
       { data: "mobile_number", class: "mobile_number" },
       { data: "roll_no", class: "roll_no" },
-      { data: "standard_name", class: "standard_name" },
       { data: "section_name", class: "section" },
       
     ],

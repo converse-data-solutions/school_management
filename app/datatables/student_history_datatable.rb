@@ -12,8 +12,7 @@ class StudentHistoryDatatable < AjaxDatatablesRails::ActiveRecord
       address: { source: 'StudentHistory.address' },
       mobile_number: { source: 'StudentHistory.mobile_number', searchable: true },
       roll_no: { source: 'StudentHistory.roll_no', searchable: true },
-      standard_name: { source: 'Standard.name', searchable: true },
-      section_name: { source: 'Section.section_name', searchable: true }
+      section_name: { source: 'StudentHistory.section_id', searchable: true }
     }
   end
 
@@ -31,13 +30,12 @@ class StudentHistoryDatatable < AjaxDatatablesRails::ActiveRecord
         address: record.address,
         mobile_number: record.mobile_number,
         roll_no: record.roll_no,
-        standard_name: record.section.standard.name,
-        section_name: record.section.section_name,
+        section_name: record.section_id,
       }
     end
   end
 
   def get_raw_records
-    StudentHistory.joins(section: :standard)
+    StudentHistory.all
   end
 end

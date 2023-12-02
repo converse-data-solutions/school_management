@@ -5,6 +5,7 @@ class Student < ApplicationRecord
   has_many :attendances, as: :attendable
   has_one :student_history
   before_create :set_initial_status
+  before_destroy :create_or_update_student_history_before_destroy
 
   validates :admission_no,
             presence: { message: 'Please enter valid Admission No.' },
@@ -25,7 +26,7 @@ class Student < ApplicationRecord
                               message: 'Mobile Number  Must Be Exactly 10 Digits'
                             },
                             allow_blank: true
-  after_update :create_or_update_student_history
+  
 
   private
 
@@ -33,32 +34,32 @@ class Student < ApplicationRecord
     self.deleted = :Active
   end
 
-  def create_or_update_student_history
+  def create_or_update_student_history_before_destroy
     if student_history
       student_history.update(
-        name:,
-        father_name:,
-        mother_name:,
-        mobile_number:,
-        address:,
-        gender:,
-        date_of_birth:,
-        date_of_admission:,
-        section_id:,
-        user_id:
+        name: name,
+        father_name: father_name,
+        mother_name: mother_name,
+        mobile_number: mobile_number,
+        address: address,
+        gender: gender,
+        date_of_birth: date_of_birth,
+        date_of_admission: date_of_admission,
+        section_id: section_id,
+        user_id: user_id
       )
     else
-      create_student_history(
-        name:,
-        father_name:,
-        mother_name:,
-        mobile_number:,
-        address:,
-        gender:,
-        date_of_birth:,
-        date_of_admission:,
-        section_id:,
-        user_id:
+      StudentHistory.create(
+        name: name,
+        father_name: father_name,
+        mother_name: mother_name,
+        mobile_number: mobile_number,
+        address: address,
+        gender: gender,
+        date_of_birth: date_of_birth,
+        date_of_admission: date_of_admission,
+        section_id: section_id,
+        user_id: user_id
       )
     end
   end
