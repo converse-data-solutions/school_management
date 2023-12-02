@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_02_131841) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_02_203930) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -80,6 +80,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_02_131841) do
     t.datetime "updated_at", null: false
     t.integer "admission_no"
     t.bigint "student_id", null: false
+    t.string "section_name"
+    t.string "standard_name"
     t.index ["student_id"], name: "index_student_histories_on_student_id"
   end
 

@@ -23,6 +23,7 @@ function initValidate() {
       { data: "mobile_number", class: "mobile_number" },
       { data: "roll_no", class: "roll_no" },
       { data: "section_name", class: "section" },
+      { data: "standard_name", class: "standard_name" },
       
     ],
     oLanguage: {

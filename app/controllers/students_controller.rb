@@ -92,14 +92,15 @@ class StudentsController < ApplicationController
   date_of_birth: student.date_of_birth,
   gender: student.gender,
   mobile_number: student.mobile_number,
-  section_id: student.section_id,
+  section_name: Section.find(student.section_id).section_name,
+  standard_name: Standard.find(Section.find(student.section_id).standard_id).name,
   roll_no: student.roll_no,
   admission_no: student.admission_no,
-  date_of_admission: student.date_of_admission,
+  date_of_admission: student.date_of_admission, 
   address: student.address,
  father_name: student.father_name,
   mother_name: student.mother_name
-      
+
     )
   end
 end

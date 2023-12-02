@@ -45,7 +45,7 @@ class Student < ApplicationRecord
         gender: gender,
         date_of_birth: date_of_birth,
         date_of_admission: date_of_admission,
-        section_id: section_id,
+        section_name: section_name,
         user_id: user_id
       )
     else
@@ -58,7 +58,7 @@ class Student < ApplicationRecord
         gender: gender,
         date_of_birth: date_of_birth,
         date_of_admission: date_of_admission,
-        section_id: section_id,
+        section_name: section_name,
         user_id: user_id
       )
     end

@@ -12,7 +12,8 @@ class StudentHistoryDatatable < AjaxDatatablesRails::ActiveRecord
       address: { source: 'StudentHistory.address' },
       mobile_number: { source: 'StudentHistory.mobile_number', searchable: true },
       roll_no: { source: 'StudentHistory.roll_no', searchable: true },
-      section_name: { source: 'StudentHistory.section_id', searchable: true }
+      section_name: { source: 'StudentHistory.section_name', searchable: true },
+      standard_name: { source: 'StudentHistory.standard_name', searchable: true }
     }
   end
 
@@ -30,7 +31,8 @@ class StudentHistoryDatatable < AjaxDatatablesRails::ActiveRecord
         address: record.address,
         mobile_number: record.mobile_number,
         roll_no: record.roll_no,
-        section_name: record.section_id,
+        section_name: record.section_name,
+        standard_name: record.standard_name,
       }
     end
   end
