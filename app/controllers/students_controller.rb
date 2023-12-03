@@ -84,23 +84,23 @@ class StudentsController < ApplicationController
     @student.update(deleted: new_status)
     flash[:notice] = 'Status changed successfully.'
   end
+
   def create_student_history(student)
     # Create a StudentHistory record with individual attribute values
     StudentHistory.create(
-      student: student,
+      student:,
       name: student.name,
-  date_of_birth: student.date_of_birth,
-  gender: student.gender,
-  mobile_number: student.mobile_number,
-  section_name: Section.find(student.section_id).section_name,
-  standard_name: Standard.find(Section.find(student.section_id).standard_id).name,
-  roll_no: student.roll_no,
-  admission_no: student.admission_no,
-  date_of_admission: student.date_of_admission, 
-  address: student.address,
- father_name: student.father_name,
-  mother_name: student.mother_name
-
+      date_of_birth: student.date_of_birth,
+      gender: student.gender,
+      mobile_number: student.mobile_number,
+      section_name: Section.find(student.section_id).section_name,
+      standard_name: Standard.find(Section.find(student.section_id).standard_id).name,
+      roll_no: student.roll_no,
+      admission_no: student.admission_no,
+      date_of_admission: student.date_of_admission,
+      address: student.address,
+      father_name: student.father_name,
+      mother_name: student.mother_name
     )
   end
 end
