@@ -65,6 +65,27 @@ class StudentsController < ApplicationController
     end
   end
 
+  def display
+    @from_section = params[:section_id] # You might need to adjust this based on your data model
+    @to_section = params[:to_section_id]
+    @all_student = params[:additional_param]
+
+    @students = Student.where(section_id: @from_section, deleted: 'Active')
+    respond_to do |format|
+      format.html
+      format.json { render json: DisplayStudentDatatable.new(params, view_context: view_context) }
+    end
+  end
+
+  def update_sections
+    student_ids = params[:student_ids]
+    new_section_id = params[:new_section_id]
+
+    Student.where(id: student_ids).update_all(section_id: new_section_id)
+
+    redirect_to display_students_path, notice: 'Sections updated successfully.'
+  end
+
   private
 
   def save_student_and_create_history

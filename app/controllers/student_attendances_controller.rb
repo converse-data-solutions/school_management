@@ -1,5 +1,5 @@
 class StudentAttendancesController < ApplicationController
-  def get_sections
+  def getting_sections
     @sections = Standard.find(params[:standard_id]).sections
     respond_to(&:js)
   end

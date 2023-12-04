@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :students do
     collection do
       get :get_sections
+      get 'display'
+      post 'update_sections'
     end
     member do
       patch :active_student
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
       post :update_all
     end
     collection do
-      get :get_sections
+      get :getting_sections
     end
   end
 

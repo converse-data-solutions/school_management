@@ -5,7 +5,7 @@ function initValidate() {
     let standard_id = $(this).val();
 
     $.ajax({
-      url: "/student_attendances/get_sections",
+      url: "/student_attendances/getting_sections",
       type: "GET",
       data: { standard_id: standard_id },
       success: function (response) {},

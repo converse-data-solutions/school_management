@@ -1,0 +1,29 @@
+<h1>Filter and Display Students</h1>
+<%= form_tag display_students_path, method: :get do %>
+  <div class='flex flex-col md:flex-row gap-2 md:items-center w-full gap-x-6'>
+    <div class="w-full md:w-[25%]" id="section-dropdown">
+      <%= label_tag :section, "From Section", class: 'text-[15px] text-[#555555] font-semibold' %>
+      <%= select_tag :section_id, options_from_collection_for_select(Section.all, 'id', 'section_name', params[:section_id]), prompt: 'Select a Section', class: "border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 " %>
+    </div>
+    <div class="w-full md:w-[25%]" id="section-dropdown">
+      <%= label_tag :to_section, "To Section", class: 'text-[15px] text-[#555555] font-semibold' %>
+      <%= select_tag :to_section_id, options_from_collection_for_select(Section.all, 'id', 'section_name', params[:to_section_id]), prompt: 'Select a Section', class: "border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 " %>
+    </div>
+    <div class="w-full md:w-[25%]">
+      <%= check_box_tag :additional_param, true, params[:additional_param] == 'true', class: 'border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] p-2.0' %>
+    </div>
+    <div class="md:mt-[20px]">
+      <%= submit_tag "Filter", id: 'display_submit', class: 'text-white bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2 text-center' %>
+    </div>
+  </div>
+<% end %>
+<%= form_tag update_sections_students_path, method: :post do %>
+  <br>
+  <% default_checked = @all_student == 'true' ? true : false %>
+  <%= hidden_field_tag 'new_section_id', @to_section %>
+  <% @students.each do |student| %>
+    <%= check_box_tag 'student_ids[]', student.id, default_checked %>
+    <%= student.name %> <br>
+  <% end %>
+  <%= submit_tag 'Update Sections' %>
+<% end %>
