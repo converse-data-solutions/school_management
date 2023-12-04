@@ -433,3 +433,6 @@ a#staffTable_next, a#standardTable_next, a#studentTable_next, a#historyTable_nex
   border: 1px solid #ddd;
   margin-left: 0px !important;
 }
+table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
+  background-color: navy !important;
+}
