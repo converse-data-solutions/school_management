@@ -4,6 +4,9 @@ class StudentDecorator < ApplicationDecorator
   def link_to
     h.link_to object.admission_no
   end
+  def check_box
+    h.check_box_tag 'student_ids[]', object.id
+  end
 
   def student_status
     links = []

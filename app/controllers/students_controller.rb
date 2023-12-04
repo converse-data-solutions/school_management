@@ -12,7 +12,11 @@ class StudentsController < ApplicationController
 
   def show; end
 
-  def get_sections
+  def getting_sections
+    @sections = Standard.find(params[:standard_id]).sections
+    respond_to(&:js)
+  end
+  def getting_from_sections
     @sections = Standard.find(params[:standard_id]).sections
     respond_to(&:js)
   end
@@ -65,15 +69,16 @@ class StudentsController < ApplicationController
     end
   end
 
-  def display
-    @from_section = params[:section_id] # You might need to adjust this based on your data model
+  def promote
+    @selected_standard = params[:standard_id]
+    @from_section = params[:from_section_id] # You might need to adjust this based on your data model
     @to_section = params[:to_section_id]
     @all_student = params[:additional_param]
 
     @students = Student.where(section_id: @from_section, deleted: 'Active')
     respond_to do |format|
       format.html
-      format.json { render json: DisplayStudentDatatable.new(params, view_context: view_context) }
+    format.json { render json: PromoteStudentDatatable.new(params, view_context: view_context, from_section: @from_section) }
     end
   end
 

@@ -5,8 +5,9 @@ Rails.application.routes.draw do
 
   resources :students do
     collection do
-      get :get_sections
-      get 'display'
+      get :getting_sections
+      get :from_getting_sections
+      get 'promote'
       post 'update_sections'
     end
     member do
