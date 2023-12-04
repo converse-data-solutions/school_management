@@ -28,6 +28,25 @@ class Student < ApplicationRecord
                             },
                             allow_blank: true
 
+  def create_history
+    StudentHistory.create(
+      student: self,
+      name:,
+      date_of_birth:,
+      gender:,
+      mobile_number:,
+      section_name: Section.find(section_id).section_name,
+      standard_name: Standard.find(Section.find(section_id).standard_id).name,
+      roll_no:,
+      admission_no:,
+      date_of_admission:,
+      address:,
+      father_name:,
+      mother_name:
+    )
+  end
+  public :create_history
+
   private
 
   def set_initial_status
@@ -38,19 +57,8 @@ class Student < ApplicationRecord
     if student_history
       student_history.update(
         name:,
-        father_name:,
-        mother_name:,
-        mobile_number:,
-        address:,
-        gender:,
-        date_of_birth:,
-        date_of_admission:,
-        section_name: Section.find(section_id).section_name,
-        standard_name: Standard.find(Section.find(section_id).standard_id).name
-      )
-    else
-      StudentHistory.create(
-        name:,
+        roll_no:,
+        admission_no:,
         father_name:,
         mother_name:,
         mobile_number:,
