@@ -34,7 +34,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     respond_to do |format|
-      if save_student_and_create_history
+      if @student.save
         format.html { redirect_to students_url, notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
       else
@@ -66,15 +66,6 @@ class StudentsController < ApplicationController
   end
 
   private
-
-  def save_student_and_create_history
-    if @student.save
-      @student.create_history
-      true
-    else
-      false
-    end
-  end
 
   def set_student
     @student = Student.find(params[:id])
