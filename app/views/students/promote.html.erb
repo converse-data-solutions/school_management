@@ -43,27 +43,36 @@
           </div>
         <% end %>
       </div>
-      <%= form_tag update_sections_students_path, method: :post do %>
-        <br>
-        <% default_checked = @all_student == 'true' ? true : false %>
+      <%= form_tag update_sections_students_path, id: 'frm-example', method: :post do %>
         <%= hidden_field_tag 'new_section_id', @to_section %>
-        <% @students.each do |student| %>
-          <%= check_box_tag 'student_ids[]', student.id, default_checked %>
-          <%= student.name %> <br>
-        <% end %>
+        <% default_checked = @all_student == 'true' ? true : false %>
+        <table id="promoteTable" class="stripe"  data-source="<%= promote_students_path(format: :json) %>">
+          <thead class="bg-[#FFFFFF]">
+            <tr>
+              <th class="s_no">S.No</th>
+              <th class="admission_no">Adm No</th>
+              <th class="student_name">Student</th>
+              <th class="student_action">Promote Student</th>
+            </tr>
+          </thead>
+          <tbody class="bg-[#F9F9F9] ">
+          </tbody>
+        </table>
         <%= submit_tag 'Update Sections' %>
+        <p><b>Selected rows data:</b></p>
+        <pre id="example-console-rows"></pre>
+        <p><b>Form data as submitted to the server:</b></p>
+        <pre id="example-console-form"></pre>
       <% end %>
-      <table id="promoteTable" class="stripe"  data-source="<%= promote_students_path(format: :json) %>">
-        <thead class="bg-[#FFFFFF]">
-          <tr>
-            <th class="admission_no">Adm No</th>
-            <th class="student_name">Student</th>
-            <th class="student_action">Promote Student</th>
-          </tr>
-        </thead>
-        <tbody class="bg-[#F9F9F9] ">
-        </tbody>
-      </table>
     </div>
   </div>
 </div>
+<%= form_tag update_sections_students_path, method: :post do %>
+  <br>
+  <% default_checked = @all_student == 'true' ? true : false %>
+  <% @students.each do |student| %>
+    <%= check_box_tag 'student_ids[]', student.id, default_checked %>
+    <%= student.name %> <br>
+  <% end %>
+  <%= submit_tag 'Update Sections' %>
+<% end %>
