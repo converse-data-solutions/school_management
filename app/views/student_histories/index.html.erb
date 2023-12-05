@@ -1,0 +1,41 @@
+<%= content_for :head do %>
+  <%= javascript_import_module_tag "controllers/studentHistoryDatatable" %>
+<% end %>
+<div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[15px] text-[#39A9E8] pl-4"><span><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Students History</span></div>
+<div class=" container mx-auto rounded-lg border-2">
+  <div class="px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+    <div><i class="fa-solid fa-pen-to-square"></i>
+      <span class="font-semibold">Histories</span></div>
+    <button class="accordian-header cursor-pointer leading-0 px-1 text-2xl border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up  "></i></button>
+  </div>
+  <div class="accordian-body">
+    <div class="bg-[#FFFFFF] overflow-scroll mx-[8px] md:mx-2 lg:mx-3 xl:mx-0 ">
+      <% if notice %>
+        <div class="ml-2">
+          <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
+        </div>
+      <% end %>
+      <table id="historyTable" class="stripe"  data-source="<%= student_histories_index_path(format: :json) %>">
+        <thead class="bg-[#FFFFFF]">
+          <tr>
+            <th class="sr_no">S.No</th>
+            <th class="admission_no">Admission No</th>
+            <th class="student_name">Name</th>
+            <th class="date_of_birth">DOB</th>
+            <th class="student_gender">Gender</th>
+            <th class="date_of_admission">DOA</th>
+            <th class="father_name">Father Name</th>
+            <th class="mother_name">Mother Name</th>
+            <th class="address">Address</th>
+            <th class="mobile_number">Mobile Number</th>
+            <th class="roll_no">Roll No</th>
+            <th class="standard">Last Standard</th>
+            <th class="section">Last Section</th>
+          </tr>
+        </thead>
+        <tbody class="bg-[#F9F9F9] striped ">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

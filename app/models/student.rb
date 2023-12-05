@@ -3,7 +3,10 @@ class Student < ApplicationRecord
   belongs_to :user
   has_one_attached :image, dependent: :destroy
   has_many :attendances, as: :attendable
+  has_one :student_history
   before_create :set_initial_status
+  after_create :create_history_entry
+  before_update :create_or_update_student_history
 
   validates :admission_no,
             presence: { message: 'Please enter valid Admission No.' },
@@ -29,5 +32,42 @@ class Student < ApplicationRecord
 
   def set_initial_status
     self.deleted = :Active
+  end
+
+  def create_history_entry
+    StudentHistory.create(
+      student_id: id,
+      admission_no:,
+      roll_no:,
+      name:,
+      date_of_birth:,
+      gender:,
+      mobile_number:,
+      section_name: Section.find(section_id).section_name,
+      standard_name: Standard.find(Section.find(section_id).standard_id).name,
+      date_of_admission:,
+      address:,
+      father_name:,
+      mother_name:
+    )
+  end
+
+  def create_or_update_student_history
+    return unless student_history
+
+    student_history.update(
+      name:,
+      roll_no:,
+      admission_no:,
+      father_name:,
+      mother_name:,
+      mobile_number:,
+      address:,
+      gender:,
+      date_of_birth:,
+      date_of_admission:,
+      section_name: Section.find(section_id).section_name,
+      standard_name: Standard.find(Section.find(section_id).standard_id).name
+    )
   end
 end
