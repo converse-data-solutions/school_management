@@ -73,7 +73,7 @@ class StudentsController < ApplicationController
   end
 
   def promote
-    @selected_standard = params[:standard_id]
+    @selected_standard = params[:from_standard_id]
     @from_section = params[:from_section_id]
     @to_section = params[:to_section_id]
     @all_student = params[:additional_param]

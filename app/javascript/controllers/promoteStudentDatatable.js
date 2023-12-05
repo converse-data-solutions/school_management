@@ -18,7 +18,6 @@ function initValidate() {
     stateSave: false,
     columns: [
       { data: "admission_no", class: "admission_no" },
-      { data: "id", class: "id" },
       { data: "name", class: "student_name" },
       { data: "id", class: "id" },
     ],
@@ -43,6 +42,7 @@ function initValidate() {
       error: function (xhr, status, error) {},
     });
   });
+  
   $("#to_standard_id").on("change", function (event) {
     event.preventDefault();
 

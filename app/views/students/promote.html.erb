@@ -19,16 +19,20 @@
         <%= form_tag promote_students_path, method: :get do %>
           <div class='flex flex-col md:flex-row gap-2 md:items-center w-full gap-x-6'>
             <div class="w-full md:w-[25%]">
-              <%= label_tag :standard, "Standard", class: 'text-[15px] text-[#555555] font-semibold' %>
+              <%= label_tag :standard, "From Standard", class: 'text-[15px] text-[#555555] font-semibold' %>
               <%= select_tag :standard_id, options_from_collection_for_select(Standard.all, 'id', 'name', params[:standard_id]), prompt: 'Select a Standard', class: "border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 standard" %>
             </div>
             <div class="w-full md:w-[25%]" id="section-dropdown">
-              <%= label_tag :section, "Section", class: 'text-[15px] text-[#555555] font-semibold' %>
+              <%= label_tag :section, "From Section", class: 'text-[15px] text-[#555555] font-semibold' %>
               <%= select_tag :from_section_id, options_from_collection_for_select( Section.where(standard_id: params[:standard_id]), 'id', 'section_name', params[:from_section_id]), prompt: 'Select a Section', class: "border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 " %>
             </div>
-            <div class="w-full md:w-[25%]" id="section-dropdown">
+            <div class="w-full md:w-[25%]">
+              <%= label_tag :standard, "To Standard", class: 'text-[15px] text-[#555555] font-semibold' %>
+              <%= select_tag :to_standard_id, options_from_collection_for_select(Standard.all, 'id', 'name', params[:to_standard_id]), prompt: 'Select a Standard', class: "border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 standard" %>
+            </div>
+            <div class="w-full md:w-[25%]" id="to-section-dropdown">
               <%= label_tag :to_section, "To Section", class: 'text-[15px] text-[#555555] font-semibold' %>
-              <%= select_tag :to_section_id, options_from_collection_for_select(Section.all, 'id', 'section_name', params[:to_section_id]), prompt: 'Select a Section', class: "border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 " %>
+              <%= select_tag :to_section_id, options_from_collection_for_select( Section.where(standard_id: params[:to_standard_id]), 'id', 'section_name', params[:to_section_id]), prompt: 'Select a Section', class: "border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 " %>
             </div>
             <div class="w-full md:w-[25%]">
               <%= check_box_tag :additional_param, true, params[:additional_param] == 'true', class: 'border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] p-2.0' %>
@@ -53,7 +57,6 @@
         <thead class="bg-[#FFFFFF]">
           <tr>
             <th class="admission_no">Adm No</th>
-            <th class="student_id">ID</th>
             <th class="student_name">Student</th>
             <th class="student_action">Promote Student</th>
           </tr>
