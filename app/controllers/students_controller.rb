@@ -16,7 +16,13 @@ class StudentsController < ApplicationController
     @sections = Standard.find(params[:standard_id]).sections
     respond_to(&:js)
   end
+
   def getting_from_sections
+    @sections = Standard.find(params[:standard_id]).sections
+    respond_to(&:js)
+  end
+
+  def getting_to_sections
     @sections = Standard.find(params[:standard_id]).sections
     respond_to(&:js)
   end
@@ -28,8 +34,6 @@ class StudentsController < ApplicationController
   end
 
   def new
-    @standards = Standard.all
-    @sections = @standard&.sections || []
     @student = Student.new
   end
 
@@ -62,7 +66,6 @@ class StudentsController < ApplicationController
 
   def destroy
     @student.destroy!
-
     respond_to do |format|
       format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
       format.json { head :no_content }
@@ -71,14 +74,16 @@ class StudentsController < ApplicationController
 
   def promote
     @selected_standard = params[:standard_id]
-    @from_section = params[:from_section_id] # You might need to adjust this based on your data model
+    @from_section = params[:from_section_id]
     @to_section = params[:to_section_id]
     @all_student = params[:additional_param]
 
     @students = Student.where(section_id: @from_section, deleted: 'Active')
     respond_to do |format|
       format.html
-    format.json { render json: PromoteStudentDatatable.new(params, view_context: view_context, from_section: @from_section) }
+      format.json do
+        render json: PromoteStudentDatatable.new(params, view_context:, from_section: @from_section)
+      end
     end
   end
 
@@ -88,7 +93,7 @@ class StudentsController < ApplicationController
 
     Student.where(id: student_ids).update_all(section_id: new_section_id)
 
-    redirect_to display_students_path, notice: 'Sections updated successfully.'
+    redirect_to promote_students_path, notice: 'Sections updated successfully.'
   end
 
   private

@@ -32,13 +32,25 @@ function initValidate() {
     },
   });
 
-   $("#standard_id").on("change", function (event) {
+  $("#standard_id").on("change", function (event) {
+    event.preventDefault();
+    let standard_id = $(this).val();
+    $.ajax({
+      url: "/students/getting_from_sections",
+      type: "GET",
+      data: { standard_id: standard_id },
+      success: function (response) {},
+      error: function (xhr, status, error) {},
+    });
+  });
+  $("#to_standard_id").on("change", function (event) {
     event.preventDefault();
 
     let standard_id = $(this).val();
+    console.log(standard_id);
 
     $.ajax({
-      url: "/students/from_getting_sections",
+      url: "/students/getting_to_sections",
       type: "GET",
       data: { standard_id: standard_id },
       success: function (response) {},
