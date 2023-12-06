@@ -9,13 +9,13 @@
     <button class="accordian-header cursor-pointer leading-0 px-1 text-2xl border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up  "></i></button>
   </div>
   <div class="accordian-body">
-    <div class="bg-[#FFFFFF]  mx-[8px] md:mx-2 lg:mx-3 xl:mx-0 ">
+    
       <% if notice %>
         <div class="ml-2">
           <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
         </div>
       <% end %>
-      <div class="w-full  hidden  text-red-700   text-[14px] p-4 m-4 rounded bg-[#F2DEDE] " id="error-div">
+      <div class="w-[98%]  hidden  text-red-700   text-[14px] p-4 m-4 rounded bg-[#F2DEDE] " id="error-div">
         <ul>
           <li class="error" id="from_standard_error"></li>
           <li class="error" id="from_section_error"></li>
@@ -57,23 +57,23 @@
       <%= form_tag update_sections_students_path, id: 'frm-example', method: :post do %>
         <%= hidden_field_tag 'new_section_id', @to_section %>
         <div class="overflow-scroll">
-        <table id="promoteTable" class="stripe "  data-source="<%= promote_students_path(format: :json) %>">
-          <thead class="bg-[#FFFFFF]">
-            <tr>
-              <th class="s_no">S.No</th>
-              <th class="admission_no">Adm No</th>
-              <th class="student_name">Student</th>
-              <th class="student_action">Promote Student</th>
-            </tr>
-          </thead>
-          <tbody class="bg-[#F9F9F9] ">
-          </tbody>
-        </table>
+          <table id="promoteTable" class="stripe "  data-source="<%= promote_students_path(format: :json) %>">
+            <thead class="bg-[#FFFFFF]">
+              <tr>
+                <th class="s_no">S.No</th>
+                <th class="admission_no">Adm No</th>
+                <th class="student_name">Student</th>
+                <th class="student_action">Promote Student</th>
+              </tr>
+            </thead>
+            <tbody class="bg-[#F9F9F9] ">
+            </tbody>
+          </table>
         </div>
         <div class="flex justify-center   mb-8 md:left-[50%] md:right-[50%]">
           <%= submit_tag "Update",class:'text-white bg-[#83BA45]    focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2 text-center' %>
         </div>
       <% end %>
-    </div>
+    
   </div>
 </div>

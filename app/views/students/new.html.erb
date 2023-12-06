@@ -12,7 +12,7 @@
     <%= form_with(model: @student, data: { controller: "flatpickr" }, class: "contents") do |f| %>
       <div class="p-5 border-t bg-white flex flex-wrap" >
         <% if @student.errors.any? %>
-          <div class="w-full container text-red-700 mx-auto container mb-3 text-[14px] px-10 py-5 rounded bg-[#F2DEDE]">
+          <div class="w-full  text-red-700 mx-auto container mb-3 text-[14px] px-10 py-5 rounded bg-[#F2DEDE]">
             <ul>
               <li>
                 <% if @student.errors.has_key?(:admission_no) %>
