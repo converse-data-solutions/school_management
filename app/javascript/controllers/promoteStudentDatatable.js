@@ -18,9 +18,9 @@ function initValidate() {
       { data: "id", class: "id" },
       { data: "admission_no", class: "admission_no" },
       { data: "name", class: "student_name" },
-      { data: "check_box", class: "id", defaultContent: true }, // Set default value to true
+      { data: "check_box", class: "check_box" },
     ],
-    
+
     oLanguage: {
       oPaginate: {
         sPrevious:
@@ -54,6 +54,58 @@ function initValidate() {
       success: function (response) {},
       error: function (xhr, status, error) {},
     });
+  });
+
+  $(".all").on("click", function () {
+    var $inputs = $("table").find("input");
+    $inputs.prop("checked", "checked");
+  });
+
+  $("#frm-example").on("submit", function (e) {
+    let from_standard = $("#standard_id").val();
+    let from_section = $(".fsection").val();
+    let to_standard = $("#to_standard_id").val();
+    let to_section = $(".tsection").val();
+
+    let err = $("#error-div");
+    let isChecked;
+
+    $(".error").text("");
+    $(".error").css("color", "red");
+    let errors = false;
+
+    if ($("#students_:checked").length > 0) {
+      isChecked = true;
+    } else {
+      isChecked = false;
+    }
+
+    if (!isChecked) {
+      $("#student_error").text("Please select  student.");
+      errors = true;
+    }
+
+    if (!from_standard || !to_standard) {
+      $("#from_standard_error").text("Please Select Standard.");
+      errors = true;
+    }
+    if (!from_section || !to_section) {
+      $("#from_section_error").text("Please select Section.");
+      errors = true;
+    }
+
+    if (errors == true) {
+      err.removeClass("hidden");
+    } else {
+      err.addClass("hidden");
+    }
+
+    if (errors) {
+      e.preventDefault();
+      return false;
+    }
+
+    return true;
   });
 }
 

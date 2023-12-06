@@ -2,7 +2,6 @@ class PromoteStudentDatatable < AjaxDatatablesRails::ActiveRecord
   def initialize(params, opts = {})
     @from_section = opts[:from_section]
     @all_student = opts[:all_student]
-    puts 
     super(params)
   end
 
@@ -22,7 +21,7 @@ class PromoteStudentDatatable < AjaxDatatablesRails::ActiveRecord
         id: record.id,
         admission_no: record.admission_no,
         name: record.name,
-        check_box: @all_student ? true : record.decorate.check_box
+        check_box: record.decorate.check_box
       }
     end
   end

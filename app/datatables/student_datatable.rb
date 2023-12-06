@@ -23,6 +23,7 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
         mobile_number: record.mobile_number,
         standard_name: record.section.standard.name,
         section_name: record.section.section_name,
+        roll_no: record.roll_no,
         gender: record.gender,
         student_status: record.decorate.student_status,
         student_actions: record.decorate.student_actions

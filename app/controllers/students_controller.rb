@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
   end
 
   def active_student
-    @student = Student.find(params[:id])
+    @student = Student.find_(params[:id])
     toggle_user_status
     redirect_to students_path
   end
@@ -77,12 +77,10 @@ class StudentsController < ApplicationController
     @from_section = params[:from_section_id]
     @to_section = params[:to_section_id]
     @all_student = params[:additional_param]
-
-    @students = Student.where(section_id: @from_section, deleted: 'Active')
     respond_to do |format|
       format.html
       format.json do
-        render json: PromoteStudentDatatable.new(params, view_context:, from_section: @from_section, all_student: @all_student)
+        render json: PromoteStudentDatatable.new(params, view_context:, from_section: @from_section)
       end
     end
   end

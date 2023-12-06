@@ -2,7 +2,6 @@ function initValidate() {
   function toggleRemoveLink() {
     let visibleSectionCount = $(".section_fields:visible").length;
 
-    console.log(visibleSectionCount);
     if (visibleSectionCount === 1) {
       $(".remove_section").hide();
     } else {
