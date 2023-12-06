@@ -1,5 +1,5 @@
 #myTable,
-#staffTable, #standardTable, #studentTable, #historyTable {
+#staffTable, #standardTable, #studentTable, #historyTable, #promoteTable {
   border-collapse: collapse;
   color: #555555;
   padding: 10px;
@@ -13,13 +13,13 @@ td.standard_action {
 #myTable th,
 #myTable td,
 #staffTable th,
-#staffTable td, #standardTable th, #standardTable td, #studentTable th, #studentTable td, #historyTable th, #historyTable td {
+#staffTable td, #standardTable th, #standardTable td, #studentTable th, #studentTable td, #historyTable th, #historyTable td, #promoteTable th, #promoteTable td {
   padding: 10px;
   border: 1px solid #ddd;
 }
 
 #myTable th,
-#staffTable th, #standardTable th , #studentTable th, #historyTable th {
+#staffTable th, #standardTable th , #studentTable th, #historyTable th, #promoteTable th {
   background-color: #f2f2f2;
   color: #555555;
   font-size: 14px;
@@ -28,7 +28,7 @@ td.standard_action {
 }
 
 #myTable td,
-#staffTable td, #standardTable td, #studentTable td, #historyTable td {
+#staffTable td, #standardTable td, #studentTable td, #historyTable td , #promoteTable td {
   color: #555555;
   font-size: 14px;
   background-color: #ffffff;
@@ -111,7 +111,7 @@ th.standard_action.sorting {
 }
 
 div#myTable_info,
-div#staffTable_info, #standardTable_info, #studentTable_info, #historyTable_info {
+div#staffTable_info, #standardTable_info, #studentTable_info, #historyTable_info, #promoteTable_info {
   margin-left: 20px;
   color: #54577a;
   font-size: 14px;
@@ -186,12 +186,12 @@ th.student_action.sorting {
   }
 
   table#myTable,
-  table#staffTable, table#standardTable, table#studentTable, table#historyTable {
+  table#staffTable, table#standardTable, table#studentTable, table#historyTable, #promoteTable {
     width: max-content !important;
   }
 
   table#myTable,
-  table#staffTable, table#standardTable, table#studentTable, table#historyTable {
+  table#staffTable, table#standardTable, table#studentTable, table#historyTable, #table#promoteTable {
     width: max-content;
   }
 
@@ -227,7 +227,7 @@ th.student_action.sorting {
   }
 
   table#myTable,
-  table#staffTable, table#standardTable, table#studentTable, table#historyTable {
+  table#staffTable, table#standardTable, table#studentTable, table#historyTable, table#promoteTable {
     width: max-content !important;
   }
 }
@@ -279,7 +279,7 @@ th.student_action.sorting {
   }
 
   table#myTable,
-  table#staffTable, table#standardTable, table#studentTable, table#historyTable {
+  table#staffTable, table#standardTable, table#studentTable, table#historyTable, table#promoteTable {
     width: 98% !important;
   }
 }
@@ -396,7 +396,7 @@ a.paginate_button.current {
 }
 
 div#myTable_paginate,
-div#staffTable_paginate, div#standardTable_paginate, div#studentTable_paginate, div#historyTable_paginate {
+div#staffTable_paginate, div#standardTable_paginate, div#studentTable_paginate, div#historyTable_paginate, div#promoteTable_paginate {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -406,7 +406,7 @@ div#staffTable_paginate, div#standardTable_paginate, div#studentTable_paginate, 
 }
 
 a#myTable_previous,
-a#staffTable_previous, a#standardTable_previous, a#studentTable_previous, a#historyTable_previous {
+a#staffTable_previous, a#standardTable_previous, a#studentTable_previous, a#historyTable_previous, a#promoteTable_previous {
   cursor: pointer;
   color: #666 !important;
   border-top-left-radius: 5px;
@@ -419,7 +419,7 @@ a#staffTable_previous, a#standardTable_previous, a#studentTable_previous, a#hist
 }
 
 a#myTable_next,
-a#staffTable_next, a#standardTable_next, a#studentTable_next, a#historyTable_next {
+a#staffTable_next, a#standardTable_next, a#studentTable_next, a#historyTable_next, a#promoteTable_next {
   color: #39a9e8 !important;
   cursor: pointer;
   border-top-right-radius: 5px;

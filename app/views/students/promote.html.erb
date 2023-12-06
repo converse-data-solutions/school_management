@@ -58,21 +58,11 @@
           <tbody class="bg-[#F9F9F9] ">
           </tbody>
         </table>
-        <%= submit_tag 'Update Sections' %>
-        <p><b>Selected rows data:</b></p>
-        <pre id="example-console-rows"></pre>
-        <p><b>Form data as submitted to the server:</b></p>
-        <pre id="example-console-form"></pre>
+        
+        <div class="flex justify-center   mb-8 md:left-[50%] md:right-[50%]">
+            <%= submit_tag "Update",class:'text-white bg-[#83BA45]    focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2 text-center' %>
+          </div>
       <% end %>
     </div>
   </div>
 </div>
-<%= form_tag update_sections_students_path, method: :post do %>
-  <br>
-  <% default_checked = @all_student == 'true' ? true : false %>
-  <% @students.each do |student| %>
-    <%= check_box_tag 'student_ids[]', student.id, default_checked %>
-    <%= student.name %> <br>
-  <% end %>
-  <%= submit_tag 'Update Sections' %>
-<% end %>

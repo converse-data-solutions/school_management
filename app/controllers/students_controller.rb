@@ -82,13 +82,13 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render json: PromoteStudentDatatable.new(params, view_context:, from_section: @from_section)
+        render json: PromoteStudentDatatable.new(params, view_context:, from_section: @from_section, all_student: @all_student)
       end
     end
   end
 
   def update_sections
-    student_ids = params[:student_ids]
+    student_ids = params[:students]
     new_section_id = params[:new_section_id]
 
     Student.where(id: student_ids).update_all(section_id: new_section_id)
