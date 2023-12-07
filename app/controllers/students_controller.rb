@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
   end
 
   def active_student
-    @student = Student.find_(params[:id])
+    @student = Student.find(params[:id])
     toggle_user_status
     redirect_to students_path
   end
