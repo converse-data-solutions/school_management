@@ -88,9 +88,7 @@ class StudentsController < ApplicationController
   def update_sections
     student_ids = params[:students]
     new_section_id = params[:new_section_id]
-
-    Student.where(id: student_ids).update_all(section_id: new_section_id)
-
+    Student.update_sections(student_ids, new_section_id)
     redirect_to promote_students_path, notice: 'Sections updated successfully.'
   end
 

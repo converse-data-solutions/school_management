@@ -15,12 +15,15 @@ function initValidate() {
     },
     stateSave: false,
     columns: [
-      { data: "id", class: "id" },
+      { data: "serial_number", class: "serial_number" },
       { data: "admission_no", class: "admission_no" },
       { data: "name", class: "student_name" },
+      { data: "id", class: "id" },
       { data: "check_box", class: "check_box" },
     ],
-
+    createdRow: function (row, data, dataIndex) {
+      $("td:eq(0)", row).html(dataIndex + 1);
+    },
     oLanguage: {
       oPaginate: {
         sPrevious:
@@ -57,7 +60,7 @@ function initValidate() {
   });
 
   $(".all").on("click", function () {
-    var $inputs = $("table").find("input");
+    let $inputs = $("table").find("input");
     $inputs.prop("checked", "checked");
   });
 

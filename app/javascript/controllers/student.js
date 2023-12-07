@@ -22,6 +22,33 @@ function initValidate() {
     let username = $(".SelExample option:selected").text();
     let userid = $(".SelExample").val();
   });
+  $("form").on("submit", function (e) {
+    let section_value = $("#student_section_id").val();
+    let err = $("#error-div");
+
+    $(".error").text("");
+   
+    let errors = false;
+
+    if (!section_value || !section_value.trim()) {
+      $("#section-error").text("Please enter a Section.");
+      errors = true;
+      
+    }
+
+    if (errors == true) {
+      err.removeClass("hidden");
+    } else {
+      err.addClass("hidden");
+    }
+
+    if (errors) {
+      e.preventDefault();
+      return false;
+    }
+
+    return true;
+  });
 }
 
 $(document).ready(function () {

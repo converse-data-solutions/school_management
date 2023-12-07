@@ -1,5 +1,5 @@
 class UserDecorator < ApplicationDecorator
-  delegate :username, :email, :mobile_number, :address, :profession, :gender
+  delegate_all
   def link_to
     h.link_to object.username
     h.link_to object.username

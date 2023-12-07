@@ -32,7 +32,7 @@ class StudentHistoryDatatable < AjaxDatatablesRails::ActiveRecord
         mobile_number: record.mobile_number,
         roll_no: record.roll_no,
         section_name: record.section_name,
-        standard_name: record.standard_name,
+        standard_name: record.standard_name
       }
     end
   end

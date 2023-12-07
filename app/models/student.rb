@@ -6,14 +6,11 @@ class Student < ApplicationRecord
   has_many :student_history
   before_create :set_initial_status
   after_create :create_history_entry
-  before_update :create_or_update_student_history
-  
 
-  scope :active, -> { where(deleted: :Active) }
-
-  validates :admission_no,
-            presence: { message: 'Please enter valid Admission No.' },
-            numericality: { only_integer: true, message: 'Admission No. must be an integer' }
+  validates :admission_no, uniqueness: { message: 'Admission No. must be unique.' },
+                           numericality: { only_integer: true, message: 'Admission No. must be an integer' },
+                           presence: { message: 'Please enter Admission No.' },
+                           length: { is: 6, message: 'Admission No. must be 6 digits.' }
   validates :section_id, presence: { message: 'Please select Standard and Section.' }
   validates :user_id, presence: { message: 'Please select Parent.' }
   validates :roll_no, presence: { message: 'Please enter Roll No.' }
@@ -30,6 +27,29 @@ class Student < ApplicationRecord
                               message: 'Mobile Number  Must Be Exactly 10 Digits'
                             },
                             allow_blank: true
+
+  def self.update_sections(student_ids, new_section_id)
+    student_ids.each do |student_id|
+      student = Student.find(student_id)
+      StudentHistory.create(
+        student_id:,
+        admission_no: student.admission_no,
+        roll_no: student.roll_no,
+        name: student.name,
+        date_of_birth: student.date_of_birth,
+        gender: student.gender,
+        mobile_number: student.mobile_number,
+        section_name: Section.find(new_section_id).section_name,
+        standard_name: Standard.find(Section.find(new_section_id).standard_id).name,
+        date_of_admission: student.date_of_admission,
+        address: student.address,
+        father_name: student.father_name,
+        mother_name: student.mother_name
+      )
+    end
+
+    Student.where(id: student_ids).update_all(section_id: new_section_id)
+  end
 
   private
 
@@ -52,25 +72,6 @@ class Student < ApplicationRecord
       address:,
       father_name:,
       mother_name:
-    )
-  end
-
-  def create_or_update_student_history
-    return unless student_history
-
-    student_history.update(
-      name:,
-      roll_no:,
-      admission_no:,
-      father_name:,
-      mother_name:,
-      mobile_number:,
-      address:,
-      gender:,
-      date_of_birth:,
-      date_of_admission:,
-      section_name: Section.find(section_id).section_name,
-      standard_name: Standard.find(Section.find(section_id).standard_id).name
     )
   end
 end

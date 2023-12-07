@@ -7,19 +7,20 @@ class PromoteStudentDatatable < AjaxDatatablesRails::ActiveRecord
 
   def view_columns
     @view_columns ||= {
-      id: { source: 'Student.id' },
+      serial_number: { source: 'Student.id', orderable: false, cond: :eq, searchable: false },
       admission_no: { source: 'Student.admission_no' },
+      id: { source: 'Student.id' },
       name: { source: 'Student.name' },
-      check_box: { source: 'StudentDecorator.check_box', searchable: false },
-
+      check_box: { source: 'StudentDecorator.check_box', searchable: false }
     }
   end
 
   def data
-    records.map do |record|
+    records.map.with_index(1) do |record, index|
       {
-        id: record.id,
+        serial_number: index,
         admission_no: record.admission_no,
+        id: record.id,
         name: record.name,
         check_box: record.decorate.check_box
       }

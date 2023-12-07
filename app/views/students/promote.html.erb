@@ -9,71 +9,70 @@
     <button class="accordian-header cursor-pointer leading-0 px-1 text-2xl border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up  "></i></button>
   </div>
   <div class="accordian-body">
-    
-      <% if notice %>
-        <div class="ml-2">
-          <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
-        </div>
-      <% end %>
-      <div class="w-[98%]  hidden  text-red-700   text-[14px] p-4 m-4 rounded bg-[#F2DEDE] " id="error-div">
-        <ul>
-          <li class="error" id="from_standard_error"></li>
-          <li class="error" id="from_section_error"></li>
-          <li class="error" id="to_standard_error"></li>
-          <li class="error" id="to_section_error"></li>
-          <li class="error" id="student_error"></li>
-        </ul>
+    <% if notice %>
+      <div class="ml-2">
+        <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
       </div>
-      <div class='p-3 w-full '>
-        <%= form_tag promote_students_path, method: :get do %>
-          <div class='flex flex-col md:flex-row gap-2 md:items-center w-full gap-x-6 flex-wrap'>
-            <div class="w-full md:w-[20%] lg:w-[15%]">
-              <%= label_tag :standard, "From Standard", class: 'text-[15px] text-[#555555] font-semibold' %>
-              <%= select_tag :standard_id, options_from_collection_for_select(Standard.all, 'id', 'name', params[:standard_id]), prompt: 'Select a Standard', class: "border border-gray-300 bg-[#FFFFFF] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 standard" %>
-            </div>
-            <div class="w-full md:w-[20%] lg:w-[15%]" id="section-dropdown">
-              <%= label_tag :section, "From Section", class: 'text-[15px] text-[#555555] font-semibold' %>
-              <%= select_tag :from_section_id, options_from_collection_for_select( Section.where(standard_id: params[:standard_id]), 'id', 'section_name', params[:from_section_id]), prompt: 'Select a Section', class: "fsection border border-gray-300 bg-[#FFFFFF] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 " %>
-            </div>
-            <div class="w-full md:w-[20%] lg:w-[15%]">
-              <%= label_tag :standard, "To Standard", class: 'text-[15px] text-[#555555] font-semibold' %>
-              <%= select_tag :to_standard_id, options_from_collection_for_select(Standard.all, 'id', 'name', params[:to_standard_id]), prompt: 'Select a Standard', class: "border border-gray-300 bg-[#FFFFFF] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 standard" %>
-            </div>
-            <div class="w-full md:w-[20%] lg:w-[15%]" id="to-section-dropdown">
-              <%= label_tag :to_section, "To Section", class: 'text-[15px] text-[#555555] font-semibold' %>
-              <%= select_tag :to_section_id, options_from_collection_for_select( Section.where(standard_id: params[:to_standard_id]), 'id', 'section_name', params[:to_section_id]), prompt: 'Select a Section', class: "tsection border border-gray-300 bg-[#FFFFFF] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 " %>
-            </div>
-            <div class="md:mt-[20px] lg:w-[18%]">
-              <%= submit_tag 'Filter', class: 'text-white bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2 text-center' %>
-              <%= link_to 'Reset', promote_students_path, class: 'text-white bg-[#47AEEA] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2.5 text-center' %>
-            </div>
+    <% end %>
+    <div class="w-[98%]  hidden  text-red-700   text-[14px] p-4 m-4 rounded bg-[#F2DEDE] " id="error-div">
+      <ul>
+        <li class="error" id="from_standard_error"></li>
+        <li class="error" id="from_section_error"></li>
+        <li class="error" id="to_standard_error"></li>
+        <li class="error" id="to_section_error"></li>
+        <li class="error" id="student_error"></li>
+      </ul>
+    </div>
+    <div class='p-3 w-full '>
+      <%= form_tag promote_students_path, method: :get do %>
+        <div class='flex flex-col md:flex-row gap-2 md:items-center w-full gap-x-6 flex-wrap'>
+          <div class="w-full md:w-[20%] lg:w-[15%]">
+            <%= label_tag :standard, "From Standard", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= select_tag :standard_id, options_from_collection_for_select(Standard.all, 'id', 'name', params[:standard_id]), prompt: 'Select a Standard', class: "border border-gray-300 bg-[#FFFFFF] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 standard" %>
           </div>
-        <% end %>
-      </div>
-      <div class="w-full md:w-[25%] lg:ml-4 mt-4" >
-        <span class='text-[15px] text-[#555555] font-semibold pr-4' >Select All</span>
-        <input type="checkbox" class="all">
-      </div>
-      <%= form_tag update_sections_students_path, id: 'frm-example', method: :post do %>
-        <%= hidden_field_tag 'new_section_id', @to_section %>
-        <div class="overflow-scroll">
-          <table id="promoteTable" class="stripe "  data-source="<%= promote_students_path(format: :json) %>">
-            <thead class="bg-[#FFFFFF]">
-              <tr>
-                <th class="s_no">S.No</th>
-                <th class="admission_no">Adm No</th>
-                <th class="student_name">Student</th>
-                <th class="student_action">Promote Student</th>
-              </tr>
-            </thead>
-            <tbody class="bg-[#F9F9F9] ">
-            </tbody>
-          </table>
-        </div>
-        <div class="flex justify-center   mb-8 md:left-[50%] md:right-[50%]">
-          <%= submit_tag "Update",class:'text-white bg-[#83BA45]    focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2 text-center' %>
+          <div class="w-full md:w-[20%] lg:w-[15%]" id="section-dropdown">
+            <%= label_tag :section, "From Section", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= select_tag :from_section_id, options_from_collection_for_select( Section.where(standard_id: params[:standard_id]), 'id', 'section_name', params[:from_section_id]), prompt: 'Select a Section', class: "fsection border border-gray-300 bg-[#FFFFFF] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 " %>
+          </div>
+          <div class="w-full md:w-[20%] lg:w-[15%]">
+            <%= label_tag :standard, "To Standard", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= select_tag :to_standard_id, options_from_collection_for_select(Standard.all, 'id', 'name', params[:to_standard_id]), prompt: 'Select a Standard', class: "border border-gray-300 bg-[#FFFFFF] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 standard" %>
+          </div>
+          <div class="w-full md:w-[20%] lg:w-[15%]" id="to-section-dropdown">
+            <%= label_tag :to_section, "To Section", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= select_tag :to_section_id, options_from_collection_for_select( Section.where(standard_id: params[:to_standard_id]), 'id', 'section_name', params[:to_section_id]), prompt: 'Select a Section', class: "tsection border border-gray-300 bg-[#FFFFFF] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 " %>
+          </div>
+          <div class="md:mt-[20px] lg:w-[18%]">
+            <%= submit_tag 'Filter', class: 'text-white bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2 text-center' %>
+            <%= link_to 'Reset', promote_students_path, class: 'text-white bg-[#47AEEA] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2.5 text-center' %>
+          </div>
         </div>
       <% end %>
-    
+    </div>
+    <div class="w-full md:w-[25%] lg:ml-4 mt-4" >
+      <span class='text-[15px] text-[#555555] font-semibold pr-4' >Select All</span>
+      <input type="checkbox" class="all">
+    </div>
+    <%= form_tag update_sections_students_path, id: 'frm-example', method: :post do %>
+      <%= hidden_field_tag 'new_section_id', @to_section %>
+      <div class="overflow-scroll">
+        <table id="promoteTable" class="stripe "  data-source="<%= promote_students_path(format: :json) %>">
+          <thead class="bg-[#FFFFFF]">
+            <tr>
+              <th class="student_action">S.no</th>
+              <th class="admission_no">Admission No</th>
+              <th class="student_name">Student ID</th>
+              <th class="student_name">Student</th>
+              <th class="student_action">Promote Student</th>
+            </tr>
+          </thead>
+          <tbody class="bg-[#F9F9F9] ">
+          </tbody>
+        </table>
+      </div>
+      <div class="flex justify-center   mb-8 md:left-[50%] md:right-[50%]">
+        <%= submit_tag "Update",class:'text-white bg-[#83BA45]    focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2 text-center' %>
+      </div>
+    <% end %>
   </div>
 </div>
