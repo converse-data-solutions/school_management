@@ -12,17 +12,17 @@ class StudentsController < ApplicationController
 
   def show; end
 
-  def getting_sections
+  def find_sections
     @sections = Standard.find(params[:standard_id]).sections
     respond_to(&:js)
   end
 
-  def getting_from_sections
+  def find_from_sections
     @sections = Standard.find(params[:standard_id]).sections
     respond_to(&:js)
   end
 
-  def getting_to_sections
+  def find_to_sections
     @sections = Standard.find(params[:standard_id]).sections
     respond_to(&:js)
   end

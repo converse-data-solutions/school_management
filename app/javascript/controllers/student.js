@@ -60,7 +60,7 @@ $(document).ready(function () {
   $(document).on("change", "#student_standard_id", function () {
     let standard_id = $(this).val();
     $.ajax({
-      url: "/students/getting_sections",
+      url: "/students/find_sections",
       type: "GET",
       data: { standard_id: standard_id },
     });

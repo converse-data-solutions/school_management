@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
   resources :students do
     collection do
-      get :getting_sections
-      get :getting_from_sections
-      get :getting_to_sections
+      get :find_sections
+      get :find_from_sections
+      get :find_to_sections
       get 'promote'
       post 'update_sections'
     end
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       post :update_all
     end
     collection do
-      get :getting_sections
+      get :find_sections
     end
   end
 

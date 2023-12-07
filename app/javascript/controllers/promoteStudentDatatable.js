@@ -38,7 +38,7 @@ function initValidate() {
     event.preventDefault();
     let standard_id = $(this).val();
     $.ajax({
-      url: "/students/getting_from_sections",
+      url: "/students/find_from_sections",
       type: "GET",
       data: { standard_id: standard_id },
       success: function (response) {},
@@ -51,7 +51,7 @@ function initValidate() {
 
     let standard_id = $(this).val();
     $.ajax({
-      url: "/students/getting_to_sections",
+      url: "/students/find_to_sections",
       type: "GET",
       data: { standard_id: standard_id },
       success: function (response) {},
