@@ -29,26 +29,34 @@ class Student < ApplicationRecord
                             allow_blank: true
 
   def self.update_sections(student_ids, new_section_id)
-    student_ids.each do |student_id|
-      student = Student.find(student_id)
+    section = Section.find(new_section_id)
+
+    students = Student.where(id: student_ids)
+
+    students.each do |student|
+      history_data = student.attributes.slice(
+        'admission_no',
+        'roll_no',
+        'name',
+        'date_of_birth',
+        'gender',
+        'mobile_number',
+        'date_of_admission',
+        'address',
+        'father_name',
+        'mother_name'
+      )
+
       StudentHistory.create(
-        student_id:,
-        admission_no: student.admission_no,
-        roll_no: student.roll_no,
-        name: student.name,
-        date_of_birth: student.date_of_birth,
-        gender: student.gender,
-        mobile_number: student.mobile_number,
-        section_name: Section.find(new_section_id).section_name,
-        standard_name: Standard.find(Section.find(new_section_id).standard_id).name,
-        date_of_admission: student.date_of_admission,
-        address: student.address,
-        father_name: student.father_name,
-        mother_name: student.mother_name
+        history_data.merge(
+          'student_id' => student.id,
+          'section_name' => section.section_name,
+          'standard_name' => Standard.find(section.standard_id).name
+        )
       )
     end
 
-    Student.where(id: student_ids).update_all(section_id: new_section_id)
+    students.update_all(section_id: new_section_id)
   end
 
   private
