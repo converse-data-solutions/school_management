@@ -11,7 +11,7 @@
   <div class="accordian-body">
     <%= form_with(model: @student, data: { controller: "flatpickr" },class: "contents") do |f| %>
       <div class="p-5 border-t bg-white flex flex-wrap" >
-       
+        
         <% if @student.errors.any? %>
           <div class="w-full text-red-700 mx-auto container mb-3 text-[14px] px-10 py-5 rounded bg-[#F2DEDE]">
             <ul>
@@ -43,6 +43,12 @@
               </li>
             </ul>
           </div>
+        <% else %>
+        <div class="w-full container hidden  text-red-700 mx-auto conatiner mb-3  text-[14px] p-4 rounded bg-[#F2DEDE] " id="error-div">
+          <ul>
+            <li class="error" id="section-error"></li>
+          </ul>
+        </div>
         <% end %>
         <div class="w-full md:w-[75%]">
           <div class="flex   flex-wrap md:gap-3 lg:gap-4">

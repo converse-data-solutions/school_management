@@ -13,31 +13,32 @@ function initValidate() {
     });
   });
 
-  $("form").on("submit", function (e) {
-    let dateValue = $("#date").val();
-    let err = $("#error-div");
-
-    $(".error").text("");
-    $(".error").css("color", "red");
-    let errors = false;
-
-    if (!dateValue || !dateValue.trim()) {
-      $("#date-error").text("Please enter a Date.");
-      errors = true;
-    }
-
-    if (errors == true) {
-      err.removeClass("hidden");
-    } else {
-      err.addClass("hidden");
-    }
-
-    if (errors) {
-      e.preventDefault();
-      return false;
-    }
-
-    return true;
+  $("form").validate({
+    rules: {
+      date: {
+        required: true,
+      },
+    },
+    messages: {
+      date: {
+        required: "Please enter a Date.",
+      },
+    },
+    errorElement: "div",
+    errorClass: "error",
+    errorPlacement: function (error, element) {
+      error.appendTo("#error-div");
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass(errorClass).removeClass(validClass);
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass(errorClass).addClass(validClass);
+    },
+    submitHandler: function (form) {
+      // Your form submission code here
+      // For example: form.submit();
+    },
   });
 }
 $(document).ready(function () {
