@@ -91,8 +91,9 @@ function initValidate() {
       $("#standard-error").text("Please enter a Standard Name.");
       errors = true;
     }
-    if (!fee || !fee.trim()) {
-      $("#fee-error").text("Please enter a Fee.");
+    
+    if (validator.isInt(fee) == false) {
+      $("#fee-error").text("Please enter a valid Fee.");
       errors = true;
     }
 

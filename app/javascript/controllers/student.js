@@ -14,14 +14,6 @@ function initValidate() {
       previewBox.append(img);
     });
   }
-  $(".SelExample").select2({
-    placeholder: "Select an Parent",
-  });
-  $(".SelExample").val("4").trigger("change");
-  $("#but_read").click(function () {
-    let username = $(".SelExample option:selected").text();
-    let userid = $(".SelExample").val();
-  });
   $("form").on("submit", function (e) {
     let section_value = $("#student_section_id").val();
     let err = $("#error-div");

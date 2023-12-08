@@ -11,3 +11,5 @@ pin "datatables.net-dt", to: "https://ga.jspm.io/npm:datatables.net-dt@1.13.3/js
 pin "datatables.net", to: "https://ga.jspm.io/npm:datatables.net@1.13.3/js/jquery.dataTables.mjs"
 pin "jquery", to: "https://ga.jspm.io/npm:jquery@3.7.1/dist/jquery.js"
 pin "flatpickr", to: "https://ga.jspm.io/npm:flatpickr@4.6.13/dist/esm/index.js"
+# pin "validator", to: "https://ga.jspm.io/npm:validator@13.7.0/es2022/index.js"
+pin "npm:validator", to: "validator@^13.6.0"
