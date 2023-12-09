@@ -29,7 +29,7 @@ class Student < ApplicationRecord
                             allow_blank: true
 
   def self.update_sections(student_ids, new_section_id)
-    section = Section.find_by(id:new_section_id)
+    section = Section.find_by(id: new_section_id)
 
     students = Student.where(id: student_ids)
 
