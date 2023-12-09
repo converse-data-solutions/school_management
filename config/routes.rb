@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'notices/index'
+  get 'notices/new_parent'
+  get 'notices/new_staff'
+  get 'notices/create'
+  get 'notices/edit'
+  get 'notices/update'
   get 'student_histories/index'
   devise_for :users
   root 'home#index'

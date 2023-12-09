@@ -8,6 +8,7 @@ class User < ApplicationRecord
   before_create :set_initial_status
   has_many :students, dependent: :destroy
   has_many :attendances, as: :attendable
+  has_many :notices, dependent: :destroy
 
   private
 
