@@ -4,7 +4,6 @@ class Admin::ParentUsersController < ApplicationController
   before_action :set_user, only: %i[edit update destroy active_user]
 
   def index
-    @parents = User.where(role: 'parent')
     respond_to do |format|
       format.html
       format.json { render json: ParentUserDatatable.new(params) }
