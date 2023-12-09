@@ -32,9 +32,8 @@ $(document).ready(function () {
   });
   $(document).on("change", "#student_standard_id", function () {
     let standard_id = $(this).val();
-    console.log(standard_id);
     $.ajax({
-      url: "/students/get_sections",
+      url: "/students/find_sections",
       type: "GET",
       data: { standard_id: standard_id },
     });

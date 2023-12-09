@@ -5,8 +5,8 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
       name: { source: 'Student.name' },
       date_of_birth: { source: 'Student.date_of_birth' },
       mobile_number: { source: 'Student.mobile_number', searchable: true },
-      standard_name: { source: 'Standard.name', searchable: true }, # Add this line for standard_name
-      section_name: { source: 'Section.section_name', searchable: true }, # Add this line for section_name
+      standard_name: { source: 'Standard.name', searchable: true },
+      section_name: { source: 'Section.section_name', searchable: true },
       roll_no: { source: 'Student.roll_no', searchable: true },
       gender: { source: 'Student.gender', searchable: false },
       student_status: { source: 'StudentDecorator.student_status', searchable: false },
@@ -21,8 +21,8 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
         name: record.name,
         date_of_birth: record.date_of_birth.strftime('%d-%m-%Y'),
         mobile_number: record.mobile_number,
-        standard_name: record.section.standard.name, # Access standard_name through the association
-        section_name: record.section.section_name, # Access section_name through the association
+        standard_name: record.section.standard.name,
+        section_name: record.section.section_name,
         roll_no: record.roll_no,
         gender: record.gender,
         student_status: record.decorate.student_status,
@@ -32,6 +32,6 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    Student.joins(section: :standard) # Join with Section and Standard tables
+    Student.joins(section: :standard)
   end
 end

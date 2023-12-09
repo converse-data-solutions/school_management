@@ -1,5 +1,5 @@
 <%= content_for :head do %>
-  <%= javascript_import_module_tag "controllers/student" %>
+  <%= javascript_import_module_tag "controllers/student/student" %>
 <% end %>
 <div class="container bg-[#F5F5F5] mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-8 p-1 text-[#39A9E8] pl-4"><span><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span><%= link_to "Manage Students", students_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Edit Student</span></div>
 <div class=" container mx-auto rounded-[5px] border-2">
@@ -12,13 +12,14 @@
     <%= form_with(model: @student, data: { controller: "flatpickr" },class: "contents") do |f| %>
       <div class="p-5 border-t bg-white flex flex-wrap" >
         <% if @student.errors.any? %>
-          <div class="w-full container text-red-700 mx-auto container mb-3 text-[14px] px-10 py-5 rounded bg-[#F2DEDE]">
+          <div class="w-full text-red-700 mx-auto container mb-3 text-[14px] px-10 py-5 rounded bg-[#F2DEDE]">
             <ul>
               <li>
                 <% if @student.errors.has_key?(:admission_no) %>
                   <%= @student.errors[:admission_no].first %>
                 <% end %>
               </li>
+              <li class="error" id="section-error"></li>
               <li>
                 <% if @student.errors.has_key?(:section_id) %>
                   <%= @student.errors[:section_id].first %>
@@ -39,6 +40,12 @@
                   <%= @student.errors[:mobile_number].first %>
                 <% end %>
               </li>
+            </ul>
+          </div>
+        <% else %>
+          <div class="w-full container hidden  text-red-700 mx-auto conatiner mb-3  text-[14px] p-4 rounded bg-[#F2DEDE] " id="error-div">
+            <ul>
+              <li class="error" id="section-error"></li>
             </ul>
           </div>
         <% end %>
@@ -90,7 +97,7 @@
             </div>
             <div class="w-full md:w-[48.5%] lg:w-[23.5%]">
               <label for="parent" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Select parent</label>
-              <%= f.collection_select :user_id, User.where(role: "parent"), :id, :name,{ prompt: "Select Parent" }, { class: 'text-[14px] SelExample'} %>
+              <%= f.collection_select :user_id, User.where(role: "parent"), :id, :name, { selected: @student.user.id }, { class: 'text-[14px] SelExample' } %>
             </div>
             <div class="w-full  md:w-[48.5%] lg:w-[23.5%]">
               <label for="gender" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Gender</label>

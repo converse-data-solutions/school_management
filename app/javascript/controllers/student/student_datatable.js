@@ -22,6 +22,7 @@ function initValidate() {
       { data: "student_status", class: "parent_status" },
       { data: "student_actions", class: "student_action" },
     ],
+    stripeClasses: ['bg-[#F9F9F9]', 'bg-[#FFFFFF]'],
     oLanguage: {
       oPaginate: {
         sPrevious:

@@ -5,7 +5,7 @@ function initValidate() {
     let standard_id = $(this).val();
 
     $.ajax({
-      url: "/student_attendances/get_sections",
+      url: "/student_attendances/find_sections",
       type: "GET",
       data: { standard_id: standard_id },
       success: function (response) {},
@@ -21,8 +21,8 @@ function initValidate() {
     $(".error").css("color", "red");
     let errors = false;
 
-    if (!dateValue || !dateValue.trim()) {
-      $("#date-error").text("Please enter a Date.");
+    if(!validator.isDate(dateValue)) {
+      $("#date-error").text("Please enter a valid Date.");
       errors = true;
     }
 

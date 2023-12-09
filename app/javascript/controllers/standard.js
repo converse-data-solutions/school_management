@@ -2,7 +2,6 @@ function initValidate() {
   function toggleRemoveLink() {
     let visibleSectionCount = $(".section_fields:visible").length;
 
-    console.log(visibleSectionCount);
     if (visibleSectionCount === 1) {
       $(".remove_section").hide();
     } else {
@@ -92,8 +91,9 @@ function initValidate() {
       $("#standard-error").text("Please enter a Standard Name.");
       errors = true;
     }
-    if (!fee || !fee.trim()) {
-      $("#fee-error").text("Please enter a Fee.");
+    
+    if (validator.isInt(fee) == false) {
+      $("#fee-error").text("Please enter a valid Fee.");
       errors = true;
     }
 

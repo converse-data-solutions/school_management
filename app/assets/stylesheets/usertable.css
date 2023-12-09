@@ -1,10 +1,15 @@
 #myTable,
-#staffTable, #standardTable, #studentTable {
+#staffTable,
+#standardTable,
+#studentTable,
+#historyTable,
+#promoteTable {
   border-collapse: collapse;
   color: #555555;
   padding: 10px;
   min-height: fit-content;
 }
+
 td.standard_action {
   display: flex;
   flex-wrap: wrap;
@@ -13,13 +18,25 @@ td.standard_action {
 #myTable th,
 #myTable td,
 #staffTable th,
-#staffTable td, #standardTable th, #standardTable td, #studentTable th, #studentTable td {
+#staffTable td,
+#standardTable th,
+#standardTable td,
+#studentTable th,
+#studentTable td,
+#historyTable th,
+#historyTable td,
+#promoteTable th,
+#promoteTable td {
   padding: 10px;
   border: 1px solid #ddd;
 }
 
 #myTable th,
-#staffTable th, #standardTable th , #studentTable th {
+#staffTable th,
+#standardTable th,
+#studentTable th,
+#historyTable th,
+#promoteTable th {
   background-color: #f2f2f2;
   color: #555555;
   font-size: 14px;
@@ -28,13 +45,18 @@ td.standard_action {
 }
 
 #myTable td,
-#staffTable td, #standardTable td, #studentTable td {
+#staffTable td,
+#standardTable td,
+#studentTable td,
+#historyTable td,
+#promoteTable td {
   color: #555555;
   font-size: 14px;
   background-color: #ffffff;
   text-align: left;
   vertical-align: top;
 }
+
 th.standard_action.sorting {
   width: auto !important;
   height: auto !important;
@@ -111,7 +133,11 @@ th.standard_action.sorting {
 }
 
 div#myTable_info,
-div#staffTable_info, #standardTable_info, #studentTable_info {
+div#staffTable_info,
+#standardTable_info,
+#studentTable_info,
+#historyTable_info,
+#promoteTable_info {
   margin-left: 20px;
   color: #54577a;
   font-size: 14px;
@@ -152,18 +178,21 @@ div#staffTable_info, #standardTable_info, #studentTable_info {
 .parent_action {
   text-wrap: wrap;
 }
+
 th.parent_action.sorting {
   width: auto !important;
 }
+
 th.student_action.sorting {
   width: auto !important;
 }
 
 /* for mobile */
 @media screen and (max-width: 625px) {
-  
 
-  .parent_action, .student_action {
+
+  .parent_action,
+  .student_action {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2px;
@@ -186,12 +215,20 @@ th.student_action.sorting {
   }
 
   table#myTable,
-  table#staffTable, table#standardTable, table#studentTable {
+  table#staffTable,
+  table#standardTable,
+  table#studentTable,
+  table#historyTable,
+  #promoteTable {
     width: max-content !important;
   }
 
   table#myTable,
-  table#staffTable, table#standardTable, table#studentTable {
+  table#staffTable,
+  table#standardTable,
+  table#studentTable,
+  table#historyTable,
+  #table#promoteTable {
     width: max-content;
   }
 
@@ -221,24 +258,30 @@ th.student_action.sorting {
     display: grid;
     gap: 2px;
   }
+
   .student_action {
     display: grid;
     gap: 2px;
   }
 
   table#myTable,
-  table#staffTable, table#standardTable, table#studentTable {
+  table#staffTable,
+  table#standardTable,
+  table#studentTable,
+  table#historyTable,
+  table#promoteTable {
     width: max-content !important;
   }
 }
 
 @media screen and (max-width: 1420px) {
-   .student_action {
+  .student_action {
     display: grid;
     gap: 2px;
-   }
-   td.student_action {
-    padding: 18px  4px !important;
+  }
+
+  td.student_action {
+    padding: 18px 4px !important;
   }
 }
 
@@ -247,8 +290,9 @@ th.student_action.sorting {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+
   td.student_action {
-    padding: 18px  4px !important;
+    padding: 18px 4px !important;
   }
 }
 
@@ -258,7 +302,7 @@ th.student_action.sorting {
     grid-template-columns: 1fr;
     gap: 2px;
   }
-  
+
 
   .dataTables_wrapper .dataTables_length select {
     border: 1px solid #aaa;
@@ -279,7 +323,11 @@ th.student_action.sorting {
   }
 
   table#myTable,
-  table#staffTable, table#standardTable, table#studentTable {
+  table#staffTable,
+  table#standardTable,
+  table#studentTable,
+  table#historyTable,
+  table#promoteTable {
     width: 98% !important;
   }
 }
@@ -293,6 +341,7 @@ th.student_action.sorting {
   padding: 10px;
   border-radius: 5px;
 }
+
 .student_deactive {
   background-color: #f66305;
   width: 90px;
@@ -313,6 +362,7 @@ th.student_action.sorting {
   padding: 10px;
   border-radius: 5px;
 }
+
 .student_active {
   background-color: #7bb13f;
   color: white;
@@ -333,7 +383,9 @@ th.student_action.sorting {
   padding: 10px;
   border-radius: 5px;
 }
-.standard_edit , .student_edit {
+
+.standard_edit,
+.student_edit {
   background-color: #03417c;
   color: white;
   width: 80px;
@@ -343,6 +395,7 @@ th.student_action.sorting {
   padding: 10px;
   border-radius: 5px;
 }
+
 .parent_user_delete {
   background-color: #bd1a20;
   color: white;
@@ -352,7 +405,9 @@ th.student_action.sorting {
   padding: 10px;
   border-radius: 5px;
 }
-.standard_delete , .student_delete {
+
+.standard_delete,
+.student_delete {
   background-color: #bd1a20;
   color: white;
   width: 80px;
@@ -396,7 +451,11 @@ a.paginate_button.current {
 }
 
 div#myTable_paginate,
-div#staffTable_paginate, div#standardTable_paginate, div#studentTable_paginate {
+div#staffTable_paginate,
+div#standardTable_paginate,
+div#studentTable_paginate,
+div#historyTable_paginate,
+div#promoteTable_paginate {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -406,7 +465,11 @@ div#staffTable_paginate, div#standardTable_paginate, div#studentTable_paginate {
 }
 
 a#myTable_previous,
-a#staffTable_previous, a#standardTable_previous, a#studentTable_previous {
+a#staffTable_previous,
+a#standardTable_previous,
+a#studentTable_previous,
+a#historyTable_previous,
+a#promoteTable_previous {
   cursor: pointer;
   color: #666 !important;
   border-top-left-radius: 5px;
@@ -419,7 +482,11 @@ a#staffTable_previous, a#standardTable_previous, a#studentTable_previous {
 }
 
 a#myTable_next,
-a#staffTable_next, a#standardTable_next, a#studentTable_next {
+a#staffTable_next,
+a#standardTable_next,
+a#studentTable_next,
+a#historyTable_next,
+a#promoteTable_next {
   color: #39a9e8 !important;
   cursor: pointer;
   border-top-right-radius: 5px;
@@ -432,4 +499,30 @@ a#staffTable_next, a#standardTable_next, a#studentTable_next {
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   border: 1px solid #ddd;
   margin-left: 0px !important;
+}
+
+table.dataTable.stripe tbody tr.odd,
+table.dataTable.display tbody tr.odd {
+  background-color: #F9F9F9 !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: #555;
+}
+
+.striped:nth-child(odd) {
+  background-color: #F9F9F9;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background-color: white !important;
+  border: 1px solid #C0C0C0 !important;
+  background: linear-gradient(#F5F5F5, #F5F5F5) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: white !important;
+  border: 1px solid #C0C0C0 !important;
+  background: linear-gradient(#F5F5F5, #F5F5F5) !important;
+  color: black !important;
 }

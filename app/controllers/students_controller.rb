@@ -12,20 +12,28 @@ class StudentsController < ApplicationController
 
   def show; end
 
-  def get_sections
-    @sections = Standard.find(params[:standard_id]).sections
+  def find_sections
+    @sections = Standard.find_by(id: params[:standard_id]).sections
+    respond_to(&:js)
+  end
+
+  def find_from_sections
+    @sections = Standard.find_by(id: params[:standard_id]).sections
+    respond_to(&:js)
+  end
+
+  def find_to_sections
+    @sections = Standard.find_by(id: params[:standard_id]).sections
     respond_to(&:js)
   end
 
   def active_student
-    @student = Student.find(params[:id])
+    @student = Student.find_by(id: params[:id])
     toggle_user_status
     redirect_to students_path
   end
 
   def new
-    @standards = Standard.all
-    @sections = @standard&.sections || []
     @student = Student.new
   end
 
@@ -33,7 +41,6 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new(student_params)
-
     respond_to do |format|
       if @student.save
         format.html { redirect_to students_url, notice: 'Student was successfully created.' }
@@ -59,17 +66,36 @@ class StudentsController < ApplicationController
 
   def destroy
     @student.destroy!
-
     respond_to do |format|
       format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
+  def promote
+    @selected_standard = params[:from_standard_id]
+    @from_section = params[:from_section_id]
+    @to_section = params[:to_section_id]
+    @all_student = params[:additional_param]
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: PromoteStudentDatatable.new(params, view_context:, from_section: @from_section)
+      end
+    end
+  end
+
+  def update_sections
+    student_ids = params[:students]
+    new_section_id = params[:new_section_id]
+    Student.update_sections(student_ids, new_section_id)
+    redirect_to promote_students_path, notice: 'Sections updated successfully.'
+  end
+
   private
 
   def set_student
-    @student = Student.find(params[:id])
+    @student = Student.find_by(id: params[:id])
   end
 
   def student_params

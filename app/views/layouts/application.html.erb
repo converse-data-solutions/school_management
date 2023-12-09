@@ -11,14 +11,17 @@
     <%= javascript_importmap_tags %>
     <%= yield :head %>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
     <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css' %>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css' %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js' %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js' %>
-    <style></style>
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+
   </head>
   <body>
     <% if user_signed_in? %>
@@ -138,7 +141,7 @@
             </li>
             <li>
               <span class=" p-[3px] ml-1 text-left text-[14px] text-[#fff] md:text-[#999b9c]">Main</span>
-              <a href="<%= url_for :root %>" class="flex <%= params[:controller] == "home" && params[:action] == "index" ? 'activenav' : '' %> activebar text-[14px] md:flex-col items-center lg:flex-row  md:border-b-2 md:border-t-2  p-[10px]  text-white md:text-[#39A9E8] rounded-lg pl-3 hover:text-[#157AB5]  hover:ml-2 hover:mr-[2px] duration-300 hover:bg-slate-100 dark:hover:bg-gray-700 group">
+              <a href="<%= url_for :root %>" class="flex <%= params[:controller] == "home" && params[:action] == "index" ? 'activenav' : '' %> activebar text-[14px] md:flex-col items-center lg:flex-row   md:border-t-2  p-[10px]  text-white md:text-[#39A9E8] rounded-lg pl-3 hover:text-[#157AB5]  hover:ml-2 hover:mr-[2px] duration-300 hover:bg-slate-100 dark:hover:bg-gray-700 group">
                 <span><i class="fa-solid fa-house"></i> </span><span class="ml-1 ">Dashbord</span>
               </a>
             </li>
@@ -226,8 +229,13 @@
               </a>
             </li>
             <li class="text-[14px]">
-              <a href="#" class="activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
-                <span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Promote Student</span>
+              <a href="<%= url_for :promote_students %>" class="activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
+                <span><i class="fa-solid fa-gear"></i> </span><span class="ml-3 text-center">Promote Student</span>
+              </a>
+            </li>
+            <li class="text-[14px]">
+              <a href="<%= url_for :student_histories_index %>" class="flex <%= params[:controller] == "student_histories" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#39A9E8] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
+                <span><i class="fa-sharp fa-solid fa-clock-rotate-left"></i> </span><span class="ml-3 text-center">Student History</span>
               </a>
             </li>
           </ul>

@@ -14,28 +14,19 @@ function initValidate() {
 
     let errors = false;
 
-    if (!email || !email.trim()) {
-      $("#email-error").text("Please enter a valid email address.");
-      errors = true;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (validator.isEmail(email) == false) {
       $("#email-error").text("Please enter a valid email address.");
       errors = true;
     }
 
-    if (!password || !password.trim()) {
-      $("#password-error").text("Please enter a password.");
-      errors = true;
-    } else if (password.length < 6) {
+    if (!validator.isStrongPassword(password, { min: 6, max: 20 })) {
       $("#password-error").text(
-        "Please enter a password with at least 6 characters."
+        "Please enter a strong password, at least 6 characters."
       );
       errors = true;
     }
 
-    if (!name || !name.trim()) {
-      $("#name-error").text("Please enter a name.");
-      errors = true;
-    } else if (!/^[a-zA-Z]+$/.test(name)) {
+    if (!validator.isAlpha(name)) {
       $("#name-error").text("Name must contain only alphabets.");
       errors = true;
     }
@@ -45,13 +36,8 @@ function initValidate() {
       errors = true;
     }
 
-    if (!mobile_number || !mobile_number.trim()) {
-      $("#mobile-number-error").text("Please enter a mobile number.");
-      errors = true;
-    } else if (mobile_number < 1000000000 || mobile_number > 9999999999) {
-      $("#mobile-number-error").text(
-        "Please check your mobile number ,it should be positive and 10 digits."
-      );
+    if (!validator.isMobilePhone(mobile_number, "en-IN")) {
+      $("#mobile-number-error").text("Please enter a valid mobile number.");
       errors = true;
     }
 

@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  get 'student_histories/index'
   devise_for :users
   root 'home#index'
 
   resources :students do
     collection do
-      get :get_sections
+      get :find_sections
+      get :find_from_sections
+      get :find_to_sections
+      get 'promote'
+      post 'update_sections'
     end
     member do
       patch :active_student
@@ -22,7 +27,7 @@ Rails.application.routes.draw do
       post :update_all
     end
     collection do
-      get :get_sections
+      get :find_sections
     end
   end
 

@@ -5,6 +5,10 @@ class StudentDecorator < ApplicationDecorator
     h.link_to object.admission_no
   end
 
+  def check_box
+    h.check_box_tag 'students[]', object.id
+  end
+
   def student_status
     links = []
     links << if object.deleted == 'Active'
