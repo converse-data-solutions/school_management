@@ -13,22 +13,22 @@ class StudentsController < ApplicationController
   def show; end
 
   def find_sections
-    @sections = Standard.find(params[:standard_id]).sections
+    @sections = Standard.find_by(id: params[:standard_id]).sections
     respond_to(&:js)
   end
 
   def find_from_sections
-    @sections = Standard.find(params[:standard_id]).sections
+    @sections = Standard.find_by(id: params[:standard_id]).sections
     respond_to(&:js)
   end
 
   def find_to_sections
-    @sections = Standard.find(params[:standard_id]).sections
+    @sections = Standard.find_by(id: params[:standard_id]).sections
     respond_to(&:js)
   end
 
   def active_student
-    @student = Student.find(params[:id])
+    @student = Student.find_by(id: params[:id])
     toggle_user_status
     redirect_to students_path
   end
@@ -95,7 +95,7 @@ class StudentsController < ApplicationController
   private
 
   def set_student
-    @student = Student.find(params[:id])
+    @student = Student.find_by
   end
 
   def student_params

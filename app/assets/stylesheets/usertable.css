@@ -505,3 +505,21 @@ table.dataTable.stripe tbody tr.odd,
 table.dataTable.display tbody tr.odd {
   background-color: #F9F9F9 !important;
 }
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: #555;
+}
+.striped:nth-child(odd) {
+  background-color: #F9F9F9;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background-color: white !important;
+  border: 1px solid #C0C0C0 !important;
+  background: linear-gradient(#F5F5F5, #F5F5F5) !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: white !important;
+  border: 1px solid #C0C0C0 !important;
+  background: linear-gradient(#F5F5F5, #F5F5F5) !important;
+  color: black !important;
+}

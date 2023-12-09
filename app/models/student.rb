@@ -29,7 +29,7 @@ class Student < ApplicationRecord
                             allow_blank: true
 
   def self.update_sections(student_ids, new_section_id)
-    section = Section.find(new_section_id)
+    section = Section.find_by(id:new_section_id)
 
     students = Student.where(id: student_ids)
 
@@ -51,7 +51,7 @@ class Student < ApplicationRecord
         history_data.merge(
           'student_id' => student.id,
           'section_name' => section.section_name,
-          'standard_name' => Standard.find(section.standard_id).name
+          'standard_name' => section.standard.name
         )
       )
     end
@@ -74,8 +74,8 @@ class Student < ApplicationRecord
       date_of_birth:,
       gender:,
       mobile_number:,
-      section_name: Section.find(section_id).section_name,
-      standard_name: Standard.find(Section.find(section_id).standard_id).name,
+      section_name: self.section.section_name,
+      standard_name: self.section.standard.name,
       date_of_admission:,
       address:,
       father_name:,

@@ -101,9 +101,3 @@ select#student_user_id {
   overflow-x: auto;
 }
 
-.select2-container--default .select2-selection--single .select2-selection__placeholder {
-  color: #555;
-}
-.striped:nth-child(odd) {
-  background-color: #f9f9f9;
-}

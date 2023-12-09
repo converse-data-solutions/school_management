@@ -1,4 +1,5 @@
 class StandardsController < ApplicationController
+  before_action :set_standard, only: %i[edit update destroy]
   def index
     @standard = Standard.new
     @standard.sections.build
@@ -17,12 +18,9 @@ class StandardsController < ApplicationController
     end
   end
 
-  def edit
-    @standard = Standard.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @standard = Standard.find(params[:id])
     if @standard.update(standard_params)
       redirect_to standards_path
     else
@@ -31,12 +29,15 @@ class StandardsController < ApplicationController
   end
 
   def destroy
-    @standard = Standard.find(params[:id])
     @standard.destroy
     redirect_to standards_path, notice: 'Standard deleted successfully.'
   end
 
   private
+
+  def set_standard
+    @standard = Standard.find_by(id: params[:id])
+  end
 
   def standard_params
     params.require(:standard).permit(:name, :fee, sections_attributes: %i[id section_name _destroy])
