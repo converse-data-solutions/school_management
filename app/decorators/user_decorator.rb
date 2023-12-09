@@ -2,7 +2,6 @@ class UserDecorator < ApplicationDecorator
   delegate_all
   def link_to
     h.link_to object.username
-    h.link_to object.username
   end
 
   def staff_status
