@@ -1,0 +1,7 @@
+<%= form_with(model: notice, local: true) do |form| %>
+  <%= form.hidden_field :notice_type %>
+  <%= form.text_field :notice %>
+  <%= form.hidden_field :notice_date, value: @selected_date %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.submit notice.new_record? ? 'Create Notice' : 'Update Notice' %>
+<% end %>

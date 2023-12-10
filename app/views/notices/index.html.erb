@@ -1,4 +1,58 @@
-<div>
-  <h1 class="font-bold text-4xl">Notices#index</h1>
-  <p>Find me in app/views/notices/index.html.erb</p>
+<div class=" bg-[#F5F5F5] mx-4 md:mt-[35px] text-[15px] lg:mt-0 mb-8 p-1 text-[#39A9E8] pl-4"><span><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Noticeboard</span></div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mx-4">
+  <div class="w-full">
+    <div class="  mx-auto rounded-[5px] border-2">
+      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+        <div><i class="fa-solid fa-pen-to-square"></i>
+          <span class="font-semibold">parent Noticeboard</span></div>
+        <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+      </div>
+      <% if notice %>
+        <div class="w-full mb-4">
+          <p id="notice"  class="alert text-[#508C47]  text-left text-[14px] rounded bg-[#DFF0D8] p-3"><%= notice %></p>
+        </div>
+      <% end %>
+      <div class="accordian-body">
+        dnvjjddnvjvnvjvn
+      </div>
+    </div>
+  </div>
+  <!-- password form -->
+  <div class="w-full">
+    <div class="  mx-auto rounded-[5px] border-2">
+      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+        <div><i class="fa-solid fa-pen-to-square"></i>
+          <span class="font-semibold">Teacher Noticeboard</span></div>
+        <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+      </div>
+      <div class="accordian-body">
+        dsdskfmdkfmdksfmds
+      </div>
+    </div>
+  </div>
+  <div class="w-full  ">
+    <div class="  mx-auto rounded-[5px] border-2">
+      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+        <div><i class="fa-solid fa-pen-to-square"></i>
+          <span class="font-semibold">Enter Parent Notice</span></div>
+        <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+      </div>
+      <div class="accordian-body">
+        dsdskfmdkfmdksfmds
+      </div>
+    </div>
+  </div>
+  <!-- password form -->
+  <div class="w-full">
+    <div class="  mx-auto rounded-[5px] border-2">
+      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+        <div><i class="fa-solid fa-pen-to-square"></i>
+          <span class="font-semibold">Enter Teacher Notice</span></div>
+        <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+      </div>
+      <div class="accordian-body">
+        dsdskfmdkfmdksfmds
+      </div>
+    </div>
+  </div>
 </div>

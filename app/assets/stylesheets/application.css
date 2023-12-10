@@ -101,3 +101,6 @@ select#student_user_id {
   overflow-x: auto;
 }
 
+#updown .active i{
+  transform: rotate(180deg);
+}

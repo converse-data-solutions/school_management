@@ -6,7 +6,7 @@
       <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
         <div><i class="fa-solid fa-pen-to-square"></i>
           <span class="font-semibold">Update Profile</span></div>
-        <button class="accordian-header cursor-pointer text-2xl leading-0 px-1  border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up  "></i></button>
+        <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
       <div class="accordian-body">
         <%= form_for [:admin_admin, @user], html: { id: 'user-form' } do |f| %>
@@ -48,7 +48,7 @@
       <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
         <div><i class="fa-solid fa-pen-to-square"></i>
           <span class="font-semibold">Update Password</span></div>
-        <button class="accordian-header cursor-pointer leading-0 px-1  text-2xl  border bg-white text-black  rounded-3xl"> <i class="bx bx-chevron-up  " ></i></button>
+        <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
       <div class="accordian-body">
         <% resource_name ||= :user %>
