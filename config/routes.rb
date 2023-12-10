@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
-  get 'notices/index'
-  get 'notices/new_parent'
-  get 'notices/new_staff'
-  get 'notices/create'
-  get 'notices/edit'
-  get 'notices/update'
   get 'student_histories/index'
   devise_for :users
   root 'home#index'
+
+  resources :notices
+  get 'notices/new_parent', to: 'notices#new_parent'
+  get 'notices/new_staff', to: 'notices#new_staff'
 
   resources :students do
     collection do

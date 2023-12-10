@@ -11,6 +11,7 @@
   .accordian-header.active i{
     @apply transition ease-in-out duration-300;
     transform: rotateX(180deg);
+    transition-duration: 0.5s;
   }
   .accordian-body {
     @apply  overflow-hidden transition-all duration-200 ease-out

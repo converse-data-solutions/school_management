@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_02_203930) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_09_161558) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -47,6 +47,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_02_203930) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["attendable_type", "attendable_id"], name: "index_attendances_on_attendable"
+  end
+
+  create_table "notices", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "notice_type"
+    t.string "notice"
+    t.date "notice_date"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
   create_table "sections", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -128,6 +138,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_02_203930) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "notices", "users"
   add_foreign_key "sections", "standards"
   add_foreign_key "students", "sections"
   add_foreign_key "students", "users"

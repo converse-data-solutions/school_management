@@ -3,8 +3,9 @@ class NoticesController < ApplicationController
   def index
     @parent_notice = Notice.new(notice_type: 'parent')
     @staff_notice = Notice.new(notice_type: 'staff')
-    @parent_notices = Notice.where(notice_type: 'parent')
-    @staff_notices = Notice.where(notice_type: 'staff')
+    @parent_notices = Notice.where(notice_type: 'parent', notice_date: params.fetch(:date, Date.today))
+    @staff_notices = Notice.where(notice_type: 'staff', notice_date: params.fetch(:date, Date.today))
+    @selected_date = params.fetch(:date, Date.today)
   end
 
   def new_parent
@@ -18,12 +19,13 @@ class NoticesController < ApplicationController
   end
 
   def create
-    @notice = Notice.new(notice_params)
-
+    @notice = Notice.new(notice_params) 
     if @notice.save
       redirect_to notices_path, notice: 'Notice created successfully.'
+      flash[:notice] = 'Notice Created Successfully.'
     else
-      render 'new'
+      redirect_to notices_path
+      flash[:alert] = 'Please Enter The Notice.'
     end
   end
 
