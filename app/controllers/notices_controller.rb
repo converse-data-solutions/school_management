@@ -19,7 +19,7 @@ class NoticesController < ApplicationController
   end
 
   def create
-    @notice = Notice.new(notice_params) 
+    @notice = Notice.new(notice_params)
     if @notice.save
       redirect_to notices_path, notice: 'Notice created successfully.'
       flash[:notice] = 'Notice Created Successfully.'
@@ -50,4 +50,3 @@ class NoticesController < ApplicationController
     params.require(:notice).permit(:notice_type, :notice, :notice_date, :user_id)
   end
 end
-

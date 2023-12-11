@@ -3,7 +3,7 @@
   <%= form.hidden_field :notice_date, value: @selected_date %>
   <%= form.hidden_field :user_id, value: current_user.id %>
   <div>
-  <%= form.text_area :notice, class:"w-[97%] border text-[14px] border-gray-300 rounded p-2 h-16", placeholder: "Enter Notice" %>
+  <%= form.text_area :notice, class:"w-[93%] md:w-[97%] border text-[14px] border-gray-300 rounded p-1 2 h-16", placeholder: "Enter Notice" %>
   </div>
   <div>
   <%= form.submit notice.new_record? ? 'Add Notice' : 'Update Notice',class:'text-white bg-[#2FA4E7]  mt-2 mb-8  focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2 text-center' %>
