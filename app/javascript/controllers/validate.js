@@ -21,7 +21,7 @@ function initValidate() {
 
     if (!validator.isStrongPassword(password, { min: 6, max: 20 })) {
       $("#password-error").text(
-        "Please enter a strong password, at least 6 characters."
+        "Please enter a strong password, at least 6 characters with a mix of letters, numbers, and symbols."
       );
       errors = true;
     }
