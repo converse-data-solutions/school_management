@@ -34,19 +34,15 @@
           <span class="font-semibold">parent Noticeboard</span></div>
         <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
-      <% if notice %>
-        <div class="w-full mb-4">
-          <p id="notice"  class="alert text-[#508C47]  text-left text-[14px] rounded bg-[#DFF0D8] p-3"><%= notice %></p>
-        </div>
-      <% end %>
       <div class="accordian-body p-2 ">
         <span class="text-[15px] text-[#555555] font-extrabold "> Date:  </span><span class="text-[#555555] text-[15px]"><%= @selected_date%></span>
         <hr>
-        <table>
-          <tbody class="text-[#555555] font-light text-[14px]">
+        <table class="mt-2">
+          <tbody class="text-[#555555] font-light text-[14px] ">
             <% @parent_notices.each do |notice| %>
               <tr>
                 <td><%= notice.notice %></td>
+                <td><%= notice.created_at.in_time_zone('Asia/Kolkata').strftime("%I:%M %p") %></td>
               </tr>
             <% end %>
           </tbody>
@@ -62,13 +58,14 @@
         <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
       <div class="accordian-body p-2">
-        <span class="text-[15px] text-[#555555] font-extrabold "> Date:  </span><span class="text-[#555555] text-[15px]"><%= @selected_date%></span>
+        <span class="text-[15px] text-[#555555] font-extrabold "> Date:  </span><span class="text-[#555555] text-[15px]"><%= @selected_date %></span>
         <hr>
-        <table>
+        <table class="mt-2">
           <tbody class="text-[#555555] font-light text-[14px]">
             <% @staff_notices.each do |notice| %>
               <tr>
                 <td><%= notice.notice %></td>
+                <td><%= notice.created_at.in_time_zone('Asia/Kolkata').strftime("%I:%M %p") %></td>
               </tr>
             <% end %>
           </tbody>
@@ -84,7 +81,7 @@
         <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
       <div class="accordian-body w-full">
-        <div class="w-full mx-3 mt-2">
+        <div class="w-full mx-2 mt-2">
           <h2 class="text-[#555555] text-[14px] font-extrabold">Enter Notice For Parent</h2>
           <%= render partial: 'form', locals: { notice_type: 'parent', notice: @parent_notice } %>
         </div>
