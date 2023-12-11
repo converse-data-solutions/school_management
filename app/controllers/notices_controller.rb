@@ -8,43 +8,49 @@ class NoticesController < ApplicationController
     @selected_date = params.fetch(:date, Date.today)
   end
 
-  def new_parent
-    @notice = Notice.new(notice_type: 'parent')
-    render 'new'
-  end
-
-  def new_staff
-    @notice = Notice.new(notice_type: 'staff')
-    render 'new'
-  end
-
   def create
-    @notice = Notice.new(notice_params)
-    if @notice.save
-      redirect_to notices_path, notice: 'Notice created successfully.'
-      flash[:notice] = 'Notice Created Successfully.'
+    existing_notice = find_existing_notice
+
+    if existing_notice
+      update_existing_notice(existing_notice)
     else
-      redirect_to notices_path
-      flash[:alert] = 'Please Enter The Notice.'
+      create_new_notice
     end
   end
 
-  def edit
+  def show
     @notice = Notice.find(params[:id])
-    render 'edit'
   end
 
-  def update
+  def destroy
     @notice = Notice.find(params[:id])
-
-    if @notice.update(notice_params)
-      redirect_to notices_path, notice: 'Notice updated successfully.'
-    else
-      render 'edit'
-    end
+    @notice.destroy
+    redirect_to notices_path, notice: 'Notice deleted successfully.'
   end
 
   private
+
+  def find_existing_notice
+    Notice.find_by(notice_type: notice_params[:notice_type], notice_date: notice_params[:notice_date])
+  end
+
+  def update_existing_notice(existing_notice)
+    existing_notice.update(notice_params)
+    if existing_notice.valid?
+      redirect_to notices_path, notice: 'Notice created successfully.'
+    else
+      redirect_to notices_path, alert: 'Failed to create notice.'
+    end
+  end
+
+  def create_new_notice
+    @notice = Notice.new(notice_params)
+    if @notice.save
+      redirect_to notices_path, notice: 'Notice created successfully.'
+    else
+      redirect_to notices_path, alert: 'Failed to create notice.'
+    end
+  end
 
   def notice_params
     params.require(:notice).permit(:notice_type, :notice, :notice_date, :user_id)

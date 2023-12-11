@@ -3,10 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  resources :notices
-  get 'notices/new_parent', to: 'notices#new_parent'
-  get 'notices/new_staff', to: 'notices#new_staff'
-
+  resources :notices, except: %i[show edit update]
+  
   resources :students do
     collection do
       get :find_sections
