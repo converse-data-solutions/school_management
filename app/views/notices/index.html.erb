@@ -14,7 +14,7 @@
 <div class="mx-4 mb-4">
   <%= form_tag notices_path, method: :get do  %>
     <div>
-      <%= label_tag :date, "Date" , class: 'text-[15px] text-[#555555] font-semibold' %>
+      <%= label_tag :date, "Select Date" , class: 'text-[15px] text-[#555555] font-semibold' %>
     </div>
     <div class= 'flex flex-col md:flex-row gap-2 md:items-center w-full gap-x-6'>
       <div class="w-full md:w-[25%]">
@@ -34,19 +34,32 @@
           <span class="font-semibold">parent Noticeboard</span></div>
         <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
-      <div class="accordian-body p-2 ">
+      <div class="accordian-body p-2 relative ">
         <span class="text-[15px] text-[#555555] font-extrabold "> Date:  </span><span class="text-[#555555] text-[15px]"><%= @selected_date%></span>
         <hr>
-        <table class="mt-2">
-          <tbody class="text-[#555555] font-light text-[14px] ">
+        <div class="text-[#555555] font-light text-[14px] my-10">
+          <% if @parent_notices.empty? %>
+            <p class="text-[#555555] font-light text-[14px] my-10">No Notice Found</p>
+          <% else %>
             <% @parent_notices.each do |notice| %>
-              <tr>
-                <td><%= notice.notice %></td>
-                <td><%= notice.created_at.in_time_zone('Asia/Kolkata').strftime("%I:%M %p") %></td>
-              </tr>
+              <div class="flex flex-col">
+                <div >
+                  <p >
+                    <%= notice.notice %>
+                  </p>
+                </div>
+                <div class="self-end absolute bottom-0 flex gap-2">
+                  <div>
+                    <%= notice.updated_at.in_time_zone('Asia/Kolkata').strftime("%I:%M %p") %>
+                  </div>
+                  <div>
+                    <%= link_to 'Delete', notice , data: { turbo_method: :delete , turbo_confirm: 'Are you sure you want to delete notice?'}, class: 'text-red-500 pointer'  %>
+                  </div>
+                </div>
+              </div>
             <% end %>
-          </tbody>
-        </table>
+          <% end %>
+        </div>  
       </div>
     </div>
   </div>
@@ -57,19 +70,32 @@
           <span class="font-semibold">Teacher Noticeboard</span></div>
         <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
-      <div class="accordian-body p-2">
+      <div class="accordian-body p-2 relative">
         <span class="text-[15px] text-[#555555] font-extrabold "> Date:  </span><span class="text-[#555555] text-[15px]"><%= @selected_date %></span>
         <hr>
-        <table class="mt-2">
-          <tbody class="text-[#555555] font-light text-[14px]">
+        <div class="text-[#555555] font-light text-[14px] my-10">
+          <% if @staff_notices.empty? %>
+            <p class="text-[#555555] font-light text-[14px] my-10">No Notice Found</p>
+          <% else %>
             <% @staff_notices.each do |notice| %>
-              <tr>
-                <td><%= notice.notice %></td>
-                <td><%= notice.created_at.in_time_zone('Asia/Kolkata').strftime("%I:%M %p") %></td>
-              </tr>
+              <div class="flex flex-col">
+                <div >
+                  <p >
+                    <%= notice.notice %>
+                  </p>
+                </div>
+                <div class="self-end absolute bottom-0 flex gap-2">
+                  <div>
+                    <%= notice.updated_at.in_time_zone('Asia/Kolkata').strftime("%I:%M %p") %>
+                  </div>
+                  <div>
+                    <%= link_to 'Delete', notice , data: { turbo_method: :delete , turbo_confirm: 'Are you sure you want to delete notice?'}, class: 'text-red-500 pointer'  %>
+                  </div>
+                </div>
+              </div>
             <% end %>
-          </tbody>
-        </table>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
@@ -98,7 +124,7 @@
       </div>
       <div class="accordian-body w-full">
         <div class="w-full mx-3 mt-2">
-          <h2 class="text-[#555555] text-[14px] font-extrabold">Enter Notice For </h2>
+          <h2 class="text-[#555555] text-[14px] font-extrabold">Enter Notice For Staff </h2>
           <%= render partial: 'form', locals: { notice_type: 'staff', notice: @staff_notice } %>
         </div>
       </div>
