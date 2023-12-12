@@ -2,7 +2,7 @@
   <%= javascript_import_module_tag "controllers/standard" %>
 <% end %>
 <div id="sectionIndex" data-section-index="<%= @standard.sections.size %>"></div>
-<div class=" bg-[#F5F5F5] p-1 text-[15px] pl-4 mx-3 mb-8 text-[#39A9E8] "><span><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Manage Standard</span></div>
+<div class=" bg-[#F5F5F5] p-1 text-[15px] pl-4 mx-3 mb-8 text-[#2FA4E7] "><span><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Manage Standard</span></div>
 <div class="flex flex-wrap lg:gap-x-6  mx-3">
   <!-- profile section -->
   <div class="w-full lg:w-[55.5%]  xl:w-[57%] ">
@@ -80,7 +80,7 @@
               <p class="text-[#848080] text-[12px] font-extralight mt-2">Press + add another section</p>
             </div>
             <div>
-              <%= f.submit "Update Standard", id: "button", class: "text-white bg-[#39A9E8]   focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  mt-4 px-5  py-2.5 text-center" %>
+              <%= f.submit "Update Standard", id: "button", class: "text-white bg-[#2FA4E7]   focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  mt-4 px-5  py-2.5 text-center" %>
             </div>
           </div>
         <% end %>

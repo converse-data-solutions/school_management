@@ -1,45 +1,89 @@
-<%= form_with(model: school, class: "contents") do |form| %>
-  <% if school.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(school.errors.count, "error") %> prohibited this school from being saved:</h2>
-      <ul>
-        <% school.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="container bg-[#F5F5F5] mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-8 p-1 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline " >Aboutschool</span></div>
+<div class=" container mx-auto rounded-[5px] border-2">
+  <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+    <div><i class="fa-solid fa-pen-to-square"></i>
+      <span class="font-semibold">Add school</span></div>
+    <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+  </div>
+  <div class="accordian-body">
+    <%= form_with(model: school, class: "contents") do |f| %>
+      <% if notice %>
+        <div class=" text-[#508C47]  mx-3  my-3 text-[14px] px-10 py-5 rounded bg-[#DFF0D8]" id="notice">
+          <p><%= notice %></p>
+        </div>
+      <% end %>
+      <% if @school.errors.any? %>
+        <div class=" text-red-700 mx-3  my-3 text-[14px] px-10 py-5 rounded bg-[#F2DEDE]">
+          <ul class="list-disc">
+            <% if @school.errors.has_key?(:school_address1) %>
+              <li>
+                <%= @school.errors[:school_address1].first %>
+              </li>
+            <% end %>
+            <% if @school.errors.has_key?(:academic_year) %>
+              <li>
+                <%= @school.errors[:academic_year].first %>
+              </li>
+            <% end %>
+            <% if @school.errors.has_key?(:school_phone) %>
+              <li>
+                <%= @school.errors[:school_phone].first %>
+              </li>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+    <div class="p-5  bg-white flex flex-wrap" >
+      <div class="w-full md:w-[75%]">
+        <div class="grid grid-cols-1 gap-y-3">
+          <div class="w-full">
+            <label for="school_name" class="block mb-1 text-[14px] font-bold text-[#555555] ">School Name</label>
+            <%= f.text_field :school_name ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"SchoolName"%>
+          </div>
+          <div class="w-full">
+            <label for="school_address" class="block mb-1 text-[14px] font-bold text-[#555555] ">School Address Line 1</label>
+            <%= f.text_field :school_address1 ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"School Address Line 1"%>
+          </div>
+          <div class="w-full">
+            <label for="name" class="block mb-1 text-[14px] font-bold text-[#555555] ">School Address Line 2</label>
+            <%= f.text_field :school_address2 ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"School Address Line 2"%>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 md:gap-6">
+            <div class="w-full">
+              <label for="school_email" class="block mb-1 text-[14px] font-bold text-[#555555] ">School Email</label>
+              <%= f.text_field :school_email ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"School Email"%>
+            </div>
+            <div class="w-full ">
+              <label for="school_phone" class="block mb-1 text-[14px] font-bold text-[#555555] ">School Phone</label>
+              <%= f.text_field :school_phone, class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"School Phone"%>
+            </div>
+            <div class="w-full">
+              <label for="academic_year" class="block mb-1 text-[14px] font-bold text-[#555555] ">Academic Year</label>
+              <%= f.select(:academic_year, ['2023-2024', '2024-2025', '2025-2026', '2026-2027', '2028-2029'] ,  { prompt: 'Select Year' }, { class: 'text-[14px] text-[#555555] focus:ring-[#37A7E7] w-full p-2.0 border border-gray-300 rounded-[5px] focus:border-[#37A7E7] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]'} ) %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full md:w-[25%] pl-4 mt-3">
+        <div id="previewSingle" class="mt-2"></div>
+        <div id="defaultUpload">
+          <% if @school.image.attached? %>
+            <div class="w-[130px] h-[130px]"> <%= image_tag @school.image %></div>
+          <% else %>
+            <div class="w-[130px] h-[130px]"><img src="<%= asset_path('user.png') %>" alt="Image Description"  ></div>
+          <% end %>
+        </div>
+        <div class="file-input-wrapper mt-3">
+          <label class=" px-9 py-3 bg-white  text-Black border-2 rounded-lg">
+            <span class=" text-base leading-normal">Browse</span>
+            <%= f.file_field :image, class: "hidden", id: "single_file", accept: "image/*" %>
+          </label>
+        </div>
+      </div>
     </div>
-  <% end %>
-  <div class="my-5">
-    <%= form.label :school_name %>
-    <%= form.text_field :school_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-  <div class="my-5">
-    <%= form.label :school_address1 %>
-    <%= form.text_field :school_address1, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-  <div class="my-5">
-    <%= form.label :school_address2 %>
-    <%= form.text_field :school_address2, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-  <div class="my-5">
-    <%= form.label :school_email %>
-    <%= form.text_field :school_email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-  <div class="my-5">
-    <%= form.label :school_phone %>
-    <%= form.text_field :school_phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-  <div class="my-5">
-    <%= form.label :academic_year %>
-    <%= form.select :academic_year, ['2023-2024', '2024-2025', '2025-2026', '2026-2027', '2028-2029'] %>
-  </div>
-  <div class="file-input-wrapper mt-3">
-    <label class=" px-9 py-3 bg-white  text-Black border-2 rounded-lg">
-      <span class=" text-base leading-normal">Browse</span>
-      <%= form.file_field :image, class: "hidden", id: "single_file", accept: "image/*" %>
-    </label>
-  </div>
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= f.submit "Save",class:"text-white bg-[#2FA4E7] ml-16  md:mb-4 md:ml-6 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
   </div>
 <% end %>
+</div>
+</div>
