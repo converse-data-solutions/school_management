@@ -1,0 +1,37 @@
+<div id="<%= dom_id school %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">School name:</strong>
+    <%= school.school_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">School address1:</strong>
+    <%= school.school_address1 %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">School address2:</strong>
+    <%= school.school_address2 %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">School email:</strong>
+    <%= school.school_email %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">School phone:</strong>
+    <%= school.school_phone %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Academic year:</strong>
+    <%= school.academic_year %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this school", school, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this school", edit_school_path(school), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   get 'student_histories/index'
   devise_for :users
   root 'home#index'
+  resources :schools
 
   resources :notices, except: %i[show edit update]
-  
+
   resources :students do
     collection do
       get :find_sections
