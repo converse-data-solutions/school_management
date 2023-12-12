@@ -7,9 +7,9 @@ import flatpickr from "flatpickr";
 import DataTable from "datatables.net-dt";
 
 function initValidate() {
-  $("#button").click(function () {
-    $(this).addClass("border-2 border-[#000]");
-  });
+  // $("#button").click(function () {
+  //   $(this).addClass("border-2 border-[#000]");
+  // });
   //accordian for all models
   $(".accordian-header").click(function () {
     $(this).toggleClass("active");
@@ -31,20 +31,34 @@ function initValidate() {
     const el = $(this).parent().find(".sub");
     el.slideToggle("slow");
   });
+
+  $(document).on("click", function (event) {
+    if (
+      !$(event.target).closest(
+        ".theme-opener, .theme-content, .admin-opener, .admin-content, .more-opener, .more-content"
+      ).length
+    ) {
+      $(".theme-content, .admin-content, .more-content").hide();
+      $(".more-opener").removeClass("activedropdown");
+      $(".admin-opener").removeClass("active-admin");
+    }
+  });
+
   $(".theme-opener").click(function () {
     $(".theme-content").toggle();
-    $(".admin-content").hide();
-    $(".more-content").hide();
+    $(".admin-content, .more-content").hide();
   });
+
   $(".admin-opener").click(function () {
     $(".admin-content").toggle();
-    $(".theme-content").hide();
-    $(".more-content").hide();
+    $(".theme-content, .more-content").hide();
+    $(".admin-opener").toggleClass("active-admin");
   });
+
   $(".more-opener").click(function () {
     $(".more-content").toggle();
-    $(".theme-content").hide();
-    $(".admin-content").hide();
+    $(".theme-content, .admin-content").hide();
+    $(".more-opener").toggleClass("activedropdown");
   });
 }
 

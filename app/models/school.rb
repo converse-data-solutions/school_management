@@ -5,7 +5,7 @@ class School < ApplicationRecord
   before_create :set_singleton_guard
   validates :school_address1, presence: { message: 'Please Enter Address' }
   validates :academic_year, presence: { message: 'Please Enter Academic Year' }
-  validates :school_phone, numericality: { only_integer: true, greater_than_or_equal_to: 0 },
+  validates :school_phone, numericality: { only_integer: true, greater_than_or_equal_to: 0, message: 'Please Enter Valid Phone Number' },
                            length: { is: 10, message: 'Please Enter Valid Phone Number' },
                            allow_blank: true
 
