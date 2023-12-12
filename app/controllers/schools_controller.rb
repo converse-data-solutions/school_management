@@ -1,14 +1,5 @@
 class SchoolsController < ApplicationController
-  before_action :set_school, only: %i[ show edit update destroy ]
-
-  # GET /schools or /schools.json
-  def index
-    @schools = School.all
-  end
-
-  # GET /schools/1 or /schools/1.json
-  def show
-  end
+  before_action :set_school, only: %i[edit update]
 
   # GET /schools/new
   def new
@@ -16,8 +7,7 @@ class SchoolsController < ApplicationController
   end
 
   # GET /schools/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /schools or /schools.json
   def create
@@ -25,7 +15,7 @@ class SchoolsController < ApplicationController
 
     respond_to do |format|
       if @school.save
-        format.html { redirect_to edit_school_url(@school), notice: "School was successfully created." }
+        format.html { redirect_to edit_school_url(@school), notice: 'School was successfully created.' }
         format.json { render :show, status: :created, location: @school }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +28,7 @@ class SchoolsController < ApplicationController
   def update
     respond_to do |format|
       if @school.update(school_params)
-        format.html { redirect_to edit_school_url(@school), notice: "School was successfully updated." }
+        format.html { redirect_to edit_school_url(@school), notice: 'School was successfully updated.' }
         format.json { render :show, status: :ok, location: @school }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -47,24 +37,16 @@ class SchoolsController < ApplicationController
     end
   end
 
-  # DELETE /schools/1 or /schools/1.json
-  def destroy
-    @school.destroy!
+  private
 
-    respond_to do |format|
-      format.html { redirect_to schools_url, notice: "School was successfully destroyed." }
-      format.json { head :no_content }
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_school
+    @school = School.find(params[:id])
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_school
-      @school = School.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def school_params
-      params.require(:school).permit(:school_name, :school_address1, :school_address2, :school_email, :school_phone, :academic_year, :image)
-    end
+  # Only allow a list of trusted parameters through.
+  def school_params
+    params.require(:school).permit(:school_name, :school_address1, :school_address2, :school_email, :school_phone,
+                                   :academic_year, :image)
+  end
 end
