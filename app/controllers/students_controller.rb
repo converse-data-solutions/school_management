@@ -1,9 +1,9 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: %i[show edit update destroy]
+  before_action :set_student, only: %i[show edit update destroy active_student]
+  before_action :selected_sections, only: %i[find_sections find_from_sections find_to_sections]
+  include UserStatusToggle
 
   def index
-    @students = Student.all
-    @standards = Standard.all
     respond_to do |format|
       format.html
       format.json { render json: StudentDatatable.new(params) }
@@ -13,22 +13,18 @@ class StudentsController < ApplicationController
   def show; end
 
   def find_sections
-    @sections = Standard.find_by(id: params[:standard_id]).sections
     respond_to(&:js)
   end
 
   def find_from_sections
-    @sections = Standard.find_by(id: params[:standard_id]).sections
     respond_to(&:js)
   end
 
   def find_to_sections
-    @sections = Standard.find_by(id: params[:standard_id]).sections
     respond_to(&:js)
   end
 
   def active_student
-    @student = Student.find_by(id: params[:id])
     toggle_user_status
     redirect_to students_path
   end
@@ -74,13 +70,11 @@ class StudentsController < ApplicationController
 
   def promote
     @selected_standard = params[:from_standard_id]
-    @from_section = params[:from_section_id]
     @to_section = params[:to_section_id]
-    @all_student = params[:additional_param]
     respond_to do |format|
       format.html
       format.json do
-        render json: PromoteStudentDatatable.new(params, view_context:, from_section: @from_section)
+        render json: PromoteStudentDatatable.new(params, view_context:, from_section: params[:from_section_id])
       end
     end
   end
@@ -103,9 +97,7 @@ class StudentsController < ApplicationController
                                     :address, :date_of_birth, :gender, :date_of_admission, :section_id, :user_id, :image, :deleted)
   end
 
-  def toggle_user_status
-    new_status = @student.deleted == 'Active' ? 'Inactive' : 'Active'
-    @student.update(deleted: new_status)
-    flash[:notice] = 'Status changed successfully.'
+  def selected_sections
+    @sections = Standard.find_by(id: params[:standard_id]).sections
   end
 end
