@@ -4,6 +4,7 @@
 # This controller includes actions for listing, creating, updating, and deleting staff users.
 class Admin::StaffUsersController < ApplicationController
   before_action :set_user, only: %i[edit update destroy active_staff_user]
+
   def index
     @staffs = User.where(role: 'staff')
     respond_to do |format|
