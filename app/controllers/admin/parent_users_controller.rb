@@ -2,6 +2,7 @@
 # This controller includes CRUD operations for managing parent user accounts.
 class Admin::ParentUsersController < ApplicationController
   before_action :set_user, only: %i[edit update destroy active_user]
+  include UserStatusToggle
 
   def index
     respond_to do |format|
@@ -44,7 +45,7 @@ class Admin::ParentUsersController < ApplicationController
   end
 
   def active_user
-    toggle_user_status
+    toggle_user_status(@user)
     redirect_to admin_parent_users_path
   end
 
@@ -78,9 +79,4 @@ class Admin::ParentUsersController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
-  def toggle_user_status
-    new_status = @user.deleted == 'Active' ? 'Inactive' : 'Active'
-    @user.update(deleted: new_status)
-    flash[:notice] = 'Status changed successfully.'
-  end
 end

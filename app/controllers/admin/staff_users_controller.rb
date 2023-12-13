@@ -4,6 +4,7 @@
 # This controller includes actions for listing, creating, updating, and deleting staff users.
 class Admin::StaffUsersController < ApplicationController
   before_action :set_user, only: %i[edit update destroy active_staff_user]
+  include UserStatusToggle
 
   def index
     @staffs = User.where(role: 'staff')
@@ -31,7 +32,7 @@ class Admin::StaffUsersController < ApplicationController
   end
 
   def active_staff_user
-    toggle_user_status
+    toggle_user_status(@user)
     redirect_to admin_staff_users_path
   end
 
@@ -80,9 +81,4 @@ class Admin::StaffUsersController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
-  def toggle_user_status
-    new_status = @user.deleted == 'Active' ? 'Inactive' : 'Active'
-    @user.update(deleted: new_status)
-    flash[:notice] = 'Status changed successfully.'
-  end
 end
