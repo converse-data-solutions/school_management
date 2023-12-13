@@ -7,7 +7,11 @@ class SchoolsController < ApplicationController
   end
 
   # GET /schools/1/edit
-  def edit; end
+  def edit
+    return if @school.present?
+
+    redirect_to edit_school_url(School.last)
+  end
 
   # POST /schools or /schools.json
   def create
@@ -41,7 +45,7 @@ class SchoolsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_school
-    @school = School.find(params[:id])
+    @school = School.find_by(id: params[:id])
   end
 
   # Only allow a list of trusted parameters through.

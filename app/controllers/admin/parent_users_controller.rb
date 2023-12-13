@@ -26,7 +26,12 @@ class Admin::ParentUsersController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    return if @user.present?
+
+    flash[:alert] = 'User not found.'
+    redirect_to admin_parent_users_path
+  end
 
   def update
     if @user.update(user_update)

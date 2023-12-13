@@ -18,7 +18,11 @@ class StandardsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    return if @standard.present?
+
+    redirect_to standards_path
+  end
 
   def update
     if @standard.update(standard_params)
