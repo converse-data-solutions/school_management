@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :notices, except: %i[new show edit update]
 
-  resources :students do
+  resources :students, except: %i[show] do
     collection do
       get :find_sections
       get :find_from_sections

@@ -1,3 +1,5 @@
+# Controller responsible for handling Student user actions in the admin section.
+# This controller includes CRUD operations for managing parent student accounts.
 class StudentsController < ApplicationController
   before_action :set_student, only: %i[show edit update destroy active_student]
   before_action :selected_sections, only: %i[find_sections find_from_sections find_to_sections]
@@ -9,8 +11,6 @@ class StudentsController < ApplicationController
       format.json { render json: StudentDatatable.new(params) }
     end
   end
-
-  def show; end
 
   def find_sections
     respond_to(&:js)
@@ -25,7 +25,7 @@ class StudentsController < ApplicationController
   end
 
   def active_student
-    toggle_user_status
+    toggle_user_status(@student)
     redirect_to students_path
   end
 
