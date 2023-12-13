@@ -35,7 +35,12 @@ class Admin::StaffUsersController < ApplicationController
     redirect_to admin_staff_users_path
   end
 
-  def edit; end
+  def edit
+    return if @user.present?
+
+    flash[:alert] = 'User not found.'
+    redirect_to admin_staff_users_path
+  end
 
   def update
     if @user.update(user_params)

@@ -1,6 +1,10 @@
 class Admin::AdminUsersController < ApplicationController
   def edit
     @user = User.find_by(id: params[:id])
+    return if @user.present?
+
+    flash[:alert] = 'User not found.'
+    redirect_to admin_admin_users_path
   end
 
   def update

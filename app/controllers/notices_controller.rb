@@ -18,10 +18,6 @@ class NoticesController < ApplicationController
     end
   end
 
-  def show
-    @notice = Notice.find(params[:id])
-  end
-
   def destroy
     @notice = Notice.find(params[:id])
     @notice.destroy

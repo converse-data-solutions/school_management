@@ -33,7 +33,12 @@ class StudentsController < ApplicationController
     @student = Student.new
   end
 
-  def edit; end
+  def edit
+    return if @student.present?
+
+    flash[:alert] = 'Student not found.'
+    redirect_to students_path
+  end
 
   def create
     @student = Student.new(student_params)

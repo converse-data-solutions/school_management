@@ -2,6 +2,11 @@
   <%= javascript_import_module_tag "controllers/parent_datatable" %>
 <% end %>
 <div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[15px] text-[#2FA4E7] pl-4"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Parent</span></div>
+<% if alert %>
+  <div class=" text-red-700 mx-6  my-3 text-[14px] px-10 py-5 rounded bg-[#F2DEDE]" id="notice">
+    <p><%= alert %></p>
+  </div>
+<% end %>
 <div class=" container mx-auto rounded-lg border-2">
   <div class="px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
     <div><i class="fa-solid fa-pen-to-square"></i>
