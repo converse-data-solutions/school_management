@@ -7,9 +7,6 @@ import flatpickr from "flatpickr";
 import DataTable from "datatables.net-dt";
 
 function initValidate() {
-  // $("#button").click(function () {
-  //   $(this).addClass("border-2 border-[#000]");
-  // });
   //accordian for all models
   $(".accordian-header").click(function () {
     $(this).toggleClass("active");
@@ -64,6 +61,10 @@ function initValidate() {
 
 $(document).ready(function () {
   initValidate();
+
+  $("#default-sidebar").click(function () {
+    console.log("for side bar");
+  });
 
   $(document).on("turbo:render", function () {
     initValidate();
