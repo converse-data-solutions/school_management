@@ -19,7 +19,7 @@ class NoticesController < ApplicationController
   end
 
   def destroy
-    @notice = Notice.find(params[:id])
+    @notice = Notice.find_by(id: params[:id])
     @notice.destroy
     redirect_to notices_path, notice: 'Notice deleted successfully.'
   end
@@ -35,7 +35,7 @@ class NoticesController < ApplicationController
     if existing_notice.valid?
       redirect_to notices_path, notice: 'Notice created successfully.'
     else
-      redirect_to notices_path, alert: 'Failed to create notice.'
+      redirect_to notices_path, alert: 'Please Insert notice.'
     end
   end
 
@@ -44,7 +44,7 @@ class NoticesController < ApplicationController
     if @notice.save
       redirect_to notices_path, notice: 'Notice created successfully.'
     else
-      redirect_to notices_path, alert: 'Failed to create notice.'
+      redirect_to notices_path, alert: 'Please Insert notice.'
     end
   end
 
