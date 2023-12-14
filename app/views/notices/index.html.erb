@@ -1,134 +1,91 @@
-<div class="bg-[#F5F5F5] mx-4 md:mt-[35px] text-[15px] lg:mt-0 mb-4 p-1 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline pointer" ><%= link_to "Noticeboard", notices_path %></span></div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
 
-<div class="mx-4 mb-4">
-  <% if notice %>
-    <div class="w-full mb-4">
-      <p id="notice"  class="alert text-[#508C47]  text-left text-[14px] rounded bg-[#DFF0D8] p-3"><%= notice %></p>
-    </div>
-  <% end %>
-  <% if alert %>
-    <div class="w-full mb-4">
-      <p id="notice"  class="alert text-[#BF4C60]  text-left text-[14px] rounded bg-[#F2DEDE] p-3"><%= alert %></p>
-    </div>
-  <% end %>
-</div>
-<div class="mx-4 mb-4">
-  <%= form_tag notices_path, method: :get do  %>
-    <div>
-      <%= label_tag :date, "Select Date" , class: 'text-[15px] text-[#555555] font-semibold' %>
-    </div>
-    <div class= 'flex flex-col md:flex-row gap-2 md:items-center w-full gap-x-6'>
-      <div class="w-full md:w-[25%]">
-        <%= date_field_tag :date, @selected_date,  class: " border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0", id: 'date', placeholder: "Select Date" %>
-      </div>
-      <div>
-        <%= submit_tag "View" ,class:'text-white bg-[#81B944]    focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2 text-center'%>
-      </div>
-    </div>
-  <% end %>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mx-4">
-  <div class="w-full">
-    <div class="  mx-auto rounded-[5px] border-2">
-      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
-        <div><i class="fa-solid fa-pen-to-square"></i>
-          <span class="font-semibold">parent Noticeboard</span></div>
-        <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
-      </div>
-      <div class="accordian-body p-2 relative ">
-        <span class="text-[15px] text-[#555555] font-extrabold "> Date:  </span><span class="text-[#555555] text-[15px]"><%= @selected_date%></span>
-        <hr>
-        <div class="text-[#555555] font-light text-[14px] my-10">
-          <% if @parent_notices.empty? %>
-            <p class="text-[#555555] font-light text-[14px] my-10">No Notice Found</p>
-          <% else %>
-            <% @parent_notices.each do |notice| %>
-              <div class="flex flex-col">
-                <div >
-                  <p >
-                    <%= notice.notice %>
-                  </p>
-                </div>
-                <div class="self-end absolute bottom-0 flex gap-2">
-                  <div>
-                    <%= notice.updated_at.in_time_zone('Asia/Kolkata').strftime("%I:%M %p") %>
-                  </div>
-                  <div>
-                    <%= link_to 'Delete', notice , data: { turbo_method: :delete , turbo_confirm: 'Are you sure you want to delete notice?'}, class: 'text-red-500 pointer'  %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="w-full">
-    <div class="  mx-auto rounded-[5px] border-2">
-      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
-        <div><i class="fa-solid fa-pen-to-square"></i>
-          <span class="font-semibold">Teacher Noticeboard</span></div>
-        <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
-      </div>
-      <div class="accordian-body p-2 relative">
-        <span class="text-[15px] text-[#555555] font-extrabold "> Date:  </span><span class="text-[#555555] text-[15px]"><%= @selected_date %></span>
-        <hr>
-        <div class="text-[#555555] font-light text-[14px] my-10">
-          <% if @staff_notices.empty? %>
-            <p class="text-[#555555] font-light text-[14px] my-10">No Notice Found</p>
-          <% else %>
-            <% @staff_notices.each do |notice| %>
-              <div class="flex flex-col">
-                <div >
-                  <p >
-                    <%= notice.notice %>
-                  </p>
-                </div>
-                <div class="self-end absolute bottom-0 flex gap-2">
-                  <div>
-                    <%= notice.updated_at.in_time_zone('Asia/Kolkata').strftime("%I:%M %p") %>
-                  </div>
-                  <div>
-                    <%= link_to 'Delete', notice , data: { turbo_method: :delete , turbo_confirm: 'Are you sure you want to delete notice?'}, class: 'text-red-500 pointer'  %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="w-full  ">
-    <div class=" w-full mx-auto rounded-[5px] border-2">
-      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
-        <div><i class="fa-solid fa-pen-to-square"></i>
-          <span class="font-semibold">Enter Parent Notice</span></div>
-        <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
-      </div>
-      <div class="accordian-body w-full">
-        <div class="w-full mx-2 mt-2">
-          <h2 class="text-[#555555] text-[14px] font-extrabold">Enter Notice For Parent</h2>
-          <%= render partial: 'form', locals: { notice_type: 'parent', notice: @parent_notice } %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- teacher notice -->
-  <div class="w-full">
-    <div class="  mx-auto rounded-[5px] border-2">
-      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
-        <div><i class="fa-solid fa-pen-to-square"></i>
-          <span class="font-semibold">Enter Teacher Notice</span></div>
-        <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
-      </div>
-      <div class="accordian-body w-full">
-        <div class="w-full mx-3 mt-2">
-          <h2 class="text-[#555555] text-[14px] font-extrabold">Enter Notice For Staff </h2>
-          <%= render partial: 'form', locals: { notice_type: 'staff', notice: @staff_notice } %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: ''
+      },
+      initialDate: '2023-01-12',
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: true,
+      selectable: true,
+      events: [
+        {
+          title: 'Business Lunch',
+          start: '2023-01-03T13:00:00',
+          constraint: 'businessHours'
+        },
+        {
+          title: 'Meeting',
+          start: '2023-01-13T11:00:00',
+          constraint: 'availableForMeeting', // defined below
+          color: '#257e4a'
+        },
+        {
+          title: 'Conference',
+          start: '2023-01-18',
+          end: '2023-01-20'
+        },
+        {
+          title: 'Party',
+          start: '2023-01-29T20:00:00'
+        },
+
+        // areas where "Meeting" must be dropped
+        {
+          groupId: 'availableForMeeting',
+          start: '2023-01-11T10:00:00',
+          end: '2023-01-11T16:00:00',
+          display: 'background'
+        },
+        {
+          groupId: 'availableForMeeting',
+          start: '2023-01-13T10:00:00',
+          end: '2023-01-13T16:00:00',
+          display: 'background'
+        },
+
+        // red areas where no events can be dropped
+        {
+          start: '2023-01-24',
+          end: '2023-01-28',
+          overlap: false,
+          display: 'background',
+          color: '#ff9f89'
+        },
+        {
+          start: '2023-01-06',
+          end: '2023-01-08',
+          overlap: false,
+          display: 'background',
+          color: '#ff9f89'
+        }
+      ]
+    });
+
+    calendar.render();
+  });
+</script>
+<style>
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+  <div id='calendar'></div>
+</body>
