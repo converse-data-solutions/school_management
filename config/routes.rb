@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :parent do
+    resources :parent_notices
+  end
+
   resources :user_attendances, except: %i[show edit update destroy create] do
     collection do
       post :update_all
