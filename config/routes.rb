@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :parent_attendance_views
     resources :parent_notices
   end
+  
 
   resources :user_attendances, except: %i[show edit update destroy create] do
     collection do

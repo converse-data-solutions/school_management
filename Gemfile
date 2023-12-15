@@ -28,6 +28,7 @@ gem 'json'
 
 gem 'draper'
 
+gem 'gon'
 
 gem 'jquery-datatables', git: 'https://github.com/converse-data-solutions/jquery-datatables'
 
