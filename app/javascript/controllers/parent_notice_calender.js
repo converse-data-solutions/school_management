@@ -8,7 +8,7 @@ function initValidate() {
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
-      right: '0'  
+      right: ''  
     },
     initialDate: new Date(),
     navLinks: true, // can click day/week names to navigate views
