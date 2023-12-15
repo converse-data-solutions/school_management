@@ -4,13 +4,6 @@ class Parent::ParentNoticesController < ApplicationController
   # GET /parent/notices or /parent/notices.json
   def index
     @parent_notices = Notice.where(notice_type: 'parent', notice_date: Date.today)
-    @students = Student.where(user_id: current_user.id)
-    @attendances = Attendance.where(attendable_id: @students)
-
-    respond_to do |format|
-      format.json { render json: @attendances }
-      format.html { render :index }
-    end
   end
 
   # GET /parent/notices/1 or /parent/notices/1.json

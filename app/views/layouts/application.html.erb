@@ -260,13 +260,13 @@
                 <% end %>
                 <% if current_user.role.eql?('staff') || current_user.role.eql?('parent') %>
                   <li>
-                    <a href="<%= url_for :notices %>" class="<%= params[:controller] == "notices" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
+                    <a href="<%= url_for :parent_parent_notices %>" class="<%= params[:controller] == "parent/parent_notices" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
                       <span><i class="fa-solid fa-calendar-days"></i> </span><span class="ml-3">Noticebord</span>
                     </a>
                   </li>
                   <li class="text-[14px]">
-                    <a href="<%= url_for :new_user_attendance %>" class="<%= params[:controller] == "user_attendances" && params[:action] == "new" || params[:controller] == "user_attendances" && params[:action] == "index"  ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
-                      <span><i class="fa-regular fa-clock"></i></span><span class="ml-3 text-center lg:text-start xl:text-center">Teacher Attendance</span>
+                    <a href="<%= url_for :parent_parent_attendance_views %>" class="<%= params[:controller] == "parent/parent_attendance_views" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-slate-100 pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
+                      <span><i class="fa-regular fa-clock"></i></span><span class="ml-3 text-center lg:text-start xl:text-center">View Attendance</span>
                     </a>
                   </li>
                 <% end %>

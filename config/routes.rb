@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  resources :schools , except: %i[index show destroy]
+  resources :schools, except: %i[index show destroy]
 
   resources :notices, except: %i[new show edit update]
 
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   namespace :parent do
+    resources :parent_attendance_views
     resources :parent_notices
   end
 

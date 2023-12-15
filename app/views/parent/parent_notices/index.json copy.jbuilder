@@ -1,1 +1,0 @@
-json.array! @attendances, partial: "student_attendances/attendances", as: :attendance
