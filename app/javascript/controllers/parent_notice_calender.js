@@ -10,7 +10,7 @@ function initValidate() {
       center: 'title',
       right: ' dayGridMonth'  
     },
-    initialDate: new Date(),
+    initialDate: "2023-01-03",
     navLinks: true, // can click day/week names to navigate views
     businessHours: true, // display business hours
     editable: true,
