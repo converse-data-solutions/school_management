@@ -4,13 +4,12 @@ class Parent::ParentAttendanceViewsController < ApplicationController
   # GET /parent/parent_attendance_views or /parent/parent_attendance_views.json
   def index
     @student = params[:student_id]
-    @attendances = Attendance.where(attendable_id: @student)
-  
+    @selected_date = params[:selected_date]
+    @attendances = Attendance.where(attendable_id: @student, date: @selected_date)
     respond_to do |format|
-      @student_attendance = @attendances.to_json
+      @formatted_student_attendance = @attendances.to_json
       format.json { render json: @attendances }
       format.html { render :index }
     end
   end
-  
 end
