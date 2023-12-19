@@ -6,6 +6,16 @@ class Attendance < ApplicationRecord
     late: 1,
     absent: 2
   }
+  def set_color
+    self.color = case status
+                 when 'present'
+                   'green'
+                 when 'late'
+                   'turquoise'
+                 else
+                   'red'
+                 end
+  end
 
   private
 

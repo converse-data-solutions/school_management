@@ -13,6 +13,8 @@ class StudentAttendancesController < ApplicationController
       attendance = Attendance.find_or_initialize_by(attendable_id: student.id, attendable_type: student.class.name,
                                                     date: attendance_params[:date])
       attendance.update(attendance_params)
+      attendance.set_color
+      attendance.save
     end
     redirect_to student_attendances_path
   end
