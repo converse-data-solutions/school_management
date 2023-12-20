@@ -1,4 +1,9 @@
+# frozen_string_literal: true
+
+# this is a controller for standards page
 class StandardsController < ApplicationController
+  include AuthorizationHelper
+  before_action :check_admin_role, only: %i[create index edit update destroy]
   before_action :set_standard, only: %i[edit update destroy]
   def index
     @standard = Standard.new

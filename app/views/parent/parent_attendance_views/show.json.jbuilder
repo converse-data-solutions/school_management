@@ -1,1 +1,0 @@
-json.partial! "parent_parent_attendance_views/parent_parent_attendance_view", parent_parent_attendance_view: @parent_parent_attendance_view

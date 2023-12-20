@@ -11,7 +11,7 @@ class Attendance < ApplicationRecord
                  when 'present'
                    'green'
                  when 'late'
-                   'turquoise'
+                   'indigo'
                  else
                    'red'
                  end

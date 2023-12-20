@@ -1,5 +1,11 @@
+# frozen_string_literal: true
+
+# Controller responsible for handling School user actions in the admin section.
 class SchoolsController < ApplicationController
+  include AuthorizationHelper
+
   before_action :set_school, only: %i[edit update]
+  before_action :check_admin_role, only: %i[new create edit update]
 
   # GET /schools/new
   def new

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'student_histories/index'
   devise_for :users
   root 'home#index'
+  get 'student_histories/index'
 
   resources :schools, except: %i[index show destroy]
 
@@ -21,10 +21,9 @@ Rails.application.routes.draw do
   end
 
   namespace :parent do
-    resources :parent_attendance_views
-    resources :parent_notices
+    resources :parent_attendance_views, only: %i[index]
+    resources :parent_notices, only: %i[index]
   end
-  
 
   resources :user_attendances, except: %i[show edit update destroy create] do
     collection do

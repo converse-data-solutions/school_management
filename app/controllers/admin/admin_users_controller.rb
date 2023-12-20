@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# this is a controller for standards page
 class Admin::AdminUsersController < ApplicationController
   def edit
     @user = User.find_by(id: params[:id])
