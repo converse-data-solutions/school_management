@@ -4,8 +4,7 @@
 class StudentAttendancesController < ApplicationController
   include AuthorizationHelper
 
-  before_action :check_admin_role, only: %i[find_sections update_all index]
-
+  before_action :check_admin_role
   def find_sections
     @sections = Standard.find_by(id: params[:standard_id]).sections
     respond_to(&:js)

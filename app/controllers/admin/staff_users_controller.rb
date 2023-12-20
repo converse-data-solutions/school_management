@@ -4,7 +4,7 @@
 # This controller includes actions for listing, creating, updating, and deleting staff users.
 class Admin::StaffUsersController < ApplicationController
   include AuthorizationHelper
-  before_action :check_admin_role, only: %i[index new create edit update destroy active_staff_user]
+  before_action :check_admin_role
   before_action :set_user, only: %i[edit update destroy active_staff_user]
   include UserStatusToggle
 

@@ -1,6 +1,6 @@
 class Parent::ParentAttendanceViewsController < ApplicationController
   include AuthorizationParentHelper
-  before_action :check_user_role, only: %i[index]
+  before_action :check_user_role
   # GET /parent/parent_attendance_views or /parent/parent_attendance_views.json
   def index
     @student = params[:student_id]

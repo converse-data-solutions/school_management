@@ -4,7 +4,7 @@
 class Admin::ParentUsersController < ApplicationController
   include AuthorizationHelper
 
-  before_action :check_admin_role, only: %i[new index create edit update destroy active_user]
+  before_action :check_admin_role
   before_action :set_user, only: %i[edit update destroy active_user]
   include UserStatusToggle
 
@@ -82,5 +82,4 @@ class Admin::ParentUsersController < ApplicationController
   def set_user
     @user = User.find_by(id: params[:id])
   end
-
 end

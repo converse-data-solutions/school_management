@@ -3,7 +3,7 @@
 # this is a controller for user attendance page
 class UserAttendancesController < ApplicationController
   include AuthorizationHelper
-  before_action :check_admin_role, only: %i[update_all index]
+  before_action :check_admin_role
   def update_all
     attendances_params = params.require(:attendances).permit!
 

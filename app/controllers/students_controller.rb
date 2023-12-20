@@ -2,9 +2,7 @@
 # This controller includes CRUD operations for managing parent student accounts.
 class StudentsController < ApplicationController
   include AuthorizationHelper
-  before_action :check_admin_role,
-                only: %i[index find_sections find_from_sections find_to_sections active_student new create edit update
-                         destroy promote update_sections]
+  before_action :check_admin_role
   before_action :set_student, only: %i[show edit update destroy active_student]
   before_action :selected_sections, only: %i[find_sections find_from_sections find_to_sections]
   include UserStatusToggle

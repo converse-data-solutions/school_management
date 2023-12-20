@@ -5,7 +5,7 @@ class SchoolsController < ApplicationController
   include AuthorizationHelper
 
   before_action :set_school, only: %i[edit update]
-  before_action :check_admin_role, only: %i[new create edit update]
+  before_action :check_admin_role
 
   # GET /schools/new
   def new

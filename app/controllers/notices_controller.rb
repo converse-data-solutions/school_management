@@ -4,7 +4,7 @@
 class NoticesController < ApplicationController
   include AuthorizationHelper
 
-  before_action :check_admin_role, only: %i[index create destroy]
+  before_action :check_admin_role
   def index
     @parent_notice = Notice.new(notice_type: 'parent')
     @staff_notice = Notice.new(notice_type: 'staff')
