@@ -2,10 +2,7 @@
 
 # Controller responsible for handling School user actions in the admin section.
 class SchoolsController < ApplicationController
-  include AuthorizationHelper
-
   before_action :set_school, only: %i[edit update]
-  before_action :check_admin_role
 
   # GET /schools/new
   def new
@@ -13,11 +10,7 @@ class SchoolsController < ApplicationController
   end
 
   # GET /schools/1/edit
-  def edit
-    return if @school.present?
-
-    redirect_to edit_school_url(School.last)
-  end
+  def edit; end
 
   # POST /schools or /schools.json
   def create

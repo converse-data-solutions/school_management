@@ -42,7 +42,11 @@
               <div class="flex lg:gap-4 md:pl-7 lg:pl-10 ">
                 <div class="flex self-center hover:bg-[#157AB5] md:p-3  sm:text-[14px] text-[#fff]" >
                   <div class="hidden lg:block px-1"><i class="fa-regular fa-clock"></i></div>
-                  <div class="hidden md:block">Academic Year: <%= School.last.academic_year %></div>
+                  <div class="hidden md:block">Academic Year: <% if School.first.nil? %>
+                      "yyyy-yyyy"
+                    <% else %>
+                      <%=   School.first.academic_year %>
+                    <% end %> </div>
                 </div>
                 <% if current_user.role.eql?('staff') || current_user.role.eql?('parent') %>
                   <div class="flex self-center hover:bg-[#157AB5] md:p-3  sm:text-[14px] text-[#fff] " >
@@ -124,7 +128,7 @@
               <ul class=" font-medium text-[16px]">
                 <li class="sm:hidden">
                   <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2 text-[14px] items-centr p-2 text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-slate-100 dark:hover:bg-gray-700 group">
-                    <i class="fa-regular fa-clock"></i>  <span class="p-[4px] text-[#fff]"><%= School.last.academic_year %></span>
+                    <i class="fa-regular fa-clock"></i>  <span class="p-[4px] text-[#fff]">Academic Year: </span>
                   </a>
                 </li>
                 <% if current_user.role.eql?('admin')%>
