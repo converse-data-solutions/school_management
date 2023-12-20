@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'student_histories/index'
   devise_for :users
   root 'home#index'
+  get 'student_histories/index'
 
-  resources :schools , except: %i[index show destroy]
+  resources :schools, except: %i[index show destroy]
 
   resources :notices, except: %i[new show edit update]
 
@@ -18,6 +18,11 @@ Rails.application.routes.draw do
     member do
       patch :active_student
     end
+  end
+
+  namespace :parent do
+    resources :parent_attendance_views, only: %i[index]
+    resources :parent_notices, only: %i[index]
   end
 
   resources :user_attendances, except: %i[show edit update destroy create] do

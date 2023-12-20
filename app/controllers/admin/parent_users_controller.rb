@@ -1,6 +1,10 @@
 # Controller responsible for handling parent user actions in the admin section.
+
 # This controller includes CRUD operations for managing parent user accounts.
 class Admin::ParentUsersController < ApplicationController
+  include AuthorizationHelper
+
+  before_action :check_admin_role
   before_action :set_user, only: %i[edit update destroy active_user]
   include UserStatusToggle
 
@@ -78,5 +82,4 @@ class Admin::ParentUsersController < ApplicationController
   def set_user
     @user = User.find_by(id: params[:id])
   end
-
 end

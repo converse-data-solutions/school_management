@@ -1,5 +1,10 @@
-# app/controllers/notices_controller.rb
+# frozen_string_literal: true
+
+# Controller responsible for handling Notices.
 class NoticesController < ApplicationController
+  include AuthorizationHelper
+
+  before_action :check_admin_role
   def index
     @parent_notice = Notice.new(notice_type: 'parent')
     @staff_notice = Notice.new(notice_type: 'staff')

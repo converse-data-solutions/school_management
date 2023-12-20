@@ -1,0 +1,111 @@
+.fc .fc-daygrid-day-number {
+  font-size: 14px;
+  color: #555;
+}
+button.fc-prev-button.fc-button.fc-button-primary {
+  background-color: #F2F2F2 !important;
+  color: black;
+}
+
+button.fc-prev-button.fc-button.fc-button-primary:hover{
+  background-color: #e3dfdf !important;
+  color: black;
+}
+primary:not(:disabled):active {
+  background-color: #F4F4F4 !important ;
+  border-color: #F4F4F4 !important;
+  color: black !important;
+}
+.fc-icon {
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: contextual;
+  font-weight: 900;
+  height: 1em;
+  line-height: 1;
+  text-align: center;
+  text-transform: none;
+  user-select: none;
+  width: 30px;
+  font-family: fcicons !important;
+}
+.fc .fc-button .fc-icon {
+  font-size: 1.2rem !important;
+  vertical-align: middle;
+}
+.fc .fc-button {
+  background-color: #F4F4F4 !important ;
+  color: black !important;
+
+  border: 1px solid transparent;
+  border-radius: 0.25em;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 18px;
+  padding: 2px 6px;
+  text-align: center;
+  user-select: none;
+  vertical-align: middle;
+}
+.fc .fc-button-primary:hover {
+  background-color: #e3dfdf !important;
+  border: 1px solid transparent !important;
+}
+.fc .fc-button:focus {
+  box-shadow: none !important;
+  outline: 0px;
+}
+
+.fc .fc-button-primary:focus {
+  box-shadow: none !important;
+}
+.fc-button-group {
+  border: 1px solid #e3dfdf;
+  border-radius: 5px; 
+}
+.fc-today-button{
+  background-color: black;
+}
+.fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
+  margin-left: 0.75em;
+  background-color: #EFEFEF !important;
+  border: #e3dfdf 1px solid;
+  font-size: 14px;
+  color: #898484 !important;
+}
+.fc .fc-button:disabled {
+  opacity: 1 !important;
+}
+.fc-toolbar-chunk {
+  color: #317EAC !important;
+  font-size: 18px;
+  font-weight: 300;
+}
+@media screen and (max-width: 625px) {
+  .fc-toolbar-chunk {
+    color: #317EAC !important;
+    font-size: 14px;
+    font-weight: 200;
+  }
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+  margin-bottom: 7px;
+  margin-top: -9px;
+}
+.fc .fc-non-business {
+  background-color: white;
+}
+.fc .fc-col-header-cell-cushion {
+  display: inline-block;
+  padding: 2px 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #555;
+}
+button.fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {
+  display: none !important;
+}

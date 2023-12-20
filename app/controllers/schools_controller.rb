@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Controller responsible for handling School user actions in the admin section.
 class SchoolsController < ApplicationController
   before_action :set_school, only: %i[edit update]
 
@@ -7,11 +10,7 @@ class SchoolsController < ApplicationController
   end
 
   # GET /schools/1/edit
-  def edit
-    return if @school.present?
-
-    redirect_to edit_school_url(School.last)
-  end
+  def edit; end
 
   # POST /schools or /schools.json
   def create

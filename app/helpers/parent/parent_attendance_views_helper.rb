@@ -1,0 +1,2 @@
+module Parent::ParentAttendanceViewsHelper
+end

@@ -1,4 +1,10 @@
+# frozen_string_literal: true
+
+# this is a controller for student attendance page
 class StudentAttendancesController < ApplicationController
+  include AuthorizationHelper
+
+  before_action :check_admin_role
   def find_sections
     @sections = Standard.find_by(id: params[:standard_id]).sections
     respond_to(&:js)
@@ -13,6 +19,8 @@ class StudentAttendancesController < ApplicationController
       attendance = Attendance.find_or_initialize_by(attendable_id: student.id, attendable_type: student.class.name,
                                                     date: attendance_params[:date])
       attendance.update(attendance_params)
+      attendance.set_color
+      attendance.save
     end
     redirect_to student_attendances_path
   end
