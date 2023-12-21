@@ -1,5 +1,4 @@
 function initValidate() {
-  console.log("entered notice");
   var calendarForStaffNotice = document.getElementById("staff-notice-calendar");
   if (!calendarForStaffNotice) {
     return;
@@ -21,7 +20,6 @@ function initValidate() {
   });
 
   staffNoticeCalendar.render();
-  console.log("rendered notice");
 }
 
 $(document).ready(function () {

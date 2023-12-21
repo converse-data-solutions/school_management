@@ -2,9 +2,7 @@
 
 # this is a controller for student attendance page
 class StudentAttendancesController < ApplicationController
-  include AuthorizationHelper
-
-  before_action :check_admin_role
+  before_action :check_role
   def find_sections
     @sections = Standard.find_by(id: params[:standard_id]).sections
     respond_to(&:js)
@@ -30,5 +28,14 @@ class StudentAttendancesController < ApplicationController
     @selected_standard = params[:standard_id]
     @selected_section = params[:section_id]
     @students = Student.where(section_id: @selected_section, deleted: 'Active')
+  end
+
+  private
+
+  def check_role
+    return if current_user && (current_user.role == 'admin' || current_user.role == 'staff')
+
+    flash[:alert] = 'You do not have permission to access this page.'
+    redirect_to root_path
   end
 end
