@@ -1,7 +1,4 @@
 class Staff::StaffAttendanceViewsController < ApplicationController
-  before_action :set_staff_staff_attendance_view, only: %i[show edit update destroy]
-
-  # GET /staff/staff_attendance_views or /staff/staff_attendance_views.json
   def index
     @staff_id = current_user.id
     @selected_date = params[:selected_date]
@@ -11,6 +8,4 @@ class Staff::StaffAttendanceViewsController < ApplicationController
       format.html { render :index }
     end
   end
-
-  # GET /staff/staff_attendance_views/1 or /staff/staff_attendance_views/1.json
 end
