@@ -93,7 +93,7 @@
     <div>
     </div>
   <% end %>
-  <% if current_user.role.eql?('staff') || current_user.role.eql?('parent') %>
+  <% if current_user.role.eql?('parent') %>
     <div onclick="location.href='<%= parent_parent_attendance_views_path %>'" style="background-image: linear-gradient(to bottom, #dae4ee, #dfe8f0, #e5ecf3, #eaf0f5, #f0f4f8);" class="flex relative group flex-col font-bold text-[14px] items-center justify-center h-[62px] md:h-[84px] lg:h-[62px] md:text-center rounded-[12px] border-2 border-gray-300 bg-gray-50 dark:bg-gray-800">
       <div class="text-2xl  text-[#3986AC]"><i class="fa-regular fa-clock"></i> </div>
       <div class="text-[rgb(59,153,204)]">View Attendance</div>
@@ -114,6 +114,13 @@
       <div class="text-2xl text-[#458746]"><i class="fa-regular fa-clock"></i> </div>
       <div class="text-[rgb(59,153,204)]">View Attendance</div>
       <div class="absolute  bottom-0 flex flex-col items-center hidden mb-16 group-hover:flex"><span class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black opacity-[0.8]">View Attendance</span>
+        <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+      </div>
+    </div>
+    <div onclick="location.href='<%= parent_parent_notices_path %>'" style="background-image: linear-gradient(to bottom, #dae4ee, #dfe8f0, #e5ecf3, #eaf0f5, #f0f4f8);" class="flex relative group flex-col font-bold text-[14px]  items-center justify-center h-[62px] rounded-[12px] border-2 border-gray-300 bg-gray-50 dark:bg-gray-800">
+      <div class="text-2xl text-[#B94846]"><i class="fa-solid fa-calendar-days"></i></div>
+      <div class="text-[rgb(59,153,204)]">NoticeBoard</div>
+      <div class="absolute  bottom-0 flex flex-col items-center hidden mb-16 group-hover:flex"><span class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black opacity-[0.8]">Noticeboard</span>
         <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
       </div>
     </div>
