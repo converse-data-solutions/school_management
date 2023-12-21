@@ -1,8 +1,26 @@
 var staffAttendanceData = [];
+console.log("entered calender");
+function fetchData(selected_date, staffCalendar) {
+  console.log("data fetched");
+  $.ajax({
+    url: "/staff/staff_attendance_views",
+    method: "GET",
+    data: { selected_date: selected_date },
+    dataType: "json",
+    success: function (data) {
+      staffAttendanceData = data;
+      staffCalendar.refetchEvents(); // Use refetchEvents to reload events
+    },
+    error: function () {
+      console.error("Failed to fetch student attendance data");
+    },
+  });
+}
 
-function initValidate() {
-  var calendarEl = document.getElementById("calendar");
-  var calendar = new FullCalendar.Calendar(calendarEl, {
+function initCalendar() {
+  console.log("calendar initiated");
+  var calendarEl = document.getElementById("staff-calendar");
+  var staffCalendar = new FullCalendar.Calendar(calendarEl, {
     headerToolbar: {
       left: "prev,next today",
       center: "title",
@@ -15,26 +33,17 @@ function initValidate() {
     selectable: true,
     events: staffAttendanceData,
   });
-  calendar.render();
+  staffCalendar.render();
 
-  function fetchData(selected_date) {
-    $.ajax({
-      url: "/staff/staff_attendance_views",
-      method: "GET",
-      data: { selected_date: selected_date },
-      dataType: "json",
-      success: function (data) {
-        staffAttendanceData = data;
-        calendar.render();
-      },
-      error: function () {
-        console.error("Failed to fetch student attendance data");
-      },
-    });
-    
-  }
+  return staffCalendar;
+}
+
+function loadCalendar() {
+  console.log("calendar loaded");
+  var calendar = initCalendar();
 
   $("form").on("submit", function (e) {
+
     let dateValue = $("#date").val();
     let err = $("#error-div");
 
@@ -47,29 +56,19 @@ function initValidate() {
       errors = true;
     }
 
-    if (errors == true) {
+    if (errors) {
       err.removeClass("hidden");
     } else {
       err.addClass("hidden");
+      fetchData(dateValue, calendar);
     }
-
-    if (errors) {
-      e.preventDefault();
-      return false;
-    }
-
-    fetchData(dateValue);
-
-    return true;
   });
-  
- 
 }
 
 $(document).ready(function () {
-  initValidate();
+  loadCalendar();
 
   $(document).on("turbo:render", function () {
-    initValidate();
+    loadCalendar();
   });
 });
