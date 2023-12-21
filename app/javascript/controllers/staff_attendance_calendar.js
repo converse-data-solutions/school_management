@@ -1,7 +1,5 @@
 var staffAttendanceData;
-console.log("entered calender");
 function fetchData(selected_date, staffCalendar) {
-  console.log("data fetched");
   $.ajax({
     url: "/staff/staff_attendance_views",
     method: "GET",
@@ -18,7 +16,6 @@ function fetchData(selected_date, staffCalendar) {
 }
 
 function initCalendar() {
-  console.log("calendar initiated")
   var calendarEl = document.getElementById("staff-calendar");
   if (!calendarEl) {
     return;
@@ -42,7 +39,6 @@ function initCalendar() {
 }
 
 function loadCalendar() {
-  console.log("calendar loaded");
   var calendar = initCalendar();
 
   $("form").on("submit", function (e) {

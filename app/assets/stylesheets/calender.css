@@ -109,3 +109,6 @@ primary:not(:disabled):active {
 button.fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {
   display: none !important;
 }
+/* button.fc-prev-button.fc-button.fc-button-primary{
+  border: 1px solid red !important;
+} */
