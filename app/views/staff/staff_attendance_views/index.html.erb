@@ -1,0 +1,45 @@
+ <%= content_for :head do %>
+  <%= javascript_import_module_tag "controllers/attendance_calendar" %>
+<% end %>
+<div class="bg-[#F5F5F5] mx-4 md:mt-[35px] text-[15px] lg:mt-0 mb-4 p-1 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline pointer" ><%= link_to "Sudent Attendance", parent_parent_attendance_views_path %></span></div>
+<div class=" container mx-auto rounded-[5px] border-2 relative">
+  <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+    <div><i class="fa-solid fa-pen-to-square"></i>
+      <span class="font-semibold">Staff Attendance</span></div>
+    <button class="accordian-header cursor-pointer leading-0 px-1 text-2xl  border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up  "></i></button>
+  </div>
+  <div class="accordian-body bg-[#ffffff] ">
+    <div class="p-3 ">
+      <div class="w-full container hidden  text-red-700 mx-auto conatiner mb-3  text-[14px] p-4 rounded bg-[#F2DEDE] " id="error-div">
+        <ul>
+          <li class="error" id="date-error"></li>
+        </ul>
+      </div>
+      <div class='p-3 w-full flex flex-col'>
+        <div class="flex flex-col md:flex-row gap-2 md:items-center w-full gap-x-4">
+          <div class=" w-full md:w-[75%]">
+            <%= form_tag parent_parent_attendance_views_path, method: :get do  %>
+              <div class= 'flex flex-col md:flex-row gap-2 md:items-center w-full gap-x-6'>
+                <div class="w-full md:w-[25%]">
+                  <%= label_tag :date, "Date" , class: 'text-[15px] text-[#555555] font-semibold' %>
+                  <%= date_field_tag :date, params[:date],  class: " border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0", id: 'date' %>
+                </div>
+                <div class="md:mt-[20px]">
+                  <%= submit_tag "View", id: 'date_submit' ,class:'text-white bg-[#81B944] getAttendanceData   focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2 text-center'%>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="w-[30%] md:w-[15%] flex flex-row gap-3 md:flex md:flex-col md:gap-0">
+            <div class="p-1 bg-[#008000] text-white font-semibold mb-1 "> Present </div>
+            <div class="p-1 bg-[indigo] text-white font-semibold mb-1 ">Late </div>
+            <div class="p-1 bg-[#FF0000] text-white font-semibold mb-1 ">Absent </div>
+          </div>
+        </div>
+        <div class="w-full mt-2">
+          <div id='calendar' class="w-full p-2 "></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

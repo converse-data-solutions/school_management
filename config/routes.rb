@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :staff do
+    resources :staff_notices, only: %i[index]
+    resources :staff_attendance_views, only: %i[index]
+  end
+
   devise_for :users
   root 'home#index'
   get 'student_histories/index'

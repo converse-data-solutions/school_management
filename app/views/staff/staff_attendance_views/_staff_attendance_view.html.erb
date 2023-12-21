@@ -1,0 +1,27 @@
+<div id="<%= dom_id staff_attendance_view %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Attendable type:</strong>
+    <%= staff_attendance_view.attendable_type %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Attendable:</strong>
+    <%= staff_attendance_view.attendable_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date:</strong>
+    <%= staff_attendance_view.date %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Status:</strong>
+    <%= staff_attendance_view.status %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this staff attendance view", staff_attendance_view, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this staff attendance view", edit_staff_attendance_view_path(staff_attendance_view), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
