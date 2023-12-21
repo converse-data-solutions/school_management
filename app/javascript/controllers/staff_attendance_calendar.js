@@ -1,4 +1,4 @@
-var staffAttendanceData = [];
+var staffAttendanceData;
 console.log("entered calender");
 function fetchData(selected_date, staffCalendar) {
   console.log("data fetched");
@@ -18,8 +18,11 @@ function fetchData(selected_date, staffCalendar) {
 }
 
 function initCalendar() {
-  console.log("calendar initiated");
+  console.log("calendar initiated")
   var calendarEl = document.getElementById("staff-calendar");
+  if (!calendarEl) {
+    return;
+  }
   var staffCalendar = new FullCalendar.Calendar(calendarEl, {
     headerToolbar: {
       left: "prev,next today",
@@ -43,7 +46,6 @@ function loadCalendar() {
   var calendar = initCalendar();
 
   $("form").on("submit", function (e) {
-
     let dateValue = $("#date").val();
     let err = $("#error-div");
 
@@ -57,6 +59,7 @@ function loadCalendar() {
     }
 
     if (errors) {
+      e.preventDefault();
       err.removeClass("hidden");
     } else {
       err.addClass("hidden");
