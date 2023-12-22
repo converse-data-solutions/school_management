@@ -101,12 +101,14 @@ select#student_user_id {
   overflow-x: auto;
 }
 
-#updown .active i{
+#updown .active i {
   transform: rotate(180deg);
 }
-.activedropdown  {
+
+.activedropdown {
   background-color: #157AB5;
 }
+
 .active-admin {
   background-color: #EBEBEB;
 }

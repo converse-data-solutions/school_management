@@ -1,4 +1,7 @@
-class Staff::StaffAttendanceViewsController < ApplicationController
+# frozen_string_literal: true
+
+# Parent::ParentNoticesController
+class Staff::StaffAttendanceViewsController < ApplicationController  # rubocop:disable Style/ClassAndModuleChildren
   def index
     @staff_id = current_user.id
     @selected_date = params[:selected_date]
