@@ -12,14 +12,9 @@ class StudentAttendancesController < ApplicationController
     attendances_params = params.require(:attendances).permit!
 
     attendances_params.each do |_student_id, attendance_params|
-      student = Student.find(attendance_params[:attendable_id])
-
-      attendance = Attendance.find_or_initialize_by(attendable_id: student.id, attendable_type: student.class.name, created_by: current_user.id,
-                                                    date: attendance_params[:date])
-      attendance.update(attendance_params)
-      attendance.set_color
-      attendance.save
+      update_or_create_attendance(attendance_params)
     end
+
     redirect_to student_attendances_path
   end
 
@@ -37,5 +32,18 @@ class StudentAttendancesController < ApplicationController
 
     flash[:alert] = 'You do not have permission to access this page.'
     redirect_to root_path
+  end
+
+  def update_or_create_attendance(attendance_params)
+    student_id = attendance_params[:attendable_id]
+    date = attendance_params[:date]
+
+    student = Student.find(student_id)
+    attendance = Attendance.find_or_initialize_by(attendable_id: student_id, attendable_type: student.class.name,
+                                                  date:, created_by: current_user.id)
+
+    attendance.update(attendance_params)
+    attendance.set_color
+    attendance.save
   end
 end
