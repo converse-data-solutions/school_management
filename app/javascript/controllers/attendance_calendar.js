@@ -42,7 +42,6 @@ function initValidate() {
     let err = $("#error-div");
   
     $(".error").text("");
-    $(".error").css("color", "red");
     let errors = false;
   
     if (!validator.isDate(dateValue)) {

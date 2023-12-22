@@ -1,1 +1,0 @@
-json.partial! "staff_staff_attendance_views/staff_staff_attendance_view", staff_staff_attendance_view: @staff_staff_attendance_view
