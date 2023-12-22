@@ -8,12 +8,12 @@
     <div class="  mx-auto rounded-[5px] border-2">
       <div class=" px-5  flex items-center justify-between text-[#317EAC] shadow-2xl" style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
         <div><i class="fa-solid fa-pen-to-square"></i>
-          <span class="font-semibold">Staff Noticeboard</span></div>
+          <span class="font-semibold text-[15px]">Staff Noticeboard</span></div>
         <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
       <div class="accordian-body p-2 relative ">
         <span class="text-[15px] text-[#555555] font-extrabold "> Date:  </span><span class="text-[#555555] text-[15px]"><%= Date.today %></span>
-        <hr>
+        <hr class="my-4">        
         <div class="text-[#555555] font-light text-[14px] my-10">
           <% if @staff_notices.empty? %>
             <p class="text-[#555555] font-light text-[14px] my-10">No Notice Found</p>
@@ -41,7 +41,7 @@
     <div class="  mx-auto rounded-[5px] border-2">
       <div class=" px-5  flex items-center justify-between text-[#317EAC] shadow-2xl" style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
         <div><i class="fa-solid fa-pen-to-square"></i>
-          <span class="font-semibold">Calendar</span></div>
+          <span class="font-semibold text-[15px]">calendar</span></div>
         <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
       <div class="accordian-body w-full">

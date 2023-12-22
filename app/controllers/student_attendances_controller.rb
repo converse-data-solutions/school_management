@@ -14,7 +14,7 @@ class StudentAttendancesController < ApplicationController
     attendances_params.each do |_student_id, attendance_params|
       student = Student.find(attendance_params[:attendable_id])
 
-      attendance = Attendance.find_or_initialize_by(attendable_id: student.id, attendable_type: student.class.name,
+      attendance = Attendance.find_or_initialize_by(attendable_id: student.id, attendable_type: student.class.name, created_by: current_user.id,
                                                     date: attendance_params[:date])
       attendance.update(attendance_params)
       attendance.set_color

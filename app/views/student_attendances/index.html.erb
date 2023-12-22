@@ -5,8 +5,8 @@
 <div class=" container mx-auto rounded-[5px] border-2 relative">
   <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
     <div><i class="fa-solid fa-pen-to-square"></i>
-      <span class="font-semibold">Student Attendance</span></div>
-    <button class="accordian-header cursor-pointer leading-0 px-1 text-2xl  border bg-white text-black font-extrabold rounded-3xl"> <i class="bx bx-chevron-up  "></i></button>
+      <span class="font-semibold text-[15px]">Student Attendance</span></div>
+        <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
   </div>
   <div class="accordian-body bg-[#ffffff] ">
     <div class="p-3 ">
@@ -20,15 +20,15 @@
           <div class= 'flex flex-col md:flex-row gap-2 md:items-center w-full gap-x-6'>
             <div class="w-full md:w-[25%]">
               <%= label_tag :standard, "Standard", class: 'text-[15px] text-[#555555] font-semibold' %>
-              <%= select_tag :standard_id, options_from_collection_for_select(Standard.all, 'id', 'name', params[:standard_id]), prompt: 'Select a Standard', class: "border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 standard" %>
+              <%= select_tag :standard_id, options_from_collection_for_select(Standard.all, 'id', 'name', params[:standard_id]), prompt: 'Select a Standard', class: "border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard" %>
             </div>
             <div class="w-full md:w-[25%]" id="section-dropdown">
               <%= label_tag :section, "Section", class: 'text-[15px] text-[#555555] font-semibold' %>
-              <%= select_tag :section_id, options_from_collection_for_select( Section.where(standard_id: params[:standard_id]), 'id', 'section_name', params[:section_id]), prompt: 'Select a Section', class: "border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0 " %>
+              <%= select_tag :section_id, options_from_collection_for_select( Section.where(standard_id: params[:standard_id]), 'id', 'section_name', params[:section_id]), prompt: 'Select a Section', class: "border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 " %>
             </div>
             <div class="w-full md:w-[25%]">
               <%= label_tag :date, "Date" , class: 'text-[15px] text-[#555555] font-semibold' %>
-              <%= date_field_tag :date, params[:date],  class: " border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.0", id: 'date' %>
+              <%= date_field_tag :date, params[:date],  class: " border border-gray-300 bg-[#EEEEEE] text-gray-900 text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", id: 'date' %>
             </div>
             <div class="md:mt-[20px]">
               <%= submit_tag "View", id: 'date_submit' ,class:'text-white bg-[#81B944]    focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2 text-center'%>
