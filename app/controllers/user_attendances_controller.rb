@@ -26,7 +26,7 @@ class UserAttendancesController < ApplicationController
     attendance = Attendance.find_or_initialize_by(attendable_id: user.id, attendable_type: user.class.name,
                                                   date: attendance_params[:date])
     attendance.update(attendance_params)
-    attendance.set_color
+    attendance.set_color(current_user.id)
     attendance.save
   end
 end
