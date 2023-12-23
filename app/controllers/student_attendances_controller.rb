@@ -40,10 +40,10 @@ class StudentAttendancesController < ApplicationController
 
     student = Student.find(student_id)
     attendance = Attendance.find_or_initialize_by(attendable_id: student_id, attendable_type: student.class.name,
-                                                  date:, created_by: current_user.id)
+                                                  date:)
 
     attendance.update(attendance_params)
-    attendance.set_color
+    attendance.set_color(current_user.id)
     attendance.save
   end
 end
