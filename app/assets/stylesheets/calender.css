@@ -79,10 +79,10 @@ primary:not(:disabled):active {
 
 .fc-direction-ltr .fc-toolbar>*> :not(:first-child) {
   margin-left: 0.75em;
-  background-color: #EFEFEF !important;
+  background-color: #e4e0e0 !important;
   border: #e3dfdf 1px solid;
   font-size: 14px;
-  color: #898484 !important;
+  color: #2b2828 !important;
 }
 
 .fc-toolbar-chunk {
@@ -105,7 +105,7 @@ primary:not(:disabled):active {
 }
 
 .fc .fc-non-business {
-  background-color: white;
+  background-color: transparent !important;
 }
 
 .fc .fc-col-header-cell-cushion {
