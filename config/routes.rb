@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :staff do
-    resources :staff_notices, only: %i[index]
-    resources :staff_attendance_views, only: %i[index]
+    resources :notices, only: %i[index]
+    resources :attendance_views, only: %i[index]
   end
 
   devise_for :users
@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   end
 
   namespace :parent do
-    resources :parent_attendance_views, only: %i[index]
-    resources :parent_notices, only: %i[index]
+    resources :attendance_views, only: %i[index]
+    resources :notices, only: %i[index]
   end
 
   resources :user_attendances, except: %i[show edit update destroy create] do

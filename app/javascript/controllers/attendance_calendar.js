@@ -21,7 +21,7 @@ function initValidate() {
 
 
     $.ajax({
-      url: '/parent/parent_attendance_views',
+      url: '/parent/attendance_views',
       method: 'GET',
       data: { student_id: student_id, selected_date: selected_date },
       dataType: 'json',
