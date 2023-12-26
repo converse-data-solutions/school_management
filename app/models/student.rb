@@ -37,14 +37,7 @@ class Student < ApplicationRecord
       history_data = student.attributes.slice(
         'admission_no',
         'roll_no',
-        'name',
-        'date_of_birth',
-        'gender',
-        'mobile_number',
-        'date_of_admission',
-        'address',
-        'father_name',
-        'mother_name'
+        'name'
       )
 
       StudentHistory.create(
@@ -71,15 +64,8 @@ class Student < ApplicationRecord
       admission_no:,
       roll_no:,
       name:,
-      date_of_birth:,
-      gender:,
-      mobile_number:,
       section_name: self.section.section_name,
-      standard_name: self.section.standard.name,
-      date_of_admission:,
-      address:,
-      father_name:,
-      mother_name:
+      standard_name: self.section.standard.name
     )
   end
 end

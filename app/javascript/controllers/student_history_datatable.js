@@ -14,17 +14,10 @@ function initValidate() {
       { data: "id", class: "id" },
       { data: "admission_no", class: "admission_no" },
       { data: "name", class: "student_name" },
-      { data: "date_of_birth", class: "date_of_birth" },
-      { data: "gender", class: "student_gender" },
-      { data: "date_of_admission", class: "date_of_admission" },
-      { data: "father_name", class: "father_name" },
-      { data: "mother_name", class: "mother_name" },
-      { data: "address", class: "address" },
-      { data: "mobile_number", class: "mobile_number" },
       { data: "roll_no", class: "roll_no" },
       { data: "section_name", class: "section" },
       { data: "standard_name", class: "standard_name" },
-      
+      { data: "academic_year", class: "academic_year" },
     ],
     oLanguage: {
       oPaginate: {
