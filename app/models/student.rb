@@ -62,7 +62,7 @@ class Student < ApplicationRecord
   private
 
   def set_initial_status
-    self.deleted = :Active
+    self.status = :Active
   end
 
   def create_history_entry
