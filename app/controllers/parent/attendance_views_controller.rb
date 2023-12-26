@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Parent::ParentNoticesController
-class Parent::ParentAttendanceViewsController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
+class Parent::AttendanceViewsController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
   include AuthorizationParentHelper
   before_action :check_user_role
   # GET /parent/parent_attendance_views or /parent/parent_attendance_views.json
