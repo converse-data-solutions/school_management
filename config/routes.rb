@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :staff do
     resources :notices, only: %i[index]
-    resources :attendance_views, only: %i[index]
+    resources :attendances, only: %i[index]
   end
 
   devise_for :users
