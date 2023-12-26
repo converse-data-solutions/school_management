@@ -1,7 +1,7 @@
 var staffAttendanceData;
 function fetchData(selected_date, staffCalendar) {
   $.ajax({
-    url: "/staff/attendance_views",
+    url: "/staff/attendances",
     method: "GET",
     data: { selected_date: selected_date },
     dataType: "json",
