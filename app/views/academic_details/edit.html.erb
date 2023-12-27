@@ -1,0 +1,43 @@
+<%= content_for :head do %>
+  <%= javascript_import_module_tag "controllers/academic_details" %>
+<% end %>
+<div class="container bg-[#F5F5F5] mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-8 p-1 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline " ><%= link_to "Edit Academic Details", edit_academic_detail_path(@academic_detail)  %></span></div>
+<div class=" container mx-auto rounded-[5px] border-2">
+  <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+    <div><i class="fa-solid fa-pen-to-square"></i>
+      <span class="font-semibold">Edit Student</span></div>
+    <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+  </div>
+  <div class="accordian-body">
+    <%= form_with(model: @academic_detail,class: "contents") do |f| %>
+      <div class="p-5 border-t bg-white grid grid-cols-1 md:grid-cols-2 gap-6" >
+        <div class="w-full">
+          <label for="admission_no" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Admission No.</label>
+          <%= f.text_field :admission_no, id:"admission_no" ,class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Name"%>
+        </div>
+        <div class="w-full">
+          <label for="name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Name</label>
+          <%= f.text_field :name, id:"name" ,class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Name"%>
+        </div>
+        <div class="w-full">
+          <label for="standard_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard Name</label>
+          <%= f.text_field :standard_name, id:"standard_name" ,class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Name"%>
+        </div>
+        <div class="w-full">
+          <label for="section_id" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section Name</label>
+          <%= f.text_field :section_name, id:"section_name" ,class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Name"%>
+        </div>
+        <div class="w-full">
+          <label for="roll_no" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Roll No</label>
+          <%= f.text_field :roll_no, id:"roll_no" ,class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Name"%>
+        </div>
+        <div class="w-full">
+          <label for="academic_year" class="block mb-1 text-[14px] font-bold text-[#555555] ">Academic Year</label>
+          <%= f.select(:academic_year, ['2023-2024', '2024-2025', '2025-2026', '2026-2027', '2028-2029'] ,  { prompt: 'Select Year' }, { class: 'text-[14px] text-[#555555] focus:ring-[#37A7E7] w-full p-2.0 border border-gray-300 rounded-[5px] focus:border-[#37A7E7] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]'} ) %>
+        </div>
+      </div>
+      <%= f.submit "Update Details",class:"text-white bg-[#2FA4E7] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
+    </div>
+  <% end %>
+</div>
+</div>

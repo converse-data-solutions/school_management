@@ -12,12 +12,15 @@ function initValidate() {
     stateSave: false,
     columns: [
       { data: "id", class: "id" },
+      { data: "student_id", class: "student_id" },
       { data: "admission_no", class: "admission_no" },
       { data: "name", class: "student_name" },
       { data: "roll_no", class: "roll_no" },
-      { data: "section_name", class: "section" },
       { data: "standard_name", class: "standard_name" },
+      { data: "section_name", class: "section" },
+
       { data: "academic_year", class: "academic_year" },
+      { data: "academic_action", class: "actions" },
     ],
     oLanguage: {
       oPaginate: {

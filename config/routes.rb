@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   devise_for :users
   root 'home#index'
-  get 'student_histories/index'
+  
+   resources :academic_details
+
 
   resources :schools, except: %i[index show destroy]
 

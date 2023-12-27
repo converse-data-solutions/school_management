@@ -261,8 +261,8 @@
                     </a>
                   </li>
                   <li class="text-[14px]">
-                    <a href="<%= url_for :student_histories_index %>" class="flex <%= params[:controller] == "student_histories" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
-                      <span><i class="fa-sharp fa-solid fa-clock-rotate-left"></i> </span><span class="ml-3 text-center">Student History</span>
+                    <a href="<%= url_for :academic_details %>" class="flex <%= params[:controller] == "student_academic_details" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
+                      <span><i class="fa-sharp fa-solid fa-clock-rotate-left"></i> </span><span class="ml-3 text-center">Student Academic Details</span>
                     </a>
                   </li>
                 <% end %>

@@ -3,9 +3,9 @@ class Student < ApplicationRecord
   belongs_to :user
   has_one_attached :image, dependent: :destroy
   has_many :attendances, as: :attendable
-  has_many :student_history
+  has_many :student_academic_details
   before_create :set_initial_status
-  after_create :create_history_entry
+  after_create :create_academic_detail
 
   validates :admission_no, uniqueness: { message: 'Admission No. must be unique.' },
                            numericality: { only_integer: true, message: 'Admission No. must be an integer' },
@@ -40,7 +40,7 @@ class Student < ApplicationRecord
         'name'
       )
 
-      StudentHistory.create(
+      AcademicDetail.create(
         history_data.merge(
           'student_id' => student.id,
           'section_name' => section.section_name,
@@ -58,8 +58,8 @@ class Student < ApplicationRecord
     self.status = :Active
   end
 
-  def create_history_entry
-    StudentHistory.create(
+  def create_academic_detail
+    AcademicDetail.create(
       student_id: id,
       admission_no:,
       roll_no:,

@@ -1,7 +1,7 @@
 <%= content_for :head do %>
   <%= javascript_import_module_tag "controllers/student_history_datatable" %>
 <% end %>
-<div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[15px] text-[#2FA4E7] pl-4"><span><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Students History</span></div>
+<div class="container bg-[#F5F5F5] mx-auto mb-8 p-1 text-[15px] text-[#2FA4E7] pl-4"><span><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Academic Details</span></div>
 <div class=" container mx-auto rounded-lg border-2">
   <div class="px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
     <div><i class="fa-solid fa-pen-to-square"></i>
@@ -15,16 +15,18 @@
           <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
         </div>
       <% end %>
-      <table id="historyTable" class="stripe"  data-source="<%= student_histories_index_path(format: :json) %>">
+      <table id="historyTable" class="stripe"  data-source="<%= academic_details_path(format: :json) %>">
         <thead class="bg-[#FFFFFF]">
           <tr>
             <th class="sr_no">S.No</th>
+            <th class="student_id">Student ID</th>
             <th class="admission_no">Admission No</th>
             <th class="student_name">Name</th>
             <th class="roll_no">Roll No</th>
-            <th class="standard">Last Standard</th>
-            <th class="section">Last Section</th>
+            <th class="standard">Standard</th>
+            <th class="section">Section</th>
             <th class="academic_year">Academic Year</th>
+            <th class="action">Action</th>
           </tr>
         </thead>
         <tbody class="bg-[#F9F9F9] striped ">

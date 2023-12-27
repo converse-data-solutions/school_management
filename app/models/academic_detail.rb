@@ -1,4 +1,4 @@
-class StudentHistory < ApplicationRecord
+class AcademicDetail < ApplicationRecord
   before_create :set_initial_academic_year
   belongs_to :student
 
