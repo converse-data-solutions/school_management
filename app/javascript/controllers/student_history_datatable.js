@@ -18,9 +18,8 @@ function initValidate() {
       { data: "roll_no", class: "roll_no" },
       { data: "standard_name", class: "standard_name" },
       { data: "section_name", class: "section" },
-
       { data: "academic_year", class: "academic_year" },
-      { data: "academic_action", class: "actions" },
+      { data: "academic_action", class: "academic_action" },
     ],
     oLanguage: {
       oPaginate: {
