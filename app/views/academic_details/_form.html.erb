@@ -1,0 +1,48 @@
+<div class="container bg-[#F5F5F5] mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-8 p-1 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline " ><%= link_to "Aboutschool"  %></span></div>
+<div class=" container mx-auto rounded-[5px] border-2">
+  <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+    <div><i class="fa-solid fa-pen-to-square"></i>
+      <span class="font-semibold">Add school</span></div>
+    <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+  </div>
+  <div class="accordian-body">
+    <%= form_with(model: academic_detail, class: "contents") do |f| %>
+      <% if notice %>
+        <div class=" text-[#508C47]  mx-3  my-3 text-[14px] px-10 py-5 rounded bg-[#DFF0D8]" id="notice">
+          <p><%= notice %></p>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="p-5  bg-white flex flex-wrap" >
+      <div class="w-full md:w-[75%]">
+        <div class="grid grid-cols-1 gap-y-3">
+          <div class="w-full">
+            <label for="admission_no" class="block mb-1 text-[14px] font-bold text-[#555555] ">School Name</label>
+            <%= f.text_field :admission_no ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"SchoolName"%>
+          </div>
+          <div class="w-full">
+            <label for="school_address" class="block mb-1 text-[14px] font-bold text-[#555555] ">School Address Line 1</label>
+            <%= f.text_field :name ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"School Address Line 1"%>
+          </div>
+          <div class="w-full">
+            <label for="name" class="block mb-1 text-[14px] font-bold text-[#555555] ">School Address Line 2</label>
+            <%= f.text_field :section_name ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"School Address Line 2"%>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 md:gap-6">
+            <div class="w-full">
+              <label for="school_email" class="block mb-1 text-[14px] font-bold text-[#555555] ">School Email</label>
+              <%= f.text_field :standard_name ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"School Email"%>
+            </div>
+            <div class="w-full">
+              <label for="academic_year" class="block mb-1 text-[14px] font-bold text-[#555555] ">Academic Year</label>
+              <%= f.select(:academic_year, ['2023-2024', '2024-2025', '2025-2026', '2026-2027', '2028-2029'] ,  { prompt: 'Select Year' }, { class: 'text-[14px] text-[#555555] focus:ring-[#37A7E7] w-full p-2.0 border border-gray-300 rounded-[5px] focus:border-[#37A7E7] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]'} ) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= f.submit "Save",class:"text-white bg-[#2FA4E7] ml-16  md:mb-4 md:ml-6 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
+  <% end %>
+</div>
+</div>
+</div>
