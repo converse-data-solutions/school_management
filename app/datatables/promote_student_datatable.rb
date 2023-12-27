@@ -28,6 +28,6 @@ class PromoteStudentDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    Student.where(section_id: @from_section, status: 'Active')
+    Student.where(section_id: @from_section, status: 'Active', deleted: false)
   end
 end

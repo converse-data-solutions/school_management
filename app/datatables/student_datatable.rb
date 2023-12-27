@@ -32,6 +32,6 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    Student.joins(section: :standard)
+    Student.joins(section: :standard).where(deleted: false)
   end
 end
