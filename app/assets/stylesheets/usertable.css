@@ -526,3 +526,7 @@ table.dataTable.display tbody tr.odd {
   background: linear-gradient(#F5F5F5, #F5F5F5) !important;
   color: black !important;
 }
+
+td.academic_action {
+  display: flex;
+}

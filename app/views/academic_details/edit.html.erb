@@ -10,7 +10,16 @@
   </div>
   <div class="accordian-body">
     <%= form_with(model: @academic_detail,class: "contents") do |f| %>
-      <div class="p-5 border-t bg-white grid grid-cols-1 md:grid-cols-2 gap-6" >
+      <div class="hidden text-[#B94845] mx-3  my-3 text-[14px] px-10 py-5 rounded bg-[#F2DEDE] " id="error-div">
+        <ul>
+          <li class="error" id="admission-no-error"></li>
+          <li class="error" id="name-error"></li>
+          <li class="error" id="standard-name-error"></li>
+          <li class="error" id="section-name-error"></li>
+          <li class="error" id="roll-no-error"></li>
+        </ul>
+      </div>
+      <div class="p-5 bg-white grid grid-cols-1 md:grid-cols-2 gap-6" >
         <div class="w-full">
           <label for="admission_no" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Admission No.</label>
           <%= f.text_field :admission_no, id:"admission_no" ,class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Name"%>
