@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :academic_fees
+  resources :academic_fees do
+    collection do
+      get :find_academic_sections
+      get :find_students
+      get :find_student_details
+    end
+  end
+
   namespace :staff do
     resources :notices, only: %i[index]
     resources :attendances, only: %i[index]

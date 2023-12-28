@@ -1,14 +1,76 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Academic fees</h1>
-    <%= link_to "New academic fee", new_academic_fee_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
-  <div id="academic_fees" class="min-w-full">
-    <%= render @academic_fees %>
+ <%= content_for :head do %>
+  <%= javascript_import_module_tag "controllers/academic_fees" %>
+<% end %>
+<div class="bg-[#F5F5F5] mx-3 md:mt-[35px] text-[15px] lg:mt-0 mb-4 p-1 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline pointer" ><%= link_to "Fee Payment", academic_fees_path %></span></div>
+<div class=" mx-3">
+  <div class="grid w-full grid-cols-1 lg:grid-cols-9 gap-x-6 gap-y-3">
+    <!-- profile section -->
+    <div class="w-full lg:col-span-6">
+      <div class=" container mx-auto rounded-[5px] border-2">
+        <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
+          <div><i class="fa-solid fa-pen-to-square"></i>
+            <span class="font-extrabold text-[15px]">Fee Payment</span></div>
+          <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+        </div>
+        <div class="accordian-body p-2">
+          <fieldset>
+            <legend class="text-[#555555] font-bold text-[16px]">Find Student</legend>
+            <hr>
+            <div class="p-4">
+              <%= form_tag academic_fees_path, method: :get,id: "academic-fee" do  %>
+                <div class= 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2  gap-x-6'>
+                  <div class="w-full ">
+                    <%= label_tag :standard, "Standard", class: 'text-[15px] text-[#555555] font-semibold' %>
+                    <%= select_tag :standard_id, options_from_collection_for_select(Standard.all, 'id', 'name', params[:standard_id]), prompt: 'Select a Standard', class: "border border-[#cccccc]  text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard" %>
+                  </div>
+                  <div class="w-full " id="section-dropdown">
+                    <%= label_tag :section, "Section", class: 'text-[15px] text-[#555555] font-semibold' %>
+                    <%= select_tag :section_id, options_from_collection_for_select( Section.where(standard_id: params[:standard_id]), 'id', 'section_name', params[:section_id]), prompt: 'Select a Section', class: "border border-[#cccccc]  text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 " %>
+                  </div>
+                  <div class="w-full " id="student-dropdown">
+                    <%= label_tag :student, "Student", class: 'text-[15px] text-[#555555] font-semibold' %>
+                    <%= select_tag :student_id, options_from_collection_for_select(Student.where(section_id: params[:section_id]), 'id', 'section_name', params[:section_id]), prompt: 'Select a Section', class: "border border-[#cccccc]  text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 " %>
+                  </div>
+                  <div class="w-full" id="admission-dropdown">
+                    <%= label_tag :admission_no, "Admission No", class: 'text-[15px] text-[#555555] font-semibold' %>
+                    <%= text_field_tag :admission_no, params[:admission_no],  class: " border border-[#cccccc]  text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", id: 'admission_no' %>
+                  </div>
+                </div>
+                <div class="md:mt-[20px]">
+                  <%= link_to 'Reset', academic_fees_path, class: 'text-white focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2.5 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
+                </div>
+                <div class="md:mt-[20px]">
+                  <%= submit_tag "View", id: 'date_submit' ,class:'text-white bg-[#81B944]    focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);'%>
+                </div>
+              <% end %>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <!-- Standard form -->
+    <div class="w-full lg:col-span-3">
+      <div class=" w-full rounded-[5px] border-2">
+        <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
+          <div><i class="fa-solid fa-pen-to-square"></i>
+            <span class="font-extrabold text-[15px]">Student Details</span></div>
+          <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+        </div>
+        <div class="accordian-body">
+          <div class="w-full min-h-[30px]" id="student-details">
+          </div>
+        </div>
+      </div>
+      <div class=" w-full rounded-[5px] border-2 mt-3 md:mt-5">
+        <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
+          <div><i class="fa-solid fa-pen-to-square"></i>
+            <span class="font-extrabold text-[15px]"> Previous Payment Details</span></div>
+          <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+        </div>
+        <div class="accordian-body">
+          cxcxc
+        </div>
+      </div>
+    </div>
   </div>
 </div>

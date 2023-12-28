@@ -1,5 +1,5 @@
 class AcademicFeesController < ApplicationController
-  before_action :set_academic_fee, only: %i[ show edit update destroy ]
+  before_action :set_academic_fee, only: %i[show edit update destroy]
 
   # GET /academic_fees or /academic_fees.json
   def index
@@ -7,7 +7,26 @@ class AcademicFeesController < ApplicationController
   end
 
   # GET /academic_fees/1 or /academic_fees/1.json
-  def show
+  def show; end
+
+  def find_academic_sections
+    @sections = Standard.find_by(id: params[:standard_id]).sections
+    respond_to(&:js)
+  end
+
+  def find_students
+    @students = Section.find_by(id: params[:section_id]).students
+    respond_to(&:js)
+  end
+
+  def find_student_details
+    if params[:student_id].present?
+      @student = Student.find_by(id: params[:student_id])
+    elsif params[:admission_no].present?
+      @student = Student.find_by(admission_no: params[:admission_no])
+    end
+
+    respond_to(&:js)
   end
 
   # GET /academic_fees/new
@@ -16,8 +35,7 @@ class AcademicFeesController < ApplicationController
   end
 
   # GET /academic_fees/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /academic_fees or /academic_fees.json
   def create
@@ -25,7 +43,7 @@ class AcademicFeesController < ApplicationController
 
     respond_to do |format|
       if @academic_fee.save
-        format.html { redirect_to academic_fee_url(@academic_fee), notice: "Academic fee was successfully created." }
+        format.html { redirect_to academic_fee_url(@academic_fee), notice: 'Academic fee was successfully created.' }
         format.json { render :show, status: :created, location: @academic_fee }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +56,7 @@ class AcademicFeesController < ApplicationController
   def update
     respond_to do |format|
       if @academic_fee.update(academic_fee_params)
-        format.html { redirect_to academic_fee_url(@academic_fee), notice: "Academic fee was successfully updated." }
+        format.html { redirect_to academic_fee_url(@academic_fee), notice: 'Academic fee was successfully updated.' }
         format.json { render :show, status: :ok, location: @academic_fee }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +70,20 @@ class AcademicFeesController < ApplicationController
     @academic_fee.destroy!
 
     respond_to do |format|
-      format.html { redirect_to academic_fees_url, notice: "Academic fee was successfully destroyed." }
+      format.html { redirect_to academic_fees_url, notice: 'Academic fee was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_academic_fee
-      @academic_fee = AcademicFee.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def academic_fee_params
-      params.require(:academic_fee).permit(:discount, :actual_fee, :payable_fee, :academic_detail_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_academic_fee
+    @academic_fee = AcademicFee.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def academic_fee_params
+    params.require(:academic_fee).permit(:discount, :actual_fee, :payable_fee, :academic_detail_id)
+  end
 end
