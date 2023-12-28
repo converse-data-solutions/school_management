@@ -19,8 +19,8 @@
     <div onclick="location.href='<%=students_path %>'" style="background: linear-gradient(rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 100%);" class="flex relative group font-bold text-[14px] flex-col  items-center justify-center h-[62px] rounded-[12px] border-2 border-gray-300 bg-gray-50 dark:bg-gray-800">
       <div class="text-2xl text-[#458746]"><i class="fas fa-user"></i> </div>
       <div class="text-[rgb(59,153,204)] hover:text-[#2F7AB5]">All Student</div>
-      <span class="absolute top-[-11px] text-white rounded-lg right-[-10px] text-[14px] border-[1px] border-[#5AAD34] px-[8px] h-5 leading-[16px]  bg-[#78CD51]"><%= Student.where(deleted: false).count %></span>
-      <div class="absolute  bottom-0 flex flex-col items-center hidden mb-16 group-hover:flex"><span class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black opacity-[0.8]"><%= Student.where(deleted: false).count %></span>
+      <span class="absolute top-[-11px] text-white rounded-lg right-[-10px] text-[14px] border-[1px] border-[#5AAD34] px-[8px] h-5 leading-[16px]  bg-[#78CD51]"><%= Student.where(removed: false).count %></span>
+      <div class="absolute  bottom-0 flex flex-col items-center hidden mb-16 group-hover:flex"><span class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black opacity-[0.8]"><%= Student.where(removed: false).count %></span>
         <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
       </div>
     </div>
