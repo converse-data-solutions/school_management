@@ -30,6 +30,6 @@ class AcademicDetailDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    AcademicDetail.all
+    AcademicDetail.where(removed: false)
   end
 end
