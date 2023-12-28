@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :academic_fees
   namespace :staff do
     resources :notices, only: %i[index]
     resources :attendances, only: %i[index]
@@ -6,9 +7,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   root 'home#index'
-  
-   resources :academic_details
 
+  resources :academic_details
 
   resources :schools, except: %i[index show destroy]
 

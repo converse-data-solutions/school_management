@@ -1,0 +1,27 @@
+<div id="<%= dom_id academic_fee %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Discount:</strong>
+    <%= academic_fee.discount %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Actual fee:</strong>
+    <%= academic_fee.actual_fee %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Payable fee:</strong>
+    <%= academic_fee.payable_fee %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Academic detail:</strong>
+    <%= academic_fee.academic_detail_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this academic fee", academic_fee, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this academic fee", edit_academic_fee_path(academic_fee), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
