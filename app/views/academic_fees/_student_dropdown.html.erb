@@ -1,0 +1,9 @@
+<div class="w-full">
+  <label for="student" class='text-[15px] text-[#555555] font-semibold'>Student</label>
+  <select id="student_id" name="[student_id]" class= "border border-[#cccccc]  text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard">
+    <option value="">Select Student</option>
+    <% students.each do |student| %>
+      <option value="<%= student.id %>"><%= student.name %></option>
+    <% end %>
+  </select>
+</div>
