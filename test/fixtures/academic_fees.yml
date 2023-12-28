@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  discount: 9.99
+  actual_fee: 9.99
+  payable_fee: 9.99
+  academic_detail: one
+
+two:
+  discount: 9.99
+  actual_fee: 9.99
+  payable_fee: 9.99
+  academic_detail: two
