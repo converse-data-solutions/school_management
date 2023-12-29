@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get :find_academic_sections
       get :find_students
       get :find_student_details
+      post :filter
     end
   end
 
