@@ -17,34 +17,46 @@
             <legend class="text-[#555555] font-bold text-[16px]">Find Student</legend>
             <hr>
             <div class="p-4">
-              <%= form_tag academic_fees_path, method: :get,id: "academic-fee" do  %>
-                <div class= 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2  gap-x-6'>
-                  <div class="w-full ">
-                    <%= label_tag :standard, "Standard", class: 'text-[15px] text-[#555555] font-semibold' %>
-                    <%= select_tag :standard_id, options_from_collection_for_select(Standard.all, 'id', 'name', params[:standard_id]), prompt: 'Select a Standard', class: "border border-[#cccccc]  text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard" %>
+              <%= form_with(url: filter_academic_fees_path, method: :post, id: "academic-fee", local: false, format: :turbo_stream) do |form| %>
+                <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 gap-x-6'>
+                  <div class="w-full">
+                    <%= form.label :standard, "Standard", class: 'text-[15px] text-[#555555] font-semibold' %>
+                    <%= form.select :standard_id, Standard.all.map { |s| [s.name, s.id] }, { prompt: 'Select a Standard' }, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard" %>
                   </div>
-                  <div class="w-full " id="section-dropdown">
-                    <%= label_tag :section, "Section", class: 'text-[15px] text-[#555555] font-semibold' %>
-                    <%= select_tag :section_id, options_from_collection_for_select( Section.where(standard_id: params[:standard_id]), 'id', 'section_name', params[:section_id]), prompt: 'Select a Section', class: "border border-[#cccccc]  text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 " %>
+                  <div class="w-full" id="section-dropdown">
+                    <%= form.label :section, "Section", class: 'text-[15px] text-[#555555] font-semibold' %>
+                    <%= form.select :section_id, Section.where(standard_id: params[:standard_id]).map { |s| [s.section_name, s.id] }, { prompt: 'Select a Section' }, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 " %>
                   </div>
-                  <div class="w-full " id="student-dropdown">
-                    <%= label_tag :student, "Student", class: 'text-[15px] text-[#555555] font-semibold' %>
-                    <%= select_tag :student_id, options_from_collection_for_select(Student.where(section_id: params[:section_id]), 'id', 'section_name', params[:section_id]), prompt: 'Select a Section', class: "border border-[#cccccc]  text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 " %>
+                  <div class="w-full" id="student-dropdown">
+                    <%= form.label :student, "Student", class: 'text-[15px] text-[#555555] font-semibold' %>
+                    <%= form.select :student_id, Student.where(section_id: params[:section_id]).map { |s| [s.name, s.id] }, { prompt: 'Select a Student' }, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 " %>
                   </div>
                   <div class="w-full" id="admission-dropdown">
-                    <%= label_tag :admission_no, "Admission No", class: 'text-[15px] text-[#555555] font-semibold' %>
-                    <%= text_field_tag :admission_no, params[:admission_no],  class: " border border-[#cccccc]  text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", id: 'admission_no' %>
+                    <%= form.label :admission_no, "Admission No", class: 'text-[15px] text-[#555555] font-semibold' %>
+                    <%= form.text_field :admission_no, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", id: 'admission_no' %>
+                  </div>
+                </div>
+                <div class="my-[20px]">
+                  <%= link_to 'Reset', academic_fees_path, class: 'text-white focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm w-auto sm:w-auto px-4 py-3 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 gap-x-6">
+                  <div class="w-full" id="academi_year">
+                    <%= form.label :academi_year, "Academic Year", class: 'text-[15px] text-[#555555] font-semibold' %>
+                    <%= form.select(:academic_year, ['2023-2024', '2024-2025', '2025-2026', '2026-2027', '2028-2029'] ,  { prompt: 'Select Year' }, { class: 'border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0'} ) %>
+                  </div>
+                  <div class="w-full" id="payment_date">
+                    <%= form.label :payment_date, "Payment Date", class: 'text-[15px] text-[#555555] font-semibold' %>
+                    <%= form.date_field :admission_no, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", id: 'admission_no' %>
                   </div>
                 </div>
                 <div class="md:mt-[20px]">
-                  <%= link_to 'Reset', academic_fees_path, class: 'text-white focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2.5 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
-                </div>
-                <div class="md:mt-[20px]">
-                  <%= submit_tag "View", id: 'date_submit' ,class:'text-white bg-[#81B944]    focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-4  py-2 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);'%>
+                  <%= form.submit "View", id: 'date_submit', class: 'text-white bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] font-semibold rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
                 </div>
               <% end %>
             </div>
           </fieldset>
+          <%= turbo_frame_tag "payment_form" do %>
+          <% end %>
         </div>
       </div>
     </div>

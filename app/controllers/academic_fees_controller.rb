@@ -4,7 +4,30 @@ class AcademicFeesController < ApplicationController
   # GET /academic_fees or /academic_fees.json
   def index
     @academic_fees = AcademicFee.all
+    @student = Student.all
   end
+
+  def filter
+    student_id = params[:student_id]
+    academic_year = params[:academic_year]
+    
+    # Fetch academic details based on student_id and academic_year
+    @academic_fee = AcademicDetail.find_by(student_id: student_id, academic_year: academic_year)
+  
+    # Ensure that @academic_fee is not nil before proceeding
+    if @academic_fee
+      # Fetch Standard based on the name with a partial match
+      @fee = Standard.where("name LIKE ?", "%#{@academic_fee.standard_name}%")
+  
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      # Handle the case where academic details are not found
+      # You might want to add some error handling or redirect to an error page
+    end
+  end
+  
 
   # GET /academic_fees/1 or /academic_fees/1.json
   def show; end
