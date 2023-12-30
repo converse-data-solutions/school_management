@@ -1,37 +1,37 @@
 <%= form_with(model: academic_fee, class: "contents") do |form| %>
-  <% if academic_fee.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(academic_fee.errors.count, "error") %> prohibited this academic_fee from being saved:</h2>
-
-      <ul>
-        <% academic_fee.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+  <div class='grid grid-cols-1 md:grid-cols-4 gap-2 gap-x-6'>
+    <div class="w-full">
+      <%= form.label :discount, "Discount in %", class: 'text-[15px] text-[#555555] font-semibold' %>
+      <%= form.text_field :discount, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
     </div>
-  <% end %>
-
-  <div class="my-5">
-    <%= form.label :discount %>
-    <%= form.text_field :discount, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <div class="w-full">
+      <%= form.label :actual_fee, "Discount Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
+      <%= form.text_field :actual_fee, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
+    </div>
+    <div class="w-full">
+      <%= form.label :payable_fee, "Paid Amount%", class: 'text-[15px] text-[#555555] font-semibold' %>
+      <%= form.text_field :payable_fee, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
+    </div>
+    <div class="w-full">
+      <%= form.label :academic_detail_id, class: 'text-[15px] text-[#555555] font-semibold' %>
+      <%= form.text_field :academic_detail_id, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
+    </div>
   </div>
-
-  <div class="my-5">
-    <%= form.label :actual_fee %>
-    <%= form.text_field :actual_fee, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class='grid grid-cols-1 md:grid-cols-3 gap-2 gap-x-6'>
+    <div class="py-3">
+      <%= form.label :discount, "Discount in %", class: 'text-[15px] text-[#555555] font-semibold' %>
+      <%= form.text_field :discount, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
+    </div>
+    <div class="py-3">
+      <%= form.label :actual_fee, "Discount Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
+      <%= form.text_field :actual_fee, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
+    </div>
+    <div class="py-3">
+      <%= form.label :payable_fee, "Paid Amount%", class: 'text-[15px] text-[#555555] font-semibold' %>
+      <%= form.text_field :payable_fee, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
+    </div>
   </div>
-
-  <div class="my-5">
-    <%= form.label :payable_fee %>
-    <%= form.text_field :payable_fee, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :academic_detail_id %>
-    <%= form.text_field :academic_detail_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="py-2">
+    <%= form.submit "Pay Fee", id: 'date_submit', class: 'text-white bg-[#81B944] text-[14px] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2 text-center', style: 'background-image: linear-gradient(#88c149, #73a839 60%, #699934);' %>
   </div>
 <% end %>

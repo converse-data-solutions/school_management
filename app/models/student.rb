@@ -44,7 +44,9 @@ class Student < ApplicationRecord
         history_data.merge(
           'student_id' => student.id,
           'section_name' => section.section_name,
-          'standard_name' => section.standard.name
+          'section_id' => section.id,
+          'standard_name' => section.standard.name,
+          'standard_id' => section.standard.id
         )
       )
     end
@@ -64,8 +66,10 @@ class Student < ApplicationRecord
       admission_no:,
       roll_no:,
       name:,
-      section_name: self.section.section_name,
-      standard_name: self.section.standard.name
+      section_name: section.section_name,
+      standard_name: section.standard.name,
+      section_id: section.id,
+      standard_id: section.standard.id
     )
   end
 end
