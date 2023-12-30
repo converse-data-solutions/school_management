@@ -8,26 +8,12 @@ class AcademicFeesController < ApplicationController
   end
 
   def filter
-    student_id = params[:student_id]
-    academic_year = params[:academic_year]
-    
-    # Fetch academic details based on student_id and academic_year
-    @academic_fee = AcademicDetail.find_by(student_id: student_id, academic_year: academic_year)
-  
-    # Ensure that @academic_fee is not nil before proceeding
-    if @academic_fee
-      # Fetch Standard based on the name with a partial match
-      @fee = Standard.where("name LIKE ?", "%#{@academic_fee.standard_name}%")
-  
-      respond_to do |format|
-        format.turbo_stream
-      end
-    else
-      # Handle the case where academic details are not found
-      # You might want to add some error handling or redirect to an error page
+    if params_present?(params, %i[standard_id section_id student_id date])
+      filter_by_student
+    elsif params_present?(params, %i[admission_no date])
+      filter_by_admission_no
     end
   end
-  
 
   # GET /academic_fees/1 or /academic_fees/1.json
   def show; end
@@ -67,10 +53,13 @@ class AcademicFeesController < ApplicationController
     respond_to do |format|
       if @academic_fee.save
         format.html { redirect_to academic_fee_url(@academic_fee), notice: 'Academic fee was successfully created.' }
+        format.turbo_stream
         format.json { render :show, status: :created, location: @academic_fee }
       else
         format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream
         format.json { render json: @academic_fee.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -108,5 +97,40 @@ class AcademicFeesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def academic_fee_params
     params.require(:academic_fee).permit(:discount, :actual_fee, :payable_fee, :academic_detail_id)
+  end
+
+  def params_present?(params, keys)
+    keys.any? { |key| params[key].present? }
+  end
+
+  def filter_by_student
+    @academic_detail = AcademicDetail.find_by(student_id: params[:student_id], academic_year: params[:academic_year])
+
+    respond_to do |format|
+      if @academic_detail
+        @fee = Standard.find_by(id: @academic_detail.standard_id)&.fee
+        format.turbo_stream
+      else
+        handle_academic_details_not_found
+      end
+    end
+  end
+
+  def filter_by_admission_no
+    @academic_detail = AcademicDetail.find_by(admission_no: params[:admission_no], academic_year: params[:academic_year])
+
+    respond_to do |format|
+      if @academic_detail
+        @fee = Standard.find_by(id: @academic_detail.standard_id)&.fee
+        format.turbo_stream
+      else
+        handle_academic_details_not_found
+      end
+    end
+  end
+
+  def handle_academic_details_not_found
+    # Handle the case where academic details are not found
+    # You might want to add some error handling or redirect to an error page
   end
 end

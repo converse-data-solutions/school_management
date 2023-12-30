@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_28_064630) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_29_123820) do
   create_table "academic_details", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "roll_no"
     t.string "name"
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_28_064630) do
     t.string "standard_name"
     t.string "academic_year"
     t.boolean "removed", default: false
+    t.bigint "standard_id"
+    t.bigint "section_id"
     t.index ["student_id"], name: "index_academic_details_on_student_id"
   end
 
