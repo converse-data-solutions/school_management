@@ -27,39 +27,45 @@
   <legend class="text-[#555555] font-bold text-[16px] pt-3">Payment Details</legend>
   <hr>
   <div class="p-4">
-    <%= form_with(model: AcademicFee.new, class: "contents") do |form| %>
+    <%= form_for @academic_fee, html: { class: "contents" } do |form| %>
       <div class='grid grid-cols-1 md:grid-cols-4 gap-2 gap-x-6'>
         <div class="w-full">
           <%= form.label :total_amount, "Total Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
-          <%= form.text_field :actual_fee, value: fee, class: "border border-[#cccccc] text-[#555555] bg-[#EDEDED] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", readonly: true %>
+          <%= form.text_field :actual_fee, value: fee, id: "actual_fee_input", class: "border border-[#cccccc] text-[#555555] bg-[#EDEDED] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", readonly: true %>
         </div>
         <div class="w-full">
           <%= form.label :discount, "Discount in %", class: 'text-[15px] text-[#555555] font-semibold' %>
           <%= form.text_field :discount, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
         </div>
         <div class="w-full">
-          <%= form.label :discount_amount, "Discount Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
-          <%= form.text_field :discount_amount, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
+          <label class="text-[15px] text-[#555555] font-semibold" for="discount_amount">Discount Amount</label>
+          <input type="text" id="discount_amount" name="discount_amount" 
+         class="border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" 
+         placeholder="0">
         </div>
         <div class="w-full">
           <%= form.label :payable_fee, "Payable Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
-          <%= form.text_field :payable_fee, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
+          <%= form.text_field :payable_fee, id: "payable_fee" ,class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
         </div>
-        <%= form.hidden_field :academic_detail_id,value: academic_detail&.id, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
+        <%= form.hidden_field :academic_detail_id, value: academic_detail&.id, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
       </div>
       <div class='grid grid-cols-1 md:grid-cols-3 gap-2 gap-x-6'>
-        <div class="py-3">
-          <%= form.label :payment_info, "Payment Info", class: 'text-[15px] text-[#555555] font-semibold' %>
-          <%= form.text_field :payment_info, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
-        </div>
-        <div class="py-3">
-          <%= form.label :payemt_type, "Payemt Type", class: 'text-[15px] text-[#555555] font-semibold' %>
-          <%= form.select(:mode_of_pay, options_for_select(['CASH', 'CHECK'], selected: 'CASH'), { prompt: 'Select' }, { class: 'border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0'} ) %>
-        </div>
-        <div class="py-3">
-          <%= form.label :payable_fee, "Paid Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
-          <%= form.text_field :payable_fee, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
-        </div>
+        <%= form.fields_for :payments do |payment_form| %>
+          <div class="py-3">
+            <%= payment_form.label :payment_info, "Payment Info", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= payment_form.text_field :payment_info, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
+          </div>
+          <div class="py-3">
+            <%= payment_form.label :payemt_type, "Payment Type", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= payment_form.select(:mode_of_pay, options_for_select(['CASH', 'CHECK'], selected: 'CASH'), { prompt: 'Select' }, { class: 'border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0'} ) %>
+          </div>
+          <div class="py-3">
+            <%= payment_form.label :payable_fee, "Paid Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= payment_form.text_field :paid_amount, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
+          </div>
+          <%= payment_form.hidden_field :paid_by, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: (current_user.id) %>
+          <%= payment_form.hidden_field :paid_at, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: (DateTime.now) %>
+        <% end %>
       </div>
       <div class="py-2">
         <%= form.submit "Pay Fee", id: 'date_submit', class: 'text-white bg-[#81B944] text-[14px] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2 text-center', style: 'background-image: linear-gradient(#88c149, #73a839 60%, #699934);' %>
