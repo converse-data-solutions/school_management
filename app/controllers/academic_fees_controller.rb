@@ -2,12 +2,11 @@ class AcademicFeesController < ApplicationController
   before_action :set_academic_fee, only: %i[show edit update destroy]
 
   # GET /academic_fees or /academic_fees.json
-  def index
-    @academic_fees = AcademicFee.all
-    @student = Student.all
-  end
+  def index; end
 
   def filter
+    @academic_fee = AcademicFee.new
+    @academic_fee.payments.build  
     if params_present?(params, %i[standard_id section_id student_id date])
       filter_by_student
     elsif params_present?(params, %i[admission_no date])
@@ -41,6 +40,7 @@ class AcademicFeesController < ApplicationController
   # GET /academic_fees/new
   def new
     @academic_fee = AcademicFee.new
+    @academic_fee.payments.build
   end
 
   # GET /academic_fees/1/edit
@@ -96,7 +96,8 @@ class AcademicFeesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def academic_fee_params
-    params.require(:academic_fee).permit(:discount, :actual_fee, :payable_fee, :academic_detail_id)
+    params.require(:academic_fee).permit(:discount, :actual_fee, :payable_fee, :academic_detail_id, :discount,
+                                         :payable_fee, payments_attributes: %i[id mode_of_pay payment_info paid_amount _destroy paid_at paid_by])
   end
 
   def params_present?(params, keys)
@@ -117,7 +118,8 @@ class AcademicFeesController < ApplicationController
   end
 
   def filter_by_admission_no
-    @academic_detail = AcademicDetail.find_by(admission_no: params[:admission_no], academic_year: params[:academic_year])
+    @academic_detail = AcademicDetail.find_by(admission_no: params[:admission_no],
+                                              academic_year: params[:academic_year])
 
     respond_to do |format|
       if @academic_detail

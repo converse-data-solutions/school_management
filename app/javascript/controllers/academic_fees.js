@@ -1,7 +1,9 @@
-function initValidate() {
-  $("#standard_id").on("change", function () {
+document.addEventListener("turbo:load", function () {
+  const academicDetailsForm = $("#academic-fee");
+  const academicFeeForm = $("#new_academic_fee");
+
+  academicDetailsForm.on("change", "#standard_id", function () {
     let standard_id = $(this).val();
-    console.log(standard_id);
     $.ajax({
       url: "/academic_fees/find_academic_sections",
       type: "GET",
@@ -9,11 +11,8 @@ function initValidate() {
     });
   });
 
-
-  $("#academic-fee").on("change", "#selected_section", function () {
-    console.log("hello after selected section");
+  academicDetailsForm.on("change", "#selected_section", function () {
     let section_id = $(this).val();
-    console.log(section_id);
     $.ajax({
       url: "/academic_fees/find_students",
       type: "GET",
@@ -21,31 +20,30 @@ function initValidate() {
     });
   });
 
-  $("#academic-fee").on("change", "#student_id", function () {
+  academicDetailsForm.on("change", "#student_id", function () {
     let student_id = $(this).val();
-    console.log(student_id);
     $.ajax({
       url: "/academic_fees/find_student_details",
       type: "GET",
       data: { student_id: student_id },
     });
-  })
+  });
 
-  $("#admission_no").on("change", function () {
+  academicDetailsForm.on("change", "#admission_no", function () {
     let admission_no = $(this).val();
-    console.log(admission_no);
     $.ajax({
       url: "/academic_fees/find_student_details",
       type: "GET",
       data: { admission_no: admission_no },
     });
   });
-}
 
-$(document).ready(function () {
-  initValidate();
-
-  $(document).on("turbo:render", function () {
-    initValidate();
+  $(document).on("change", "#academic_fee_discount", function () {
+    let discount = $(this).val();
+    let actual_fee = $("#actual_fee_input").val();
+    let payable_fee = actual_fee - (discount / 100) * actual_fee;
+    $("#payable_fee").val(payable_fee);
+    let discount_amount = actual_fee - payable_fee;
+    $("#discount_amount").val(discount_amount);
   });
 });
