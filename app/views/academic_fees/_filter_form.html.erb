@@ -10,6 +10,7 @@
         <tr>
           <th class="border border-[#dddddd] p-2">Fee</th>
           <th class="border border-[#dddddd] p-2">Academic id</th>
+          <th class="border border-[#dddddd] p-2">Academic id</th>
           <th class="border border-[#dddddd] p-2">Actual Fee</th>
         </tr>
       </thead>
@@ -17,6 +18,7 @@
         <tr class='striped font-[14px] text-[#555555]'>
           <td class="border border-[#dddddd] p-2 ">Academic Fee</td>
           <td class="border border-[#dddddd] p-2 "><%= academic_detail&.id %></td>
+          <td class="border border-[#dddddd] p-2 "><%= academic_detail&.academic_year %></td>
           <td class="border border-[#dddddd] p-2 "><%= fee %></td>
         </tr>
       </tbody>
@@ -64,7 +66,7 @@
             <%= payment_form.text_field :paid_amount, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
           </div>
           <%= payment_form.hidden_field :paid_by, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: (current_user.id) %>
-          <%= payment_form.hidden_field :paid_at, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: (DateTime.now) %>
+          <%= payment_form.hidden_field :paid_at, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: payment_date %>
         <% end %>
       </div>
       <div class="py-2">

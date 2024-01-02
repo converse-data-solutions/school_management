@@ -6,11 +6,16 @@ class AcademicFeesController < ApplicationController
 
   def filter
     @academic_fee = AcademicFee.new
-    @academic_fee.payments.build  
-    if params_present?(params, %i[standard_id section_id student_id date])
-      filter_by_student
-    elsif params_present?(params, %i[admission_no date])
-      filter_by_admission_no
+    @academic_fee.payments.build
+    @payment_date = if params[:payment_date].present?
+                      params[:payment_date]
+                    else
+                      DateTime.now.in_time_zone('Asia/Kolkata').strftime('%Y-%m-%d %I:%M:%S %p')
+                    end
+    if params_present?(params, %i[standard_id section_id student_id])
+      filter_by_student(@payment_date)
+    elsif params_present?(params, %i[admission_no])
+      filter_by_admission_no(@payment_date)
     end
   end
 
@@ -32,6 +37,8 @@ class AcademicFeesController < ApplicationController
       @student = Student.find_by(id: params[:student_id])
     elsif params[:admission_no].present?
       @student = Student.find_by(admission_no: params[:admission_no])
+      academic_detail = AcademicDetail.find_by(admission_no: params[:admission_no])
+      @student_fees = AcademicFee.find_by(academic_detail_id: academic_detail.id)
     end
 
     respond_to(&:js)
@@ -104,9 +111,9 @@ class AcademicFeesController < ApplicationController
     keys.any? { |key| params[key].present? }
   end
 
-  def filter_by_student
+  def filter_by_student(payment_date)
     @academic_detail = AcademicDetail.find_by(student_id: params[:student_id], academic_year: params[:academic_year])
-
+    @payment_date = payment_date
     respond_to do |format|
       if @academic_detail
         @fee = Standard.find_by(id: @academic_detail.standard_id)&.fee
@@ -117,10 +124,10 @@ class AcademicFeesController < ApplicationController
     end
   end
 
-  def filter_by_admission_no
+  def filter_by_admission_no(payment_date)
     @academic_detail = AcademicDetail.find_by(admission_no: params[:admission_no],
                                               academic_year: params[:academic_year])
-
+    @payment_date = payment_date
     respond_to do |format|
       if @academic_detail
         @fee = Standard.find_by(id: @academic_detail.standard_id)&.fee
