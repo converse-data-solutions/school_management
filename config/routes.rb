@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       get :find_students
       get :find_student_details
       post :filter
+      get :pay_fee
+    end
+    member do
+      post :create_payment
     end
   end
 

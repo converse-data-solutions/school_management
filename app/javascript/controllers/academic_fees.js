@@ -46,4 +46,13 @@ document.addEventListener("turbo:load", function () {
     let discount_amount = actual_fee - payable_fee;
     $("#discount_amount").val(discount_amount);
   });
+
+  $(document).ready(function () {
+    $("#payment_form").submit(function (e) {
+      $.ajax({
+        url: "/academic_fees/pay_fee",
+        type: "GET",
+      });
+    });
+  });
 });

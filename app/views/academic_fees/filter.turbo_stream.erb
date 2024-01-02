@@ -1,1 +1,2 @@
-<%= turbo_stream.update "payment_form", partial: "academic_fees/filter_form", locals: { academic_detail: @academic_detail, fee: @fee, payment_date: @payment_date } %>
+<%= turbo_stream.update "payment_form", partial: "academic_fees/filter_form", locals: { academic_detail: @academic_detail, fee: @fee, payment_date: @payment_date , academic_fee: @academic_fee} %>
+<%= turbo_stream.update "payment-details", partial: "academic_fees/payment_details", locals: { payments: @payment_details } %>
