@@ -1,36 +1,12 @@
 <div class=" rounded-[5px] border-2 mx-4 mt-3 md:mt-5">
   <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
     <div><i class="fa-solid fa-pen-to-square"></i>
-      <span class="font-extrabold text-[15px]"> Fee Amount </span></div>
+      <span class="font-extrabold text-[15px]"> Academic Fee Details </span></div>
     <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
   </div>
   <div class="accordian-body p-[10px]">
-    <table class="table table-striped w-full border-collapse border border-[#dddddd] ">
-      <thead class="text-[14px] text-[#555555] font-semibold text-left bg-[#fff] border-[#dddddd] border-b-2 ">
-        <tr>
-          <th class="border border-[#dddddd] p-2">Fee</th>
-          <th class="border border-[#dddddd] p-2">Academic id</th>
-          <th class="border border-[#dddddd] p-2">Academic id</th>
-          <th class="border border-[#dddddd] p-2">Actual Fee</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class='striped font-[14px] text-[#555555]'>
-          <td class="border border-[#dddddd] p-2 ">Academic Fee</td>
-          <td class="border border-[#dddddd] p-2 "><%= academic_detail&.id %></td>
-          <td class="border border-[#dddddd] p-2 "><%= academic_detail&.academic_year %></td>
-          <td class="border border-[#dddddd] p-2 "><%= fee %></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<fieldset>
-  <legend class="text-[#555555] font-bold text-[16px] pt-3">Payment Details</legend>
-  <hr>
-  <div class="p-4">
-    <%= form_for @academic_fee, html: { class: "contents" } do |form| %>
-      <div class='grid grid-cols-1 md:grid-cols-4 gap-2 gap-x-6'>
+    <div class='grid grid-cols-1 md:grid-cols-4 gap-2 gap-x-6'>
+      <%= form_with(model: academic_fee, class: "contents") do |form| %>
         <div class="w-full">
           <%= form.label :total_amount, "Total Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
           <%= form.text_field :actual_fee, value: fee, id: "actual_fee_input", class: "border border-[#cccccc] text-[#555555] bg-[#EDEDED] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", readonly: true %>
@@ -49,29 +25,36 @@
           <%= form.label :payable_fee, "Payable Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
           <%= form.text_field :payable_fee, id: "payable_fee" ,class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
         </div>
-        <%= form.hidden_field :academic_detail_id, value: academic_detail&.id, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
+        <div class="py-2">
+          <%= form.submit "Submit", id: 'fee_submit', class: 'text-white bg-[#81B944] text-[14px] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2 text-center', style: 'background-image: linear-gradient(#88c149, #73a839 60%, #699934);' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<fieldset>
+  <legend class="text-[#555555] font-bold text-[16px] pt-3">Payment Details</legend>
+  <hr>
+  <div class='grid grid-cols-1 md:grid-cols-3 gap-2 gap-x-6 p-4'>
+    <%= form_with(model: Payment.new, url: create_payment_academic_fee_path(@academic_fee), class: "contents", id: "payment_form") do |payment_form| %>
+      <div class="py-3">
+        <%= payment_form.label :payment_info, "Payment Info", class: 'text-[15px] text-[#555555] font-semibold' %>
+        <%= payment_form.text_field :payment_info, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
       </div>
-      <div class='grid grid-cols-1 md:grid-cols-3 gap-2 gap-x-6'>
-        <%= form.fields_for :payments do |payment_form| %>
-          <div class="py-3">
-            <%= payment_form.label :payment_info, "Payment Info", class: 'text-[15px] text-[#555555] font-semibold' %>
-            <%= payment_form.text_field :payment_info, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
-          </div>
-          <div class="py-3">
-            <%= payment_form.label :payemt_type, "Payment Type", class: 'text-[15px] text-[#555555] font-semibold' %>
-            <%= payment_form.select(:mode_of_pay, options_for_select(['CASH', 'CHECK'], selected: 'CASH'), { prompt: 'Select' }, { class: 'border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0'} ) %>
-          </div>
-          <div class="py-3">
-            <%= payment_form.label :payable_fee, "Paid Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
-            <%= payment_form.text_field :paid_amount, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
-          </div>
-          <%= payment_form.hidden_field :paid_by, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: (current_user.id) %>
-          <%= payment_form.hidden_field :paid_at, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: payment_date %>
-        <% end %>
+      <div class="py-3">
+        <%= payment_form.label :payemt_type, "Payment Type", class: 'text-[15px] text-[#555555] font-semibold' %>
+        <%= payment_form.select(:mode_of_pay, options_for_select(['CASH', 'CHECK'], selected: 'CASH'), { prompt: 'Select' }, { class: 'border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0'} ) %>
       </div>
+      <div class="py-3">
+        <%= payment_form.label :payable_fee, "Paid Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
+        <%= payment_form.text_field :paid_amount, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
+      </div>
+      <%= payment_form.hidden_field :paid_by, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: (current_user.id) %>
+      <%= payment_form.hidden_field :paid_at, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: payment_date %>
       <div class="py-2">
-        <%= form.submit "Pay Fee", id: 'date_submit', class: 'text-white bg-[#81B944] text-[14px] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2 text-center', style: 'background-image: linear-gradient(#88c149, #73a839 60%, #699934);' %>
+        <%= payment_form.submit "Pay Fee", id: 'payment_submit', class: 'text-white bg-[#81B944] text-[14px] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2 text-center', style: 'background-image: linear-gradient(#88c149, #73a839 60%, #699934);' %>
       </div>
     <% end %>
   </div>
+</div>
 </fieldset>

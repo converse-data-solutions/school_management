@@ -1,12 +1,10 @@
 class AcademicFeesController < ApplicationController
-  before_action :set_academic_fee, only: %i[show edit update destroy]
+  before_action :set_academic_fee, only: %i[show edit update destroy create_payment]
 
   # GET /academic_fees or /academic_fees.json
   def index; end
 
   def filter
-    @academic_fee = AcademicFee.new
-    @academic_fee.payments.build
     @payment_date = if params[:payment_date].present?
                       params[:payment_date]
                     else
@@ -37,17 +35,18 @@ class AcademicFeesController < ApplicationController
       @student = Student.find_by(id: params[:student_id])
     elsif params[:admission_no].present?
       @student = Student.find_by(admission_no: params[:admission_no])
-      academic_detail = AcademicDetail.find_by(admission_no: params[:admission_no])
-      @student_fees = AcademicFee.find_by(academic_detail_id: academic_detail.id)
     end
-
+  
     respond_to(&:js)
   end
 
+  def pay_fee
+    respond_to(&:js)
+  end
+  
+
   # GET /academic_fees/new
   def new
-    @academic_fee = AcademicFee.new
-    @academic_fee.payments.build
   end
 
   # GET /academic_fees/1/edit
@@ -76,10 +75,26 @@ class AcademicFeesController < ApplicationController
     respond_to do |format|
       if @academic_fee.update(academic_fee_params)
         format.html { redirect_to academic_fee_url(@academic_fee), notice: 'Academic fee was successfully updated.' }
+        format.turbo_stream
         format.json { render :show, status: :ok, location: @academic_fee }
       else
         format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream
         format.json { render json: @academic_fee.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def create_payment
+    @payment = @academic_fee.payments.new(payment_params)
+
+    respond_to do |format|
+      if @payment.save
+        format.html { redirect_to academic_fee_url(@academic_fee), notice: 'Payment was successfully created.' }
+        format.turbo_stream 
+      else
+        format.html { render :show, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
@@ -98,13 +113,17 @@ class AcademicFeesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_academic_fee
-    @academic_fee = AcademicFee.find(params[:id])
+    @academic_fee = AcademicFee.find_by(id: params[:id])
+  end
+
+  def payment_params
+    params.require(:payment).permit(:payment_info, :mode_of_pay, :paid_amount, :paid_by, :paid_at)
   end
 
   # Only allow a list of trusted parameters through.
   def academic_fee_params
     params.require(:academic_fee).permit(:discount, :actual_fee, :payable_fee, :academic_detail_id, :discount,
-                                         :payable_fee, payments_attributes: %i[id mode_of_pay payment_info paid_amount _destroy paid_at paid_by])
+                                         :payable_fee)
   end
 
   def params_present?(params, keys)
@@ -115,8 +134,11 @@ class AcademicFeesController < ApplicationController
     @academic_detail = AcademicDetail.find_by(student_id: params[:student_id], academic_year: params[:academic_year])
     @payment_date = payment_date
     respond_to do |format|
-      if @academic_detail
+      if @academic_detail 
         @fee = Standard.find_by(id: @academic_detail.standard_id)&.fee
+        @academic_fee = AcademicFee.find_by(academic_detail_id: @academic_detail.id)
+        @payments = AcademicFee.where(academic_detail_id: @academic_detail.id).includes(:payments)
+
         format.turbo_stream
       else
         handle_academic_details_not_found
@@ -131,6 +153,8 @@ class AcademicFeesController < ApplicationController
     respond_to do |format|
       if @academic_detail
         @fee = Standard.find_by(id: @academic_detail.standard_id)&.fee
+        @academic_fee = AcademicFee.find_by(academic_detail_id: @academic_detail.id)
+        @payments = AcademicFee.where(academic_detail_id: @academic_detail.id).includes(:payments)
         format.turbo_stream
       else
         handle_academic_details_not_found
@@ -139,7 +163,6 @@ class AcademicFeesController < ApplicationController
   end
 
   def handle_academic_details_not_found
-    # Handle the case where academic details are not found
-    # You might want to add some error handling or redirect to an error page
+    redirect_to academic_fees_url, notice: 'Academic details not found'
   end
 end
