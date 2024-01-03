@@ -1,0 +1,34 @@
+<div class=" rounded-[5px] border-2 mx-4 mt-3 md:mt-5">
+  <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
+    <div><i class="fa-solid fa-pen-to-square"></i>
+      <span class="font-extrabold text-[15px]"> Academic Fee Details </span></div>
+    <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+  </div>
+  <div class="accordian-body p-[10px]">
+    <div class='grid grid-cols-1 md:grid-cols-4 gap-2 gap-x-6'>
+      <%= form_with(model: academic_fee, class: "contents", id: "academic_fee_details_form") do |form| %>
+        <div class="w-full">
+          <%= form.label :total_amount, "Total Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
+          <%= form.text_field :actual_fee, value: fee, id: "actual_fee_input", class: "border border-[#cccccc] text-[#555555] bg-[#EDEDED] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", readonly: true %>
+        </div>
+        <div class="w-full">
+          <%= form.label :discount, "Discount in %", class: 'text-[15px] text-[#555555] font-semibold' %>
+          <%= form.text_field :discount, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
+        </div>
+        <div class="w-full">
+          <label class="text-[15px] text-[#555555] font-semibold" for="discount_amount">Discount Amount</label>
+          <input type="text" id="discount_amount" name="discount_amount" 
+         class="border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" 
+         placeholder="0">
+        </div>
+        <div class="w-full">
+          <%= form.label :payable_fee, "Payable Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
+          <%= form.text_field :payable_fee, id: "payable_fee" ,class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
+        </div>
+        <div class="py-2">
+          <%= form.submit "Submit", id: 'fee_submit', class: 'text-white bg-[#81B944] text-[14px] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2 text-center', style: 'background-image: linear-gradient(#88c149, #73a839 60%, #699934);' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

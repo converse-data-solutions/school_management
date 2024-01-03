@@ -57,34 +57,32 @@ document.addEventListener("turbo:load", function () {
   // });
   $(document).ready(function () {
     $("#payment_details_form").on("submit", "#payment_form" ,function (e) {
-      console.log("here in payment form");    
       let paid_amount = $("#payment_paid_amount").val();
-      console.log(paid_amount);
   
       if (parseFloat(paid_amount) > 0) {
         $.ajax({
           url: "/academic_fees/pay_fee",
           type: "GET",
           success: function (response) {
-
-            console.log(response);
-  
             setTimeout(function () {
-              $("#paymentMessage").slidedDown("slow");
+              $("#paymentMessage").removeClass('hidden');              
             }, 5000);
+            $("#paymentMessage").slideDown("slow");
   
             setTimeout(function () {
+            
               $("#paymentMessage").slideUp("slow");
+                $("#paymentMessage").addClass("hidden");
             }, 5000);
+
   
-            $("#payment_submit").prop("disabled", true).addClass("blurbutton");
+            // $("#payment_submit").prop("disabled", true).addClass("blurbutton");
           },
           error: function (error) {
             console.log(error);
           },
         });
       } else {
-        console.log("Paid amount should be greater than zero.");
         e.preventDefault();
       }
     });
