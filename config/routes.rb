@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get :find_student_details
       post :filter
       get :pay_fee
+      get :changed_fee
     end
     member do
       post :create_payment

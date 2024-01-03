@@ -47,35 +47,25 @@ document.addEventListener("turbo:load", function () {
     $("#discount_amount").val(discount_amount);
   });
 
-  // $(document).ready(function () {
-  //   $("#payment_form").submit(function (e) {
-  //     $.ajax({
-  //       url: "/academic_fees/pay_fee",
-  //       type: "GET",
-  //     });
-  //   });
-  // });
   $(document).ready(function () {
-    $("#payment_details_form").on("submit", "#payment_form" ,function (e) {
+    $("#payment_details_form").on("submit", "#payment_form", function (e) {
       let paid_amount = $("#payment_paid_amount").val();
-  
+
       if (parseFloat(paid_amount) > 0) {
         $.ajax({
           url: "/academic_fees/pay_fee",
           type: "GET",
           success: function (response) {
             setTimeout(function () {
-              $("#paymentMessage").removeClass('hidden');              
+              $("#paymentMessage").removeClass("hidden");
             }, 5000);
             $("#paymentMessage").slideDown("slow");
-  
+
             setTimeout(function () {
-            
               $("#paymentMessage").slideUp("slow");
-                $("#paymentMessage").addClass("hidden");
+              $("#paymentMessage").addClass("hidden");
             }, 5000);
 
-  
             $("#payment_submit").prop("disabled", true).addClass("blurbutton");
           },
           error: function (error) {
@@ -87,6 +77,33 @@ document.addEventListener("turbo:load", function () {
       }
     });
   });
-  
-  
+
+  $(document).ready(function () {
+    $("#academic_fee_details_form").on(
+      "submit",
+      "#academic_fee_details_form",
+      function (e) {
+        $.ajax({
+          url: "/academic_fees/changed_fee",
+          type: "GET",
+          success: function (response) {
+            setTimeout(function () {
+              $("#paymentMessage").removeClass("hidden");
+            }, 5000);
+            $("#paymentMessage").slideDown("slow");
+
+            setTimeout(function () {
+              $("#paymentMessage").slideUp("slow");
+              $("#paymentMessage").addClass("hidden");
+            }, 5000);
+
+            $("#fee_submit").prop("disabled", true).addClass("blurbutton");
+          },
+          error: function (error) {
+            console.log(error);
+          },
+        });
+      }
+    );
+  });
 });

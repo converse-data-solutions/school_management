@@ -43,6 +43,10 @@ class AcademicFeesController < ApplicationController
   def pay_fee
     respond_to(&:js)
   end
+
+  def changed_fee
+    respond_to(&:js)
+  end
   
 
   # GET /academic_fees/new
