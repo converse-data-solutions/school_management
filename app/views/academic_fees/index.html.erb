@@ -56,7 +56,7 @@
               <% end %>
             </div>
           </fieldset>
-          <%= turbo_frame_tag "payment_details_form" do %>
+          <%= turbo_frame_tag "academic_fee_details_form" do %>
             <div v class=" rounded-[5px] border-2 mx-4 mt-3 md:mt-5">
               <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
                 <div><i class="fa-solid fa-pen-to-square"></i>
@@ -76,9 +76,7 @@
                     </div>
                     <div class="w-full">
                       <label class="text-[15px] text-[#555555] font-semibold" for="discount_amount">Discount Amount</label>
-                      <input type="text" id="discount_amount" name="discount_amount" 
-         class="border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" 
-         placeholder="0">
+                      <input type="text" id="discount_amount" name="discount_amount" class="border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" placeholder="0">
                     </div>
                     <div class="w-full">
                       <%= form.label :payable_fee, "Payable Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
@@ -91,6 +89,8 @@
                 </div>
               </div>
             </div>
+          <% end %>
+          <%= turbo_frame_tag "payment_details_form" do %>
             <fieldset>
               <legend class="text-[#555555] font-bold text-[16px] pt-3">Payment Details</legend>
               <hr>

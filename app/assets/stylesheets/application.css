@@ -136,6 +136,14 @@ input:-webkit-autofill {
       #8be78b 10px,
       #ccffcc 10px,
       #ccffcc 20px);
+      /* transition: 3000ms;
+      transition-duration: 3s;
+      transition-timing-function: linear;
+      transition-delay: 3s;
+      transition-property: all;
+      transition-timing-function: ease-in-out;
+      transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1.0); */
+
 }
 
 .blurbutton {
