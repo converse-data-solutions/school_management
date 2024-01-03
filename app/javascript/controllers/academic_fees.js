@@ -76,7 +76,7 @@ document.addEventListener("turbo:load", function () {
             }, 5000);
 
   
-            // $("#payment_submit").prop("disabled", true).addClass("blurbutton");
+            $("#payment_submit").prop("disabled", true).addClass("blurbutton");
           },
           error: function (error) {
             console.log(error);
