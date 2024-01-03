@@ -47,12 +47,51 @@ document.addEventListener("turbo:load", function () {
     $("#discount_amount").val(discount_amount);
   });
 
+  // $(document).ready(function () {
+  //   $("#payment_form").submit(function (e) {
+  //     $.ajax({
+  //       url: "/academic_fees/pay_fee",
+  //       type: "GET",
+  //     });
+  //   });
+  // });
   $(document).ready(function () {
     $("#payment_form").submit(function (e) {
-      $.ajax({
-        url: "/academic_fees/pay_fee",
-        type: "GET",
-      });
+      // Prevent the form from submitting in the default way
+      e.preventDefault();
+  
+      let paid_amount = $("#payment_paid_amount").val();
+  
+      // Check if the paid amount is greater than zero
+      if (parseFloat(paid_amount) > 0) {
+        // Perform your AJAX request here
+        $.ajax({
+          url: "/academic_fees/pay_fee",
+          type: "GET",
+          success: function (response) {
+            // Handle the AJAX response if needed
+  
+            // Show the payment message with slide-down animation
+            $("#paymentMessage").slideDown("slow");
+  
+            // After 5 seconds, hide the payment message with slide-up animation
+            setTimeout(function () {
+              $("#paymentMessage").slideUp("slow");
+            }, 5000);
+  
+            // Disable and blur the submit button
+            $("#payment_submit").prop("disabled", true).addClass("blurbutton");
+          },
+          error: function (error) {
+            // Handle the AJAX error if needed
+          },
+        });
+      } else {
+        // If the paid amount is not greater than zero, display an error message or take appropriate action
+        console.log("Paid amount should be greater than zero.");
+      }
     });
   });
+  
+  
 });
