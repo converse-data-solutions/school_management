@@ -65,7 +65,7 @@
               </div>
               <div class="accordian-body p-[10px] min-h-[80px]">
                 <div class='grid grid-cols-1 md:grid-cols-4 gap-2 gap-x-6'>
-                  <%= form_with(model: AcademicFee.new, class: "contents") do |form| %>
+                  <%= form_with(model: AcademicFee.new, class: "contents", id: "academic_fee_form") do |form| %>
                     <div class="w-full">
                       <%= form.label :total_amount, "Total Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
                       <%= form.text_field :actual_fee, id: "actual_fee_input", class: "border border-[#cccccc] text-[#555555] bg-[#EDEDED] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", readonly: true %>
