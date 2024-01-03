@@ -12,6 +12,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :payments do
+    member do
+      get :invoice
+    end
+  end
+
+
   namespace :staff do
     resources :notices, only: %i[index]
     resources :attendances, only: %i[index]
