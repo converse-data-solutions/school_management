@@ -1,10 +1,11 @@
 <div class="">
-<h1>This is PDF</h1>
-  <div class="pt-40">
+  <div class="">
+    <div id="logo">
+      <%= image_tag wicked_pdf_asset_base64('aboutschool.png'), alt: 'logo', style: 'width: 90px; height: 86px;' %>
+    </div>
     <div class="" style="width: 100%; display: flex; flex-direction: row;">
       <div class="" style="width: 70%; display: flex; flex-direction: column;">
         <!-- Use image_tag to embed the image in the PDF -->
-        <%= image_tag wicked_pdf_asset_base64('homescreenlogo.png'), alt: 'logo', style: 'width: 230px; height: 70px;' %>
       </div>
       <div class="col-sm-7 padding-0" style="width: 30%; display: flex; justify-content: end;">
         <table class="table" cellspacing="0" cellpadding="10" border="1">
@@ -33,3 +34,53 @@
     </div>
   </div>
 </div>
+<br>
+<br>
+<br>
+<table class="table" cellspacing="0" cellpadding="10" border="1">
+  <thead>
+    <tr>
+      <th>academic_fee id</th>
+      <th>academic_fee discount</th>
+      <th>academic_fee amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p><%= @academic_fee.id %></p>
+      </td>
+      <td>
+        <p><%= @academic_fee.discount %></p>
+      </td>
+      <td>
+        <p><%= @academic_fee.payable_fee %></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+<table class="table" cellspacing="0" cellpadding="10" border="1">
+  <thead>
+    <tr>
+      <th>student  id</th>
+      <th>student name</th>
+      <th>student father_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p><%= @student.id %></p>
+      </td>
+      <td>
+        <p><%= @student.name %></p>
+      </td>
+      <td>
+        <p><%= @student.father_name %></p>
+      </td>
+    </tr>
+  </tbody>
+</table>

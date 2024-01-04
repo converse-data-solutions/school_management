@@ -6,7 +6,10 @@ class PaymentsController < ApplicationController
   end
 
   def invoice
-    @payment = Payment.find(params[:id])
+    @payment = Payment.find_by(id: params[:id])
+    @academic_fee = @payment.academic_fee
+    @academic_detail = @academic_fee.academic_detail
+    @student = @academic_detail.student
   
     respond_to do |format|
       format.html
