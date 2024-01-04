@@ -10,7 +10,9 @@ class PaymentsController < ApplicationController
     @academic_fee = @payment.academic_fee
     @academic_detail = @academic_fee.academic_detail
     @student = @academic_detail.student
-  
+    @section = @student.section
+    @standard = @section.standard
+    @school = School.last
     respond_to do |format|
       format.html
       format.pdf do
