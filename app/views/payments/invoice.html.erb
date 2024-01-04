@@ -34,3 +34,53 @@
     </div>
   </div>
 </div>
+<br>
+<br>
+<br>
+<table class="table" cellspacing="0" cellpadding="10" border="1">
+  <thead>
+    <tr>
+      <th>academic_fee id</th>
+      <th>academic_fee discount</th>
+      <th>academic_fee amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p><%= @academic_fee.id %></p>
+      </td>
+      <td>
+        <p><%= @academic_fee.discount %></p>
+      </td>
+      <td>
+        <p><%= @academic_fee.payable_fee %></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+<table class="table" cellspacing="0" cellpadding="10" border="1">
+  <thead>
+    <tr>
+      <th>student  id</th>
+      <th>student name</th>
+      <th>student father_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p><%= @student.id %></p>
+      </td>
+      <td>
+        <p><%= @student.name %></p>
+      </td>
+      <td>
+        <p><%= @student.father_name %></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
