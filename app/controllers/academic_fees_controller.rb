@@ -91,6 +91,7 @@ class AcademicFeesController < ApplicationController
 
   def create_payment
     @payment = @academic_fee.payments.new(payment_params)
+  
 
     respond_to do |format|
       if @payment.save

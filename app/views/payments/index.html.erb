@@ -1,0 +1,22 @@
+<!-- Assuming this is in your payments/index.html.erb or a similar view file -->
+<h1>Invoice of Payments</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Payment id</th>
+      <th>paid at</th>
+      <th>paid amount</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @payments.each do |payment| %>
+      <tr>
+        <td><%= payment.id %></td>
+        <td><%= payment.paid_at.strftime("%B %d, %Y") %></td>
+        <td><%= payment.paid_amount %></td>
+        <td><%= link_to 'View Invoice', invoice_payment_path(payment, format: :pdf), target: '_blank' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
