@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'Invoice', template: 'payments/invoice', format: [:html], layout: 'pdf', disposition: 'inline'
+        render pdf: 'Invoice', template: 'payments/invoice', format: [:html], layout: 'pdf', disposition: 'inline', show_as_html: params[:html] == 'true'
       end
     end
   end
