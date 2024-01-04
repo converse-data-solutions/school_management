@@ -91,12 +91,14 @@ class AcademicFeesController < ApplicationController
 
   def create_payment
     @payment = @academic_fee.payments.new(payment_params)
-  
+    @payment_info = params[:payment_info]
+    @paid_amount = params[:paid]
+    
 
     respond_to do |format|
       if @payment.save
         format.html { redirect_to academic_fee_url(@academic_fee), notice: 'Payment was successfully created.' }
-        format.turbo_stream 
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('payment_details_form', partial: 'academic_fees/filter_form', locals: { payment_date: @payment_date , academic_fee: @academic_fee, payment: @payment }) }
       else
         format.html { render :show, status: :unprocessable_entity }
         format.turbo_stream
