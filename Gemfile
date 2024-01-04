@@ -32,6 +32,8 @@ gem 'wicked_pdf'
 
 gem 'wkhtmltopdf-binary'
 
+gem 'numbers_and_words'
+
 gem 'jquery-datatables', git: 'https://github.com/converse-data-solutions/jquery-datatables'
 
 gem 'htmlbeautifier', '~> 1.4', '>= 1.4.2'
