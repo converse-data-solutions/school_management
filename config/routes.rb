@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   resources :academic_fees do
     collection do
       get :find_academic_sections
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  resources :academic_details
+  resources :academic_details, except: %i[create new show]
 
   resources :schools, except: %i[index show destroy]
 
