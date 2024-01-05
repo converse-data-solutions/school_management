@@ -17,7 +17,7 @@
       </div>
       <%= payment_form.hidden_field :paid_by, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: (current_user.id) %>
       <%= payment_form.hidden_field :paid_at, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: payment_date %>
-      <div class="flex gap-x-3 justify-left ">
+      <div class="flex gap-x-1 justify-left ">
         <div class="py-2">
           <%= payment_form.submit "Pay Fee", disabled: @payment&.persisted?, id: 'date_submit', class: 'text-white bg-[#81B944] text-[14px] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[5px] text-sm w-auto sm:w-auto px-4 py-2 text-center' + (@payment&.persisted? ? ' opacity-[0.65]' : ''), style: 'background-image: linear-gradient(#88c149, #73a839 60%, #699934);' %>
         </div>
@@ -33,6 +33,9 @@
               Print
             <% end %>
           <% end %>
+        </div>
+        <div class="py-3">
+          <%= link_to 'Reset', academic_fees_path, class: 'text-white focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[4px] text-[14px] w-auto sm:w-auto px-2 py-2.5 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
         </div>
       </div>
     <% end %>
