@@ -47,37 +47,8 @@ document.addEventListener("turbo:load", function () {
     $("#discount_amount").val(discount_amount);
   });
 
-  $(document).ready(function () {
-    $("#payment_details_form").on("submit", "#payment_form", function (e) {
-      let paid_amount = $("#payment_paid_amount").val();
 
-      if (parseFloat(paid_amount) > 0) {
-        $.ajax({
-          url: "/academic_fees/pay_fee",
-          type: "GET",
-          success: function (response) {
-            setTimeout(function () {
-              $("#paymentMessage").removeClass("hidden");
-            }, 5000);
-            $("#paymentMessage").slideDown("slow");
-
-            setTimeout(function () {
-              $("#paymentMessage").slideUp("slow");
-              $("#paymentMessage").addClass("hidden");
-            }, 5000);
-
-            $("#payment_submit").prop("disabled", true).addClass("blurbutton");
-          },
-          error: function (error) {
-            console.log(error);
-          },
-        });
-      } else {
-        e.preventDefault();
-      }
-    });
-  });
-
+  //  payment changes form
   $(document).ready(function () {
     $("#academic_fee_details_form").on(
       "submit",
@@ -105,5 +76,39 @@ document.addEventListener("turbo:load", function () {
         });
       }
     );
+  });
+
+  //   payment-details form 
+  $(document).ready(function () {
+    $("#payment_details_form").on("submit", "#payment_form", function (e) {
+      let paid_amount = $("#payment_paid_amount").val();
+
+      if (parseFloat(paid_amount) > 0) {
+        $.ajax({
+          url: "/academic_fees/pay_fee",
+          type: "GET",
+          success: function (response) {
+            setTimeout(function () {
+              $("#paymentMessage").removeClass("hidden");
+            }, 5000);
+            $("#paymentMessage").slideDown("slow");
+
+            setTimeout(function () {
+              $("#paymentMessage").slideUp("slow");
+              $("#paymentMessage").addClass("hidden");
+            }, 5000);
+
+            $("#payment_submit").prop("disabled", true).addClass("blurbutton");
+            $("#payment_submit").addClass("hidden");
+            console.log("payment success");
+          },
+          error: function (error) {
+            console.log(error);
+          },
+        });
+      } else {
+        e.preventDefault();
+      }
+    });
   });
 });

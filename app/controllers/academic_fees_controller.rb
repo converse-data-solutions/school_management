@@ -14,6 +14,8 @@ class AcademicFeesController < ApplicationController
       filter_by_student(@payment_date)
     elsif params_present?(params, %i[admission_no])
       filter_by_admission_no(@payment_date)
+    else
+      redirect_to academic_fees_path
     end
   end
 
