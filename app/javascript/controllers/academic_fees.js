@@ -63,12 +63,12 @@ document.addEventListener("turbo:load", function () {
             }, 5000);
             $("#paymentMessage").slideDown("slow");
 
-            setTimeout(function () {
-              $("#paymentMessage").slideUp("slow");
-              $("#paymentMessage").addClass("hidden");
-            }, 5000);
+            // setTimeout(function () {
+            //   $("#paymentMessage").slideUp("slow");
+            //   $("#paymentMessage").addClass("hidden");
+            // }, 5000);
 
-            $("#fee_submit").prop("disabled", true).addClass("blurbutton");
+            // $("#fee_submit").prop("disabled", true).addClass("blurbutton");
           },
           error: function (error) {
             console.log(error);
@@ -78,7 +78,7 @@ document.addEventListener("turbo:load", function () {
     );
   });
 
-  //   payment-details form 
+  //   payment-fee form 
   $(document).ready(function () {
     $("#payment_details_form").on("submit", "#payment_form", function (e) {
       let paid_amount = $("#payment_paid_amount").val();
@@ -98,9 +98,6 @@ document.addEventListener("turbo:load", function () {
               $("#paymentMessage").addClass("hidden");
             }, 5000);
 
-            $("#payment_submit").prop("disabled", true).addClass("blurbutton");
-            $("#payment_submit").addClass("hidden");
-            console.log("payment success");
           },
           error: function (error) {
             console.log(error);
