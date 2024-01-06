@@ -25,10 +25,10 @@ function initValidate() {
     $("#notice").fadeOut();
   }, 5000);
 
-  $(".main").click(function () {
-    const el = $(this).parent().find(".sub");
-    el.slideToggle("slow");
-  });
+  // $(".main").click(function () {
+  //   const el = $(this).parent().find(".sub");
+  //   el.slideToggle("slow");
+  // });
 
   $(document).on("click", function (event) {
     if (
@@ -57,6 +57,23 @@ function initValidate() {
     $(".more-content").toggle();
     $(".theme-content, .admin-content").hide();
     $(".more-opener").toggleClass("activedropdown");
+  });
+  // manage student
+  const isDropdownOpen = localStorage.getItem("dropdownNavbarManageFee");
+  if (isDropdownOpen === "true") {
+    $("#dropdownNavbarManageFee").parent().find(".sub").show();
+  }
+ 
+
+  $(".main").click(function () {
+    const el = $(this).parent().find(".sub");
+  
+    // Toggle the visibility of the dropdown
+    el.slideToggle("slow");
+  
+    // Toggle the value in localStorage when the dropdown is clicked
+    const isOpen = el.is(":visible");
+    localStorage.setItem("dropdownNavbarManageFee", isOpen.toString());
   });
 }
 
