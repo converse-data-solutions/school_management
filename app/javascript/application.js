@@ -7,13 +7,39 @@ import flatpickr from "flatpickr";
 import DataTable from "datatables.net-dt";
 
 function initValidate() {
+  function openDropdown(dropdown) {
+    const dropdownContent = dropdown.parent().find(".sub");
+    dropdownContent.slideDown("slow");
+  }
+
+  // Check if the openDropDown class is present and open the dropdown accordingly
+  if ($("#dropdownNavbarManageFee").hasClass("openDropDown")) {
+    const dropdownFee = $("#dropdownNavbarManageFee");
+    console.log("openDropDownfromFee");
+    openDropdown(dropdownFee);
+  }
+
+  if ($("#dropdownNavbarmanageStudent").hasClass("openDropDown")) {
+    console.log("openDropdown");
+    const dropdownStudent = $("#dropdownNavbarmanageStudent");
+    openDropdown(dropdownStudent);
+  }
+
+  if ($("#dropdownNavbarManageParent").hasClass("openDropDown")) {
+    console.log("openDropdown");
+    const dropdownParent = $("#dropdownNavbarManageParent");
+    openDropdown(dropdownParent);
+  }
+
+  if ($("#dropdownNavbarManageStaff").hasClass("openDropDown")) {
+    console.log("openDropdown");
+    const dropdownStaff = $("#dropdownNavbarManageStaff");
+    openDropdown(dropdownStaff);
+  }
 
   //accordian for all models
   $(".accordian-header").click(function () {
     $(this).toggleClass("active");
-
-    const accordianBody = $(this).parent().next();
-    accordianBody.slideToggle();
   });
 
   $(".activebar").on("click", function (e) {
@@ -25,10 +51,15 @@ function initValidate() {
     $("#notice").fadeOut();
   }, 5000);
 
-  // $(".main").click(function () {
-  //   const el = $(this).parent().find(".sub");
-  //   el.slideToggle("slow");
-  // });
+  $(".main").click(function () {
+    const el = $(this).parent().find(".sub");
+    el.slideToggle("slow");
+
+    if ($(this).hasClass("openDropDown")) {
+      // Hide the next ul list
+      $(this).next("ul").toggleClass("hidden");
+    }
+  });
 
   $(document).on("click", function (event) {
     if (
@@ -57,23 +88,6 @@ function initValidate() {
     $(".more-content").toggle();
     $(".theme-content, .admin-content").hide();
     $(".more-opener").toggleClass("activedropdown");
-  });
-  // manage student
-  const isDropdownOpen = localStorage.getItem("dropdownNavbarManageFee");
-  if (isDropdownOpen === "true") {
-    $("#dropdownNavbarManageFee").parent().find(".sub").show();
-  }
- 
-
-  $(".main").click(function () {
-    const el = $(this).parent().find(".sub");
-  
-    // Toggle the visibility of the dropdown
-    el.slideToggle("slow");
-  
-    // Toggle the value in localStorage when the dropdown is clicked
-    const isOpen = el.is(":visible");
-    localStorage.setItem("dropdownNavbarManageFee", isOpen.toString());
   });
 }
 
