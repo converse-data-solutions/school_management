@@ -32,7 +32,7 @@ class AcademicDetailsController < ApplicationController
   end
 
   def destroy
-    @academic_detail.update(removed: true)
+    @academic_detail&.update(removed: true)
     flash[:notice] = 'Academic Detail deleted successfully.'
     redirect_to academic_details_path
   end

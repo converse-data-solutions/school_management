@@ -1,6 +1,7 @@
 class AcademicFeesController < ApplicationController
   include AcademicFeeCommon
-
+  include AuthorizationHelper
+  before_action :check_admin_role
   before_action :set_academic_fee, only: %i[edit update create_payment]
 
   def index; end
