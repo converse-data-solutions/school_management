@@ -1,5 +1,7 @@
 class PaymentsController < ApplicationController
   layout 'pdf'
+  include AuthorizationHelper
+  before_action :check_admin_role
 
   before_action :set_invoice_data, only: [:invoice]
 
