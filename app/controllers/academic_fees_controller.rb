@@ -107,7 +107,7 @@ class AcademicFeesController < ApplicationController
         common_instance_variables(@academic_detail)
         format.turbo_stream
       else
-        handle_academic_details_not_found
+        format.turbo_stream { head :no_content }
       end
     end
   end
@@ -121,7 +121,7 @@ class AcademicFeesController < ApplicationController
         common_instance_variables(@academic_detail)
         format.turbo_stream
       else
-        handle_academic_details_not_found
+        format.turbo_stream { head :no_content }
       end
     end
   end
