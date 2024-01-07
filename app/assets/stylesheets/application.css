@@ -135,14 +135,6 @@ input:-webkit-autofill {
       #8be78b 10px,
       #ccffcc 10px,
       #ccffcc 20px);
-  /* transition: 3000ms;
-      transition-duration: 3s;
-      transition-timing-function: linear;
-      transition-delay: 3s;
-      transition-property: all;
-      transition-timing-function: ease-in-out;
-      transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1.0); */
-
 }
 
 .blurbutton {
@@ -155,15 +147,3 @@ input:-webkit-autofill {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-
-/* #reset {
-  background-color: #789f2a !important;
-}
-
-#reset:hover {
-  color: #ffffff;
-  background-color: #1884c3 !important;
-  border: 1px solid #9fe710 !important;
-
-
-} */

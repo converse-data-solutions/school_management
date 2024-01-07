@@ -34,9 +34,12 @@ function initValidate() {
     }
 
     //accordian for all models
-    $(".accordian-header").click(function() {
+    $(".accordian-header").click(function () {
         $(this).toggleClass("active");
-    });
+    
+        const accordianBody = $(this).parent().next();
+        accordianBody.slideToggle();
+      });
 
     $(".activebar").on("click", function(e) {
         $(".activebar").removeClass("activenav");

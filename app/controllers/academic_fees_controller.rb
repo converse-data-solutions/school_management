@@ -1,18 +1,16 @@
 class AcademicFeesController < ApplicationController
   include AcademicFeeCommon
   include AuthorizationHelper
-  before_action :check_admin_role
-  before_action :set_academic_fee, only: %i[edit update create_payment]
+  before_action :check_admin_role, :set_academic_fee, only: %i[edit update create_payment]
 
   def index; end
 
   def filter
     @payment_date = params[:payment_date].presence || DateTime.now.in_time_zone('Asia/Kolkata').strftime('%Y-%m-%d %I:%M:%S %p')
 
-    if params_present?(params, %i[standard_id section_id student_id])
-      filter_by_student(@payment_date)
-    elsif params_present?(params, %i[admission_no])
-      filter_by_admission_no(@payment_date)
+    if params_present?(params, %i[standard_id section_id student_id admission_no])
+      key = params[:student_id].present? ? :student_id : :admission_no
+      filter_by_criteria(@payment_date, key, params[key])
     else
       handle_academic_details_not_found
     end
@@ -29,12 +27,7 @@ class AcademicFeesController < ApplicationController
   end
 
   def find_student_details
-    @student = if params[:student_id].present?
-                 Student.find_by(id: params[:student_id])
-               elsif params[:admission_no].present?
-                 Student.find_by(admission_no: params[:admission_no])
-               end
-
+    @student = find_student_by_params(params)
     respond_to(&:js)
   end
 
@@ -66,7 +59,6 @@ class AcademicFeesController < ApplicationController
     @payment = @academic_fee.payments.new(payment_params)
     @payment_info = params[:payment_info]
     @paid_amount = params[:paid]
-
     respond_to do |format|
       if @payment.save
         format.html { redirect_to academic_fee_url(@academic_fee), notice: 'Payment was successfully created.' }
@@ -100,22 +92,8 @@ class AcademicFeesController < ApplicationController
     keys.any? { |key| params[key].present? }
   end
 
-  def filter_by_student(payment_date)
-    @academic_detail = AcademicDetail.find_by(student_id: params[:student_id], academic_year: params[:academic_year])
-    @payment_date = payment_date
-    respond_to do |format|
-      if @academic_detail
-        common_instance_variables(@academic_detail)
-        format.turbo_stream
-      else
-        format.turbo_stream { head :no_content }
-      end
-    end
-  end
-
-  def filter_by_admission_no(payment_date)
-    @academic_detail = AcademicDetail.find_by(admission_no: params[:admission_no],
-                                              academic_year: params[:academic_year])
+  def filter_by_criteria(payment_date, criteria_key, criteria_value)
+    @academic_detail = AcademicDetail.find_by({ criteria_key => criteria_value, academic_year: params[:academic_year] })
     @payment_date = payment_date
     respond_to do |format|
       if @academic_detail
@@ -129,5 +107,13 @@ class AcademicFeesController < ApplicationController
 
   def handle_academic_details_not_found
     redirect_to academic_fees_url, notice: 'Academic details not found'
+  end
+
+  def find_student_by_params(params)
+    if params[:student_id].present?
+      Student.find_by(id: params[:student_id])
+    elsif params[:admission_no].present?
+      Student.find_by(admission_no: params[:admission_no])
+    end
   end
 end

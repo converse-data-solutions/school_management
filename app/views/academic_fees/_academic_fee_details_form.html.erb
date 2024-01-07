@@ -18,8 +18,8 @@
         <div class="w-full">
           <label class="text-[15px] text-[#555555] font-semibold" for="discount_amount">Discount Amount</label>
           <input type="text" id="discount_amount" name="discount_amount" 
-         class="border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" 
-         placeholder="0">
+       class="border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" 
+       value="<%= @academic_fee.actual_fee - @academic_fee.payable_fee %>" >
         </div>
         <div class="w-full">
           <%= form.label :payable_fee, "Payable Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
