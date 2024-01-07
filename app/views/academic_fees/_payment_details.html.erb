@@ -11,7 +11,7 @@
       <% academic_fee.payments&.each do |payment| %>
         <% total_amount += payment.paid_amount.to_i if payment.paid_amount.present? %>
         <tr class='striped text-[14px] text-[#555555]'>
-          <td class="border border-[#dddddd] p-2 "> <%= payment.paid_at%></td>
+          <td class="border border-[#dddddd] p-2 "> <%= payment.paid_at.strftime("%d/%m/%Y %I:%M %p")%></td>
           <td class="border border-[#dddddd] p-2 "><%= payment.paid_amount %></td>
         </tr>
       <% end %>

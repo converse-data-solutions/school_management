@@ -9,30 +9,26 @@ import DataTable from "datatables.net-dt";
 function initValidate() {
   function openDropdown(dropdown) {
     const dropdownContent = dropdown.parent().find(".sub");
-    dropdownContent.slideDown("slow");
+    dropdownContent.slideDown("fast");
   }
 
   // Check if the openDropDown class is present and open the dropdown accordingly
   if ($("#dropdownNavbarManageFee").hasClass("openDropDown")) {
     const dropdownFee = $("#dropdownNavbarManageFee");
-    console.log("openDropDownfromFee");
     openDropdown(dropdownFee);
   }
 
   if ($("#dropdownNavbarmanageStudent").hasClass("openDropDown")) {
-    console.log("openDropdown");
     const dropdownStudent = $("#dropdownNavbarmanageStudent");
     openDropdown(dropdownStudent);
   }
 
   if ($("#dropdownNavbarManageParent").hasClass("openDropDown")) {
-    console.log("openDropdown");
     const dropdownParent = $("#dropdownNavbarManageParent");
     openDropdown(dropdownParent);
   }
 
   if ($("#dropdownNavbarManageStaff").hasClass("openDropDown")) {
-    console.log("openDropdown");
     const dropdownStaff = $("#dropdownNavbarManageStaff");
     openDropdown(dropdownStaff);
   }
