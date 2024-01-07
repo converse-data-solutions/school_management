@@ -24,7 +24,7 @@ class AcademicDetailsController < ApplicationController
   def update
     if @academic_detail.update(academic_detail_params)
       flash[:notice] = 'Academic Detail updated successfully.'
-      redirect_to academic_details_path 
+      redirect_to academic_details_path
     else
       flash[:alert] = 'Failed to update Academic Detail.'
       render 'edit'
@@ -32,8 +32,12 @@ class AcademicDetailsController < ApplicationController
   end
 
   def destroy
-    @academic_detail&.update(removed: true)
-    flash[:notice] = 'Academic Detail deleted successfully.'
+    if @academic_detail&.update(removed: true)
+      flash[:notice] = 'Academic Detail deleted successfully.'
+    else
+      flash[:alert] = 'Failed to delete Academic Detail.'
+    end
+
     redirect_to academic_details_path
   end
 
