@@ -17,12 +17,12 @@ class AcademicFeesController < ApplicationController
   end
 
   def find_academic_sections
-    @sections = Standard.find_by(id: params[:standard_id]).sections
+    @sections = Standard.find_by(id: params[:standard_id]).sections.select(:id, :section_name)
     respond_to(&:js)
   end
 
   def find_students
-    @students = Section.find_by(id: params[:section_id]).students
+    @students = Section.find_by(id: params[:section_id]).students.select(:id, :name)
     respond_to(&:js)
   end
 

@@ -27,6 +27,8 @@ class Student < ApplicationRecord
                               message: 'Mobile Number  Must Be Exactly 10 Digits'
                             },
                             allow_blank: true
+  scope :active, -> { where(status: 'Active', removed: false) }
+  # Ex:- scope :active, -> {where(:active => true)}
 
   def self.update_sections(student_ids, new_section_id)
     section = Section.find_by(id: new_section_id)
