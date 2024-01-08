@@ -10,7 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_21_132103) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_29_123820) do
+  create_table "academic_details", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "roll_no"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "admission_no"
+    t.bigint "student_id", null: false
+    t.string "section_name"
+    t.string "standard_name"
+    t.string "academic_year"
+    t.boolean "removed", default: false
+    t.bigint "standard_id"
+    t.bigint "section_id"
+    t.index ["student_id"], name: "index_academic_details_on_student_id"
+  end
+
+  create_table "academic_fees", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.decimal "discount", precision: 10
+    t.decimal "actual_fee", precision: 10
+    t.decimal "payable_fee", precision: 10
+    t.bigint "academic_detail_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["academic_detail_id"], name: "index_academic_fees_on_academic_detail_id"
+  end
+
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -61,6 +87,18 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_21_132103) do
     t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
+  create_table "payments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "payment_info"
+    t.datetime "paid_at"
+    t.string "mode_of_pay"
+    t.string "paid_by"
+    t.decimal "paid_amount", precision: 10
+    t.bigint "academic_fee_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["academic_fee_id"], name: "index_payments_on_academic_fee_id"
+  end
+
   create_table "schools", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "school_name"
     t.string "school_address1"
@@ -88,27 +126,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_21_132103) do
     t.integer "fee"
   end
 
-  create_table "student_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "roll_no"
-    t.string "name"
-    t.string "father_name"
-    t.string "mother_name"
-    t.bigint "mobile_number"
-    t.string "address"
-    t.string "gender"
-    t.date "date_of_birth"
-    t.date "date_of_admission"
-    t.bigint "section_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "admission_no"
-    t.bigint "student_id", null: false
-    t.string "section_name"
-    t.string "standard_name"
-    t.index ["student_id"], name: "index_student_histories_on_student_id"
-  end
-
   create_table "students", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "admission_no"
     t.string "roll_no"
@@ -124,7 +141,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_21_132103) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "deleted"
+    t.string "status"
+    t.boolean "removed", default: false
     t.index ["section_id"], name: "index_students_on_section_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
@@ -150,9 +168,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_21_132103) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "academic_fees", "academic_details"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "notices", "users"
+  add_foreign_key "payments", "academic_fees"
   add_foreign_key "sections", "standards"
   add_foreign_key "students", "sections"
   add_foreign_key "students", "users"

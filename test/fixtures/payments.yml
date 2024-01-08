@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payment_info: MyString
+  paid_at: 2023-12-28 12:16:30
+  mode_of_pay: MyString
+  paid_by: MyString
+  paid_amount: 9.99
+  academic_fee: one
+
+two:
+  payment_info: MyString
+  paid_at: 2023-12-28 12:16:30
+  mode_of_pay: MyString
+  paid_by: MyString
+  paid_amount: 9.99
+  academic_fee: two

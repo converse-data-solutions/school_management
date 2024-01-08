@@ -1,0 +1,2 @@
+module AcademicFeesHelper
+end

@@ -12,19 +12,14 @@ function initValidate() {
     stateSave: false,
     columns: [
       { data: "id", class: "id" },
+      { data: "student_id", class: "student_id" },
       { data: "admission_no", class: "admission_no" },
       { data: "name", class: "student_name" },
-      { data: "date_of_birth", class: "date_of_birth" },
-      { data: "gender", class: "student_gender" },
-      { data: "date_of_admission", class: "date_of_admission" },
-      { data: "father_name", class: "father_name" },
-      { data: "mother_name", class: "mother_name" },
-      { data: "address", class: "address" },
-      { data: "mobile_number", class: "mobile_number" },
       { data: "roll_no", class: "roll_no" },
-      { data: "section_name", class: "section" },
       { data: "standard_name", class: "standard_name" },
-      
+      { data: "section_name", class: "section" },
+      { data: "academic_year", class: "academic_year" },
+      { data: "academic_action", class: "academic_action" },
     ],
     oLanguage: {
       oPaginate: {

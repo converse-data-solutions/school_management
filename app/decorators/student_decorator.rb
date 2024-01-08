@@ -11,7 +11,7 @@ class StudentDecorator < ApplicationDecorator
 
   def student_status
     links = []
-    links << if object.deleted == 'Active'
+    links << if object.status == 'Active'
                h.link_to('Active'.html_safe,
                          h.students_path, class: 'status-active')
              else
@@ -23,7 +23,7 @@ class StudentDecorator < ApplicationDecorator
 
   def student_actions
     links = []
-    if object.deleted == 'Active'
+    if object.status == 'Active'
       links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + 'Deactive'.html_safe,
                          h.active_student_student_path(object), data: { turbo_method: :patch, turbo_confirm: 'Are you sure You Want To Deactivate?' }, remote: true, class: 'student_deactive')
       links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-edit') + ' Edit'.html_safe,

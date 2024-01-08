@@ -1,0 +1,44 @@
+<fieldset>
+  <legend class="text-[#555555] font-bold text-[16px] pt-3">Payment Details</legend>
+  <hr>
+  <div class='grid grid-cols-1 md:grid-cols-3 gap-2 gap-x-6 p-4'>
+    <%= form_with(model: @payment || Payment.new, url: create_payment_academic_fee_path(@academic_fee), class: "contents", id: "payment_form") do |payment_form| %>
+      <div class="py-3">
+        <%= payment_form.label :payment_info, "Payment Info", class: 'text-[15px] text-[#555555] font-semibold' %>
+        <%= payment_form.text_field :payment_info, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0" %>
+      </div>
+      <div class="py-3">
+        <%= payment_form.label :payemt_type, "Payment Type", class: 'text-[15px] text-[#555555] font-semibold' %>
+        <%= payment_form.select(:mode_of_pay, options_for_select(['CASH', 'CHECK'], selected: @payment&.mode_of_pay || 'CASH'), { prompt: 'Select' }, { class: 'border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0'} ) %>
+      </div>
+      <div class="py-3">
+        <%= payment_form.label :payable_fee, "Paid Amount", class: 'text-[15px] text-[#555555] font-semibold' %>
+        <%= payment_form.text_field :paid_amount, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0" %>
+      </div>
+      <%= payment_form.hidden_field :paid_by, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: (current_user.id) %>
+      <%= payment_form.hidden_field :paid_at, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", placeholder: "0", value: payment_date %>
+      <div class="flex gap-x-1 justify-start items-center ">
+        <div class="py-2">
+          <%= payment_form.submit "Pay Fee", disabled: @payment&.persisted?, id: 'date_submit', class: 'border border-[1px] border-transparent hover:border-[1px] hover:border-[#547a29] text-white bg-[#81B944] text-[14px] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px] w-auto sm:w-auto px-2.5 py-2.5 text-center' + (@payment&.persisted? ? ' opacity-[0.65]' : ''), style: 'background-image: linear-gradient(#88c149, #73a839 60%, #699934);' %>
+        </div>
+        <div class="py-3">
+          <% if Payment.exists? %>
+            <%= link_to invoice_payment_path(Payment.last, format: :pdf), target: '_blank', disabled: true, class: "text-[#555555] text-[14px] border border-[rgba(0,0,0,0.1)] bg-[#fff] rounded-[4px] px-2.5 py-2.5#{' opacity-[0.65] pointer-events-none' unless @payment&.persisted?}", style: "background-image: linear-gradient(#fff, #fff 60%, #f5f5f5);" do %>
+              <i class="fa-solid fa-print"></i>
+              Print
+            <% end %>
+          <% else %>
+            <%= link_to payments_path,class: "text-[#555555] text-[14px] border border-[rgba(0,0,0,0.1)] bg-[#fff] rounded-[4px] px-2.5 py-2.5 opacity-[0.65] pointer-events-none", style: "background-image: linear-gradient(#fff, #fff 60%, #f5f5f5);" do %>
+              <i class="fa-solid fa-print"></i>
+              Print
+            <% end %>
+          <% end %>
+        </div>
+        <div class="py-3">
+          <%= link_to 'Reset', academic_fees_path, class: 'border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] text-white focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]  rounded-[4px] text-[14px] w-auto sm:w-auto px-2.5 py-2.5 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+</fieldset>

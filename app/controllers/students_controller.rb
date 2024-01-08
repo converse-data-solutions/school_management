@@ -68,7 +68,7 @@ class StudentsController < ApplicationController
   end
 
   def destroy
-    @student.destroy!
+    @student.update(removed: true)
     respond_to do |format|
       format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
       format.json { head :no_content }
@@ -101,7 +101,7 @@ class StudentsController < ApplicationController
 
   def student_params
     params.require(:student).permit(:admission_no, :roll_no, :name, :father_name, :mother_name, :mobile_number,
-                                    :address, :date_of_birth, :gender, :date_of_admission, :section_id, :user_id, :image, :deleted)
+                                    :address, :date_of_birth, :gender, :date_of_admission, :section_id, :user_id, :image)
   end
 
   def selected_sections

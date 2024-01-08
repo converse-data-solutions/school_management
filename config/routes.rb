@@ -1,4 +1,27 @@
 Rails.application.routes.draw do
+
+
+  resources :academic_fees do
+    collection do
+      get :find_academic_sections
+      get :find_students
+      get :find_student_details
+      post :filter
+      get :pay_fee
+      get :changed_fee
+    end
+    member do
+      post :create_payment
+    end
+  end
+
+  resources :payments do
+    member do
+      get :invoice
+    end
+  end
+
+
   namespace :staff do
     resources :notices, only: %i[index]
     resources :attendances, only: %i[index]
@@ -6,7 +29,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   root 'home#index'
-  get 'student_histories/index'
+
+  resources :academic_details, except: %i[create new show]
 
   resources :schools, except: %i[index show destroy]
 
