@@ -15,6 +15,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :fee_dues do
+    collection do
+      get :find_academic_sections
+      post :filter_due
+    end
+  end
+
   resources :payments do
     member do
       get :invoice
