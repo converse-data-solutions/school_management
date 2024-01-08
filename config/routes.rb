@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :fee_dues do
     collection do
       get :find_academic_sections
-      post :filter_due
+      post :filter_fee_due
     end
   end
 

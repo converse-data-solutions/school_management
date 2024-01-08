@@ -35,7 +35,11 @@ function initValidate() {
 $(document).ready(function () {
   initValidate();
 
-  $(document).on("turbo:render", function () {
-    initValidate();
-  });
+ 
 });
+
+$(document).on("turbo:render", function () {
+  initValidate();
+});
+
+
