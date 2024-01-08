@@ -1,0 +1,51 @@
+<%= content_for :head do %>
+  <%= javascript_import_module_tag "controllers/student_history_datatable" %>
+<% end %>
+<div class="bg-[#F5F5F5] container mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-4 p-1 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline pointer" ><%= link_to "Fee Due", fee_dues_path %></span></div>
+<div class=" container mx-auto rounded-lg border-2">
+  <div class="px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+    <div><i class="fa-solid fa-pen-to-square"></i>
+      <span class="font-semibold"> Fee Due Details</span></div>
+    <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+  </div>
+  <div class="accordian-body">
+    <div class="p-4">
+      <%= form_with(url: filter_academic_fees_path, method: :post, id: "academic-fee", local: false, format: :turbo_stream) do |form| %>
+        <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 gap-x-6'>
+          <div class="w-full">
+            <%= form.label :standard, "Standard", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= form.select :standard_id, Standard.all.map { |s| [s.name, s.id] }, { prompt: 'Select a Standard' }, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard" %>
+          </div>
+          <div class="w-full" id="section-dropdown">
+            <%= form.label :section, "Section", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= form.select :section_id, Section.where(standard_id: params[:standard_id]).map { |s| [s.section_name, s.id] }, { prompt: 'Select a Section' }, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 " %>
+          </div>
+          <div class="w-full" id="student-dropdown">
+            <%= form.label :student, "Student", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= form.select :student_id, Student.where(section_id: params[:section_id]).map { |s| [s.name, s.id] }, { prompt: 'Select a Student' }, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 " %>
+          </div>
+          <div class="w-full" id="admission-dropdown">
+            <%= form.label :admission_no, "Admission No", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= form.text_field :admission_no, { value: params[:admission_no], class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", id: 'admission_no', placeholder: 'Admission No' } %>
+          </div>
+        </div>
+        <div class="my-[20px]">
+          <%= link_to 'Reset', academic_fees_path, id: 'reset' ,class: 'text-white focus:ring-2 rounded-[4px] text-[14px] w-auto sm:w-auto px-2 py-2.5 text-center border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2]  focus:outline-[#000] focus:ring-[#000]', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 gap-x-6">
+          <div class="w-full" id="academi_year">
+            <%= form.label :academi_year, "Academic Year", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= form.select(:academic_year, ['2023-2024', '2024-2025', '2025-2026', '2026-2027', '2028-2029'] ,  { prompt: 'Select Year' }, { class: 'border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0'} ) %>
+          </div>
+          <div class="w-full" id="payment_date">
+            <%= form.label :payment_date, "Payment Date", class: 'text-[15px] text-[#555555] font-semibold' %>
+            <%= form.datetime_field :payment_date, class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0", id: 'payment_date' %>
+          </div>
+        </div>
+        <div class="md:mt-[20px]">
+          <%= form.submit "View Fee Amount", id: 'date_submit', class: 'text-white border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px] text-sm w-auto sm:w-auto px-2 py-2 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
