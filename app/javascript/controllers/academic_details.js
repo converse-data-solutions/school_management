@@ -20,8 +20,8 @@ function initValidate() {
       errors = true;
     }
 
-    if (!validator.isAlpha(name)) {
-      $("#name-error").text("Name must contain only alphabets.");
+    if (!/^[a-zA-Z\s]+$/.test(name)) {
+      $("#name-error").text("Name must contain only alphabets and white spaces.");
       errors = true;
     }
 

@@ -66,6 +66,7 @@ class AcademicFeesController < ApplicationController
           render turbo_stream: turbo_stream.replace('payment_details_form', partial: 'academic_fees/filter_form',
                                                                             locals: { payment_date: @payment_date, academic_fee: @academic_fee, payment: @payment })
         end
+
       else
         format.html { render :show, status: :unprocessable_entity }
         format.turbo_stream
