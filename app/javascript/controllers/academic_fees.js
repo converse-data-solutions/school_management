@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+function initValidate() {
   const academicDetailsForm = $("#academic-fee");
 
   academicDetailsForm.on("change", "#standard_id", function() {
@@ -63,7 +63,7 @@ document.addEventListener("turbo:load", function() {
 
   //   payment-fee form
   paymentFeeForm();
-});
+};
 
 function paymentFeeForm() {
   $("#payment_details_form").on("submit", "#payment_form", function(e) {
@@ -126,4 +126,9 @@ function paymentChangeForm() {
 $(document).ready(function() {
   paymentChangeForm();
   paymentFeeForm();
+  initValidate();
+
+  $(document).on("turbo:render", function() {
+    initValidate();
+  })
 });
