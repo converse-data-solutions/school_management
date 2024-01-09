@@ -23,11 +23,11 @@ class PaymentsController < ApplicationController
 
   def set_invoice_data
     @payment = Payment.find_by(id: params[:id])
-    @academic_fee = @payment.academic_fee
-    @academic_detail = @academic_fee.academic_detail
-    @student = @academic_detail.student
-    @section = @student.section
-    @standard = @section.standard
+    # @academic_fee = @payment.academic_fee
+    # @academic_detail = @academic_fee.academic_detail
+    # @student = @academic_detail.student
+    # @section = @student.section
+    # @standard = @section.standard
     @school = School.last
   end
 end
