@@ -1,20 +1,10 @@
 class AcademicFeesController < ApplicationController
   include AcademicFeeCommon
   include AuthorizationHelper
+  include FilterHelper
   before_action :check_admin_role, :set_academic_fee, only: %i[edit update create_payment]
 
   def index; end
-
-  def filter
-    @payment_date = params[:payment_date].presence || DateTime.now.in_time_zone('Asia/Kolkata').strftime('%Y-%m-%d %I:%M:%S %p')
-
-    if params_present?(params, %i[standard_id section_id student_id admission_no])
-      key = params[:student_id].present? ? :student_id : :admission_no
-      filter_by_criteria(@payment_date, key, params[key])
-    else
-      handle_academic_details_not_found
-    end
-  end
 
   def find_academic_sections
     @sections = Standard.find_by(id: params[:standard_id]).sections.select(:id, :section_name)
@@ -80,27 +70,6 @@ class AcademicFeesController < ApplicationController
   def academic_fee_params
     params.require(:academic_fee).permit(:discount, :actual_fee, :payable_fee, :academic_detail_id, :discount,
                                          :payable_fee)
-  end
-
-  def params_present?(params, keys)
-    keys.any? { |key| params[key].present? }
-  end
-
-  def filter_by_criteria(payment_date, criteria_key, criteria_value)
-    @academic_detail = AcademicDetail.find_by({ criteria_key => criteria_value, academic_year: params[:academic_year] })
-    @payment_date = payment_date
-    respond_to do |format|
-      if @academic_detail
-        common_instance_variables(@academic_detail)
-        format.turbo_stream
-      else
-        format.turbo_stream { head :no_content }
-      end
-    end
-  end
-
-  def handle_academic_details_not_found
-    redirect_to academic_fees_url, notice: 'Academic details not found'
   end
 
   def find_student_by_params(params)
