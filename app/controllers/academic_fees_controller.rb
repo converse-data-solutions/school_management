@@ -7,7 +7,7 @@ class AcademicFeesController < ApplicationController
   def index; end
 
   def find_academic_sections
-    @sections = Standard.find_by(id: params[:standard_id]).sections.select(:id, :section_name)
+    @sections = AcademicFee.find_section_by_params(params)
   end
 
   def find_students
@@ -73,6 +73,6 @@ class AcademicFeesController < ApplicationController
   end
 
   def find_student_by_params(params)
-    Student.find_by(params[:student_id].present? ? { id: params[:student_id] } : { admission_no: params[:admission_no] })
+    Student.where(id: params[:student_id]).or(Student.where(admission_no: params[:admission_no])).first
   end
 end
