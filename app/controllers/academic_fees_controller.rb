@@ -11,10 +11,8 @@ class AcademicFeesController < ApplicationController
 
     respond_to do |format|
       if academic_fee_data
-        @academic_detail = academic_fee_data[:academic_detail]
-        @fee = academic_fee_data[:fee]
-        @academic_fee = academic_fee_data[:academic_fee]
-        @payments = academic_fee_data[:payments]
+        @academic_detail, @fee, @academic_fee, @payments = academic_fee_data
+
         format.turbo_stream
       else
         format.turbo_stream { head :no_content }

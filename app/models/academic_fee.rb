@@ -26,12 +26,7 @@ class AcademicFee < ApplicationRecord
     academic_fee = AcademicFee.find_by(academic_detail_id: academic_detail.id)
     payments = AcademicFee.includes(:payments).where(academic_detail_id: academic_detail.id)
 
-    {
-      academic_detail:,
-      fee:,
-      academic_fee:,
-      payments:
-    }
+    [academic_detail, fee, academic_fee, payments]
   end
 
   private
