@@ -11,11 +11,11 @@ class AcademicFeesController < ApplicationController
   end
 
   def find_students
-    @students = Section.find_by(id: params[:section_id]).students.select(:id, :name)
+    @students = AcademicFee.find_students(params)
   end
 
   def find_student_details
-    @student = find_student_by_params(params)
+    @student = AcademicFee.find_student_by_params(params)
   end
 
   def pay_fee; end
@@ -70,9 +70,5 @@ class AcademicFeesController < ApplicationController
   def academic_fee_params
     params.require(:academic_fee).permit(:discount, :actual_fee, :payable_fee, :academic_detail_id, :discount,
                                          :payable_fee)
-  end
-
-  def find_student_by_params(params)
-    Student.where(id: params[:student_id]).or(Student.where(admission_no: params[:admission_no])).first
   end
 end
