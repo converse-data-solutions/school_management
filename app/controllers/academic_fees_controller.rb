@@ -1,10 +1,26 @@
 class AcademicFeesController < ApplicationController
-  include AcademicFeeCommon
   include AuthorizationHelper
-  include FilterHelper
   before_action :check_admin_role, :set_academic_fee, only: %i[edit update create_payment]
 
   def index; end
+
+  def filter
+    @payment_date = params[:payment_date].presence || DateTime.now.in_time_zone('Asia/Kolkata').strftime('%Y-%m-%d %I:%M:%S %p')
+
+    academic_fee_data = AcademicFee.find_academic_fee(params)
+
+    respond_to do |format|
+      if academic_fee_data
+        @academic_detail = academic_fee_data[:academic_detail]
+        @fee = academic_fee_data[:fee]
+        @academic_fee = academic_fee_data[:academic_fee]
+        @payments = academic_fee_data[:payments]
+        format.turbo_stream
+      else
+        format.turbo_stream { head :no_content }
+      end
+    end
+  end
 
   def find_academic_sections
     @sections = AcademicFee.find_section_by_params(params)
