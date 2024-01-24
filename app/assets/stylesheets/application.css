@@ -213,3 +213,17 @@ input:-webkit-autofill {
   vertical-align: middle;
   width: 13px;
 }
+
+[type=search] {
+  --tw-shadow: 0 0 #0000;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border-color: #6b7280;
+  border-radius: 0;
+  border-width: 1px;
+  font-size: 14px;
+  line-height: 1.5rem;
+  padding: 10px 4px;
+}
