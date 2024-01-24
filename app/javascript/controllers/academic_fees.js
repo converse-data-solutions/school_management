@@ -123,6 +123,8 @@ function paymentChangeForm() {
   );
 }
 
+
+
 $(document).ready(function() {
   paymentChangeForm();
   paymentFeeForm();

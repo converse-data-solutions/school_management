@@ -32,6 +32,6 @@ class ParentUserDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    User.where(role: 'parent')
+    User.activeparent
   end
 end

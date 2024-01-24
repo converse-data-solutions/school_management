@@ -5,34 +5,32 @@
 <div class=" container mx-auto rounded-lg border-2">
   <div class="px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
     <div><i class="fa-solid fa-pen-to-square"></i>
-      <span class="font-semibold">Manage Student</span></div>
+      <span class="font-[700] text-[15px]">Manage Student</span></div>
     <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
   </div>
   <div class="accordian-body">
-    <div class="bg-[#FFFFFF] overflow-scroll mx-[8px] md:mx-2 lg:mx-3 xl:mx-0 ">
-      <% if notice %>
-        <div class="ml-2">
-          <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
-        </div>
-      <% end %>
-      <table id="studentTable" class="stripe"  data-source="<%= students_path(format: :json) %>">
-        <thead class="bg-[#FFFFFF]">
-          <tr>
-            <th class="admission_no">Adm No</th>
-            <th class="student_name">Name</th>
-            <th class="date_of_birth">DOB</th>
-            <th class="mobile_number">Mobile</th>
-            <th class="standard">Standard</th>
-            <th class="section">Section</th>
-            <th class="roll_no">Roll No</th>
-            <th class="student_gender">Gender</th>
-            <th class="student_status">Status</th>
-            <th class="student_action">Action</th>
-          </tr>
-        </thead>
-        <tbody class="bg-[#F9F9F9]">
-        </tbody>
-      </table>
-    </div>
+    <% if notice %>
+      <div class="ml-2">
+        <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
+      </div>
+    <% end %>
+    <table id="studentTable"  data-source="<%= students_path(format: :json) %>">
+      <thead class="bg-[#FFFFFF]">
+        <tr>
+          <th >Adm No</th>
+          <th >Name</th>
+          <th >DOB</th>
+          <th >Mobile</th>
+          <th >Standard</th>
+          <th >Section</th>
+          <th >Roll No</th>
+          <th >Gender</th>
+          <th >Status</th>
+          <th >Action</th>
+        </tr>
+      </thead>
+      <tbody class="bg-[#F9F9F9]">
+      </tbody>
+    </table>
   </div>
 </div>

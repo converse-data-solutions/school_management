@@ -11,16 +11,17 @@ function initValidate() {
     },
 
     columns: [
-      { data: "name", class: "parent_name" },
-      { data: "username", class: "parent_username" },
-      { data: "email", class: "parent_email" },
-      { data: "mobile_number", class: "parent_mobile" },
-      { data: "address", class: "parent_address" },
-      { data: "profession", class: "parent_profession" },
-      { data: "gender", class: "parent_gender" },
-      { data: "staff_status", class: "parent_status" },
-      { data: "staff_actions", class: "parent_action" },
+      { data: "name" },
+      { data: "username" , class: "user_name"},
+      { data: "email" },
+      { data: "mobile_number"},
+      { data: "address" },
+      { data: "profession" },
+      { data: "gender" },
+      { data: "staff_status"},
+      { data: "staff_actions", class: "crud-action" },
     ],
+    scrollX: true, // Enable horizontal scrolling
     oLanguage: {
       oPaginate: {
         sPrevious:

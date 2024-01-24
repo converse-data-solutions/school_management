@@ -2,8 +2,8 @@ class AcademicDetail < ApplicationRecord
   before_create :set_initial_academic_year
   after_create :create_academic_fee
   belongs_to :student
-
-  has_one :academic_fee
+  has_one :academic_fee, dependent: :destroy
+  has_many :payments, through: :academic_fee
 
   private
 

@@ -33,5 +33,7 @@ class AcademicFee < ApplicationRecord
 
   def set_discount
     self.discount = 0
+    standard_fee = Standard.find_by(id: academic_detail.standard_id)&.fee
+    self.payable_fee = standard_fee if standard_fee
   end
 end

@@ -26,16 +26,29 @@ body {
 
 .activenav {
   margin-left: 8px;
-  margin-right: 2px;
-  padding-left: 6px;
+  padding-left: 16px;
+  background-color: rgb(47, 164, 231);
+  color: white;
+}
+
+.activenavdropdown {
+  margin-left: 16px;
+  padding-left: 12px;
   background-color: rgb(47, 164, 231);
   color: white;
 }
 
 .activenav:hover {
   margin-left: 8px;
-  margin-right: 2px;
-  padding-left: 6px;
+  margin-right: 0px;
+  padding-left: 16px;
+  background-color: rgb(47, 164, 231);
+  color: white;
+}
+
+.activenavdropdown:hover {
+  margin-left: 16px;
+  padding-left: 12px;
   background-color: rgb(47, 164, 231);
   color: white;
 }
@@ -111,6 +124,9 @@ select#student_user_id {
 .active-admin {
   background-color: #EBEBEB;
 }
+.active-theme {
+  background-color: #EBEBEB;
+}
 
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -146,4 +162,53 @@ input:-webkit-autofill {
   filter: alpha(opacity=65);
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+
+#hamburger-menu.active {
+  box-shadow: 0 0 7px rgb(0, 255, 40);
+  border: solid 1px white;
+}
+
+/* Version 1 */
+.hamburger-icon-1 {
+  position: relative;
+  display: inline-block;
+  width: 1.725em;
+  height: .150em;
+  background: #fff;
+  bottom: 4px;
+
+}
+
+.hamburger-icon-1::before,
+.hamburger-icon-1::after {
+  content: "";
+  position: absolute;
+}
+
+.hamburger-icon-1::before,
+.hamburger-icon-1::after {
+  width: 1.725em;
+  height: .150em;
+  background: #fff;
+}
+
+.hamburger-icon-1::before {
+  top: -.450em;
+}
+
+.hamburger-icon-1::after {
+  bottom: -.450em;
+}
+
+[type=checkbox], [type=radio] {
+  height: 13px;
+  padding: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  width: 13px;
 }

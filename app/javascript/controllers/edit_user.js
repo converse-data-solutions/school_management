@@ -1,26 +1,5 @@
 function initValidate() {
-  let typingTimer;
 
-  $("#user_name").on("keyup", function () {
-    clearTimeout(typingTimer);
-
-    typingTimer = setTimeout(function () {
-      let username = $("#user_name").val();
-
-      $.ajax({
-        url: "/admin/parent_users/check_username",
-        type: "GET",
-        data: { username: username },
-        success: function (response) {
-          $("#user_name").data(
-            "validusername",
-            !response.includes("Not available")
-          );
-        },
-        error: function (xhr, status, error) {},
-      });
-    }, 1000);
-  });
 
   $("form").on("submit", function (e) {
     let email = $("#user_email").val();
@@ -30,7 +9,6 @@ function initValidate() {
     let mobile_number = $("#mobile-number").val();
     let address = $("#address").val();
     let profession = $("#profession").val();
-    let user_name_data = $("#user_name").data("validusername");
     let err = $("#error-div");
 
     $(".error").text("");
@@ -51,10 +29,6 @@ function initValidate() {
 
     if (!username || !username.trim()) {
       $("#username-error").text("Please enter a username.");
-      errors = true;
-    }
-    else if (!user_name_data) {
-      $("#username-available-error").text("Username is not available");
       errors = true;
     }
 

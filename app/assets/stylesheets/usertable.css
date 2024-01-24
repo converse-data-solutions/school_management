@@ -3,16 +3,91 @@
 #standardTable,
 #studentTable,
 #historyTable,
-#promoteTable {
+#promoteTable,
+#feeDueTable {
   border-collapse: collapse;
   color: #555555;
   padding: 10px;
   min-height: fit-content;
 }
 
+@media (min-width: 1024px) {
+  .dataTables_scrollBody {
+    overflow: unset !important;
+  }
+
+  .dataTables_scrollHead {
+    overflow: unset !important;
+  }
+}
+
+div#historyTable_wrapper,
+div#studentTable_wrapper,
+div#promoteTable_wrapper,
+div#feeDueTable_wrapper,
+div#myTable_wrapper,
+div#staffTable_wrapper,
+div#standardTable_wrapper {
+  margin: 10px;
+}
+
 td.standard_action {
   display: flex;
   flex-wrap: wrap;
+}
+
+table.dataTable {
+  width: 100%;
+  margin: 0 auto;
+  clear: both;
+  border-collapse: collapse !important;
+  border-spacing: 0;
+}
+
+table#myTable,
+table#staffTable,
+table#standardTable,
+table#studentTable,
+table#historyTable,
+table#promoteTable,
+#feeDueTable {
+  width: 100% !important;
+}
+
+.dataTables_wrapper .dataTables_length select {
+  border: 1px solid;
+  border-radius: 2px;
+  margin-top: 10px;
+  margin-left: 0px;
+  color: #555555 !important;
+  padding: 0px !important;
+  padding-left: 2px !important;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+  color: #555555 !important;
+  font-size: 14px;
+}
+
+select {
+  background-position: right 0rem center;
+  background-repeat: no-repeat !important;
+  background-size: 1.5em 1.5em !important;
+  padding-right: 0rem !important;
+  -webkit-print-color-adjust: exact;
+}
+
+.dataTables_wrapper .dataTables_length select {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  font-size: 13px !important;
+  width: 46px;
+  margin-top: 10px;
+  font-weight: 900 !important;
 }
 
 #myTable th,
@@ -26,7 +101,9 @@ td.standard_action {
 #historyTable th,
 #historyTable td,
 #promoteTable th,
-#promoteTable td {
+#promoteTable td,
+#feeDueTable th,
+#feeDueTable td {
   padding: 10px;
   border: 1px solid #ddd;
 }
@@ -36,11 +113,10 @@ td.standard_action {
 #standardTable th,
 #studentTable th,
 #historyTable th,
-#promoteTable th {
-  background-color: #f2f2f2;
+#promoteTable th,
+#feeDueTable th {
   color: #555555;
   font-size: 14px;
-  background-color: #ffffff;
   text-align: left;
 }
 
@@ -49,31 +125,15 @@ td.standard_action {
 #standardTable td,
 #studentTable td,
 #historyTable td,
-#promoteTable td {
+#promoteTable td,
+#feeDueTable td {
   color: #555555;
   font-size: 14px;
-  background-color: #ffffff;
   text-align: left;
   vertical-align: top;
 }
 
-th.standard_action.sorting {
-  width: auto !important;
-  height: auto !important;
-}
 
-@media screen and (min-width: 426px) {
-  .dataTables_wrapper .dataTables_length select {
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    padding: 2px;
-    background-color: transparent;
-    font-size: small;
-    height: 25px;
-    width: 55px;
-    margin-top: 10px;
-  }
-}
 
 @media screen and (max-width: 425px) {
 
@@ -83,18 +143,6 @@ th.standard_action.sorting {
   }
 }
 
-@media screen and (max-width: 425px) {
-  .dataTables_wrapper .dataTables_length select {
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    padding: 2px;
-    background-color: transparent;
-    font-size: small;
-    height: 25px;
-    width: 55px;
-    margin-top: 10px;
-  }
-}
 
 .dataTables_length select {
   color: black;
@@ -128,7 +176,7 @@ th.standard_action.sorting {
     height: 21px;
     margin-top: 14px;
     margin-bottom: 8px;
-    width: 145px;
+    width: 200px;
   }
 }
 
@@ -137,8 +185,8 @@ div#staffTable_info,
 #standardTable_info,
 #studentTable_info,
 #historyTable_info,
-#promoteTable_info {
-  margin-left: 20px;
+#promoteTable_info,
+#feeDueTable_info {
   color: #54577a;
   font-size: 14px;
 }
@@ -206,7 +254,6 @@ th.student_action.sorting {
     border: 1px solid #aaa;
     border-radius: 3px;
     padding: 2px;
-    background-color: transparent;
     font-size: small;
     height: 25px;
     width: 55px;
@@ -214,23 +261,26 @@ th.student_action.sorting {
     margin-left: 2px;
   }
 
-  table#myTable,
+  /* table#myTable,
   table#staffTable,
   table#standardTable,
   table#studentTable,
   table#historyTable,
-  #promoteTable {
+  #promoteTable,
+  #feeDueTable {
     width: max-content !important;
-  }
+  } */
 
-  table#myTable,
+  /* table#myTable,
   table#staffTable,
   table#standardTable,
   table#studentTable,
   table#historyTable,
-  #table#promoteTable {
+  #table#promoteTable,
+  #table#feeDueTable {
     width: max-content;
-  }
+  } */
+
 
   .dataTables_wrapper .dataTables_length,
   .dataTables_wrapper .dataTables_filter {
@@ -264,14 +314,15 @@ th.student_action.sorting {
     gap: 2px;
   }
 
-  table#myTable,
+  /* table#myTable,
   table#staffTable,
   table#standardTable,
   table#studentTable,
   table#historyTable,
-  table#promoteTable {
+  table#promoteTable,
+  #feeDueTable {
     width: max-content !important;
-  }
+  } */
 }
 
 @media screen and (max-width: 1420px) {
@@ -305,48 +356,46 @@ th.student_action.sorting {
 
 
   .dataTables_wrapper .dataTables_length select {
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    padding: 2px;
-    background-color: transparent;
-    font-size: small;
-    height: 25px;
-    width: 55px;
+    border: 1px solid;
+    border-radius: 2px;
     margin-top: 10px;
-    margin-left: 16px;
+    margin-left: 0px;
+    color: #555555 !important;
+    padding: 0px !important;
+    padding-left: 2px !important;
   }
 
   .dataTables_wrapper .dataTables_length,
   .dataTables_wrapper .dataTables_filter {
     display: flex;
     width: 50%;
+    color: #555555 !important;
+    font-size: 14px;
+
   }
 
-  table#myTable,
-  table#staffTable,
-  table#standardTable,
-  table#studentTable,
-  table#historyTable,
-  table#promoteTable {
-    width: 98% !important;
-  }
+
 }
 
 .parent_user_deactive {
-  background-color: #f66305;
-  width: 90px;
+  width: 91px;
   color: white;
-  font-weight: bold;
+ 
   font-size: 14px;
   padding: 10px;
   border-radius: 5px;
+  margin: 2px;
+  background-color: #aa4200;
+  border-color: #a03e00;
+  border-bottom: 1px solid #aa4200;
+  background-image: linear-gradient(#ff6707, #dd5600 60%, #c94e00);
+  background-repeat: no-repeat;
 }
 
 .student_deactive {
   background-color: #f66305;
-  width: 90px;
+  width: 91px;
   color: white;
-  font-weight: bold;
   font-size: 14px;
   padding: 10px;
   margin: 2px;
@@ -357,17 +406,22 @@ th.student_action.sorting {
   background-color: #7bb13f;
   color: white;
   width: 90px;
-  font-weight: bold;
+  
   font-size: 14px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   padding: 10px;
+  margin: 2px;
   border-radius: 5px;
+  border-bottom: 1px solid #59822c;
+  border: 1px solid #73a839;
+  background-image: linear-gradient(#88c149, #73a839 60%, #699934);
+  background-repeat: no-repeat;
 }
 
 .student_active {
   background-color: #7bb13f;
   color: white;
   width: 90px;
-  font-weight: bold;
   font-size: 14px;
   padding: 10px;
   margin: 2px;
@@ -375,13 +429,18 @@ th.student_action.sorting {
 }
 
 .parent_user_edit {
-  background-color: #03417c;
+  background-color: #022241;
+  border-color: 1px soild #011d37;
+  background-image: none;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+  background-repeat: no-repeat;
+  background-image: linear-gradient(#04519b, #033c73 60%, #02325f);
   color: white;
   width: 80px;
-  font-weight: bold;
   font-size: 14px;
   padding: 10px;
   border-radius: 5px;
+  margin: 2px;
 }
 
 .standard_edit,
@@ -389,7 +448,6 @@ th.student_action.sorting {
   background-color: #03417c;
   color: white;
   width: 80px;
-  font-weight: bold;
   font-size: 14px;
   margin: 2px;
   padding: 10px;
@@ -397,13 +455,17 @@ th.student_action.sorting {
 }
 
 .parent_user_delete {
-  background-color: #bd1a20;
+  background-image: linear-gradient(#e12b31, #c71c22 60%, #b5191f);
+  background-repeat: no-repeat;  background-color: #bd1a20;
   color: white;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+  background-color: #9a161a;
+    border-color: #911419;
   width: 80px;
-  font-weight: bold;
   font-size: 14px;
   padding: 10px;
   border-radius: 5px;
+  margin: 2px;
 }
 
 .standard_delete,
@@ -411,7 +473,6 @@ th.student_action.sorting {
   background-color: #bd1a20;
   color: white;
   width: 80px;
-  font-weight: bold;
   font-size: 14px;
   padding: 10px;
   margin: 2px;
@@ -432,7 +493,26 @@ table.dataTable.no-footer {
 
 .status-active {
   background-color: #73a839;
-  font-size: 13px;
+  font-size: 10.5px;
+  color: white;
+  border-radius: 2px;
+  padding: 2px 6px;
+}
+
+.user_name  a{
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #dd5600;
+  font-size: 10.5px;
+  color: white;
+  border-radius: 2px;
+  padding: 2px 6px;
+}
+
+.user_link {
+  cursor: pointer;
+  background-color: #73a839;
+  font-size: 10.5px;
   color: white;
   border-radius: 2px;
   padding: 2px 6px;
@@ -440,7 +520,7 @@ table.dataTable.no-footer {
 
 .status-inactive {
   background-color: #999999;
-  font-size: 13px;
+  font-size: 10.5px;
   color: white;
   border-radius: 2px;
   padding: 2px 6px;
@@ -448,6 +528,7 @@ table.dataTable.no-footer {
 
 a.paginate_button.current {
   border: 1px solid #ddd !important;
+  /* color: #2fa4e7 !important; */
 }
 
 div#myTable_paginate,
@@ -455,7 +536,8 @@ div#staffTable_paginate,
 div#standardTable_paginate,
 div#studentTable_paginate,
 div#historyTable_paginate,
-div#promoteTable_paginate {
+div#promoteTable_paginate,
+div#feeDueTable_paginate {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -469,7 +551,8 @@ a#staffTable_previous,
 a#standardTable_previous,
 a#studentTable_previous,
 a#historyTable_previous,
-a#promoteTable_previous {
+a#promoteTable_previous,
+a#feeDueTable_previous {
   cursor: pointer;
   color: #666 !important;
   border-top-left-radius: 5px;
@@ -486,7 +569,8 @@ a#staffTable_next,
 a#standardTable_next,
 a#studentTable_next,
 a#historyTable_next,
-a#promoteTable_next {
+a#promoteTable_next,
+a#feeDueTable_next {
   color: #2FA4E7 !important;
   cursor: pointer;
   border-top-right-radius: 5px;
@@ -514,6 +598,7 @@ table.dataTable.display tbody tr.odd {
   background-color: #F9F9F9;
 }
 
+
 .dataTables_wrapper .dataTables_paginate .paginate_button:active {
   background-color: white !important;
   border: 1px solid #C0C0C0 !important;
@@ -527,6 +612,114 @@ table.dataTable.display tbody tr.odd {
   color: black !important;
 }
 
-td.academic_action {
+td.crud-action {
   display: flex;
 }
+
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+  border-bottom: 0px solid #111;
+}
+
+.odd {
+  background-color: #f9f9f9 !important;
+}
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+select {
+  background-position: right 0rem center;
+  background-repeat: no-repeat !important;
+  background-size: 1.5em 1.5em !important;
+  padding-right: 0rem !important;
+  -webkit-print-color-adjust: exact;
+}
+
+
+
+
+#historyTable_wrapper [type=search]:focus,
+#historyTable_wrapper select:focus,
+#historyTable_wrapper textarea:focus,
+#studentTable_wrapper [type=search]:focus,
+#studentTable_wrapper select:focus,
+#studentTable_wrapper textarea:focus,
+#promoteTable_wrapper [type=search]:focus,
+#promoteTable_wrapper select:focus,
+#promoteTable_wrapper textarea:focus,
+#feeDueTable_wrapper [type=search]:focus,
+#feeDueTable_wrapper select:focus,
+#feeDueTable_wrapper textarea:focus,
+#myTable_wrapper [type=search]:focus,
+#myTable_wrapper select:focus,
+#myTable_wrapper textarea:focus,
+#staffTable_wrapper [type=search]:focus,
+#staffTable_wrapper select:focus,
+#staffTable_wrapper textarea:focus,
+#standardTable_wrapper [type=search]:focus,
+#standardTable_wrapper select:focus,
+#standardTable_wrapper textarea:focus {
+
+  --tw-ring-inset: var(--tw-empty,
+    );
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: #000;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  border-color: #080808;
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  outline: 2px solid #0000;
+  outline-offset: 2px;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  color: #555555;
+  text-align: left;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+/* table#myTable,
+  table#staffTable,
+  table#standardTable,
+  table#studentTable,
+  table#historyTable,
+  table#promoteTable,
+  #feeDueTable {
+    padding: 10px !important;
+  }
+
+  table.stripe.dataTable.no-footer {
+    padding: 10px !important;
+} */
