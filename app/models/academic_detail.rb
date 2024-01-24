@@ -5,6 +5,10 @@ class AcademicDetail < ApplicationRecord
   has_one :academic_fee, dependent: :destroy
   has_many :payments, through: :academic_fee
 
+  def self.by_section_and_year(section_id, academic_year)
+    where(section_id:, academic_year:)
+  end
+
   private
 
   def set_initial_academic_year

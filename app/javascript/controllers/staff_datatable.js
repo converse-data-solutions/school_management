@@ -12,13 +12,13 @@ function initValidate() {
 
     columns: [
       { data: "name" },
-      { data: "username" , class: "user_name"},
+      { data: "username", class: "user_name" },
       { data: "email" },
-      { data: "mobile_number"},
+      { data: "mobile_number" },
       { data: "address" },
       { data: "profession" },
       { data: "gender" },
-      { data: "staff_status"},
+      { data: "staff_status" },
       { data: "staff_actions", class: "crud-action" },
     ],
     scrollX: true, // Enable horizontal scrolling

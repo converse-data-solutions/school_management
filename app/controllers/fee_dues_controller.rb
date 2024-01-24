@@ -1,6 +1,6 @@
 class FeeDuesController < ApplicationController
   def index
-    @academic_details = AcademicDetail.where(section_id: params[:section_id], academic_year: params[:academic_year])
+    @academic_details = AcademicDetail.by_section_and_year(params[:section_id], params[:academic_year])
 
     respond_to do |format|
       format.html
@@ -11,14 +11,8 @@ class FeeDuesController < ApplicationController
   end
 
   def filter_fee_due
-    @academic_details = AcademicDetail.where(section_id: params[:section_id], academic_year: params[:academic_year])
-
-    @academic_fees = if @academic_details.present?
-                       @academic_details.map(&:academic_fee).uniq
-
-                     else
-                       []
-                     end
+    @academic_details = AcademicDetail.by_section_and_year(params[:section_id], params[:academic_year])
+    @academic_fees = @academic_details.present? ? @academic_details.map(&:academic_fee).uniq : []
   end
 
   def find_academic_sections

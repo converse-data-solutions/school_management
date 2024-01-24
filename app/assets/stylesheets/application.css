@@ -103,13 +103,12 @@ select#student_user_id {
 
 .select2-container--default .select2-results__option:hover {
   background-color: #1322C1;
-  /* Adjust the color as needed */
+
   color: #fff;
 }
 
 .select2-results__options {
   max-height: 200px;
-  /* Adjust the max height as needed */
   overflow-x: auto;
 }
 
@@ -124,6 +123,7 @@ select#student_user_id {
 .active-admin {
   background-color: #EBEBEB;
 }
+
 .active-theme {
   background-color: #EBEBEB;
 }
@@ -201,7 +201,8 @@ input:-webkit-autofill {
   bottom: -.450em;
 }
 
-[type=checkbox], [type=radio] {
+[type=checkbox],
+[type=radio] {
   height: 13px;
   padding: 0;
   -webkit-print-color-adjust: exact;
