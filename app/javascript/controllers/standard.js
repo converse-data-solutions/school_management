@@ -62,12 +62,13 @@ function initValidate() {
     },
 
     columns: [
-      { data: "id", class: "standard_id" },
-      { data: "name", class: "standard_name" },
-      { data: "fee", class: "standard_fee" },
-      { data: "section_name", class: "standard_name" },
-      { data: "standard_actions", class: "standard_action" },
+      { data: "id" },
+      { data: "name" },
+      { data: "fee" },
+      { data: "section_name" },
+      { data: "standard_actions", class: "crud-action" },
     ],
+    scrollX: "100%", // Enable horizontal scrolling
     oLanguage: {
       oPaginate: {
         sPrevious:
@@ -84,14 +85,13 @@ function initValidate() {
     let err = $(".error-div");
 
     $(".error").text("");
-    $(".error").css("color", "red");
     let errors = false;
 
     if (!standard_name || !standard_name.trim()) {
       $("#standard-error").text("Please enter a Standard Name.");
       errors = true;
     }
-    
+
     if (validator.isInt(fee) == false) {
       $("#fee-error").text("Please enter a valid Fee.");
       errors = true;
@@ -103,11 +103,11 @@ function initValidate() {
     }
 
     if (errors == true) {
-      err.removeClass("hidden");
-    } else {
-      err.addClass("hidden");
+      err.toggleClass("hidden");
+      setTimeout(function () {
+        err.toggleClass("hidden");
+      }, 5000);
     }
-
     if (errors) {
       e.preventDefault();
       return false;

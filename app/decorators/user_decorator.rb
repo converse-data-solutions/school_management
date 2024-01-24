@@ -1,7 +1,7 @@
 class UserDecorator < ApplicationDecorator
   delegate_all
   def link_to
-    h.link_to object.username
+    h.link_to object.username, class: 'user_link'
   end
 
   def staff_status
@@ -35,10 +35,10 @@ class UserDecorator < ApplicationDecorator
   def dt_actions
     links = []
     if object.deleted == 'Active'
-      links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + 'Deactive'.html_safe,
+      links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + ' Deactive'.html_safe,
                          h.active_user_admin_parent_user_path(object), data: { turbo_method: :patch, turbo_confirm: 'Are you sure You Want To Deactivate?' }, remote: true, class: 'parent_user_deactive')
     else
-      links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + 'Active'.html_safe,
+      links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + ' Active'.html_safe,
                          h.active_user_admin_parent_user_path(object), data: { turbo_method: :patch, turbo_confirm: 'Are you sure You Want To Activate?' }, remote: true, class: 'parent_user_active')
     end
     links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-edit') + ' Edit'.html_safe,
@@ -52,10 +52,10 @@ class UserDecorator < ApplicationDecorator
   def staff_actions
     links = []
     if object.deleted == 'Active'
-      links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + 'Deactive'.html_safe,
+      links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + ' Deactive'.html_safe,
                          h.active_staff_user_admin_staff_user_path(object), data: { turbo_method: :patch, turbo_confirm: 'Are you sure You Want To Deactivate?' }, remote: true, class: 'parent_user_deactive')
     else
-      links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + 'Active'.html_safe,
+      links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + ' Active'.html_safe,
                          h.active_staff_user_admin_staff_user_path(object), data: { turbo_method: :patch, turbo_confirm: 'Are you sure You Want To Activate?' }, remote: true, class: 'parent_user_active')
     end
     links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-edit') + ' Edit'.html_safe,

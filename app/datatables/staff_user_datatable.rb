@@ -31,6 +31,6 @@ class StaffUserDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    User.where(role: 'staff')
+    User.activestaff
   end
 end

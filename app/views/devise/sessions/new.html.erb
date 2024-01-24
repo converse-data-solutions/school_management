@@ -1,23 +1,23 @@
 <body class="bg-[#FFFFFF]" >
   <div class="flex flex-col items-center justify-center h-screen ">
     <img src="<%= asset_path('school.jpg') %>" alt="Image Description" class="w-[105px] h-[100px]">
-    <div class="w-full  lg:w-[810px] p-4 mx-auto bg-[#F5F5F5]   rounded">
+    <div class="w-full  lg:w-[810px] p-4 mx-auto bg-[#F5F5F5]  border border-[#e3e3e3]  rounded" style="box-shadow: inset 0 1px 1px rgba(0,0,0,0.05)">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <h2 class="pb-3 text-2xl text-center text-[#317EAC]">School Management System Panel</h2>
-        <div class="conatiner text-center text-[#5E89AD] text-[14px] rounded bg-[#D9EDF7] p-3 mb-3">Please login with your Username and Password.</div>
-        <% if alert %>
-          <p class="alert text-red-700 conatiner text-center text-[14px] rounded bg-[#F2DEDE] p-3 mb-3"><%= alert %></p>
+        <h2 class="pb-3 text-[24px] text-center text-[#317EAC]">School Management System Panel</h2>
+        <div class="conatiner border border-[#bce8f1] text-center text-[#5E89AD] text-[14px] rounded bg-[#D9EDF7] p-3 mb-3">Please login with your Username and Password.</div>
+        <% if alert.present? && alert.strip.present? %>
+          <p class="alert text-[#b94a48] conatiner text-center text-[14px] rounded bg-[#F2DEDE] p-3 mb-3"><%= alert %></p>
         <% end %>
         <div class="flex py-2">
-          <span class="flex items-center text-[#B94846] rounded-tl rounded-bl justify-center px-3 py-2 bg-[#EEEEE] border border-r-0 border-gray-400"><i class="fas fa-user"></i></span>
-          <%= f.text_field :username, autofocus: true, class: "w-full rounded-tr rounded-br border border-gray-400 p-2 focus:outline-none", placeholder: "Username" %>    </div>
-        <div class="flex py-2">
-          <span class="flex items-center rounded-tl rounded-bl text-[#B94846] justify-center px-3 py-2 text-gray-700 border border-r-0 border-gray-400"><i class="fa-solid fa-lock"></i></span>
-          <%= f.password_field :password, autocomplete: "current-password", class: "w-full rounded-tr rounded-br border border-gray-400 p-2 focus:outline-none", placeholder: "Password" %>    </div>
+          <span class="flex items-center text-[#B94846] rounded-tl text-[18px] rounded-bl justify-center px-4 py-4 bg-[#eeeeee] border border-r-0 border-[#cccccc]"><i class="fas fa-user"></i></span>
+          <%= f.text_field :username, class: "w-full text-[#555555] text-[18px] rounded-tr rounded-br border border-[#cccccc] px-4 py-4 focus:border-[#66afe9] focus:ring-blue-200 placeholder-[#a3999c]", placeholder: "Username" %>    </div>
+        <div class="flex py-4">
+          <span class="flex items-center text-[#B94846] rounded-tl rounded-bl text-[18px]  justify-center px-4 py-4 bg-[#eeeeee] border border-r-0 border-[#cccccc]"><i class="fa-solid fa-lock"></i></span>
+          <%= f.password_field :password, autocomplete: "current-password", class: "w-full text-[18px] rounded-tr rounded-br text-[#555555] border border-[#cccccc] px-4 py-4 focus:border-[#66afe9] focus:ring-blue-200 placeholder-[#a3999c]", placeholder: "Password" %>    </div>
         <div class="relative w-full">
         </div>
-        <div class="text-center">
-          <%= f.submit "Log in", class:"w-[90%] lg:w-[40%]  p-1 m-5 font-medium text-white  rounded bg-[#2AA2E7] focus:outline-none focus:shadow-outline" %>
+        <div class="text-center mt-2 mb-4">
+          <%= f.submit "Login", class:"w-[90%] lg:w-[40%]  text-white border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px] text-sm w-auto sm:w-auto px-2 py-2 text-center", style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
         </div>
       <% end %>
     </div>

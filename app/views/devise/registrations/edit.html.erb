@@ -1,3 +1,6 @@
+<%= content_for :head do %>
+  <%= javascript_import_module_tag "controllers/profile_update" %>
+<% end %>
 <div class="bg-[#F5F5F5] mx-1 md:mx-5 md:mt-[35px] text-[15px] lg:mt-0 mb-4 p-1 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline pointer" ><%= link_to "Profile", edit_user_registration_path %></span></div>
 <div class="mx-1 md:mx-5 grid cols-1 lg:grid-cols-2 gap-7">
   <!-- profile section -->
@@ -10,34 +13,34 @@
       </div>
       <div class="accordian-body">
         <%= form_for [:admin_admin, @user], html: { id: 'user-form' } do |f| %>
-          <div class="p-5 border-t bg-white flex-col ">
+          <div class="p-3 border-t bg-white flex-col ">
             <% if notice %>
-              <div class="w-full mb-4">
-                <p id="notice"  class="alert text-[#508C47]  text-left text-[14px] rounded bg-[#DFF0D8] p-3"><%= notice %></p>
+              <div class="striped-background hidden text-center text-black px-4 py-2 z-[51] text-[13px] border border-[#345026] fixed left-[21%] md:left-[35%] lg:left-[41%] 2xl:left-[45%] right-[50%] top-[20px] rounded w-max " id="profileMessage">
+                <%= notice %>
               </div>
             <% end %>
             <div class="w-full mb-4">
               <label for="user_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Username</label>
-              <%= f.text_field :username,disabled: true, id:"user_name", class:"bg-[#EEEEEE] text-[#555555] border border-gray-300 text-[#555555} text-sm rounded-[5px] focus:ring-[#2FA4E7] focus:border-[#66afe9] block w-full p-2.5 ", placeholder:"Username" %>
+              <%= f.text_field :username,disabled: true, id:"user_name", class:"bg-[#EEEEEE] text-[#555555] border border-gray-300 text-[#555555} text-sm rounded-[5px] focus:ring-[#2FA4E7] focus:border-[#66afe9] block w-full p-2 cursor-not-allowed ", placeholder:"Username" %>
             </div>
             <div class="w-full mb-4">
               <label for="name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Name</label>
-              <%= f.text_field :name, id:"name" ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px]  focus:border-[#66afe9] focus:ring-blue-200  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-200 dark:focus:border-[#66afe9]" ,placeholder:"Name"%>
+              <%= f.text_field :name, id:"name" ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px]  focus:border-[#66afe9] focus:ring-blue-200  block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-200 dark:focus:border-[#66afe9]" ,placeholder:"Name"%>
             </div>
             <div class="w-full mb-4">
               <label for="mobile-number" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Mobile</label>
-              <%= f.text_field :mobile_number, id: "mobile-number", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9]  block w-full p-2.5", placeholder: "Mobie" %>
+              <%= f.text_field :mobile_number, id: "mobile-number", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9]  block w-full p-2", placeholder: "Mobie" %>
             </div>
             <div class="w-full mb-4">
               <label for="email" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Email</label>
-              <%= f.email_field :email, id: "user_email", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9] block w-full p-2.5", placeholder: "email" %>
+              <%= f.email_field :email, id: "user_email", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9] block w-full p-2", placeholder: "email" %>
             </div>
             <div class="w-full mb-4">
               <label for="address" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Address</label>
-              <%= f.text_area :address, id: "address", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9] block w-full p-2.5", placeholder: "Address" %>
+              <%= f.text_area :address, id: "address", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9] block w-full p-2", placeholder: "Address" %>
             </div>
           </div>
-          <%= f.submit "Save",class:"text-white bg-[#2FA4E7] ml-4 ml-4 mb-4 md:ml-5  focus:ring-1 focus:outline-Black focus:ring-black  rounded-[5px] text-sm  w-auto sm:w-auto px-3  py-2.5 text-center" %>
+          <%= f.submit "Save",id:"save_profile" ,class:"text-white bg-[#2FA4E7] ml-3 mb-4   focus:ring-1 focus:outline-Black focus:ring-black  rounded-[5px] text-sm  w-auto sm:w-auto px-3  py-2.5 text-center" %>
         <% end %>
       </div>
     </div>
@@ -54,23 +57,23 @@
         <% resource_name ||= :user %>
         <% devise_mapping ||= Devise.mappings[resource_name] %>
         <%= form_for(:user, as: resource_name, url: registration_path(:user), html: { method: :put }) do |f| %>
-          <div class="p-5 border-t bg-white flex-col  ">
+          <div class="p-3 border-t bg-white flex-col  ">
             <%= render "devise/shared/error_messages", resource: resource %>
             <div class="w-full mb-4">
               <% f.email_field :email, autofocus: true, autocomplete: "email" %>
               <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Current Password</label>
-              <%= f.password_field :current_password, autocomplete: "current-password", id: "user_password" , class: " border border-gray-300 text-[#555555} text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9] block w-full p-2.5", placeholder: "Password" %>
+              <%= f.password_field :current_password, autocomplete: "current-password", id: "current_password" , class: " border border-gray-300 text-[#555555} text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9] block w-full p-2", placeholder: "Password" %>
             </div>
             <div class="w-full mb-4">
               <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">New Password</label>
-              <%= f.password_field :password, autocomplete: "new-password", id: "user_password" , class: " border border-gray-300 text-[#555555} text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9] block w-full p-2.5", placeholder: "Password" %>
+              <%= f.password_field :password, autocomplete: "new-password", id: "user_password" , class: " border border-gray-300 text-[#555555} text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9] block w-full p-2", placeholder: "Password" %>
             </div>
             <div class="w-full mb-4">
               <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Confirm Password</label>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "confirm_password" , class: " border border-gray-300 text-[#555555} text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9] block w-full p-2.5", placeholder: "Password" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "confirm_password" , class: " border border-gray-300 text-[#555555} text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9] block w-full p-2", placeholder: "Password" %>
             </div>
           </div>
-          <%= f.submit "Change Password",class:"text-white bg-[#2FA4E7] ml-4 ml-4  mb-4 md:ml-5 focus:ring-1 focus:outline-Black focus:ring-black font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
+          <%= f.submit "Change Password",class:"text-white bg-[#2FA4E7] mb-4 ml-3 focus:ring-1 focus:outline-Black focus:ring-black font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
         <% end %>
       </div>
     </div>

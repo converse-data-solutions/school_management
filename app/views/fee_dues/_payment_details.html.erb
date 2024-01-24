@@ -1,0 +1,17 @@
+<div class=" w-full rounded-[5px] border-2">
+  <div id="paymentDueAccordian" class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
+    <div><i class="fa-solid fa-pen-to-square"></i>
+      <span class="font-[700] text-[15px]">Student Details</span></div>
+    <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
+  </div>
+  <div class="accordian-body h-58">
+    <div class="w-full min-h-[30px]" id="student-details">
+      <h1> After loading turbo stream 
+        <h1>
+          <%= academic_details.each do |academic_detail| %>
+            <%= academic_detail.section_id %>
+            <%= academic_detail.standard_id %>
+          <% end %>
+        </div>
+      </div>
+    </div>

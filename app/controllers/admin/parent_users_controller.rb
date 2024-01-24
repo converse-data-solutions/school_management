@@ -20,7 +20,7 @@ class Admin::ParentUsersController < ApplicationController
   end
 
   def create
-    @user = build_new_user
+    @user = User.new(user_params)
     @user.role = 'parent'
     if User.exists?(username: @user.username)
       flash[:alert] = 'User already exists.'
@@ -28,6 +28,9 @@ class Admin::ParentUsersController < ApplicationController
     elsif @user.save
       flash[:notice] = 'User created successfully.'
       redirect_to admin_parent_users_path
+    else
+      flash[:alert] = 'Failed to create user.'
+      render :new
     end
   end
 
@@ -57,21 +60,22 @@ class Admin::ParentUsersController < ApplicationController
     if @user == current_user
       flash[:alert] = 'Admin cannot delete self.'
     else
-      @user.destroy
+      @user.update(removed: true)
       flash[:notice] = 'User deleted successfully.'
     end
     redirect_to admin_parent_users_path
   end
 
+  def check_username
+    @user = User.find_by(username: params[:username]).present?
+  end
+
   private
 
-  def build_new_user
-    User.new(user_params)
-  end
 
   def user_params
     params.require(:user).permit(:email, :username, :password, :mobile_number,
-                                 :address, :profession, :gender, :name, :image, :deleted)
+                                 :address, :profession, :gender, :name, :image, :deleted, :role)
   end
 
   def user_update

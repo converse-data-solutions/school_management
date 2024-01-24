@@ -29,9 +29,10 @@ function initValidate() {
     }
 
     if (errors == true) {
-      err.removeClass("hidden");
-    } else {
-      err.addClass("hidden");
+      err.toggleClass("hidden");
+      setTimeout(function () {
+        err.toggleClass("hidden");
+      }, 5000);
     }
 
     if (errors) {

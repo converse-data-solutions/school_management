@@ -11,6 +11,8 @@
     <%= stylesheet_link_tag "calender", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= yield :head %>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
     <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css' %>
@@ -24,24 +26,25 @@
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
   </head>
   <body>
     <% if user_signed_in? %>
       <nav class="top-0  absolute z-50 w-full bg-[#2FA4E7]  border-gray-200 dark:bg-[#2FA4E7] dark:border-gray-700">
-        <div class="px-3 md:py-0  lg:px-5 lg:pl-3">
+        <div class="px-2 md:py-0  lg:px-5 lg:pl-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center justify-start">
-              <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"  aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-[10px] text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-                <span class="sr-only">Open sidebar</span>
-                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-                </svg>
-              </button>
-              <div class="flex ml-2 md:ml-0 ">
-                <img src="<%= asset_path('homescreenlogo.png') %>" alt="Image Description" class="w-[130px] h-[50px]   m-1 lg:w-[150px] lg:h-[58px]" >
+              <div>
+                <div id="hamburger-menu" type="button" class="text-white md:hidden border border-[#178acc] rounded-[4px] text-sm py-[4px] px-[8px]">
+                  <span href="#" class="hamburger-icon-1"></span>
+                </div>
               </div>
-              <div class="flex lg:gap-4 md:pl-7 lg:pl-10 ">
-                <div class="flex self-center hover:bg-[#157AB5] md:p-3  sm:text-[14px] text-[#fff]" >
+              <div class="flex ml-2 md:ml-0 ">
+                <img src="<%= asset_path('homescreenlogo.png') %>" alt="Image Description" class="w-[130px] h-[50px]   m-1 lg:w-[140px] lg:h-[54px]" >
+              </div>
+              <div class="flex  md:pl-7 ">
+                <div class="flex self-center hover:bg-[#157AB5] md:py-3.5 md:px-3  sm:text-[14px] text-[#fff] cursor-pointer" >
                   <div class="hidden lg:block px-1 "><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 12 16" id="clock"><path  stroke="#fff" d="M8,2 C11.3137085,2 14,4.6862915 14,8 C14,11.3137085 11.3137085,14 8,14 C4.6862915,14 2,11.3137085 2,8 C2,4.6862915 4.6862915,2 8,2 Z M8,3 C5.23857625,3 3,5.23857625 3,8 C3,10.7614237 5.23857625,13 8,13 C10.7614237,13 13,10.7614237 13,8 C13,5.23857625 10.7614237,3 8,3 Z M7.5015268,5 C7.74698668,5 7.95113517,5.17687516 7.99347113,5.41012437 L8.0015268,5.5 L8.0015268,8 L9.5,8 C9.77614237,8 10,8.22385763 10,8.5 C10,8.74545989 9.82312484,8.94960837 9.58987563,8.99194433 L9.5,9 L7.5015268,9 C7.25606691,9 7.05191843,8.82312484 7.00958247,8.58987563 L7.0015268,8.5 L7.0015268,5.5 C7.0015268,5.22385763 7.22538442,5 7.5015268,5 Z"></path></svg></div>
                   <div class="hidden md:block">Academic Year: <% if School.first.nil? %>
                       "yyyy-yyyy"
@@ -50,32 +53,34 @@
                     <% end %> </div>
                 </div>
                 <% if current_user.role.eql?('staff') || current_user.role.eql?('parent') %>
-                  <div class="flex self-center hover:bg-[#157AB5] md:p-3  sm:text-[14px] text-[#fff] " >
+                  <div class="flex self-center hover:bg-[#157AB5] md:py-3.5 md:px-3  sm:text-[14px] text-[#fff] cursor-pointer" >
                     <div class="hidden md:block"> Account type: <span class="bg-[#73a839] px-1 py-[2px] text-white text-[12px] font-bold"><%= current_user.role.capitalize %></span></div>
                   </div>
                 <% end %>
                 <% if current_user.role.eql?('admin')%>
-                  <div class="flex self-center hover:bg-[#157AB5] md:p-3  sm:text-[14px] text-[#fff] " >
+                  <div class="flex self-center hover:bg-[#157AB5] md:py-3.5 md:px-3  sm:text-[14px] text-[#fff] cursor-pointer" >
                     <div class="hidden lg:block px-1"><i class="fa-solid fa-envelope"></i></div>
                     <div class="hidden md:block"> SMS Available: 0</div>
                   </div>
-                  <div class="flex self-center more-opener hover:bg-[#157AB5] md:p-3  sm:text-[14px] text-[#fff] relative">
+                  <div class="flex self-center more-opener hover:bg-[#157AB5] md:py-3.5 md:px-3  sm:text-[14px] text-[#fff] relative cursor-pointer">
                     <div class="hidden lg:block text-[12px] px-1"><i class="fa-solid fa-star"></i></div>
                     <div class="hidden md:block px-1">More</div>
                     <div class="hidden md:block px-1"><i class="fa-solid fa-caret-down"></i></div>
-                    <div class="more-content z-10 hidden font-normal bg-white  absolute right-[2]; top-[63px] divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
-                      <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
-                        <li>
-                          <%= link_to 'User Log', standards_path, class:"block px-4 py-2 hover:bg-[#2FA4E7] dark:hover:bg-gray-600 border border-b text-[14px] dark:hover:text-white"  %>
+                    <div class="more-content z-10 hidden font-normal bg-white  absolute top-[52px] left-0 divide-y divide-gray-100  shadow w-44 dark:bg-gray-700" >
+                      <ul class=" text-sm text-gray-700 dark:text-gray-400" style="background-clip: padding-box; box-shadow: 0 6px 12px rgba(0,0,0,0.175);">
+                        <li class="my-1">
+                          <%= link_to 'User Log', standards_path, class:"block px-4 py-1 hover:bg-[#2FA4E7] hover:text-white   text-[14px] dark:hover:text-white"  %>
                         </li >
-                        <li>
-                          <%= link_to 'Manage Standard', standards_path, class:"block px-4 py-2 hover:bg-[#2FA4E7] dark:hover:bg-gray-600 border border-b text-[14px] dark:hover:text-white"  %>
+                        <li class="border-[1px]"></li>
+                        <li class="my-1">
+                          <%= link_to 'Manage Standard', standards_path, class:"block px-4 py-1 hover:bg-[#2FA4E7] hover:text-white   text-[14px] dark:hover:text-white"  %>
                         </li >
-                        <li>
+                        <li class="border-[1px]"></li>
+                        <li class="my-1">
                           <% if School.first.nil? %>
-                            <%= link_to 'About School', new_school_path, class:"block px-4 py-2 hover:bg-[#2FA4E7] dark:hover:bg-gray-600 border border-b text-[14px] dark:hover:text-white"  %>
+                            <%= link_to 'About School', new_school_path, class:"block px-4 py-1 hover:bg-[#2FA4E7] hover:text-white  text-[14px] dark:hover:text-white"  %>
                           <% else %>
-                            <%= link_to 'About School', edit_school_path(School.first), class:"block px-4 py-2 hover:bg-[#2FA4E7] dark:hover:bg-gray-600 border border-b text-[14px] dark:hover:text-white"  %>
+                            <%= link_to 'About School', edit_school_path(School.first), class:"block px-4 py-1 hover:bg-[#2FA4E7] hover:text-white   text-[14px] dark:hover:text-white"  %>
                           <% end %>
                         </li >
                       </ul>
@@ -90,7 +95,7 @@
                 <div class="flex items-center ml-3">
                   <div><button class="theme-opener self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative "><i class="fa-solid fa-droplet"></i><span class="p-[4px] hidden lg:block">Change Skin</span><span class="text-[10px]" ><i class="fa-solid fa-caret-down"></i></span>
                     </button>
-                    <div id="themeContent" class="theme-content z-10 hidden font-normal bg-white  absolute right-[100px] top-[65px] divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" >
+                    <div id="themeContent" class="theme-content z-10 hidden font-normal bg-white  absolute right-[100px] top-[65px] divide-y divide-gray-100 rounded-[4px] shadow w-44 dark:bg-gray-700" >
                       <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
                         <li value="default"  class="block  border-b px-4 py-2 text-[14px] hover:bg-[#2FA4E7] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white ">
                           Default
@@ -105,7 +110,7 @@
                   <div class="flex items-center mr-2 ml-4 md:ml-3 md:mr-[-10px]">
                     <div><button class="admin-opener self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] p-[10px] bg-white text-[#555555] relative"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16" id="person"><g fill="#555555" fill-rule="evenodd"><g fill="#555555"><path d="M12 14.002a.998.998 0 0 1-.998.998H1.001A1 1 0 0 1 0 13.999V13c0-2.633 4-4 4-4s.229-.409 0-1c-.841-.62-.944-1.59-1-4 .173-2.413 1.867-3 3-3s2.827.586 3 3c-.056 2.41-.159 3.38-1 4-.229.59 0 1 0 1s4 1.367 4 4v1.002z"></path></g></g></svg><span class="p-[4px] hidden lg:block"><%= current_user.role %></span><span  class="text-[10px]"><i class="fa-solid fa-caret-down"></i></span>
                       </button>
-                      <div id="adminContent" class="admin-content z-10  hidden font-normal bg-white  absolute right-[8px] top-[65px] divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-gray-700" >
+                      <div id="adminContent" class="admin-content z-10  hidden font-normal bg-white  absolute right-[8px] top-[65px] divide-y divide-gray-100 rounded-[4px] shadow w-40 dark:bg-gray-700" >
                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-400">
                           <li>
                             <%= link_to 'Profile', edit_user_registration_path, class:"block px-4 py-2 hover:bg-[#2FA4E7] hover:text-white dark:hover:bg-gray-600 border-b text-[14px] dark:hover:text-white"  %>
@@ -124,11 +129,11 @@
         </nav>
         <%# side nav bar %>
         <div class="flex justify-end" id="sidebar">
-          <aside id="logo-sidebar" class="absolute md:relative top-0  md:pt-20 mt-[53px] md:mt-0 left-0 z-40 bg-black opacity-[0.8] w-[70%] sm:w-[16.5%] sm:opacity-[100%] lg:w-[16.5%] h-screen  transition-transform -translate-x-full sm:bg-white pl-0 md:pl-3  sm:translate-x-0" aria-label="Sidebar">
+          <aside id="logo-sidebar" class="absolute md:relative top-0 md:pt-20 mt-[53px] md:mt-0 left-0 z-40 bg-black opacity-[0.8] w-[70%] sm:w-[16.5%] sm:opacity-[100%] lg:w-[16.5%] h-screen   sm:bg-white pl-0 md:pl-3  sm:translate-x-0 transition-transform -translate-x-full">
             <div class="rounded  overflow-y-auto md:bg-white dark" style="box-shadow: 0 0 10px #BDBDBD;">
               <ul class=" font-medium text-[16px]">
                 <li class="sm:hidden">
-                  <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2 text-[14px] items-centr p-2 text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-[#EEEEEE] dark:hover:bg-gray-700 group">
+                  <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75] text-[14px] items-centr p-2 text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:ml-3 hover:bg-[#EEEEEE] dark:hover:bg-gray-700 group">
                     <i class="fa-regular fa-clock"></i>  <span class="p-[4px] text-[#fff]">Academic Year:<% if School.first.nil? %>
                         "yyyy-yyyy"
                       <% else %>
@@ -138,14 +143,14 @@
                 </li>
                 <% if current_user.role.eql?('admin')%>
                   <li class="sm:hidden">
-                    <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border-b-2   text-[14px] items-centr p-2 text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:ml-3 hover:bg-[#EEEEEE] dark:hover:bg-gray-700 group">
+                    <a href="#" class="flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75]   text-[14px] items-centr p-2 text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:ml-3 hover:bg-[#EEEEEE] dark:hover:bg-gray-700 group">
                       <i class="fa-solid fa-envelope"></i><span class="p-[4px] text-[#fff]">SMS Available: 0</span>
                     </a>
                   </li>
                   <li class="sm:hidden">
                     <div><button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class=" self-center  text-[14px] pl-[6px] pb-2 text-[#fff]"><i class="fa-solid fa-star"></i><span class="p-[4px]">More</span><span ><i class="fa-solid fa-caret-down"></i></span>
                       </button>
-                      <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shaow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                      <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-[4px] shaow w-44 dark:bg-gray-700 dark:divide-gray-600">
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                           <li>
                             <a href="#" class="block px-4 py-2 hover:bg-[#2FA4E7] dark:hover:bg-gray-600 dark:hover:text-white">User Log</a>
@@ -168,69 +173,69 @@
                 <hr class="ml-[-9px]">
                 <li>
                   <span class=" p-[3px] ml-1 md:ml-3 text-left text-[11px] font-bold text-[#fff] md:text-[#999999]" style="text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);">MAIN</span>
-                  <a href="<%= url_for :root %>" class="flex <%= params[:controller] == "home" && params[:action] == "index" ? 'activenav' : '' %> activebar text-[14px] md:flex-col items-center lg:flex-row   md:border-t-2  p-[10px]  text-white md:text-[#2FA4E7] rounded-lg pl-3 hover:text-[#157AB5]  hover:ml-2 hover:mr-[2px] duration-300 hover:bg-[#EEEEEE] dark:hover:bg-gray-700 group">
+                  <a href="<%= url_for :root %>" class="flex <%= params[:controller] == "home" && params[:action] == "index" ? 'activenav' : '' %> activebar text-[14px] md:flex-col items-center lg:flex-row   md:border  md:border-[ #DDDDDD75]  p-[10px]  text-white md:text-[#2FA4E7] rounded-[4px] pl-3 hover:text-[#157AB5]  hover:ml-2  duration-300 hover:bg-[#EEEEEE] dark:hover:bg-gray-700 group">
                     <span><i class="fa-solid fa-house"></i> </span><span class="ml-1 ">Dashbord</span>
                   </a>
                 </li>
                 <li>
-                  <a href="<%= url_for :controller => "devise/registrations", :action => "edit" %>" class="flex <%= params[:controller] == "devise/registrations" && params[:action] == "edit" ? 'activenav' : '' %> activebar text-[14px] md:flex-col items-center lg:flex-row  md:border-b-2 md:border-t-2  p-[10px]  text-white md:text-[#2FA4E7] rounded-lg pl-3 hover:text-[#157AB5]  hover:ml-2 hover:mr-[2px] duration-300 hover:bg-[#EEEEEE] dark:hover:bg-gray-700 group">
-                    <span><i class="fa-solid fa-user"></i> </span><span class="ml-3 ">Profile</span>
+                  <a href="<%= url_for :controller => "devise/registrations", :action => "edit" %>" class="flex <%= params[:controller] == "devise/registrations" && params[:action] == "edit" ? 'activenav' : '' %> activebar text-[14px] md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75]  p-[10px]  text-white md:text-[#2FA4E7] rounded-[4px] pl-3 hover:text-[#157AB5]  hover:ml-2  duration-300 hover:bg-[#EEEEEE] dark:hover:bg-gray-700 group">
+                    <span><i class="fa-solid fa-user"></i> </span><span class="ml-1">Profile</span>
                   </a>
                 </li>
                 <%# drop down button %>
                 <% if current_user.role.eql?('admin')%>
                   <!--                                  Dropdown menu for manage fee                          -->
                   <li class="text-[14px]">
-                    <div id="dropdownNavbarManageFee" class="<%= params[:controller] == "academic_fees" && params[:action] == "index" || params[:controller] == "fee_dues" && params[:action] == "index" ? 'openDropDown' : '' %> main flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg sm:hover:text-[#157AB5] pl-3   hover:ml-2 hover:mr-[2px] duration-200 hover:bg-[#2FA4E7] sm:hover:bg-[#EEEEEE] hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center ">Manage Fee</span></div>
+                    <div id="dropdownNavbarManageFee" class="<%= params[:controller] == "academic_fees" && params[:action] == "index" || params[:controller] == "fee_dues" && params[:action] == "index" ? 'openDropDown' : '' %> main flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] sm:hover:text-[#157AB5] pl-3   hover:ml-2  duration-200 hover:bg-[#2FA4E7] sm:hover:bg-[#EEEEEE] hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-1 text-center ">Manage Fee</span></div>
                     <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm sub hidden"style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
                       <li>
-                        <a href="<%= url_for :academic_fees %>" class="<%= params[:controller] == "academic_fees" && params[:action] == "index" ? 'activenav' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE]">Fee Payment</a>
+                        <a href="<%= url_for :academic_fees %>" class="<%= params[:controller] == "academic_fees" && params[:action] == "index" ? 'activenavdropdown' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE]">Fee Payment</a>
                       </li>
-                      <a href="<%= url_for :fee_dues %>" class="<%= params[:controller] == "fee_dues" && params[:action] == "index" ? 'activenav' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE]">Fee Due</a>
-                      <li><a href="#" class="activebar block py-2 ml-3 p-[10px] text-[14px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE]">Fee collection </a></li>
+                      <a href="<%= url_for :fee_dues %>" class="<%= params[:controller] == "fee_dues" && params[:action] == "index" ? 'activenavdropdown' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE]">Fee Due</a>
+                      <li><a href="#" class="activebar block py-2 ml-3 p-[10px] text-[14px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE]">Fee collection </a></li>
                     </ul>
                   </li>
                   <li>
-                    <a href="<%= url_for :notices %>" class="<%= params[:controller] == "notices" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
-                      <span><i class="fa-solid fa-calendar-days"></i> </span><span class="ml-3">Noticebord</span>
+                    <a href="<%= url_for :notices %>" class="<%= params[:controller] == "notices" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
+                      <span><i class="fa-solid fa-calendar-days"></i> </span><span class="ml-1">Noticebord</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#" class="activebar flex md:flex-col items-center lg:flex-row  text-[14px] md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
-                      <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3">Send SMS</span>
+                    <a href="#" class="activebar flex md:flex-col items-center lg:flex-row  text-[14px] md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
+                      <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-1">Send SMS</span>
                     </a>
                   </li>
                   <li>
-                    <a href="<%= url_for :student_attendances %>" class="<%= params[:controller] == "student_attendances" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
-                      <span><i class="fa-regular fa-clock"></i> </span><span class="ml-3 text-center lg:text-start xl:text-center">Student Attendance</span>
+                    <a href="<%= url_for :student_attendances %>" class="<%= params[:controller] == "student_attendances" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
+                      <span><i class="fa-regular fa-clock"></i> </span><span class="ml-1 text-center lg:text-start xl:text-center">Student Attendance</span>
                     </a>
                   </li>
                   <li class="text-[14px]">
-                    <a href="<%= url_for :new_user_attendance %>" class="<%= params[:controller] == "user_attendances" && params[:action] == "new" || params[:controller] == "user_attendances" && params[:action] == "index"  ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
-                      <span><i class="fa-regular fa-clock"></i></span><span class="ml-3 text-center lg:text-start xl:text-center">Teacher Attendance</span>
+                    <a href="<%= url_for :new_user_attendance %>" class="<%= params[:controller] == "user_attendances" && params[:action] == "new" || params[:controller] == "user_attendances" && params[:action] == "index"  ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
+                      <span><i class="fa-regular fa-clock"></i></span><span class="ml-1 text-center lg:text-start xl:text-center">Teacher Attendance</span>
                     </a>
                   </li>
                   <!--                                  Dropdown menu for manage student                             -->
                   <li>
-                    <div id="dropdownNavbarmanageStudent" class="<%= params[:controller] == "students" && params[:action] == "new" || params[:controller] == "students" && params[:action] == "index" ? 'openDropDown' : '' %> main flex md:flex-col items-center lg:flex-row text-[14px]  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg sm:hover:text-[#157AB5] pl-3   hover:ml-2 hover:mr-[2px] duration-200 hover:bg-[#2FA4E7] sm:hover:bg-[#EEEEEE] hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Student</span></div>
+                    <div id="dropdownNavbarmanageStudent" class="<%= params[:controller] == "students" && params[:action] == "new" || params[:controller] == "students" && params[:action] == "index" ? 'openDropDown' : '' %> main flex md:flex-col items-center lg:flex-row text-[14px]  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] sm:hover:text-[#157AB5] pl-3   hover:ml-2  duration-200 hover:bg-[#2FA4E7] sm:hover:bg-[#EEEEEE] hover:text-[#ffffff] dark:hover:bg-gray-700 group cursor-pointer"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-1 text-center">Manage Student</span></div>
                     <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm sub hidden" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
                       <li>
-                        <a href="<%= url_for :new_student %>" class="<%= params[:controller] == "students" && params[:action] == "new" ? 'activenav' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE]">Add New Student</a>
+                        <a href="<%= url_for :new_student %>" class="<%= params[:controller] == "students" && params[:action] == "new" ? 'activenavdropdown' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE]">Add New Student</a>
                       </li>
-                      <li><a href="<%= url_for :students %>" class="<%= params[:controller] == "students" && params[:action] == "index" ? 'activenav' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE]">All Student</a></li>
+                      <li><a href="<%= url_for :students %>" class="<%= params[:controller] == "students" && params[:action] == "index" ? 'activenavdropdown' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE]">All Student</a></li>
                     </ul>
                   </li>
                   <!--                                  Dropdown menu for manage parent                             -->
                   <li class="text-[14px] ">
-                    <div id="dropdownNavbarManageParent" class="flex <%= params[:controller] == "admin/parent_users" && params[:action] == "new" || params[:controller] == "admin/parent_users" && params[:action] == "index" ? 'openDropDown' : '' %> main flex md:flex-col items-center lg:flex-row   md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg sm:hover:text-[#157AB5] pl-3   hover:ml-2 hover:mr-[2px] duration-200 hover:bg-[#2FA4E7] sm:hover:bg-[#EEEEEE] hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Parent</span></div>
+                    <div id="dropdownNavbarManageParent" class="flex <%= params[:controller] == "admin/parent_users" && params[:action] == "new" || params[:controller] == "admin/parent_users" && params[:action] == "index" ? 'openDropDown' : '' %> main flex md:flex-col items-center lg:flex-row   md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] sm:hover:text-[#157AB5] pl-3   hover:ml-2  duration-200 hover:bg-[#2FA4E7] sm:hover:bg-[#EEEEEE] hover:text-[#ffffff] dark:hover:bg-gray-700 group cursor-pointer"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-1 text-center">Manage Parent</span></div>
                     <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm sub hidden" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
                       <li>
-                        <a href="<%= url_for :controller => "admin/parent_users", :action => "new" %>"  class="flex <%= params[:controller] == "admin/parent_users" && params[:action] == "new" ? 'activenav' : '' %> activebar block py-2 ml-3 text-[14px] p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE] group">
+                        <a href="<%= url_for :controller => "admin/parent_users", :action => "new" %>"  class="flex <%= params[:controller] == "admin/parent_users" && params[:action] == "new" ? 'activenavdropdown' : '' %> activebar block py-2 ml-3 text-[14px] p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE] group">
                           <span class="ml-3 ">Add New Parent</span>
                         </a>
                       </li>
                       <li>
-                        <a href="<%= url_for :controller => "admin/parent_users", :action => "index" %>" class="flex <%= params[:controller] == "admin/parent_users" && params[:action] == "index" ? 'activenav' : '' %> activebar block py-2 ml-3 text-[14px] p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE] group">
+                        <a href="<%= url_for :controller => "admin/parent_users", :action => "index" %>" class="flex <%= params[:controller] == "admin/parent_users" && params[:action] == "index" ? 'activenavdropdown' : '' %> activebar block py-2 ml-3 text-[14px] p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE] group">
                           <span class="ml-3 ">All Parent</span>
                         </a>
                       </li>
@@ -238,66 +243,66 @@
                   </li>
                   <!--                                  Dropdown menu for manage staff                             -->
                   <li class="text-[14px]">
-                    <div id="dropdownNavbarManageStaff" class="flex <%= params[:controller] == "admin/staff_users" && params[:action] == "new" || params[:controller] == "admin/staff_users" && params[:action] == "index" ? 'openDropDown' : '' %> main flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg sm:hover:text-[#157AB5] pl-3   hover:ml-2 hover:mr-[2px] duration-200 hover:bg-[#2FA4E7] sm:hover:bg-[#EEEEEE] hover:text-[#ffffff] dark:hover:bg-gray-700 group"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-3 text-center">Manage Staff</span></div>
+                    <div id="dropdownNavbarManageStaff" class="flex <%= params[:controller] == "admin/staff_users" && params[:action] == "new" || params[:controller] == "admin/staff_users" && params[:action] == "index" ? 'openDropDown' : '' %> main flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] sm:hover:text-[#157AB5] pl-3   hover:ml-2  duration-200 hover:bg-[#2FA4E7] sm:hover:bg-[#EEEEEE] hover:text-[#ffffff] dark:hover:bg-gray-700 group cursor-pointer"><span><i class="fa-solid fa-plus"></i> </span><span class="ml-1 text-center">Manage Staff</span></div>
                     <ul class="bg-black opacity-[0.8] sm:opacity-[100%] sm:bg-white text-sm sub hidden"style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
                       <li>
-                        <a href="<%= url_for :controller => "admin/staff_users", :action => "new" %>" class="flex <%= params[:controller] == "admin/staff_users" && params[:action] == "new" ? 'activenav' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE] group">
+                        <a href="<%= url_for :controller => "admin/staff_users", :action => "new" %>" class="flex <%= params[:controller] == "admin/staff_users" && params[:action] == "new" ? 'activenavdropdown' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE] group">
                           <span class="ml-3 ">Add New Staff </span>
                         </a>
                       </li>
                       <li>
-                        <a href="<%= url_for :controller => "admin/staff_users", :action => "index" %>" class="flex <%= params[:controller] == "admin/staff_users" && params[:action] == "index" ? 'activenav' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE] group">
+                        <a href="<%= url_for :controller => "admin/staff_users", :action => "index" %>" class="flex <%= params[:controller] == "admin/staff_users" && params[:action] == "index" ? 'activenavdropdown' : '' %> activebar block py-2 ml-3 p-[10px] text-white text-[14px] md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:pl-5 duration-200 hover:bg-[#EEEEEE] group">
                           <span class="ml-3 ">All Staff</span>
                         </a>
                       </li>
                     </ul>
                   </li>
                   <li class="text-[14px]">
-                    <a href="#" class="activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
-                      <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3  text-center lg:text-start xl:text-center">Send SMS To Staff</span>
+                    <a href="#" class="activebar flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
+                      <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-1  text-center lg:text-start xl:text-center">Send SMS To Staff</span>
                     </a>
                   </li>
                   <li class="text-[14px]">
-                    <a href="#" class="activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
-                      <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-3 text-center">SMS Reports</span>
+                    <a href="#" class="activebar flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
+                      <span><i class="fa-solid fa-envelope"></i> </span><span class="ml-1 text-center">SMS Reports</span>
                     </a>
                   </li>
                   <li class="text-[14px]">
-                    <a href="<%= url_for :promote_students %>" class="<%= params[:controller] == "students" && params[:action] == "promote" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
-                      <span><i class="fa-solid fa-gear"></i> </span><span class="ml-3 text-center">Promote Student</span>
+                    <a href="<%= url_for :promote_students %>" class="<%= params[:controller] == "students" && params[:action] == "promote" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
+                      <span><i class="fa-solid fa-gear"></i> </span><span class="ml-1 text-center">Promote Students</span>
                     </a>
                   </li>
                   <li class="text-[14px]">
-                    <a href="<%= url_for :academic_details %>" class="<%= params[:controller] == "academic_details" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
-                      <span><i class="fa-sharp fa-solid fa-clock-rotate-left"></i> </span><span class="ml-3 text-center">Academic Details</span>
+                    <a href="<%= url_for :academic_details %>" class="<%= params[:controller] == "academic_details" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
+                      <span><i class="fa-sharp fa-solid fa-clock-rotate-left"></i> </span><span class="ml-1 text-center">Academic Details</span>
                     </a>
                   </li>
                 <% end %>
                 <% if current_user.role.eql?('parent') %>
                   <li>
-                    <a href="<%= url_for :parent_notices %>" class="<%= params[:controller] == "parent/notices" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
+                    <a href="<%= url_for :parent_notices %>" class="<%= params[:controller] == "parent/notices" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
                       <span><i class="fa-solid fa-calendar-days"></i> </span><span class="ml-3">Noticeboard</span>
                     </a>
                   </li>
                   <li class="text-[14px]">
-                    <a href="<%= url_for :parent_attendance_views %>" class="<%= params[:controller] == "parent_attendance_views" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
+                    <a href="<%= url_for :parent_attendance_views %>" class="<%= params[:controller] == "parent_attendance_views" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
                       <span><i class="fa-regular fa-clock"></i></span><span class="ml-3 text-center lg:text-start xl:text-center">View Attendance</span>
                     </a>
                   </li>
                 <% end %>
                 <% if current_user.role.eql?('staff') %>
                   <li>
-                    <a href="<%= url_for :student_attendances %>" class="<%= params[:controller] == "student_attendances" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
+                    <a href="<%= url_for :student_attendances %>" class="<%= params[:controller] == "student_attendances" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
                       <span><i class="fa-regular fa-clock"></i> </span><span class="ml-3 text-center lg:text-start xl:text-center">Student Attendance</span>
                     </a>
                   </li>
                   <li>
-                    <a href="<%= url_for :staff_notices %>" class="<%= params[:controller] == "staff/notices" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
+                    <a href="<%= url_for :staff_notices %>" class="<%= params[:controller] == "staff/notices" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
                       <span><i class="fa-solid fa-calendar-days"></i> </span><span class="ml-3">Noticeboard</span>
                     </a>
                   </li>
                   <li class="text-[14px]">
-                    <a href="<%= url_for :staff_attendances %>" class="<%= params[:controller] == "staff/attendance" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border-b-2 items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-lg hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2 hover:mr-[2px] duration-200 dark:hover:bg-gray-700 group">
+                    <a href="<%= url_for :staff_attendances %>" class="<%= params[:controller] == "staff/attendance" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
                       <span><i class="fa-regular fa-clock"></i></span><span class="ml-3 text-center lg:text-start xl:text-center">View Attendance</span>
                     </a>
                   </li>

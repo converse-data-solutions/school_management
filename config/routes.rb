@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  resources :academic_fees do
+  resources :academic_fees, except: %i[create new show destroy] do
     collection do
       get :find_academic_sections
       get :find_students
@@ -15,14 +15,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :fee_dues do
+  resources :fee_dues, except: %i[create new edit update show destroy] do
     collection do
       get :find_academic_sections
-      post :filter_due
+      post :filter_fee_due
     end
   end
 
-  resources :payments do
+  resources :payments, except: %i[create new edit update show destroy]   do
     member do
       get :invoice
     end
@@ -87,6 +87,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :parent_users, except: [:show] do
+      collection do
+        get :check_username
+      end
       member do
         patch :active_user
       end

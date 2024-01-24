@@ -4,9 +4,8 @@ class StandardDatatable < AjaxDatatablesRails::ActiveRecord
       id: { source: 'Standard.id' },
       name: { source: 'Standard.name' },
       fee: { source: 'Standard.fee' },
-      section_name: { source: 'Section.name', searchable: false },
+      section_name: { source: 'Section.section_name' },
       standard_actions: { source: 'StandardDecorator.standard_actions', searchable: false }
-
     }
   end
 
@@ -23,6 +22,6 @@ class StandardDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    Standard.all
+    Standard.includes(:sections).references(:sections)
   end
 end

@@ -1,84 +1,108 @@
 <%= content_for :head do %>
   <%= javascript_import_module_tag "controllers/validate" %>
 <% end %>
-<div class="container bg-[#F5F5F5] mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-8 p-1 text-[#2FA4E7] pl-4"><span>Home</span><span class="mx-2 text-[#aba7a7]">/</span><span>Add New Parent</span></div>
+<div class=" bg-[#F5F5F5] p-1.5 container mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-8 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline pointer"><%= link_to "Add Parent", new_admin_parent_user_path %></span></div>
 <div class=" container mx-auto rounded-[5px] border-2">
-  <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+  <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
     <div><i class="fa-solid fa-pen-to-square"></i>
-      <span class="font-semibold">Add Parent</span></div>
+      <span class="font-[700] text-[15px]">Add Parent</span></div>
     <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
   </div>
   <div class="accordian-body">
-    <%= form_for User.new, url: admin_parent_users_path, method: :post, html: { id: 'user-form' } do |f| %>
-      <div class="p-5 border-t bg-white flex flex-wrap">
-        <div class="w-full container hidden text-red-700 mx-auto conatiner mb-3  text-[14px] p-4 rounded bg-[#F2DEDE] " id="error-div">
+    <% if alert %>
+      <div class=" text-[#a94442]   mx-3 text-[14px] mt-2 mr-3 p-3 mb-3 rounded bg-[#F2DEDE]" id="alert">
+        <p><%= alert %></p>
+      </div>
+    <% end %>
+    <%= form_for @user, url: admin_parent_users_path, method: :post, html: { id: 'user-form' } do |f| %>
+      <% if @user.errors.any? %>
+        <div class="text-[#b94a48]  mx-3 text-[14px] mt-2 mr-3 p-3 mb-3  rounded bg-[#F2DEDE]">
           <ul>
-            <li class="error" id="email-error", style="color: red;"></li>
-            <li class="error" id="name-error", style="color: red;"></li>
-            <li class="error" id="username-error", style="color: red;"></li>
-            <li class="error" id="password-error", style="color: red;"></li>
-            <li class="error" id="mobile-number-error", style="color: red;"></li>
-            <li class="error" id="address-error", style="color: red;"></li>
-            <li class="error" id="profession-error", style="color: red;"></li>
+            <li>
+              <% if @user.errors.has_key?(:username) %>
+                <%= @user.errors[:username].first %>
+              <% end %>
+            </li>
           </ul>
         </div>
+      <% end %>
+      <div class=" hidden text-[#b94a48]  m-4 text-[14px]  rounded bg-[#F2DEDE] " id="error-div">
+        <ul class="p-4 pl-[30px]">
+          <li class="error" id="email-error"></li>
+          <li class="error" id="name-error"></li>
+          <li class="error" id="username-error"></li>
+          <li class="error" id="password-error"></li>
+          <li class="error" id="mobile-number-error"></li>
+          <li class="error" id="address-error"></li>
+          <li class="error" id="profession-error"></li>
+          <li class="error" id="username-available-error"></li>
+        </ul>
+      </div>
+      <div class="px-5 py-2 bg-white flex flex-wrap">
         <!-- form starts -->
         <div class="w-full md:w-[75%]">
-          <div class="flex   flex-wrap gap-4">
+          <div class="flex   flex-wrap  md:gap-x-5 md:gap-y-3 lg:gap-x-6 lg:gap-y-3">
             <%= f.hidden_field :role, value: "Parent"%>
-            <div class="w-full  md:w-[45.5%]">
-              <label for="name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Name</label>
-              <%= f.text_field :name, id:"name" ,class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ,placeholder:"Name"%>
+            <div class="w-full  md:w-[45%] lg:w-[48%] xl:w-[46.9%] 2xl:w-[46%]">
+              <label for="name" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Name</label>
+              <%= f.text_field :name, id:"name" ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ,placeholder:"Name"%>
             </div>
-            <div class="w-full  md:w-[34%]">
-              <label for="user_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">UserName</label>
-              <%= f.text_field :username, id:"user_name", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ", placeholder:"Username" %>
+            <div class="w-full  md:w-[25%] lg:w-[25%] 2xl:w-[30%]">
+              <label for="user_name" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Username</label>
+              <%= f.text_field :username, id: "user_name", class: "border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "Username", validUserName: true, autocomplete: "off" %>
+            </div>
+            <div class="w-full md:w-[20%] lg:w-[15%] my-[20px] md:mt-[30px] lg:ml-[17px]">
+              <span id="username_availability"></span>
             </div>
             <div class="w-full  md:w-[45%] lg:w-[22%]">
-              <label for="email" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Email</label>
-              <%= f.email_field :email, id: "user_email", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "email" %>
+              <label for="email" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Email</label>
+              <%= f.email_field :email, id: "user_email", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "email" %>
             </div>
             <div class="w-full  md:w-[45%] lg:w-[22%]">
-              <label for="mobile-number" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Mobile</label>
-              <%= f.number_field :mobile_number, id: "mobile-number", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Mobie" %>
+              <label for="mobile-number" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Mobile</label>
+              <%= f.text_field :mobile_number, id: "mobile-number", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "Mobie" %>
             </div>
             <div class="w-full  md:w-[45%]  xl:w-[50%]">
-              <label for="address" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Address</label>
-              <%= f.text_field :address, id: "address", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Address" %>
+              <label for="address" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Address</label>
+              <%= f.text_field :address, id: "address", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "Address" %>
             </div>
             <div class="w-full  md:w-[45%] lg:w-[22%]">
-              <label for="profession" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Profession</label>
-              <%= f.text_field :profession, id: "profession", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Profession"  %>
+              <label for="profession" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Profession</label>
+              <%= f.text_field :profession, id: "profession", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "Profession"  %>
             </div>
             <div class="w-full  md:w-[45%] lg:w-[22%]">
-              <label for="password" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Password</label>
-              <%= f.password_field :password, id: "user_password" , class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Password" %>
+              <label for="password" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Password</label>
+              <%= f.password_field :password, id: "user_password" , class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "Password" %>
             </div>
             <div class="w-full  md:w-[45%]">
-              <label for="gender" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Gender</label>
+              <label for="gender" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Gender</label>
               <div class="flex" id="gender-radio-group">
                 <div class="flex items-center mr-4">
-                  <%= f.radio_button :gender, 'male', class:"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" %>
-                  <label for="inline-radio" class="ml-2 text-sm font-semibold text-gray-900 dark:text-gray-300">Male</label>
+                  <%= f.radio_button :gender, 'male', class: "focus:outline-none" %>
+                  <label for="inline-radio" class="ml-2 text-sm font-semibold text-[#555555] dark:text-gray-300">Male</label>
                 </div>
                 <div class="flex items-center mr-4">
-                  <%= f.radio_button :gender, 'female', class:"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" %>
-                  <label for="inline-2-radio" class="ml-2 text-sm font-semibold text-gray-900 dark:text-gray-300">Female</label>
+                  <%= f.radio_button :gender, 'female', class: "focus:outline-none" %>
+                  <label for="inline-2-radio" class="ml-2 text-sm font-semibold text-[#555555] dark:text-gray-300">Female</label>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div>
-          <div class="w-full md:w-[25%] md:pl-4 mt-4">
+        <div class="w-full md:w-[25%] md:pl-4 mt-4">
+          <div id="previewSingle"></div>
+          <div id="defaultUpload">
             <div class="w-[130px] h-[130px]"><img src="<%= asset_path('user.png') %>" alt="Image Description"  ></div>
-            <div class="file-input-wrapper">
-              <div> <%= f.file_field :image, class:"w-[250px] md:w-[100px] lg:w-[100px] xl:w-[250px]"%></div>
-            </div>
+          </div>
+          <div class="file-input-wrapper mt-2">
+            <label class=" px-9 py-1.5 bg-white text-[14px]   border-2 rounded-[4px]">
+              <span class=" text-[#555555] font-thin ">Browse</span>
+              <%= f.file_field :image, class: "hidden", id: "single_file", accept: "image/*" %>
+            </label>
           </div>
         </div>
       </div>
-      <%= f.submit "Add Parent",class:"text-white bg-[#2FA4E7] ml-4 ml-4  md:mb-4 md:ml-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
+      <%= f.submit "Add Parent", class: 'ml-4 ml-4  md:mb-4 md:ml-5 text-white border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px] text-sm w-auto sm:w-auto px-3 py-2 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);'%>
     <% end %>
   </div>
 </div>

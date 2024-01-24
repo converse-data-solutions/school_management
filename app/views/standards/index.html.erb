@@ -2,21 +2,26 @@
   <%= javascript_import_module_tag "controllers/standard" %>
 <% end %>
 <div id="sectionIndex" data-section-index="<%= @standard.sections.size %>"></div>
-<div class=" bg-[#F5F5F5] p-1 text-[15px] pl-4 mx-3 mb-8 text-[#2FA4E7] "><span><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Manage Standard</span></div>
+<div class=" bg-[#F5F5F5] p-1.5 text-[15px] pl-4 mx-3 mb-8 text-[#2FA4E7] "><span class="hover:text-[#157AB5]  hover:underline "><%=link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Manage Standard", standards_path %></span></div>
 <div class="flex flex-wrap lg:gap-x-6  mx-3">
   <!-- profile section -->
   <div class="w-full lg:w-[55.5%]  xl:w-[57%] ">
     <div class=" container mx-auto rounded-[5px] border-2">
-      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
         <div><i class="fa-solid fa-pen-to-square"></i>
-          <span class="font-semibold">Manage Standard</span></div>
+          <span class="font-[700] text-[15px]">Manage Standard</span></div>
         <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
       <div class="accordian-body">
-        <div class="bg-[#FFFFFF] overflow-scroll mx-[8px] md:mx-2 lg:mx-3 xl:mx-0 ">
+        <div class="bg-[#FFFFFF] lg:overflow-scroll xl:overflow-hidden ">
           <% if notice %>
             <div class="ml-2">
               <p id="notice"  class="alert text-[#508C47] conatiner text-left text-[14px] rounded bg-[#DFF0D8] mt-2 mr-3 p-3 mb-3"><%= notice %></p>
+            </div>
+          <% end %>
+          <% if alert %>
+            <div class=" text-[#a94442]   mx-3 text-[14px] mt-2 mr-3 p-3 mb-3 rounded bg-[#F2DEDE]" id="alert">
+              <p><%= alert %></p>
             </div>
           <% end %>
           <table id="standardTable" class="stripe" data-source="<%= standards_path(format: :json) %>">
@@ -37,44 +42,44 @@
   <!-- Standard form -->
   <div class="w-full lg:w-[40.9%] 2xl:w-[41.4%] mt-4 lg:mt-0">
     <div class=" container mx-auto rounded-[5px] border-2">
-      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl">
+      <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
         <div><i class="fa-solid fa-pen-to-square"></i>
-          <span class="font-semibold">Add Standard</span></div>
+          <span class="font-[700] text-[15px]">Add Standard</span></div>
         <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
       <div class="accordian-body">
         <%= form_for @standard, url: standards_path, method: :post, html: { id: 'standard-form' } do |f| %>
           <div class="p-3 border-t bg-white flex-col ">
-            <div class="w-full container error-div hidden text-red-700 conatiner  text-[14px] py-6 px-14 mb-3 rounded bg-[#F2DEDE] " id="notice">
+            <div class="w-full container error-div hidden text-[#a94442] conatiner  text-[14px] py-6 px-14 mb-3 rounded bg-[#F2DEDE] ">
               <ul>
-                <li class="error" id="standard-error", style="color: red;"></li>
-                <li class="error" id="fee-error", style="color: red;"></li>
-                <li class="error" id="section-error", style="color: red;"></li>
+                <li class="error" id="standard-error"></li>
+                <li class="error" id="fee-error"></li>
+                <li class="error" id="section-error"></li>
               </ul>
             </div>
             <div class="w-full mb-4">
-              <label for="class_name" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Standard Name</label>
-              <%= f.text_field :name,id: "standard_name",  class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Standard Name" %>
+              <label for="class_name" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Standard Name</label>
+              <%= f.text_field :name,id: "standard_name",  class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.5", placeholder: "Standard Name" %>
             </div>
             <div class="w-full mb-4">
-              <label for="fee_amount" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Fee Amount</label>
-              <%= f.text_field :fee, id: "fee", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Fee Amount" %>
+              <label for="fee_amount" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Fee Amount</label>
+              <%= f.text_field :fee, id: "fee", class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.5", placeholder: "Fee Amount" %>
             </div>
             <div id="sections_fields">
-              <label for="Section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section</label>
+              <label for="Section" class="block text-sm font-semibold text-[#555555] dark:text-white">Section</label>
               <%= f.fields_for :sections do |section_form| %>
                 <div class="section_fields mb-4">
-                  <%= section_form.text_field :section_name, id:"section_name",  class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2", placeholder: "Section" %>
-                  <%= link_to '-', '#', class: 'remove-section  remove_section p-3 bg-[#D22228] text-white rounded-[5px] mt-3' %>
+                  <%= section_form.text_field :section_name, id:"section_name",  class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.5 mb-1", placeholder: "Section" %>
+                  <%= link_to '-', '#', class: 'remove-section  remove_section py-[8px] px-[13px]  text-white rounded-[5px]', style:"background-image: linear-gradient(#e12b31, #c71c22 60%, #b5191f);" %>
                 </div>
               <% end %>
             </div>
             <div>
-              <%= link_to '+', '#', id: 'add_section',class:"p-[11px] bg-[#7FB642] text-white rounded-[5px]" %>
-              <p class="text-[#848080] text-[12px] font-extralight mt-2">Press + add another section</p>
+              <%= link_to '+', '#', id: 'add_section',class:"py-[8px] px-[12px]  text-white rounded-[5px]", style:"background-image: linear-gradient(#88c149, #73a839 60%, #699934);" %>
+              <p class="text-[#848080] text-[12px] font-extralight mt-2">Press + to add another section</p>
             </div>
-            <div>
-              <%= f.submit "Created Standard", id: "button",class:"text-white bg-[#2FA4E7]   font-semibold rounded-[5px] text-sm  mt-4 px-5  py-2.5 text-center" %>
+            <div class="my-3.5">
+              <%= f.submit "Created Standard", id: "button",class: 'text-white border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px] text-sm w-auto sm:w-auto px-2 py-2 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
             </div>
           <% end %>
         </div>

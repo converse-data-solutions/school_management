@@ -58,7 +58,7 @@ class Admin::StaffUsersController < ApplicationController
     if @user == current_user
       flash[:alert] = 'admin cannot delete self.'
     else
-      @user.destroy
+      @user.update(removed: true)
       flash[:notice] = 'User deleted successfully.'
     end
     redirect_to admin_staff_users_path

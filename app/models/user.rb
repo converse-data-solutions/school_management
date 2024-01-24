@@ -4,11 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :image, dependent: :destroy
-  validates :username, presence: true, uniqueness: true
   before_create :set_initial_status
   has_many :students, dependent: :destroy
   has_many :attendances, as: :attendable
   has_many :notices, dependent: :destroy
+
+  validates :username, uniqueness: { message: 'Username is not available.' }
+
+  scope :activeparent, -> { where(role: 'parent', removed: false) }
+  scope :activestaff, -> { where(role: 'staff', removed: false) }
 
   private
 
