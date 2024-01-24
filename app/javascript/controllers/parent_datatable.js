@@ -12,11 +12,11 @@ function initValidate() {
 
     columns: [
       { data: "name" },
-      { data: "username" , class: "user_name"},
+      { data: "username", class: "user_name" },
       { data: "email" },
-      { data: "mobile_number"},
+      { data: "mobile_number" },
       { data: "address" },
-      { data: "profession"},
+      { data: "profession" },
       { data: "gender" },
       { data: "user_status" },
       { data: "dt_actions", class: "crud-action" },

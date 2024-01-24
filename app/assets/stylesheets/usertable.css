@@ -261,25 +261,7 @@ th.student_action.sorting {
     margin-left: 2px;
   }
 
-  /* table#myTable,
-  table#staffTable,
-  table#standardTable,
-  table#studentTable,
-  table#historyTable,
-  #promoteTable,
-  #feeDueTable {
-    width: max-content !important;
-  } */
 
-  /* table#myTable,
-  table#staffTable,
-  table#standardTable,
-  table#studentTable,
-  table#historyTable,
-  #table#promoteTable,
-  #table#feeDueTable {
-    width: max-content;
-  } */
 
 
   .dataTables_wrapper .dataTables_length,
@@ -314,15 +296,7 @@ th.student_action.sorting {
     gap: 2px;
   }
 
-  /* table#myTable,
-  table#staffTable,
-  table#standardTable,
-  table#studentTable,
-  table#historyTable,
-  table#promoteTable,
-  #feeDueTable {
-    width: max-content !important;
-  } */
+
 }
 
 @media screen and (max-width: 1420px) {
@@ -380,7 +354,7 @@ th.student_action.sorting {
 .parent_user_deactive {
   width: 91px;
   color: white;
- 
+
   font-size: 14px;
   padding: 10px;
   border-radius: 5px;
@@ -406,7 +380,7 @@ th.student_action.sorting {
   background-color: #7bb13f;
   color: white;
   width: 90px;
-  
+
   font-size: 14px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   padding: 10px;
@@ -432,7 +406,7 @@ th.student_action.sorting {
   background-color: #022241;
   border-color: 1px soild #011d37;
   background-image: none;
-  box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   background-repeat: no-repeat;
   background-image: linear-gradient(#04519b, #033c73 60%, #02325f);
   color: white;
@@ -456,11 +430,12 @@ th.student_action.sorting {
 
 .parent_user_delete {
   background-image: linear-gradient(#e12b31, #c71c22 60%, #b5191f);
-  background-repeat: no-repeat;  background-color: #bd1a20;
+  background-repeat: no-repeat;
+  background-color: #bd1a20;
   color: white;
-  box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   background-color: #9a161a;
-    border-color: #911419;
+  border-color: #911419;
   width: 80px;
   font-size: 14px;
   padding: 10px;
@@ -499,7 +474,7 @@ table.dataTable.no-footer {
   padding: 2px 6px;
 }
 
-.user_name  a{
+.user_name a {
   cursor: pointer;
   font-weight: bold;
   background-color: #dd5600;
@@ -528,7 +503,6 @@ table.dataTable.no-footer {
 
 a.paginate_button.current {
   border: 1px solid #ddd !important;
-  /* color: #2fa4e7 !important; */
 }
 
 div#myTable_paginate,
@@ -709,17 +683,3 @@ table.dataTable thead td {
   font-weight: 900;
   font-size: 14px;
 }
-
-/* table#myTable,
-  table#staffTable,
-  table#standardTable,
-  table#studentTable,
-  table#historyTable,
-  table#promoteTable,
-  #feeDueTable {
-    padding: 10px !important;
-  }
-
-  table.stripe.dataTable.no-footer {
-    padding: 10px !important;
-} */
