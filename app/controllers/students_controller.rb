@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
   before_action :check_admin_role
   before_action :set_student, only: %i[show edit update destroy active_student]
   before_action :selected_sections, only: %i[find_sections find_from_sections find_to_sections]
-  include StudentStatusToggle
+  include UserToggle
 
   def index
     respond_to do |format|
@@ -27,7 +27,7 @@ class StudentsController < ApplicationController
   end
 
   def active_student
-    toggle_student_status(@student)
+    toggle_user_status(@student)
     redirect_to students_path
   end
 

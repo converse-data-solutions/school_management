@@ -6,7 +6,7 @@ class Admin::ParentUsersController < ApplicationController
 
   before_action :check_admin_role
   before_action :set_user, only: %i[edit update destroy active_user]
-  include UserStatusToggle
+  include UserToggle
 
   def index
     respond_to do |format|
