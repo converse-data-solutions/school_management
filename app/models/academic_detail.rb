@@ -6,7 +6,7 @@ class AcademicDetail < ApplicationRecord
   has_many :payments, through: :academic_fee
 
   def self.by_section_and_year(section_id, academic_year)
-    where(section_id:, academic_year:)
+    where(section_id:, academic_year:, removed: false)
   end
 
   private
