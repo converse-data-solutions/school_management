@@ -6,7 +6,7 @@ class UserDecorator < ApplicationDecorator
 
   def staff_status
     links = []
-    links << if object.deleted == 'Active'
+    links << if object.status == 'Active'
 
                h.link_to('Active'.html_safe,
                          h.admin_staff_users_path, class: 'status-active')
@@ -20,7 +20,7 @@ class UserDecorator < ApplicationDecorator
 
   def user_status
     links = []
-    links << if object.deleted == 'Active'
+    links << if object.status == 'Active'
 
                h.link_to('Active'.html_safe,
                          h.admin_parent_users_path, class: 'status-active')
@@ -34,7 +34,7 @@ class UserDecorator < ApplicationDecorator
 
   def dt_actions
     links = []
-    if object.deleted == 'Active'
+    if object.status == 'Active'
       links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + ' Deactive'.html_safe,
                          h.active_user_admin_parent_user_path(object), data: { turbo_method: :patch, turbo_confirm: 'Are you sure You Want To Deactivate?' }, remote: true, class: 'parent_user_deactive')
     else
@@ -51,7 +51,7 @@ class UserDecorator < ApplicationDecorator
 
   def staff_actions
     links = []
-    if object.deleted == 'Active'
+    if object.status == 'Active'
       links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + ' Deactive'.html_safe,
                          h.active_staff_user_admin_staff_user_path(object), data: { turbo_method: :patch, turbo_confirm: 'Are you sure You Want To Deactivate?' }, remote: true, class: 'parent_user_deactive')
     else

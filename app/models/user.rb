@@ -17,6 +17,6 @@ class User < ApplicationRecord
   private
 
   def set_initial_status
-    self.deleted = :Active
+    self.status = :Active
   end
 end
