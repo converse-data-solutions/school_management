@@ -14,7 +14,7 @@ class FeeDueDatatable < AjaxDatatablesRails::ActiveRecord
       mobile_number: { source: 'Student.mobile_number' },
       payable_fee: { source: 'AcademicFee.payable_fee' },
       total_payment: { source: 'total_payment', searchable: true },
-      bending_payment: { source: 'bending_payment' }
+      pending_payment: { source: 'pending_payment' }
 
     }
   end
@@ -30,7 +30,7 @@ class FeeDueDatatable < AjaxDatatablesRails::ActiveRecord
         mobile_number: record.student.mobile_number,
         payable_fee: record.academic_fee.payable_fee,
         total_payment: record.payments.sum(:paid_amount),
-        bending_payment: calculate_bending_payment(record)
+        pending_payment: calculate_pending_payment(record)
 
       }
     end
@@ -44,13 +44,13 @@ class FeeDueDatatable < AjaxDatatablesRails::ActiveRecord
 
   private
 
-  def calculate_bending_payment(record)
+  def calculate_pending_payment(record)
     payable_fee = record.academic_fee&.payable_fee
     total_payment = record.payments&.sum(:paid_amount)
 
     if payable_fee.present? && total_payment.present?
-      bending_payment = payable_fee - total_payment
-      bending_payment.positive? ? bending_payment : 0
+      pending_payment = payable_fee - total_payment
+      pending_payment.positive? ? pending_payment : 0
     else
       0
     end
