@@ -13,8 +13,8 @@ class FeeDueDatatable < AjaxDatatablesRails::ActiveRecord
       name: { source: 'AcademicDetail.name' },
       mobile_number: { source: 'Student.mobile_number' },
       payable_fee: { source: 'AcademicFee.payable_fee' },
-      total_payment: { source: 'total_payment', orderable: false, searchable: false },
-      bending_payment: { source: 'bending_payment', orderable: false, searchable: false }
+      total_payment: { source: 'total_payment', searchable: true },
+      bending_payment: { source: 'bending_payment' }
 
     }
   end
@@ -37,7 +37,9 @@ class FeeDueDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    AcademicDetail.includes(:academic_fee, :payments, :student).where(id: @academic_details.pluck(:id))
+    AcademicDetail.includes(:academic_fee, :payments, :student).where(id: @academic_details.pluck(:id)).references(
+      :academic_fee, :payments, :student
+    )
   end
 
   private
