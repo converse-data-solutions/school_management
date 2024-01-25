@@ -22,13 +22,12 @@ class Admin::StaffUsersController < ApplicationController
   def create
     @user = build_new_user
     @user.role = 'staff'
-    if User.exists?(username: @user.username)
-      flash[:alert] = 'User already exists.'
-      render :new
-    else
-      @user.save
-      flash[:notice] = 'user created successfully.'
+    if @user.save
+      flash[:notice] = 'User created successfully.'
       redirect_to admin_staff_users_path
+    else
+      flash[:alert] = 'Failed to create user.'
+      render :new
     end
   end
 
@@ -57,9 +56,10 @@ class Admin::StaffUsersController < ApplicationController
   def destroy
     if @user == current_user
       flash[:alert] = 'admin cannot delete self.'
-    else
-      @user.update(removed: true)
+    elsif @user.update(removed: true)
       flash[:notice] = 'User deleted successfully.'
+    else
+      flash[:alert] = 'Failed to delete user.'
     end
     redirect_to admin_staff_users_path
   end

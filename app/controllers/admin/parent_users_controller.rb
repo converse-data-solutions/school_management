@@ -22,10 +22,7 @@ class Admin::ParentUsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.role = 'parent'
-    if User.exists?(username: @user.username)
-      flash[:alert] = 'User already exists.'
-      render :new
-    elsif @user.save
+    if @user.save
       flash[:notice] = 'User created successfully.'
       redirect_to admin_parent_users_path
     else
@@ -59,9 +56,10 @@ class Admin::ParentUsersController < ApplicationController
   def destroy
     if @user == current_user
       flash[:alert] = 'Admin cannot delete self.'
-    else
-      @user.update(removed: true)
+    elsif @user.update(removed: true)
       flash[:notice] = 'User deleted successfully.'
+    else
+      flash[:alert] = 'Failed to delete user.'
     end
     redirect_to admin_parent_users_path
   end
@@ -72,10 +70,9 @@ class Admin::ParentUsersController < ApplicationController
 
   private
 
-
   def user_params
     params.require(:user).permit(:email, :username, :password, :mobile_number,
-                                 :address, :profession, :gender, :name, :image, :deleted, :role)
+                                 :address, :profession, :gender, :name, :image, :deleted)
   end
 
   def user_update
