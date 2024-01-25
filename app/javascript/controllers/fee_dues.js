@@ -23,7 +23,7 @@ function genereteDues() {
       { data: "mobile_number", class: "due_date" },
       { data: "payable_fee", class: "due_amount" },
       { data: "total_payment", class: "paid_amount" },
-      { data: "bending_payment", class: "balance" },
+      { data: "pending_payment", class: "balance" },
     ],
     stripeClasses: ["bg-[#F9F9F9]", "bg-[#FFFFFF]"],
     createdRow: function (row, data, dataIndex) {

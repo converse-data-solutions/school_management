@@ -10,10 +10,6 @@ class FeeDuesController < ApplicationController
     end
   end
 
-  def filter_fee_due
-    @academic_details = AcademicDetail.by_section_and_year(params[:section_id], params[:academic_year])
-    @academic_fees = @academic_details.present? ? @academic_details.map(&:academic_fee).uniq : []
-  end
 
   def find_academic_sections
     @sections = Standard.find_by(id: params[:standard_id]).sections
