@@ -22,6 +22,6 @@ class StandardDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    Standard.includes(:sections).references(:sections)
+    Standard.includes(:sections).where(removed: false).references(:sections)
   end
 end

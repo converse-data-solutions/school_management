@@ -40,13 +40,14 @@ class StandardsController < ApplicationController
   def destroy
     if @standard.sections.any? { |section| section.students.present? }
       flash[:alert] = "You can't delete the class because some students are using this class."
-      redirect_to standards_path
+    elsif @standard.update(removed: true)
+      @standard.sections.update_all(removed: true)
+      flash[:notice] = 'Standard deleted successfully.'
     else
-      @standard.destroy
-      redirect_to standards_path, notice: 'Standard was successfully deleted.'
+      flash[:alert] = ['Failed to delete standard.']
     end
+    redirect_to standards_path
   end
-  
 
   private
 
