@@ -10,107 +10,108 @@
   </div>
   <div class="accordian-body">
     <%= form_with(model: @student, data: { controller: "flatpickr" },class: "student_form") do |f| %>
-      <div class="p-5 border-t bg-white flex flex-wrap" >
-        <% if @student.errors.any? %>
-          <div class="w-full text-[#b94a48] mx-auto container mb-3 text-[14px] px-10 py-5 rounded bg-[#F2DEDE]">
-            <ul>
-              <li>
-                <% if @student.errors.has_key?(:admission_no) %>
-                  <%= @student.errors[:admission_no].first %>
-                <% end %>
-              </li>
-              <li>
-                <% if @student.errors.has_key?(:section_id) %>
-                  <%= @student.errors[:section_id].first %>
-                <% end %>
-              </li>
-              <li>
-                <% if @student.errors.has_key?(:user_id) %>
-                  <%= @student.errors[:user_id].first %>
-                <% end %>
-              </li>
-              <li>
-                <% if @student.errors.has_key?(:mobile_number) %>
-                  <%= @student.errors[:mobile_number].first %>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        <% end %>
-        <div class="w-full md:w-[75%]">
-          <div class="flex   flex-wrap md:gap-3 lg:gap-4">
-            <div class="w-full  md:w-[48.5%]">
-              <label for="name" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Admission No.</label>
-              <%= f.text_field :admission_no, id:"admission_no" ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Name"%>
+      <% if @student.errors.any? %>
+        <div class=" text-[#b94a48] mx-2  my-3 text-[14px] px-10 py-5 rounded bg-[#F2DEDE]" id="notice">
+          <ul>
+            <li>
+              <% if @student.errors.has_key?(:admission_no) %>
+                <%= @student.errors[:admission_no].first %>
+              <% end %>
+            </li>
+            <li>
+              <% if @student.errors.has_key?(:section_id) %>
+                <%= @student.errors[:section_id].first %>
+              <% end %>
+            </li>
+            <li>
+              <% if @student.errors.has_key?(:user_id) %>
+                <%= @student.errors[:user_id].first %>
+              <% end %>
+            </li>
+            <li>
+              <% if @student.errors.has_key?(:mobile_number) %>
+                <%= @student.errors[:mobile_number].first %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+      <div class="px-2 md:px-5  py-2 grid grid-cols-1 md:grid-cols-4  ">
+        <div class="col-span-3">
+          <div class="grid grid-cols-1 md:grid-cols-4  gap-y-3 md:gap-x-6 lg:gap-x-7">
+            <div class="col-span-1 md:col-span-2">
+              <label for="name" class="block mb-2 text-sm font-semibold text-[#555555] ">Admission No.</label>
+              <%= f.text_field :admission_no, id:"admission_no" ,class: " border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Name"%>
             </div>
-            <div class="w-full  md:w-[48.5%]">
-              <label for="name" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Name</label>
-              <%= f.text_field :name, id:"name" ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Name"%>
+            <div class="col-span-1 md:col-span-2">
+              <label for="name" class="block mb-2 text-sm font-semibold text-[#555555] ">Name</label>
+              <%= f.text_field :name, id:"name" ,class: " border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Name"%>
             </div>
-            <div class="w-full  md:w-[48.5%]">
-              <label for="name" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Father Name</label>
-              <%= f.text_field :father_name, id:"father_name" ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Father Name"%>
+            <div class="col-span-1 md:col-span-2">
+              <label for="name" class="block mb-2 text-sm font-semibold text-[#555555] ">Father Name</label>
+              <%= f.text_field :father_name, id:"father_name" ,class: " border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Father Name"%>
             </div>
-            <div class="w-full  md:w-[48.5%]">
-              <label for="name" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Mother Name</label>
-              <%= f.text_field :mother_name, id:"fmother_name" ,class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Mother Name"%>
+            <div class="col-span-1 md:col-span-2">
+              <label for="name" class="block mb-2 text-sm font-semibold text-[#555555] ">Mother Name</label>
+              <%= f.text_field :mother_name, id:"fmother_name" ,class: " border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]" ,placeholder:"Mother Name"%>
             </div>
-            <div class="w-full  md:w-[48.5%]">
-              <label for="address" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Address</label>
-              <%= f.text_field :address, id: "address", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2", placeholder: "address" %>
+            <div class="col-span-1 md:col-span-2">
+              <label for="address" class="block mb-2 text-sm font-semibold text-[#555555] ">Address</label>
+              <%= f.text_field :address, id: "address", class: " border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "address" %>
             </div>
-            <div class="w-full  md:w-[48.5%] lg:w-[23.5%]">
-              <label for="date_of_birth" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Date of birth</label>
-              <%= f.date_field :date_of_birth, id: "date_of_birth", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2", placeholder: "Date of birth" %>
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+              <label for="date_of_birth" class="block mb-2 text-sm font-semibold text-[#555555] ">Date of birth</label>
+              <%= f.date_field :date_of_birth, id: "date_of_birth", class: " border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "Date of birth" %>
             </div>
-            <div class="w-full  md:w-[48.5%] lg:w-[23.5%]">
-              <label for="mobile-number" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Mobile</label>
-              <%= f.text_field :mobile_number, id: "mobile-number", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2", placeholder: "Mobie Number" %>
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+              <label for="mobile-number" class="block mb-2 text-sm font-semibold text-[#555555] ">Mobile No</label>
+              <%= f.text_field :mobile_number, id: "mobile-number", class: " border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "Mobie No" %>
             </div>
-            <div class="w-full md:w-[48.5%] lg:w-[23.5%] ">
-              <label for="standard" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Standard</label>
-              <% if @student.section %>
-                <%= f.collection_select(:standard_id, Standard.where(removed: false), :id, :name, { prompt: "#{@student.section.standard.name}" }, { class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard" }) %>
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+              <label for="standard" class="block mb-2 text-sm font-semibold text-[#555555]">Standard</label>
+              <% if @student.section %> <!-- Assuming @student has a section association -->
+                <%= f.collection_select(:standard_id, Standard.where(removed: false), :id, :name, { selected: @student.section.standard.id }, { prompt: 'Select Standard', class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard"}) %>
               <% else %>
-                <%= f.collection_select(:standard_id, Standard.all, :id, :name, { prompt: 'Select Standard' }, { class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard"}) %>
+                <%= f.collection_select(:standard_id, Standard.where(removed: false), :id, :name, { prompt: 'Select Standard' }, { class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard"}) %>
               <% end %>
             </div>
-            <div class="w-full md:w-[48.5%] lg:w-[23.5%]" id="section-dropdown">
-              <label for="section" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Section</label>
-              <% if @student.section %>
-                <%= f.collection_select(:section_id, @student.section.standard.sections, :id, :section_name, { prompt: 'Select Section' }, { class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard" } ) %>
+            <div class="col-span-1 md:col-span-2 lg:col-span-1",  id="section-dropdown">
+              <label for="section" class="block mb-2 text-sm font-semibold text-[#555555] ">Section</label>
+              <% if @student.section %> <!-- Assuming @student has a section association -->
+                <%= f.collection_select(:section_id, @student.section.standard.sections, :id, :section_name, { selected: @student.section.id }, { prompt: 'Select Section', class: "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard"}) %>
               <% else %>
-                <%= f.collection_select(:section_id, [], :id, :section_name, { prompt: 'Select Section' }, { class: 'border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]' }) %>
+                <%= f.collection_select(:section_id, [], :id, :section_name, { prompt: 'Select Section' }, { class: 'border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-[#37A7E7] dark:focus:border-[#37A7E7]' }) %>
               <% end %>
-              </div>
-              <div class="w-full  md:w-[48.5%] lg:w-[23.5%]">
-                <label for="date_of_admisiion" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Date of admission</label>
-                <%= f.date_field :date_of_admission, id: "date_of_admission" , class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2 ", placeholder: "Date of admission" %>
-              </div>
-              <div class="w-full  md:w-[48.5%] lg:w-[23.5%]">
-                <label for="roll_no" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Roll No</label>
-                <%= f.text_field :roll_no, id: "mobile-number", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-[#37A7E7] focus:border-[#37A7E7] block w-full p-2", placeholder: "Roll No" %>
-              </div>
-              <div class="w-full md:w-[48.5%] lg:w-[23.5%]">
-                <label for="parent" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Select parent</label>
-                <%= f.collection_select :user_id, User.where(role: "parent"), :id, :name,{ prompt: "Select Parent" }, { class: 'text-[14px] focus:ring-[#37A7E7]', data: { controller: "slim" }} %>
-              </div>
-              <div class="w-full  md:w-[48.5%] lg:w-[23.5%]">
-                <label for="gender" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Gender</label>
-                <div class="flex" id="gender-radio-group">
-                  <div class="flex items-center mr-4">
-                    <%= f.radio_button :gender, 'male', class:"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-[#37A7E7]" %>
-                    <label for="inline-radio" class="ml-2 text-sm font-semibold text-[#555555] dark:text-gray-300">Male</label>
-                  </div>
-                  <div class="flex items-center mr-4">
-                    <%= f.radio_button :gender, 'female', class:"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-[#37A7E7]" %>
-                    <label for="inline-2-radio" class="ml-2 text-sm font-semibold text-[#555555] dark:text-gray-300">Female</label>
-                  </div>
+            </div>
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+              <label for="date_of_admisiion" class="block mb-2 text-sm font-semibold text-[#555555] ">Date of admission</label>
+              <%= f.date_field :date_of_admission, id: "date_of_admission" , class: " border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "Date of admission" %>
+            </div>
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+              <label for="roll_no" class="block mb-2 text-sm font-semibold text-[#555555] ">Roll No</label>
+              <%= f.text_field :roll_no, id: "mobile-number", class: " border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "Roll No" %>
+            </div>
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+              <label for="parent" class="block mb-2 text-sm font-semibold text-[#555555] ">Select parent</label>
+              <%= f.collection_select :user_id, User.where(role: "parent"), :id, :name,{ prompt: "Select Parent" }, { class: ' border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full', data: { controller: "slim" }} %>
+            </div>
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+              <label for="gender" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Gender</label>
+              <div class="flex" id="gender-radio-group">
+                <div class="flex items-center mr-4">
+                  <%= f.radio_button :gender, 'male', class:"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" %>
+                  <label for="inline-radio" class="ml-2 text-sm font-semibold text-[#555555] dark:text-gray-300">Male</label>
+                </div>
+                <div class="flex items-center mr-4">
+                  <%= f.radio_button :gender, 'female', class:"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" %>
+                  <label for="inline-2-radio" class="ml-2 text-sm font-semibold text-[#555555] dark:text-gray-300">Female</label>
                 </div>
               </div>
             </div>
           </div>
-          <div class="w-full md:w-[25%] pl-4">
+        </div>
+        <div class="col-span-1 md:ml-2">
+          <div class=" pl-1 md:pl-5 pt-4">
             <div id="previewSingle" class="mt-2"></div>
             <div id="defaultUpload">
               <% if @student.image.attached? %>
@@ -119,7 +120,7 @@
                 <div class="w-[130px] h-[130px]"><img src="<%= asset_path('user.png') %>" alt="Image Description"  ></div>
               <% end %>
             </div>
-            <div class="file-input-wrapper mt-2">
+            <div class="file-input-wrapper mt-2 ml-2">
               <label class=" px-9 py-1.5 bg-white text-[14px]   border-2 rounded-[4px]">
                 <span class=" text-[#555555] font-thin ">Browse</span>
                 <%= f.file_field :image, class: "hidden", id: "single_file", accept: "image/*" %>
@@ -127,7 +128,8 @@
             </div>
           </div>
         </div>
-        <%= f.submit "Update Student",class: 'ml-4 ml-4  md:mb-6 md:ml-5 text-white border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px] text-sm w-auto sm:w-auto px-3 py-2 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);'%>
       </div>
-    <% end %>  </div>
+      <%= f.submit "Update Student" ,class: 'ml-4 mb-8  md:ml-5 md:mb-5 text-white border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px] text-sm w-auto sm:w-auto px-3 py-2 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
+    </div>
+  <% end %>  </div>
 </div>
