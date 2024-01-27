@@ -227,3 +227,24 @@ input:-webkit-autofill {
   line-height: 1.5rem;
   padding: 10px 4px;
 }
+
+.ss-content .ss-search input:focus {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+input[type="search"]:focus {
+  border: 1px solid #aaa !important;
+}
+.ss-content .ss-list .ss-option:not(.ss-disabled).ss-selected {
+  color: var(--ss-bg-color);
+  background-color: #04132b !important;
+  background-image: linear-gradient(#3875d7 20%,#2a62bc 90%) !important;
+}
+.ss-content .ss-list .ss-option:hover {
+  color: #ffffff !important;
+  background-color: #04132b !important;
+  background-image: linear-gradient(#3875d7 20%,#2a62bc 90%) !important;
+} 
+.ss-values {
+  padding: 4px;
+}

@@ -13,9 +13,9 @@ class Student < ApplicationRecord
                            length: { is: 6, message: 'Admission No. must be 6 digits.' }
   validates :section_id, presence: { message: 'Please select Standard and Section.' }
   validates :user_id, presence: { message: 'Please select Parent.' }
-  validates :roll_no, presence: { message: 'Please enter Roll No.' }
-  validates :name, presence: { message: 'Please enter Name.' }
-  validates :date_of_birth, presence: { message: 'Please select Date of Birth.' }
+  validates :roll_no, presence: { message: 'Please enter Roll No.' }, allow_blank: true
+  validates :name, presence: { message: 'Please enter Name.' }, allow_blank: true
+  validates :date_of_birth, presence: { message: 'Please select Date of Birth.' }, allow_blank: true
 
   validates :mobile_number, numericality: {
                               only_integer: true,
@@ -28,7 +28,6 @@ class Student < ApplicationRecord
                             },
                             allow_blank: true
   scope :active, -> { where(status: 'Active', removed: false) }
-  # Ex:- scope :active, -> {where(:active => true)}
 
   def self.update_sections(student_ids, new_section_id)
     section = Section.find_by(id: new_section_id)
