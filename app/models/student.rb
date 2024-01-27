@@ -3,7 +3,7 @@ class Student < ApplicationRecord
   belongs_to :user
   has_one_attached :image, dependent: :destroy
   has_many :attendances, as: :attendable
-  has_many :student_academic_details
+  has_many :academic_details
   before_create :set_initial_status
   after_create :create_academic_detail
 

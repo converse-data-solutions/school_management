@@ -53,7 +53,7 @@ body {
   color: white;
 }
 
-select#student_standard_id,
+/* select#student_standard_id,
 select#student_section_id,
 select#student_user_id {
   width: 100%;
@@ -89,7 +89,7 @@ select#student_user_id {
     border-radius: 5px;
     border: 1px solid #ccc;
   }
-}
+} */
 
 #SelExample {
   width: 200px;
