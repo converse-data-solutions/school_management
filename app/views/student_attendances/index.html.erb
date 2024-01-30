@@ -36,7 +36,7 @@
           </div>
         <% end %>
       </div>
-      <div class="w-full mb-8 text-[14px]" id="table-div">
+      <div class="w-full mb-8 text-[14px] <%= "hidden" unless @students.present? %>" id="table-div">
         <%= form_tag update_all_student_attendances_path, method: :post do %>
           <div class="overflow-x-auto w-full">
             <table class="table table-striped w-full border-collapse border border-slate-400 ">

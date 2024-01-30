@@ -53,43 +53,6 @@ body {
   color: white;
 }
 
-/* select#student_standard_id,
-select#student_section_id,
-select#student_user_id {
-  width: 100%;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-@media only screen and (min-width: 1024px) and (max-width: 1400px) {
-
-  select#student_standard_id,
-  select#student_section_id,
-  select#student_user_id {
-    width: 95%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-}
-
-select#student_standard_id,
-select#student_section_id,
-select#student_user_id {
-  width: 100%;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-@media only screen and (min-width: 1024px) and (max-width: 1400px) {
-
-  select#student_standard_id,
-  select#student_section_id,
-  select#student_user_id {
-    width: 95%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-} */
 
 #SelExample {
   width: 200px;
@@ -120,16 +83,12 @@ select#student_user_id {
   background-color: #157AB5;
 }
 
-/* .active-admin {
- background-color: #e6e6e6;
- box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
- border-color: rgba(0,0,0,0.1)
-} */
 
-.active-theme, .active-admin {
+.active-theme,
+.active-admin {
   background-color: #e6e6e6;
- box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
- border-color: rgba(0,0,0,0.1)
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  border-color: rgba(0, 0, 0, 0.1)
 }
 
 input:-webkit-autofill:hover,
@@ -239,16 +198,19 @@ input:-webkit-autofill {
 input[type="search"]:focus {
   border: 1px solid #aaa !important;
 }
+
 .ss-content .ss-list .ss-option:not(.ss-disabled).ss-selected {
   color: var(--ss-bg-color);
   background-color: #04132b !important;
-  background-image: linear-gradient(#3875d7 20%,#2a62bc 90%) !important;
+  background-image: linear-gradient(#3875d7 20%, #2a62bc 90%) !important;
 }
+
 .ss-content .ss-list .ss-option:hover {
   color: #ffffff !important;
   background-color: #04132b !important;
-  background-image: linear-gradient(#3875d7 20%,#2a62bc 90%) !important;
-} 
+  background-image: linear-gradient(#3875d7 20%, #2a62bc 90%) !important;
+}
+
 .ss-values {
   padding: 4px;
 }
