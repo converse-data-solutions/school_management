@@ -35,6 +35,9 @@ function initValidate() {
 
 $(document).ready(function () {
   initValidate();
+  window.addEventListener("popstate", function (event) {
+    location.reload();
+  });
 
   $(document).on("turbo:render", function () {
     initValidate();

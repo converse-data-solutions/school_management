@@ -9,7 +9,7 @@
       <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
     </div>
     <div class="accordian-body">
-      <table id="historyTable"   data-source="<%= academic_details_path(format: :json) %>">
+      <table id="historyTable" data-turbolinks='false'  data-source="<%= academic_details_path(format: :json) %>">
         <thead class="bg-[#FFFFFF]">
           <tr>
             <th class="sr_no table-width" >Academic ID</th>
