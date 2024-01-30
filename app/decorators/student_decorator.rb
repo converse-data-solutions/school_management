@@ -20,7 +20,7 @@ class StudentDecorator < ApplicationDecorator
              end
     h.safe_join(links, '')
   end
-
+  
   def student_actions
     links = []
     if object.status == 'Active'

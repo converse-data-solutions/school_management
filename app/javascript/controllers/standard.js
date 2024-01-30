@@ -64,8 +64,8 @@ function initValidate() {
     columns: [
       { data: "id" },
       { data: "name" },
-      { data: "fee" },
       { data: "section_name" },
+      { data: "fee" },
       { data: "standard_actions", class: "crud-action" },
     ],
     scrollX: "100%", // Enable horizontal scrolling
