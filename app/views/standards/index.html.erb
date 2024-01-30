@@ -12,7 +12,7 @@
           <span class="font-[700] text-[15px]">Manage Standard</span></div>
         <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
-      <div class="accordian-body">
+      <div class="accordian-body mt-0">
         <div class="bg-[#FFFFFF] lg:overflow-scroll xl:overflow-hidden ">
           <% if notice %>
             <div class="ml-2">
@@ -79,7 +79,7 @@
               <p class="text-[#848080] text-[12px] font-extralight mt-2">Press + to add another section</p>
             </div>
             <div class="my-3.5">
-              <%= f.submit "Created Standard", id: "button",class: 'text-white border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px] text-sm w-auto sm:w-auto px-2 py-2 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
+              <%= f.submit "Add Standard", id: "button",class: 'text-white border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px] text-sm w-auto sm:w-auto px-2 py-2 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
             </div>
           <% end %>
         </div>

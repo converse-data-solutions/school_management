@@ -28,7 +28,7 @@ div#feeDueTable_wrapper,
 div#myTable_wrapper,
 div#staffTable_wrapper,
 div#standardTable_wrapper {
-  margin: 10px;
+  margin: 0px 10px;
 }
 
 td.standard_action {
@@ -680,9 +680,8 @@ a#feeDueTable_previous {
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
   cursor: not-allowed;
   color: #999999 !important;
-  border: 1px solid #dddddd;
-  border-collapse: collapse;
-  background: #ffffff;
+  border: 1px solid #dddddd !important;
+  background: #ffffff !important;
   box-shadow: none;
 }
 
@@ -690,6 +689,7 @@ a#feeDueTable_previous {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   background-color: white !important;
+  padding: 8px 12px;
   color: #2fa4e7 !important;
 }
 
@@ -702,6 +702,7 @@ a#feeDueTable_previous {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  padding: 8px 12px;
   color: #999999 !important;
   border: 1px solid #979797;
   background-color: white;
