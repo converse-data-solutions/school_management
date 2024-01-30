@@ -1,7 +1,7 @@
 <%= content_for :head do %>
   <%= javascript_import_module_tag "controllers/student/student" %>
 <% end %>
-<div class="container bg-[#F5F5F5] mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-8 p-1 text-[#2FA4E7] pl-4"><span><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span><%= link_to "Manage Students", students_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span>Edit Student</span></div>
+<div class="container bg-[#F5F5F5] mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-8 p-1.5 rounded-[5px] text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline pointer"><%= link_to " Manage Parent", students_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline pointer"><%= link_to "Edit Parent", edit_student_path(@student)  %></span></div>
 <div class=" container mx-auto rounded-[5px] border-2">
   <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
     <div><i class="fa-solid fa-pen-to-square"></i>
@@ -120,8 +120,8 @@
                 <div class="w-[130px] h-[130px]"><img src="<%= asset_path('user.png') %>" alt="Image Description"  ></div>
               <% end %>
             </div>
-            <div class="file-input-wrapper mt-2 ml-2">
-              <label class=" px-9 py-1.5 bg-white text-[14px]   border-2 rounded-[4px]">
+            <div class="file-input-wrapper mt-2" >
+              <label class=" px-9 py-1.5 bg-white text-[14px]   border-2 rounded-[4px]" style="box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);">
                 <span class=" text-[#555555] font-thin ">Browse</span>
                 <%= f.file_field :image, class: "hidden", id: "single_file", accept: "image/*" %>
               </label>

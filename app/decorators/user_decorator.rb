@@ -44,7 +44,7 @@ class UserDecorator < ApplicationDecorator
     links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-edit') + ' Edit'.html_safe,
                        h.edit_admin_parent_user_path(object), class: 'parent_user_edit')
     links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + ' Delete'.html_safe,
-                       h.admin_parent_user_path(object), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, remote: true, class: 'parent_user_delete')
+                       h.admin_parent_user_path(object), data: { turbo_method: :delete, turbo_confirm: 'Are you sure You Want To Delete?' }, remote: true, class: 'parent_user_delete')
 
     h.safe_join(links, '')
   end
@@ -61,7 +61,7 @@ class UserDecorator < ApplicationDecorator
     links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-edit') + ' Edit'.html_safe,
                        h.edit_admin_staff_user_path(object), class: 'parent_user_edit')
     links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + ' Delete'.html_safe,
-                       h.admin_staff_user_path(object), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, remote: true, class: 'parent_user_delete')
+                       h.admin_staff_user_path(object), data: { turbo_method: :delete, turbo_confirm: 'Are you sure You Want To Delete?' }, remote: true, class: 'parent_user_delete')
 
     h.safe_join(links, '')
   end
