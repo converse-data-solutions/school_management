@@ -120,12 +120,16 @@ select#student_user_id {
   background-color: #157AB5;
 }
 
-.active-admin {
-  background-color: #EBEBEB;
-}
+/* .active-admin {
+ background-color: #e6e6e6;
+ box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+ border-color: rgba(0,0,0,0.1)
+} */
 
-.active-theme {
-  background-color: #EBEBEB;
+.active-theme, .active-admin {
+  background-color: #e6e6e6;
+ box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+ border-color: rgba(0,0,0,0.1)
 }
 
 input:-webkit-autofill:hover,

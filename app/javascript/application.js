@@ -80,6 +80,8 @@ function initValidate() {
             $(".theme-content, .admin-content, .more-content").hide();
             $(".more-opener").removeClass("activedropdown");
             $(".admin-opener").removeClass("active-admin");
+            $(".theme-opener").removeClass("active-theme");
+
         }
     });
 
@@ -87,13 +89,14 @@ function initValidate() {
         $(".theme-content").toggle();
         $(".admin-content, .more-content").hide();
         $(".theme-opener").toggleClass("active-theme");
+        $(".admin-opener").removeClass("active-admin");
     });
 
     $(".admin-opener").click(function() {
         $(".admin-content").toggle();
         $(".theme-content, .more-content").hide();
         $(".admin-opener").toggleClass("active-admin");
-        $(".theme-opener").toggleClass("active-theme");
+        $(".theme-opener").removeClass("active-theme");
     });
 
     $(".more-opener").click(function() {

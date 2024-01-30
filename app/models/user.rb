@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   scope :activeparent, -> { where(role: 'parent', removed: false) }
   scope :activestaff, -> { where(role: 'staff', removed: false) }
-
+  scope :validstaff, -> { where(role: 'staff', status: 'Active', removed: false) }
   private
 
   def set_initial_status

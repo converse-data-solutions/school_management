@@ -15,7 +15,7 @@ class UserAttendancesController < ApplicationController
   end
 
   def index
-    @users = User.where(role: 'staff', deleted: 'Active')
+    @users = User.validstaff
     @selected_date = params[:date]
   end
 
