@@ -1,14 +1,11 @@
-function initValidate() {
-
-
+function validateUser() {
   $("form").on("submit", function (e) {
     let email = $("#user_email").val();
-    let password = $("#user_password").val();
     let name = $("#name").val();
-    let username = $("#user_name").val();
     let mobile_number = $("#mobile-number").val();
     let address = $("#address").val();
     let profession = $("#profession").val();
+
     let err = $("#error-div");
 
     $(".error").text("");
@@ -17,18 +14,6 @@ function initValidate() {
 
     if (validator.isEmail(email) == false) {
       $("#email-error").text("Please enter a valid email address.");
-      errors = true;
-    }
-
-    if (!validator.isStrongPassword(password, { min: 6, max: 20 })) {
-      $("#password-error").text(
-        "Please enter a strong password, at least 6 characters with a mix of letters, numbers, and symbols."
-      );
-      errors = true;
-    }
-
-    if (!username || !username.trim()) {
-      $("#username-error").text("Please enter a username.");
       errors = true;
     }
 
@@ -43,7 +28,7 @@ function initValidate() {
     }
 
     if (address && (!/[a-zA-Z]/.test(address) || !address.trim())) {
-      $("#address-error").text("Address must contain an alphabet.");
+      $("#address-error").text("Please enter a address.");
       errors = true;
     }
 
@@ -66,9 +51,9 @@ function initValidate() {
 }
 
 $(document).ready(function () {
-  initValidate();
+  validateUser();
 
   $(document).on("turbo:render", function () {
-    initValidate();
+    validateUser();
   });
 });
