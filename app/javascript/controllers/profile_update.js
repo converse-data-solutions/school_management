@@ -10,7 +10,6 @@ function profileUpdate() {
       $("#profileMessage").slideUp("slow");
       $("#profileMessage").addClass("hidden");
     }, 5000);
-    console.log("form submitted");
   });
 }
 
