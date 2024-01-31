@@ -11,20 +11,7 @@ function profileUpdate() {
       $("#profileMessage").addClass("hidden");
     }, 5000);
     console.log("form submitted");
-  })
-  // $("#save_profile").on("click", function (e) {
-  //   setTimeout(function () {
-  //     $("#profileMessage").slideDown("slow");
-
-  //     $("#profileMessage").toggleClass("hidden");
-  //   }, 1000);
-
-  //   setTimeout(function () {
-  //     $("#profileMessage").slideUp("slow");
-  //     $("#profileMessage").toggleClass("hidden");
-  //   }, 5000);
-  //   console.log("button-clicked");
-  // });
+  });
 }
 
 $(document).ready(function () {

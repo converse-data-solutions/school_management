@@ -35,7 +35,6 @@ function initValidate() {
 $(document).ready(function () {
   initValidate();
   window.addEventListener('popstate', function(event) {
-    // Reload the page
     location.reload();
   });
 

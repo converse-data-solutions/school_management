@@ -52,8 +52,7 @@ function initValidate() {
     if (!username || !username.trim()) {
       $("#username-error").text("Please enter a username.");
       errors = true;
-    }
-    else if (!user_name_data) {
+    } else if (!user_name_data) {
       $("#username-available-error").text("Username is not available");
       errors = true;
     }
