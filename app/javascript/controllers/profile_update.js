@@ -1,16 +1,29 @@
 function profileUpdate() {
-  $("#save_profile").on("click", function (e) {
+  $("#user-form").on("submit", function (e) {
     setTimeout(function () {
       $("#profileMessage").slideDown("slow");
 
-      $("#profileMessage").removeClass("hidden");
+      $("#profileMessage").toggleClass("hidden");
     }, 1000);
 
     setTimeout(function () {
       $("#profileMessage").slideUp("slow");
-      $("#profileMessage").addClass("hidden");
+      $("#profileMessage").toggleClass("hidden");
     }, 5000);
-  });
+    console.log("form submitted");
+  })
+  // $("#save_profile").on("click", function (e) {
+  //   setTimeout(function () {
+  //     $("#profileMessage").slideDown("slow");
+
+  //     $("#profileMessage").toggleClass("hidden");
+  //   }, 1000);
+
+  //   setTimeout(function () {
+  //     $("#profileMessage").slideUp("slow");
+  //     $("#profileMessage").toggleClass("hidden");
+  //   }, 5000);
+  // });
 }
 
 $(document).ready(function () {
