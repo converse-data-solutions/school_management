@@ -31,6 +31,9 @@ function initValidate() {
     let address = $("#address").val();
     let profession = $("#profession").val();
     let user_name_data = $("#user_name").data("validusername");
+    let strongPasswordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
+
     let err = $("#error-div");
 
     $(".error").text("");
@@ -42,7 +45,7 @@ function initValidate() {
       errors = true;
     }
 
-    if (!validator.isStrongPassword(password, { min: 6, max: 20 })) {
+    if (!strongPasswordRegex.test(password)) {
       $("#password-error").text(
         "Please enter a strong password, at least 6 characters with a mix of letters, numbers, and symbols."
       );
