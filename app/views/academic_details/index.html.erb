@@ -1,31 +1,31 @@
   <%= content_for :head do %>
-    <%= javascript_import_module_tag "controllers/student_history_datatable" %>
-  <% end %>
-  <div class="bg-[#F5F5F5] container mx-auto md:mt-[35px] text-[15px] lg:mt-0 mb-4 p-1 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline pointer" ><%= link_to "Academic Details", academic_details_path %></span></div>
-  <div class=" container mx-auto rounded-lg border-2">
-    <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
-      <div><i class="fa-solid fa-pen-to-square"></i>
-        <span class="font-[700] text-[15px]">Academic Details</span></div>
-      <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
-    </div>
-    <div class="accordian-body">
-      <table id="historyTable" data-turbolinks='false'  data-source="<%= academic_details_path(format: :json) %>">
-        <thead class="bg-[#FFFFFF]">
-          <tr>
-            <th class="sr_no table-width" >Academic ID</th>
-            <th class="student_id table-width">Student ID</th>
-            <th class="admission_no table-width" >Admission No</th>
-            <th class="student_name table-width" >Name</th>
-            <th class="roll_no table-width" >Roll No</th>
-            <th class="standard table-width" >Standard</th>
-            <th class="section table-width" >Section</th>
-            <th class="academic_year table-width" >Academic Year</th>
-            <th class= "academic_action" >Action</th>
-          </tr>
-        </thead>
-        <tbody class="bg-[#F9F9F9] striped ">
-        </tbody>
-      </table>
-    </div>
+  <%= javascript_import_module_tag "controllers/student_history_datatable" %>
+<% end %>
+<div class="bg-[#F5F5F5] container mx-auto md:mt-[35px] text-[14px] lg:mt-0 mb-4 p-1 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline pointer" ><%= link_to "Academic Details", academic_details_path %></span></div>
+<div class=" container mx-auto rounded-lg border-2">
+  <div class=" px-5 bg-[#EDEDED] flex items-center justify-between text-[#317EAC] shadow-2xl", style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);">
+    <div><i class="fa-solid fa-pen-to-square"></i>
+      <span class="font-[700] text-[15px]">Academic Details</span></div>
+    <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
   </div>
+  <div class="accordian-body">
+    <table id="historyTable" data-turbolinks='false'  data-source="<%= academic_details_path(format: :json) %>">
+      <thead class="bg-[#FFFFFF]">
+        <tr>
+          <th class="sr_no table-width" >Academic ID</th>
+          <th class="student_id table-width">Student ID</th>
+          <th class="admission_no table-width" >Admission No</th>
+          <th class="student_name table-width" >Name</th>
+          <th class="roll_no table-width" >Roll No</th>
+          <th class="standard table-width" >Standard</th>
+          <th class="section table-width" >Section</th>
+          <th class="academic_year table-width" >Academic Year</th>
+          <th class= "academic_action" >Action</th>
+        </tr>
+      </thead>
+      <tbody class="bg-[#F9F9F9] striped ">
+      </tbody>
+    </table>
   </div>
+</div>
+</div>
