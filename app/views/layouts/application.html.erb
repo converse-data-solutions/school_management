@@ -94,9 +94,9 @@
               <div>
                 <!-- Dropdown for theme  cerulea cyborg Simplex Darkly-->
                 <div class="flex items-center ml-3">
-                  <div><button class="theme-opener self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative "><i class="fa-solid fa-droplet"></i><span class="p-[4px] hidden lg:block">Change Skin</span><span class="text-[10px]" ><i class="fa-solid fa-caret-down"></i></span>
+                  <div><button class="theme-opener self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] w-[60px] lg:w-[130px] bg-white text-[#555555] relative "><i class="fa-solid fa-droplet"></i><span class="p-[4px] hidden lg:block">Change Skin</span><span class="text-[10px] ml-2 lg:ml-0" ><i class="fa-solid fa-caret-down"></i></span>
                     </button>
-                    <div id="themeContent" class="theme-content z-10 hidden font-normal bg-white  absolute right-[100px] top-[65px] divide-y divide-gray-100 rounded-[4px] shadow w-44 dark:bg-gray-700" >
+                    <div id="themeContent" class="theme-content z-10 hidden font-normal bg-white  absolute right-[75px] lg:right-[100px] top-[65px] divide-y divide-gray-100 rounded-[4px] shadow w-44 dark:bg-gray-700" >
                       <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
                         <li value="default"  class="block  border-b px-4 py-2 text-[14px] hover:bg-[#2FA4E7] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white ">
                           Default
@@ -108,8 +108,8 @@
                     </div>
                   </div>
                   <!-- Dropdown menu for user -->
-                  <div class="flex items-center mr-2 ml-4 md:ml-3 md:mr-[-10px]">
-                    <div><button class="admin-opener self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] p-[10px] bg-white text-[#555555] relative"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16" id="person"><g fill="#555555" fill-rule="evenodd"><g fill="#555555"><path d="M12 14.002a.998.998 0 0 1-.998.998H1.001A1 1 0 0 1 0 13.999V13c0-2.633 4-4 4-4s.229-.409 0-1c-.841-.62-.944-1.59-1-4 .173-2.413 1.867-3 3-3s2.827.586 3 3c-.056 2.41-.159 3.38-1 4-.229.59 0 1 0 1s4 1.367 4 4v1.002z"></path></g></g></svg><span class="p-[4px] hidden lg:block"><%= current_user.role %></span><span  class="text-[10px]"><i class="fa-solid fa-caret-down"></i></span>
+                  <div class="flex items-center mr-2 ml-4 md:ml-3 lg:mr-[-10px]">
+                    <div><button class="admin-opener self-center flex items-center justify-center rounded sm:text-[14px] h-[40px] p-[10px] bg-white text-[#555555] relative"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16" id="person"><g fill="#555555" fill-rule="evenodd"><g fill="#555555"><path d="M12 14.002a.998.998 0 0 1-.998.998H1.001A1 1 0 0 1 0 13.999V13c0-2.633 4-4 4-4s.229-.409 0-1c-.841-.62-.944-1.59-1-4 .173-2.413 1.867-3 3-3s2.827.586 3 3c-.056 2.41-.159 3.38-1 4-.229.59 0 1 0 1s4 1.367 4 4v1.002z"></path></g></g></svg><span class="p-[4px] hidden lg:block"><%= current_user.role %></span><span  class="text-[10px] ml-2 lg:ml-0"><i class="fa-solid fa-caret-down"></i></span>
                       </button>
                       <div id="adminContent" class="admin-content z-10  hidden font-normal bg-white  absolute right-[8px] top-[65px] divide-y divide-gray-100 rounded-[4px] shadow w-40 dark:bg-gray-700" >
                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-400">
