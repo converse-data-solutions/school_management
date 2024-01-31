@@ -3,12 +3,12 @@ function profileUpdate() {
     setTimeout(function () {
       $("#profileMessage").slideDown("slow");
 
-      $("#profileMessage").addClass("hidden");
+      $("#profileMessage").removeClass("hidden");
     }, 1000);
 
     setTimeout(function () {
       $("#profileMessage").slideUp("slow");
-      $("#profileMessage").removeClass("hidden");
+      $("#profileMessage").addClass("hidden");
     }, 5000);
     console.log("form submitted");
   })
