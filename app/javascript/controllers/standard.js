@@ -1,4 +1,4 @@
-function initValidate() {
+function validateStandard() {
   function toggleRemoveLink() {
     let visibleSectionCount = $(".section_fields:visible").length;
 
@@ -15,15 +15,14 @@ function initValidate() {
   });
 
   let sectionIndex = $("#sectionIndex").data("sectionIndex");
-  console.log(sectionIndex);
 
   $("#add_section").click(function (e) {
-    e.preventDefault();
+   ;
     addSectionField();
   });
 
   $("#sections_fields").on("click", ".remove_section", function (e) {
-    e.preventDefault();
+    
     removeSectioField(this);
   });
   function removeSectioField(elem) {
@@ -102,13 +101,11 @@ function initValidate() {
       errors = true;
     }
 
-    if (errors == true) {
+    if (errors) {
       err.toggleClass("hidden");
       setTimeout(function () {
         err.toggleClass("hidden");
       }, 5000);
-    }
-    if (errors) {
       e.preventDefault();
       return false;
     }
@@ -117,13 +114,13 @@ function initValidate() {
   });
 }
 $(document).ready(function () {
-  initValidate();
+  validateStandard();
 
   window.addEventListener("popstate", function (event) {
     location.reload();
   });
 
   $(document).on("turbo:render", function () {
-    initValidate();
+    validateStandard();
   });
 });
