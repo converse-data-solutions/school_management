@@ -11,7 +11,7 @@
   min-height: fit-content;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
   .dataTables_scrollBody {
     overflow: unset !important;
   }
@@ -359,8 +359,6 @@ th.student_action.sorting {
   background-repeat: no-repeat;
 }
 
-
-
 .parent_user_active,
 .student_active {
   background-color: #7bb13f;
@@ -377,7 +375,15 @@ th.student_action.sorting {
   background-repeat: no-repeat;
 }
 
-
+/* .student_active {
+  background-color: #7bb13f;
+  color: white;
+  width: 90px;
+  font-size: 14px;
+  padding: 10px;
+  margin: 2px;
+  border-radius: 5px;
+} */
 
 .parent_user_edit,
 .student_edit,
