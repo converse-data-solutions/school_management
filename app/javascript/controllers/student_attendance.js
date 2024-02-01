@@ -15,6 +15,8 @@ function initValidate() {
 
   $("form").on("submit", function (e) {
     let dateValue = $("#date").val();
+    let section = $("#section_id").val();
+    let Standard = $("#standard_id").val();
     let err = $(".error-div");
 
     $(".error").text("");
@@ -22,6 +24,16 @@ function initValidate() {
 
     if(!validator.isDate(dateValue)) {
       $("#date-error").text("Please enter a valid Date.");
+      errors = true;
+    }
+
+    if(!section) {
+      $("#section-error").text("Please select a section.");
+      errors = true;
+    }
+
+    if(!Standard) {
+      $("#standard-error").text("Please select a standard.");
       errors = true;
     }
 
