@@ -19,7 +19,7 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
       {
         admission_no: record.decorate.link_to,
         name: record.name,
-        date_of_birth: record.date_of_birth.strftime('%d-%m-%Y'),
+        date_of_birth: record.date_of_birth&.strftime('%d/%m/%Y'),
         mobile_number: record.mobile_number,
         standard_name: record.section.standard.name,
         section_name: record.section.section_name,

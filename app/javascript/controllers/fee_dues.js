@@ -64,6 +64,10 @@ function genereteDues() {
 $(document).ready(function () {
   genereteDues();
 
+  window.addEventListener("popstate", function (event) {
+    location.reload();
+  });
+
   $(document).on("turbo:render", function () {
     genereteDues();
   });

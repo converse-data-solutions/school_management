@@ -1,7 +1,7 @@
 <%= content_for :head do %>
   <%= javascript_import_module_tag "controllers/profile_update" %>
 <% end %>
-<div class="bg-[#F5F5F5] mx-1 md:mx-5 md:mt-[35px] text-[15px] lg:mt-0 mb-4 p-1 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline pointer" ><%= link_to "Profile", edit_user_registration_path %></span></div>
+<div class="bg-[#F5F5F5] mx-1 md:mx-5 md:mt-[35px] text-[14px] lg:mt-0 mb-4 p-1 text-[#2FA4E7] pl-4"><span class="hover:text-[#157AB5]  hover:underline "><%= link_to "Home", root_path %></span><span class="mx-2 text-[#aba7a7]">/</span><span class="hover:text-[#157AB5]  hover:underline pointer" ><%= link_to "Profile", edit_user_registration_path %></span></div>
 <div class="mx-1 md:mx-5 grid cols-1 lg:grid-cols-2 gap-7">
   <!-- profile section -->
   <div >
@@ -40,7 +40,7 @@
               <%= f.text_area :address, id: "address", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9] block w-full p-2", placeholder: "Address" %>
             </div>
           </div>
-          <%= f.submit "Save",id:"save_profile" ,class:"text-white bg-[#2FA4E7] ml-3 mb-4   focus:ring-1 focus:outline-Black focus:ring-black  rounded-[5px] text-sm  w-auto sm:w-auto px-3  py-2.5 text-center" %>
+          <%= f.submit "Save",id:"save_profile" ,class:"text-white border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px]  w-auto sm:w-auto px-3  py-2 text-center ml-3 mb-4", style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
         <% end %>
       </div>
     </div>
@@ -73,7 +73,7 @@
               <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "confirm_password" , class: " border border-gray-300 text-[#555555} text-sm rounded-[5px] focus:ring-blue-200 focus:border-[#66afe9] block w-full p-2", placeholder: "Password" %>
             </div>
           </div>
-          <%= f.submit "Change Password",class:"text-white bg-[#2FA4E7] mb-4 ml-3 focus:ring-1 focus:outline-Black focus:ring-black font-semibold rounded-[5px] text-sm  w-auto sm:w-auto px-5  py-2.5 text-center" %>
+          <%= f.submit "Change Password",class:" text-white border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px]  w-auto sm:w-auto px-5  py-2 text-center mb-4 ml-3", style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
         <% end %>
       </div>
     </div>

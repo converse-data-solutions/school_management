@@ -15,10 +15,11 @@ function initValidate() {
 
   $("form").on("submit", function (e) {
     let dateValue = $("#date").val();
-    let err = $("#error-div");
+    let section = $("#section_id").val();
+    let Standard = $("#standard_id").val();
+    let err = $(".error-div");
 
     $(".error").text("");
-    $(".error").css("color", "red");
     let errors = false;
 
     if(!validator.isDate(dateValue)) {
@@ -26,13 +27,21 @@ function initValidate() {
       errors = true;
     }
 
-    if (errors == true) {
-      err.removeClass("hidden");
-    } else {
-      err.addClass("hidden");
+    if(!section) {
+      $("#section-error").text("Please select a section.");
+      errors = true;
+    }
+
+    if(!Standard) {
+      $("#standard-error").text("Please select a standard.");
+      errors = true;
     }
 
     if (errors) {
+      err.toggleClass("hidden");
+      setTimeout(function () {
+        err.toggleClass("hidden");
+      }, 5000);
       e.preventDefault();
       return false;
     }

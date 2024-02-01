@@ -1,5 +1,5 @@
 function profileUpdate() {
-  $("#save_profile").on("click", function (e) {
+  $("#user-form").on("submit", function (e) {
     setTimeout(function () {
       $("#profileMessage").slideDown("slow");
 

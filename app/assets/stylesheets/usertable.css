@@ -11,7 +11,7 @@
   min-height: fit-content;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
   .dataTables_scrollBody {
     overflow: unset !important;
   }
@@ -28,7 +28,7 @@ div#feeDueTable_wrapper,
 div#myTable_wrapper,
 div#staffTable_wrapper,
 div#standardTable_wrapper {
-  margin: 10px;
+  margin: 0px 10px;
 }
 
 td.standard_action {
@@ -64,15 +64,6 @@ table#promoteTable,
   padding-left: 2px !important;
 }
 
-.dataTables_wrapper .dataTables_length,
-.dataTables_wrapper .dataTables_filter,
-.dataTables_wrapper .dataTables_info,
-.dataTables_wrapper .dataTables_processing,
-.dataTables_wrapper .dataTables_paginate {
-  color: #555555 !important;
-  font-size: 14px;
-}
-
 select {
   background-position: right 0rem center;
   background-repeat: no-repeat !important;
@@ -104,7 +95,6 @@ select {
 #promoteTable td,
 #feeDueTable th,
 #feeDueTable td {
-  padding: 10px;
   border: 1px solid #ddd;
 }
 
@@ -133,16 +123,12 @@ select {
   vertical-align: top;
 }
 
-
-
 @media screen and (max-width: 425px) {
-
   div#myTable_length,
   div#myTable_length {
     float: left;
   }
 }
-
 
 .dataTables_length select {
   color: black;
@@ -237,8 +223,6 @@ th.student_action.sorting {
 
 /* for mobile */
 @media screen and (max-width: 625px) {
-
-
   .parent_action,
   .student_action {
     display: grid;
@@ -261,9 +245,6 @@ th.student_action.sorting {
     margin-left: 2px;
   }
 
-
-
-
   .dataTables_wrapper .dataTables_length,
   .dataTables_wrapper .dataTables_filter {
     float: left;
@@ -279,7 +260,6 @@ th.student_action.sorting {
 
 /* for Tablet */
 @media screen and (max-width: 1020px) {
-
   .dataTables_wrapper .dataTables_length,
   .dataTables_wrapper .dataTables_filter {
     float: none !important;
@@ -295,8 +275,6 @@ th.student_action.sorting {
     display: grid;
     gap: 2px;
   }
-
-
 }
 
 @media screen and (max-width: 1420px) {
@@ -328,7 +306,6 @@ th.student_action.sorting {
     gap: 2px;
   }
 
-
   .dataTables_wrapper .dataTables_length select {
     border: 1px solid;
     border-radius: 2px;
@@ -345,16 +322,13 @@ th.student_action.sorting {
     width: 50%;
     color: #555555 !important;
     font-size: 14px;
-
   }
-
-
 }
 
-.parent_user_deactive {
+.parent_user_deactive,
+.student_deactive {
   width: 91px;
   color: white;
-
   font-size: 14px;
   padding: 10px;
   border-radius: 5px;
@@ -366,21 +340,11 @@ th.student_action.sorting {
   background-repeat: no-repeat;
 }
 
-.student_deactive {
-  background-color: #f66305;
-  width: 91px;
-  color: white;
-  font-size: 14px;
-  padding: 10px;
-  margin: 2px;
-  border-radius: 5px;
-}
-
-.parent_user_active {
+.parent_user_active,
+.student_active {
   background-color: #7bb13f;
   color: white;
   width: 90px;
-
   font-size: 14px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   padding: 10px;
@@ -392,17 +356,9 @@ th.student_action.sorting {
   background-repeat: no-repeat;
 }
 
-.student_active {
-  background-color: #7bb13f;
-  color: white;
-  width: 90px;
-  font-size: 14px;
-  padding: 10px;
-  margin: 2px;
-  border-radius: 5px;
-}
-
-.parent_user_edit {
+.parent_user_edit,
+.student_edit,
+.standard_edit {
   background-color: #022241;
   border-color: 1px soild #011d37;
   background-image: none;
@@ -417,18 +373,9 @@ th.student_action.sorting {
   margin: 2px;
 }
 
-.standard_edit,
-.student_edit {
-  background-color: #03417c;
-  color: white;
-  width: 80px;
-  font-size: 14px;
-  margin: 2px;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.parent_user_delete {
+.parent_user_delete,
+.student_delete,
+.standard_delete {
   background-image: linear-gradient(#e12b31, #c71c22 60%, #b5191f);
   background-repeat: no-repeat;
   background-color: #bd1a20;
@@ -441,17 +388,6 @@ th.student_action.sorting {
   padding: 10px;
   border-radius: 5px;
   margin: 2px;
-}
-
-.standard_delete,
-.student_delete {
-  background-color: #bd1a20;
-  color: white;
-  width: 80px;
-  font-size: 14px;
-  padding: 10px;
-  margin: 2px;
-  border-radius: 5px;
 }
 
 th.sorting.sorting_asc {
@@ -501,95 +437,24 @@ table.dataTable.no-footer {
   padding: 2px 6px;
 }
 
-a.paginate_button.current {
-  border: 1px solid #ddd !important;
-}
-
-div#myTable_paginate,
-div#staffTable_paginate,
-div#standardTable_paginate,
-div#studentTable_paginate,
-div#historyTable_paginate,
-div#promoteTable_paginate,
-div#feeDueTable_paginate {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  font-size: 14px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-a#myTable_previous,
-a#staffTable_previous,
-a#standardTable_previous,
-a#studentTable_previous,
-a#historyTable_previous,
-a#promoteTable_previous,
-a#feeDueTable_previous {
-  cursor: pointer;
-  color: #666 !important;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-top: 1px solid #ddd;
-  border-left: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background: transparent;
-  box-shadow: none;
-}
-
-a#myTable_next,
-a#staffTable_next,
-a#standardTable_next,
-a#studentTable_next,
-a#historyTable_next,
-a#promoteTable_next,
-a#feeDueTable_next {
-  color: #2FA4E7 !important;
-  cursor: pointer;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-top: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-  border: 1px solid #ddd;
-  margin-left: 0px !important;
-}
-
 table.dataTable.stripe tbody tr.odd,
 table.dataTable.display tbody tr.odd {
-  background-color: #F9F9F9 !important;
+  background-color: #f9f9f9 !important;
 }
 
-.select2-container--default .select2-selection--single .select2-selection__placeholder {
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__placeholder {
   color: #555;
 }
 
 .striped:nth-child(odd) {
-  background-color: #F9F9F9;
-}
-
-
-.dataTables_wrapper .dataTables_paginate .paginate_button:active {
-  background-color: white !important;
-  border: 1px solid #C0C0C0 !important;
-  background: linear-gradient(#F5F5F5, #F5F5F5) !important;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background-color: white !important;
-  border: 1px solid #C0C0C0 !important;
-  background: linear-gradient(#F5F5F5, #F5F5F5) !important;
-  color: black !important;
+  background-color: #f9f9f9;
 }
 
 td.crud-action {
   display: flex;
 }
-
 
 button,
 input,
@@ -600,8 +465,6 @@ textarea {
   font: inherit;
   margin: 0;
 }
-
-
 
 .dataTables_wrapper.no-footer .dataTables_scrollBody {
   border-bottom: 0px solid #111;
@@ -636,40 +499,38 @@ select {
   -webkit-print-color-adjust: exact;
 }
 
-
-
-
-#historyTable_wrapper [type=search]:focus,
+#historyTable_wrapper [type="search"]:focus,
 #historyTable_wrapper select:focus,
 #historyTable_wrapper textarea:focus,
-#studentTable_wrapper [type=search]:focus,
+#studentTable_wrapper [type="search"]:focus,
 #studentTable_wrapper select:focus,
 #studentTable_wrapper textarea:focus,
-#promoteTable_wrapper [type=search]:focus,
+#promoteTable_wrapper [type="search"]:focus,
 #promoteTable_wrapper select:focus,
 #promoteTable_wrapper textarea:focus,
-#feeDueTable_wrapper [type=search]:focus,
+#feeDueTable_wrapper [type="search"]:focus,
 #feeDueTable_wrapper select:focus,
 #feeDueTable_wrapper textarea:focus,
-#myTable_wrapper [type=search]:focus,
+#myTable_wrapper [type="search"]:focus,
 #myTable_wrapper select:focus,
 #myTable_wrapper textarea:focus,
-#staffTable_wrapper [type=search]:focus,
+#staffTable_wrapper [type="search"]:focus,
 #staffTable_wrapper select:focus,
 #staffTable_wrapper textarea:focus,
-#standardTable_wrapper [type=search]:focus,
+#standardTable_wrapper [type="search"]:focus,
 #standardTable_wrapper select:focus,
 #standardTable_wrapper textarea:focus {
-
-  --tw-ring-inset: var(--tw-empty,
-    );
+  --tw-ring-inset: var(--tw-empty);
   --tw-ring-offset-width: 0px;
   --tw-ring-offset-color: #fff;
   --tw-ring-color: #000;
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
+    var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
+    calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   border-color: #080808;
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
+    var(--tw-shadow);
   outline: 2px solid #0000;
   outline-offset: 2px;
 }
@@ -682,4 +543,107 @@ table.dataTable thead td {
   text-align: left;
   font-weight: 900;
   font-size: 14px;
+}
+
+/* ------------- ----------------------------------    pagination ---------- -------------------- ----------------------------- */
+
+a.paginate_button.current {
+  border: 1px solid #ddd !important;
+}
+
+div#myTable_paginate,
+div#staffTable_paginate,
+div#standardTable_paginate,
+div#studentTable_paginate,
+div#historyTable_paginate,
+div#promoteTable_paginate,
+div#feeDueTable_paginate {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  border: 1px solid #ddd;
+  margin-left: 0px !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  border: 1px solid #dddddd !important;
+  background: linear-gradient(#f5f5f5, #f5f5f5) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: white !important;
+  border: 1px solid #c0c0c0 !important;
+  background: linear-gradient(#f5f5f5, #f5f5f5) !important;
+}
+
+a#myTable_next,
+a#staffTable_next,
+a#standardTable_next,
+a#studentTable_next,
+a#historyTable_next,
+a#promoteTable_next,
+a#feeDueTable_next {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+a#myTable_previous,
+a#staffTable_previous,
+a#standardTable_previous,
+a#studentTable_previous,
+a#historyTable_previous,
+a#promoteTable_previous,
+a#feeDueTable_previous {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  box-shadow: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+  cursor: not-allowed;
+  color: #999999 !important;
+  border: 1px solid #dddddd !important;
+  background: #ffffff !important;
+  box-shadow: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  background-color: white !important;
+  padding: 8px 12px;
+  color: #2fa4e7 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: white !important;
+  border: 1px solid #dddddd !important;
+  background: linear-gradient(#f5f5f5, #f5f5f5) !important;
+  color: #157ab5 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  padding: 8px 12px;
+  background: #f5f5f5 !important;
+  color: #999999 !important;
+  border: 1px solid #dddddd;
+  background: -webkit-linear-gradient(top, white 0%, #dcdcdc 100%);
+  background: -moz-linear-gradient(top, white 0%, #dcdcdc 100%);
+  background: -ms-linear-gradient(top, white 0%, #dcdcdc 100%);
+  background: -o-linear-gradient(top, white 0%, #dcdcdc 100%);
+  background: linear-gradient(to bottom, white 0%, #dcdcdc 100%);
 }

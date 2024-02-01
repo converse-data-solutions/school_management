@@ -1,49 +1,46 @@
 var studentAttendanceData;
 
 function initValidate() {
-  var calendarEl = document.getElementById('calendar');
+  var calendarEl = document.getElementById("calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
     headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth'
+      left: "prev,next today",
+      center: "title",
+      right: "dayGridMonth",
     },
     initialDate: new Date(),
     navLinks: true,
     businessHours: true,
     editable: true,
     selectable: true,
-    events: studentAttendanceData
+    events: studentAttendanceData,
   });
   calendar.render();
 
   function fetchData(student_id, selected_date) {
-
-
     $.ajax({
-      url: '/parent/attendance_views',
-      method: 'GET',
+      url: "/parent/attendance_views",
+      method: "GET",
       data: { student_id: student_id, selected_date: selected_date },
-      dataType: 'json',
+      dataType: "json",
       success: function (data) {
         studentAttendanceData = data;
         calendar.render();
       },
       error: function () {
-        console.error('Failed to fetch student attendance data');
-      }
+        console.error("Failed to fetch student attendance data");
+      },
     });
   }
 
- 
   $("form").on("submit", function (e) {
     let student_id = $("#student_id").val();
     let dateValue = $("#date").val();
     let err = $("#error-div");
-  
+
     $(".error").text("");
     let errors = false;
-  
+
     if (!validator.isDate(dateValue)) {
       $("#date-error").text("Please enter a valid Date.");
       errors = true;
@@ -53,14 +50,14 @@ function initValidate() {
       $("#student-error").text("Please select a Student.");
       errors = true;
     }
-  
+
     if (errors == true) {
       err.toggleClass("hidden");
       setTimeout(function () {
         err.toggleClass("hidden");
       }, 5000);
     }
-  
+
     if (errors) {
       e.preventDefault();
       return false;
@@ -71,8 +68,6 @@ function initValidate() {
     return true;
   });
 }
-
-
 
 $(document).ready(function () {
   initValidate();

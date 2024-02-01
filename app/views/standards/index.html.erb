@@ -12,7 +12,7 @@
           <span class="font-[700] text-[15px]">Manage Standard</span></div>
         <button id="updown" class="accordian-header cursor-pointer duration-700 text-2xl leading-0 px-1 my-1  border bg-white text-black font-extrabold h-[26px] rounded-[12px]"> <i class="bx bx-chevron-up"></i></button>
       </div>
-      <div class="accordian-body">
+      <div class="accordian-body mt-0">
         <div class="bg-[#FFFFFF] lg:overflow-scroll xl:overflow-hidden ">
           <% if notice %>
             <div class="ml-2">
@@ -29,8 +29,8 @@
               <tr>
                 <th>S.NO</th>
                 <th>Standatd Name</th>
+                <th>Section</th>
                 <th>Fee Amount</th>
-                <th>Section Name</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -59,27 +59,27 @@
             </div>
             <div class="w-full mb-4">
               <label for="class_name" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Standard Name</label>
-              <%= f.text_field :name,id: "standard_name",  class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.5", placeholder: "Standard Name" %>
+              <%= f.text_field :name,id: "standard_name",  class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "Standard Name" %>
             </div>
             <div class="w-full mb-4">
               <label for="fee_amount" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Fee Amount</label>
-              <%= f.text_field :fee, id: "fee", class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.5", placeholder: "Fee Amount" %>
+              <%= f.text_field :fee, id: "fee", class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2", placeholder: "Fee Amount" %>
             </div>
             <div id="sections_fields">
               <label for="Section" class="block text-sm font-semibold text-[#555555] dark:text-white">Section</label>
               <%= f.fields_for :sections do |section_form| %>
                 <div class="section_fields mb-4">
-                  <%= section_form.text_field :section_name, id:"section_name",  class: " border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.5 mb-1", placeholder: "Section" %>
-                  <%= link_to '-', '#', class: 'remove-section  remove_section py-[8px] px-[13px]  text-white rounded-[5px]', style:"background-image: linear-gradient(#e12b31, #c71c22 60%, #b5191f);" %>
+                  <%= section_form.text_field :section_name, id:"section_name",  class: " border border-gray-300 text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2 mb-[7px]", placeholder: "Section" %>
+                  <%= link_to '-', '#', class: 'remove_section py-[10px] px-[12px] bg-[#9a161a] text-[14px]  text-white rounded-[5px] mt-3 border border-[1px] border-[#9a161a] hover:border-[1px] hover:border-[#9a161a] hover:bg-[#9a161a] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]', style:"background-image: linear-gradient(#e12b31, #c71c22 60%, #b5191f);" %>
                 </div>
               <% end %>
             </div>
             <div>
-              <%= link_to '+', '#', id: 'add_section',class:"py-[8px] px-[12px]  text-white rounded-[5px]", style:"background-image: linear-gradient(#88c149, #73a839 60%, #699934);" %>
+              <%= link_to '+', '#', id: 'add_section',class:"py-[10px] px-[12px] text-[14px] bg-[#7FB642] text-white rounded-[5px] border border-[1px] border-[#7FB642] hover:border-[1px] hover:border-[#59822c] hover:bg-[#59822c] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000]", style:"background-image: linear-gradient(#88c149, #73a839 60%, #699934);" %>
               <p class="text-[#848080] text-[12px] font-extralight mt-2">Press + to add another section</p>
             </div>
             <div class="my-3.5">
-              <%= f.submit "Created Standard", id: "button",class: 'text-white border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px] text-sm w-auto sm:w-auto px-2 py-2 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
+              <%= f.submit "Add Standard", id: "button",class: 'text-white border border-[1px] border-[#2fa4e7] hover:border-[1px] hover:border-[#1684c2] bg-[#81B944] focus:ring-2 hover:ring-[#000] focus:outline-[#000] focus:ring-[#000] rounded-[4px] text-[14px] text-sm w-auto sm:w-auto px-2 py-2 text-center', style: 'background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);' %>
             </div>
           <% end %>
         </div>

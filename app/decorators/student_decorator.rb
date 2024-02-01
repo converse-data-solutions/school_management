@@ -20,21 +20,21 @@ class StudentDecorator < ApplicationDecorator
              end
     h.safe_join(links, '')
   end
-
+  
   def student_actions
     links = []
     if object.status == 'Active'
-      links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + 'Deactive'.html_safe,
+      links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + ' Deactive'.html_safe,
                          h.active_student_student_path(object), data: { turbo_method: :patch, turbo_confirm: 'Are you sure You Want To Deactivate?' }, remote: true, class: 'student_deactive')
       links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-edit') + ' Edit'.html_safe,
                          h.edit_student_path(object), class: 'student_edit')
     else
-      links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + 'Active'.html_safe,
+      links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + ' Active'.html_safe,
                          h.active_student_student_path(object), data: { turbo_method: :patch, turbo_confirm: 'Are you sure You Want To Activate?' }, remote: true, class: 'student_active')
     end
 
     links << h.link_to(h.content_tag(:i, nil, class: 'fas fa-trash-alt') + ' Delete'.html_safe,
-                       h.student_path(object), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, remote: true, class: 'student_delete')
+                       h.student_path(object), data: { turbo_method: :delete, turbo_confirm: 'Are you sure You Want To Delete?' }, remote: true, class: 'student_delete')
     h.safe_join(links, '')
   end
 end

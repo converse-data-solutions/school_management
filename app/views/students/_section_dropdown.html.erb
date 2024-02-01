@@ -1,5 +1,5 @@
-<label for="section" class="block mb-2 text-sm font-semibold text-[#393E46] dark:text-white">Section</label>
-<select id="student_section_id" name="student[section_id]" class= 'text-[14px] focus:ring-[#37A7E7]'>
+<label for="section" class="block mb-2 text-sm font-semibold text-[#555555] dark:text-white">Section</label>
+<select id="student_section_id" name="student[section_id]" class = "border border-[#cccccc] text-[#555555] text-sm rounded-[5px] focus:border-[#66afe9] focus:ring-blue-200 block w-full p-2.0 standard">
   <option value="">Select Section</option>
   <% sections.each do |section| %>
     <option value="<%= section.id %>"><%= section.section_name %></option>
