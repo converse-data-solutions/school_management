@@ -269,13 +269,13 @@
                     </a>
                   </li>
                   <li class="text-[14px]">
-                    <a href="<%= url_for :promote_students %>" class="<%= params[:controller] == "students" && params[:action] == "promote" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
-                      <span><i class="fa-solid fa-gear"></i> </span><span class="ml-1 md:ml-0 lg:ml-1 text-center">Promote Students</span>
+                    <a href="<%= url_for :promote_students %>" class="<%= params[:controller] == "students" && params[:action] == "promote" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row text-[14px]  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
+                      <span><i class="fa-solid fa-gear"></i> </span><span class="ml-1 md:ml-0 lg:ml-1 text-center lg:text-start xl:text-center">Promote Students</span>
                     </a>
                   </li>
                   <li class="text-[14px]">
                     <a href="<%= url_for :academic_details %>" class="<%= params[:controller] == "academic_details" && params[:action] == "index" ? 'activenav' : '' %> activebar flex md:flex-col items-center lg:flex-row  md:border  md:border-[ #DDDDDD75] items-cente p-[10px] text-white md:text-[#2FA4E7] rounded-[4px] hover:text-[#157AB5] hover:bg-[#EEEEEE] pl-3   hover:ml-2  duration-200 dark:hover:bg-gray-700 group">
-                      <span><i class="fa-sharp fa-solid fa-clock-rotate-left"></i> </span><span class="ml-1 md:ml-0 lg:ml-1 text-center">Academic Details</span>
+                      <span><i class="fa-sharp fa-solid fa-clock-rotate-left"></i> </span><span class="ml-1 md:ml-0 lg:ml-1 text-center lg:text-start xl:text-center">Academic Details</span>
                     </a>
                   </li>
                 <% end %>
