@@ -27,14 +27,25 @@ body {
 .activenav {
   margin-left: 8px;
   padding-left: 16px;
-  background-color: rgb(47, 164, 231);
+  background-color: #2fa4e7;
   color: white;
+}
+
+/* Styles for mobile screens */
+@media only screen and (max-width: 767px) {
+  .activenav {
+    margin-left: 0;
+    padding-left: 15px;
+    background-color: #2fa4e7;
+    color: white;
+    opacity: 1;
+  }
 }
 
 .activenavdropdown {
   margin-left: 16px;
   padding-left: 12px;
-  background-color: rgb(47, 164, 231);
+  background-color: #2fa4e7;
   color: white;
 }
 
@@ -42,14 +53,14 @@ body {
   margin-left: 8px;
   margin-right: 0px;
   padding-left: 16px;
-  background-color: rgb(47, 164, 231);
+  background-color: #2fa4e7;
   color: white;
 }
 
 .activenavdropdown:hover {
   margin-left: 16px;
   padding-left: 12px;
-  background-color: rgb(47, 164, 231);
+  background-color: #2fa4e7;
   color: white;
 }
 
