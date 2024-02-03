@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   resources :student_attendances, except: %i[show new edit update destroy create] do
     collection do
       post :update_all
+      get :attendance_view
     end
     collection do
       get :find_sections

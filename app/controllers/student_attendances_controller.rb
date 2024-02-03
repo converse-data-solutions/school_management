@@ -25,6 +25,9 @@ class StudentAttendancesController < ApplicationController
     @students = Student.active.where(section_id: @selected_section)
   end
 
+  def attendance_view
+  end
+
   private
 
   def check_role
